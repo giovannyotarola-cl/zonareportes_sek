@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <link href="Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="Content/stylesheet.css" rel="stylesheet" />
+    <link href="Fonts/css/fontawesome-all.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container header">
+                <img src="https://www.usek.cl/media/1492/logos-blanco-usek-2016.jpg?width=213&amp;height=90" />
+                <h2 class="display-5">Porcentaje Abrobados, Reprobados</h2>
+                <p>El siguiente reporte, muestra los porcentajes de alumnos reprobados por asignatura, entre los filtros se encuentran estadísticas por Año Académico, Facultad, Carrera, entre otros</p> 
+                <hr />
+            </div>
+        </div>
+        <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+    </main>
+    <footer class="footer fixed">
+        <div class="container">
+            <p>&copy; USEK 2017-2018</p>
+            <p><small>Universidad SEK - Ser Mejores</small></p>
+        </div>
+    </footer>
+    <script type="text/javascript" src="Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/app.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+</body>
+</html>

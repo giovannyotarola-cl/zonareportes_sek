@@ -1,0 +1,3354 @@
+<!--#include file="rptinc/ewrcfg5.asp"-->
+<!--#include file="rptinc/ewrfn5.asp"-->
+<!--#include file="rptinc/ewrusrfn.asp"-->
+<%
+
+' Variable for table object
+Dim pagos_vs_llamados
+
+' Define table class
+Class crpagos_vs_llamados
+	Dim ShowCurrentFilter ' Show current filter
+	Dim FilterPanelOption ' Filter panel option
+	Dim CurrentOrder ' Current order
+	Dim CurrentOrderType ' Current order type
+	Dim RestoreSession ' Restore Session
+
+	' Table variable
+	Public Property Get TableVar()
+		TableVar = "pagos_vs_llamados"
+	End Property
+
+	' Table name
+	Public Property Get TableName()
+		TableName = "pagos_vs_llamados"
+	End Property
+
+	' Table type
+	Public Property Get TableType()
+		TableType = "REPORT"
+	End Property
+
+	' Table caption
+	Public Property Get TableCaption()
+		TableCaption = ReportLanguage.TablePhrase(TableVar, "TblCaption")
+	End Property
+
+	' Session Group Per Page
+	Public Property Get GroupPerPage()
+		GroupPerPage = Session(EWRPT_PROJECT_VAR & "_" & TableVar & "_grpperpage")
+	End Property
+
+	Public Property Let GroupPerPage(v)
+		Session(EWRPT_PROJECT_VAR & "_" & TableVar & "_grpperpage") = v
+	End Property
+
+	' Session Start Group
+	Public Property Get StartGroup()
+		StartGroup = Session(EWRPT_PROJECT_VAR & "_" & TableVar & "_start")
+	End Property
+
+	Public Property Let StartGroup(v)
+		Session(EWRPT_PROJECT_VAR & "_" & TableVar & "_start") = v
+	End Property
+
+	' Session Order By
+	Public Property Get OrderBy()
+		OrderBy = Session(EWRPT_PROJECT_VAR & "_" & TableVar & "_orderby")
+	End Property
+
+	Public Property Let OrderBy(v)
+		Session(EWRPT_PROJECT_VAR & "_" & TableVar & "_orderby") = v
+	End Property
+
+	' Create new chart object
+	Private Function NewChtObj(tblvar, tblname, chtvar, chtname, xfldname, yfldname, sfldname, chttype, chtsmrytype, width, height)
+		Dim cht
+		Set cht = New crChart
+		cht.TblVar = tblvar
+		cht.TblName = tblname
+		cht.ChartVar = chtvar
+		cht.ChartName = chtname
+		cht.ChartXFldName = xfldname
+		cht.ChartYFldName = yfldname
+		cht.ChartSFldName = sfldname
+		cht.ChartType = chttype
+		cht.ChartSummaryType = chtsmrytype
+		cht.ChartWidth = width
+		cht.ChartHeight = height
+		Set NewChtObj = cht
+	End Function
+
+	' SALDO
+	Private m_SALDO
+
+	Public Property Get SALDO()
+		Dim ar
+		If Not IsObject(m_SALDO) Then
+			Set m_SALDO = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_SALDO", "SALDO", "[SALDO]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_SALDO.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+			m_SALDO.DateFilter = ""
+			m_SALDO.SqlSelect = ""
+			m_SALDO.SqlOrderBy = ""
+		End If
+		Set SALDO = m_SALDO
+	End Property
+
+	' FECCANCEL
+	Private m_FECCANCEL
+
+	Public Property Get FECCANCEL()
+		Dim ar
+		If Not IsObject(m_FECCANCEL) Then
+			Set m_FECCANCEL = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_FECCANCEL", "FECCANCEL", "[FECCANCEL]", 135, EWRPT_DATATYPE_DATE, -1)
+			m_FECCANCEL.FldDefaultErrMsg = Replace(ReportLanguage.Phrase("IncorrectDateDMY"), "%s", "/")
+			m_FECCANCEL.DateFilter = ""
+			m_FECCANCEL.SqlSelect = ""
+			m_FECCANCEL.SqlOrderBy = ""
+		End If
+		Set FECCANCEL = m_FECCANCEL
+	End Property
+
+	' total
+	Private m_total
+
+	Public Property Get total()
+		Dim ar
+		If Not IsObject(m_total) Then
+			Set m_total = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_total", "total", "[total]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_total.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+			m_total.DateFilter = ""
+			m_total.SqlSelect = ""
+			m_total.SqlOrderBy = ""
+		End If
+		Set total = m_total
+	End Property
+
+	' NOMBRE_C
+	Private m_NOMBRE_C
+
+	Public Property Get NOMBRE_C()
+		Dim ar
+		If Not IsObject(m_NOMBRE_C) Then
+			Set m_NOMBRE_C = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_NOMBRE_C", "NOMBRE_C", "[NOMBRE_C]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_NOMBRE_C.DateFilter = ""
+			m_NOMBRE_C.SqlSelect = ""
+			m_NOMBRE_C.SqlOrderBy = ""
+		End If
+		Set NOMBRE_C = m_NOMBRE_C
+	End Property
+
+	' ANO
+	Private m_ANO
+
+	Public Property Get ANO()
+		Dim ar
+		If Not IsObject(m_ANO) Then
+			Set m_ANO = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_ANO", "ANO", "[ANO]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_ANO.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+			m_ANO.DateFilter = ""
+			m_ANO.SqlSelect = ""
+			m_ANO.SqlOrderBy = ""
+		End If
+		Set ANO = m_ANO
+	End Property
+
+	' PERIODO
+	Private m_PERIODO
+
+	Public Property Get PERIODO()
+		Dim ar
+		If Not IsObject(m_PERIODO) Then
+			Set m_PERIODO = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_PERIODO", "PERIODO", "[PERIODO]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_PERIODO.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+			m_PERIODO.DateFilter = ""
+			m_PERIODO.SqlSelect = ""
+			m_PERIODO.SqlOrderBy = ""
+		End If
+		Set PERIODO = m_PERIODO
+	End Property
+
+	' CODCLI
+	Private m_CODCLI
+
+	Public Property Get CODCLI()
+		Dim ar
+		If Not IsObject(m_CODCLI) Then
+			Set m_CODCLI = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_CODCLI", "CODCLI", "[CODCLI]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_CODCLI.DateFilter = ""
+			m_CODCLI.SqlSelect = ""
+			m_CODCLI.SqlOrderBy = ""
+		End If
+		Set CODCLI = m_CODCLI
+	End Property
+
+	' DIG
+	Private m_DIG
+
+	Public Property Get DIG()
+		Dim ar
+		If Not IsObject(m_DIG) Then
+			Set m_DIG = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_DIG", "DIG", "[DIG]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_DIG.DateFilter = ""
+			m_DIG.SqlSelect = ""
+			m_DIG.SqlOrderBy = ""
+		End If
+		Set DIG = m_DIG
+	End Property
+
+	' PATERNO
+	Private m_PATERNO
+
+	Public Property Get PATERNO()
+		Dim ar
+		If Not IsObject(m_PATERNO) Then
+			Set m_PATERNO = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_PATERNO", "PATERNO", "[PATERNO]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_PATERNO.DateFilter = ""
+			m_PATERNO.SqlSelect = ""
+			m_PATERNO.SqlOrderBy = ""
+		End If
+		Set PATERNO = m_PATERNO
+	End Property
+
+	' MATERNO
+	Private m_MATERNO
+
+	Public Property Get MATERNO()
+		Dim ar
+		If Not IsObject(m_MATERNO) Then
+			Set m_MATERNO = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_MATERNO", "MATERNO", "[MATERNO]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_MATERNO.DateFilter = ""
+			m_MATERNO.SqlSelect = ""
+			m_MATERNO.SqlOrderBy = ""
+		End If
+		Set MATERNO = m_MATERNO
+	End Property
+
+	' NOMBRE
+	Private m_NOMBRE
+
+	Public Property Get NOMBRE()
+		Dim ar
+		If Not IsObject(m_NOMBRE) Then
+			Set m_NOMBRE = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_NOMBRE", "NOMBRE", "[NOMBRE]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_NOMBRE.DateFilter = ""
+			m_NOMBRE.SqlSelect = ""
+			m_NOMBRE.SqlOrderBy = ""
+		End If
+		Set NOMBRE = m_NOMBRE
+	End Property
+
+	' ESTACAD
+	Private m_ESTACAD
+
+	Public Property Get ESTACAD()
+		Dim ar
+		If Not IsObject(m_ESTACAD) Then
+			Set m_ESTACAD = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_ESTACAD", "ESTACAD", "[ESTACAD]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_ESTACAD.DateFilter = ""
+			m_ESTACAD.SqlSelect = ""
+			m_ESTACAD.SqlOrderBy = ""
+		End If
+		Set ESTACAD = m_ESTACAD
+	End Property
+
+	' ANO_MATRICULA
+	Private m_ANO_MATRICULA
+
+	Public Property Get ANO_MATRICULA()
+		Dim ar
+		If Not IsObject(m_ANO_MATRICULA) Then
+			Set m_ANO_MATRICULA = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_ANO_MATRICULA", "ANO_MATRICULA", "[ANO_MATRICULA]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_ANO_dbo.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+			m_ANO_dbo.DateFilter = ""
+			m_ANO_dbo.SqlSelect = ""
+			m_ANO_dbo.SqlOrderBy = ""
+		End If
+		Set ANO_MATRICULA = m_ANO_MATRICULA
+	End Property
+
+	' ANO_ULT_MAT
+	Private m_ANO_ULT_MAT
+
+	Public Property Get ANO_ULT_MAT()
+		Dim ar
+		If Not IsObject(m_ANO_ULT_MAT) Then
+			Set m_ANO_ULT_MAT = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_ANO_ULT_MAT", "ANO_ULT_MAT", "[ANO_ULT_MAT]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_ANO_ULT_MAT.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+			m_ANO_ULT_MAT.DateFilter = ""
+			m_ANO_ULT_MAT.SqlSelect = ""
+			m_ANO_ULT_MAT.SqlOrderBy = ""
+		End If
+		Set ANO_ULT_MAT = m_ANO_ULT_MAT
+	End Property
+
+	' PER_ULT_MAT
+	Private m_PER_ULT_MAT
+
+	Public Property Get PER_ULT_MAT()
+		Dim ar
+		If Not IsObject(m_PER_ULT_MAT) Then
+			Set m_PER_ULT_MAT = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_PER_ULT_MAT", "PER_ULT_MAT", "[PER_ULT_MAT]", 131, EWRPT_DATATYPE_NUMBER, -1)
+			m_PER_ULT_MAT.DateFilter = ""
+			m_PER_ULT_MAT.SqlSelect = ""
+			m_PER_ULT_MAT.SqlOrderBy = ""
+		End If
+		Set PER_ULT_MAT = m_PER_ULT_MAT
+	End Property
+
+	' DOCUM_PAGO
+	Private m_DOCUM_PAGO
+
+	Public Property Get DOCUM_PAGO()
+		Dim ar
+		If Not IsObject(m_DOCUM_PAGO) Then
+			Set m_DOCUM_PAGO = NewFldObj("pagos_vs_llamados", "pagos_vs_llamados", "x_DOCUM_PAGO", "DOCUM_PAGO", "[DOCUM_PAGO]", 200, EWRPT_DATATYPE_STRING, -1)
+			m_DOCUM_PAGO.DateFilter = ""
+			m_DOCUM_PAGO.SqlSelect = ""
+			m_DOCUM_PAGO.SqlOrderBy = ""
+		End If
+		Set DOCUM_PAGO = m_DOCUM_PAGO
+	End Property
+
+	' Create new field object
+	Private Function NewFldObj(tblvar, tblname, fldvar, fldname, fldexpression, fldtype, flddatatype, flddtformat)
+		Dim fld
+		Set fld = New crField
+		fld.TblVar = tblvar
+		fld.TblName = tblname
+		fld.FldVar = fldvar
+		fld.FldName = fldname
+		fld.FldExpression = fldexpression
+		fld.FldType = fldtype
+		fld.FldDataType = flddatatype
+		fld.FldDateTimeFormat = flddtformat
+		Set NewFldObj = fld
+	End Function
+	Dim Fields ' Fields
+	Dim Export ' Export
+	Dim ExportAll
+	Dim UseTokenInUrl
+	Dim RowType ' Row type
+	Dim RowTotalType ' Row total type
+	Dim RowTotalSubType ' Row total subtype
+	Dim RowGroupLevel ' Row group level
+	Dim RowAttrs  ' Row attributes
+
+	' Reset attributes for table object
+	Sub ResetAttrs()
+		RowAttrs.Clear()
+		If IsArray(Fields) Then
+			For i = 0 to UBound(Fields,2)
+				Set fld = Fields(1,i)
+				Call fld.ResetAttrs()
+			Next
+		End If
+	End Sub
+
+	'
+	' Class Initialize
+	'
+	Private Sub Class_Initialize()
+		RestoreSession = False
+		ExportAll = True
+		UseTokenInUrl = EWRPT_USE_TOKEN_IN_URL
+		ShowCurrentFilter = EWRPT_SHOW_CURRENT_FILTER
+		FilterPanelOption = EWRPT_FILTER_PANEL_OPTION
+		Set RowAttrs = New crAttributes ' Row attributes
+		Call ewrpt_SetArObj(Fields, "SALDO", SALDO)
+		Call ewrpt_SetArObj(Fields, "FECCANCEL", FECCANCEL)
+		Call ewrpt_SetArObj(Fields, "total", total)
+		Call ewrpt_SetArObj(Fields, "NOMBRE_C", NOMBRE_C)
+		Call ewrpt_SetArObj(Fields, "ANO", ANO)
+		Call ewrpt_SetArObj(Fields, "PERIODO", PERIODO)
+		Call ewrpt_SetArObj(Fields, "CODCLI", CODCLI)
+		Call ewrpt_SetArObj(Fields, "DIG", DIG)
+		Call ewrpt_SetArObj(Fields, "PATERNO", PATERNO)
+		Call ewrpt_SetArObj(Fields, "MATERNO", MATERNO)
+		Call ewrpt_SetArObj(Fields, "NOMBRE", NOMBRE)
+		Call ewrpt_SetArObj(Fields, "ESTACAD", ESTACAD)
+		Call ewrpt_SetArObj(Fields, "ANO_MATRICULA", ANO_MATRICULA)
+		Call ewrpt_SetArObj(Fields, "ANO_ULT_MAT", ANO_ULT_MAT)
+		Call ewrpt_SetArObj(Fields, "PER_ULT_MAT", PER_ULT_MAT)
+		Call ewrpt_SetArObj(Fields, "DOCUM_PAGO", DOCUM_PAGO)
+	End Sub
+
+	' Terminate
+	Private Sub Class_Terminate()
+		Set RowAttrs = Nothing
+	End Sub
+
+	' Single column sort
+	Public Sub UpdateSort(ofld)
+		Dim sLastSort, sThisSort
+		If (CurrentOrder = ofld.FldName) Then
+			sLastSort = ofld.Sort
+			If CurrentOrderType = "ASC" Or CurrentOrderType = "DESC" Then
+				sThisSort = CurrentOrderType
+			Else
+				sThisSort = ewrpt_IIf(sLastSort = "ASC", "DESC", "ASC")
+			End If
+			ofld.Sort = sThisSort
+		Else
+			If ofld.GroupingFieldId = 0 Then ofld.Sort = ""
+		End If
+	End Sub
+
+	' Get Sort SQL
+	Public Function SortSql()
+		Dim sSortSql
+		sSortSql = ""
+		Dim i, fld
+		If IsArray(Fields) Then
+			For i = 0 to UBound(Fields,2)
+				Set fld = Fields(1,i)
+				If fld.Sort <> "" Then
+					If sSortSql <> "" Then sSortSql = sSortSql & ", "
+					If (fld.FldGroupSql <> "") Then
+						sSortSql = sSortSql & Replace(fld.FldGroupSql, "%s", fld.FldExpression) & " " & fld.Sort
+					Else
+						sSortSql = sSortSql & fld.FldExpression & " " & fld.Sort
+					End If
+				End If
+			Next
+		End If
+		SortSql = sSortSql
+	End Function
+
+	' Table level SQL
+	Public Property Get SqlFrom() ' From
+		SqlFrom = "[SEK_pagos_vs_llamadas]"
+	End Property
+
+	Public Property Get SqlSelect() ' Select
+		SqlSelect = "SELECT [SALDO], [FECCANCEL], [total], [NOMBRE_C], [ANO], [PERIODO], [CODCLI], [DIG], [PATERNO], [MATERNO], [NOMBRE], [ESTACAD], [ANO_MATRICULA], [ANO_ULT_MAT], [PER_ULT_MAT], [DOCUM_PAGO] FROM " & SqlFrom
+	End Property
+
+	Public Property Get SqlWhere() ' Where
+		SqlWhere = ""
+	End Property
+
+	Public Property Get SqlGroupBy() ' Group By
+		SqlGroupBy = ""
+	End Property
+
+	Public Property Get SqlHaving() ' Having
+		SqlHaving = ""
+	End Property
+
+	Public Property Get SqlOrderBy() ' Order By
+		SqlOrderBy = ""
+	End Property
+
+	' Table Level Group SQL
+	Public Property Get SqlFirstGroupField()
+		SqlFirstGroupField = ""
+	End Property
+
+	Public Property Get SqlSelectGroup()
+		SqlSelectGroup = "SELECT DISTINCT " & SqlFirstGroupField & " FROM " & SqlFrom
+	End Property
+
+	Public Property Get SqlOrderByGroup()
+		SqlOrderByGroup = ""
+	End Property
+
+	Public Property Get SqlSelectAgg()
+		SqlSelectAgg = "SELECT * FROM " & SqlFrom
+	End Property
+
+	Public Property Get SqlAggPfx()
+		SqlAggPfx = ""
+	End Property
+
+	Public Property Get SqlAggSfx()
+		SqlAggSfx = ""
+	End Property
+
+	Public Property Get SqlSelectCount()
+		SqlSelectCount = "SELECT COUNT(*) FROM " & SqlFrom
+	End Property
+
+	' Sort URL
+	Function SortUrl(fld)
+		if Export <> "" Or _
+			(fld.FldType = 141 Or fld.FldType = 201 Or fld.FldType = 203 Or fld.FldType = 128 Or fld.FldType = 204 Or fld.FldType = 205) Then ' Unsortable data type
+			SortUrl = ""
+		ElseIf fld.Sortable Then
+			Dim sUrlParm
+			sUrlParm = "order=" & Server.URLEncode(fld.FldName) & "&ordertype=" & fld.ReverseSort
+			SortUrl = ewrpt_CurrentPage() & "?" & sUrlParm
+		Else
+			SortUrl = ""
+		End If
+	End Function
+
+	' Row attributes
+	Function RowAttributes()
+		Dim sAtt, Attr, Value, i
+		sAtt = ""
+		For i = 0 to UBound(RowAttrs.Attributes)
+			Attr = RowAttrs.Attributes(i)(0)
+			Value = RowAttrs.Attributes(i)(1)
+			If Attr <> "" And Value <> "" Then
+				sAtt = sAtt & " " & Attr & "=""" & Value & """"
+			End If
+		Next
+		RowAttributes = sAtt
+	End Function
+
+	' Field object by fldvar
+	Function GetField(fldvar)
+		Dim i
+		If IsArray(Fields) Then
+			For i = 0 to UBound(Fields,2)
+				If Fields(0,i) = fldvar Then
+					Set GetField = Fields(1,i)
+					Exit Function
+				End If
+			Next
+		End If
+		Set GetField = Nothing
+	End Function
+
+	' Table level events
+	' Row Rendering event
+	Sub Row_Rendering()
+
+		' Enter your code here	
+	End Sub
+
+	' Cell Rendered event
+	Sub Cell_Rendered(Field, CurrentValue, ViewValue, ViewAttrs, CellAttrs, HrefValue)
+
+		' ViewValue = "xxx"
+		' ViewAttrs.AddAttribute "style", "xxx", True
+
+	End Sub
+
+	' Row Rendered event
+	Sub Row_Rendered()
+
+		' To view properties of field class, use:
+		' Response.Write <FieldName>.AsString
+
+	End Sub
+
+	' Load Filters event
+	Sub Filters_Load()
+
+		' Enter your code here
+		' Example: Register/Unregister Custom Extended Filter
+		'ewrpt_RegisterFilter <Field>, "StartsWithA", "Starts With A", "GetStartsWithAFilter"
+		'ewrpt_UnregisterFilter <Field>, "StartsWithA"
+
+	End Sub
+
+	' Page Filter Validated event
+	Sub Page_FilterValidated()
+
+		' Example:
+		'Table.Field.SearchValue = "your search criteria" ' Search value
+
+	End Sub
+
+	' Chart Rendering event
+	Sub Chart_Rendering(chart)
+
+		' To view properties of chart class, use:
+		' Response.Write chart.AsString
+
+	End Sub
+
+	' Chart Rendered event
+	Sub Chart_Rendered(chart, chartxml)
+
+		' To view properties of chart class, use:
+		' Response.Write chart.AsString
+		' Example:
+		' Dim doc
+		' Set doc = chart.XmlDoc ' Get the DOMDocument object
+		' Enter your code to manipulate the DOMDocument object here
+		' chartxml = doc.XML ' Output the XML
+
+	End Sub
+
+	' Email Sending event
+	Function Email_Sending(Email, Args)
+
+		'Response.Write Email.AsString
+		'Response.Write "Keys of Args: " & Join(Args.Keys, ", ")
+		'Response.End
+
+		Email_Sending = True
+	End Function
+End Class
+%>
+<% Call ewrpt_Header(False, EWRPT_CHARSET) %>
+<% Server.ScriptTimeOut = 240 %>
+<%
+
+' Define page object
+Dim pagos_vs_llamados_summary
+Set pagos_vs_llamados_summary = New crpagos_vs_llamados_summary
+Set Page = pagos_vs_llamados_summary
+
+' Page init processing
+Call pagos_vs_llamados_summary.Page_Init()
+
+' Page main processing
+Call pagos_vs_llamados_summary.Page_Main()
+%>
+<!--#include file="rptinc/header.asp"-->
+<script type="text/javascript">
+// Create page object
+var pagos_vs_llamados_summary = new ewrpt_Page("pagos_vs_llamados_summary");
+// page properties
+pagos_vs_llamados_summary.PageID = "summary"; // page ID
+pagos_vs_llamados_summary.FormID = "fpagos_vs_llamadossummaryfilter"; // form ID
+var EWRPT_PAGE_ID = pagos_vs_llamados_summary.PageID;
+// extend page with Chart_Rendering function
+pagos_vs_llamados_summary.Chart_Rendering =  
+ function(chart, chartid) { // DO NOT CHANGE THIS LINE!
+ 	//alert(chartid);
+ }
+// extend page with Chart_Rendered function
+pagos_vs_llamados_summary.Chart_Rendered =  
+ function(chart, chartid) { // DO NOT CHANGE THIS LINE!
+ 	//alert(chartid);
+ }
+</script>
+<% If pagos_vs_llamados.Export = "" Then %>
+<script type="text/javascript">
+<!--
+// extend page with ValidateForm function
+pagos_vs_llamados_summary.ValidateForm = function(fobj) {
+	if (!this.ValidateRequired)
+		return true; // ignore validation
+	var elm = fobj.sv1_ANO;
+	if (elm && !ewrpt_CheckNumber(elm.value)) {
+		if (!ewrpt_OnError(elm, "<%= ewrpt_JsEncode2(pagos_vs_llamados.ANO.FldErrMsg) %>"))
+			return false;
+	}
+	var elm = fobj.sv1_PERIODO;
+	if (elm && !ewrpt_CheckNumber(elm.value)) {
+		if (!ewrpt_OnError(elm, "<%= ewrpt_JsEncode2(pagos_vs_llamados.PERIODO.FldErrMsg) %>"))
+			return false;
+	}
+	// Call Form Custom Validate event
+	if (!this.Form_CustomValidate(fobj)) return false;
+	return true;
+}
+// extend page with Form_CustomValidate function
+pagos_vs_llamados_summary.Form_CustomValidate =  
+ function(fobj) { // DO NOT CHANGE THIS LINE!
+ 	// Your custom validation code here, return false if invalid. 
+ 	return true;
+ }
+<% If EWRPT_CLIENT_VALIDATE Then %>
+pagos_vs_llamados_summary.ValidateRequired = true; // uses JavaScript validation
+<% Else %>
+pagos_vs_llamados_summary.ValidateRequired = false; // no JavaScript validation
+<% End If %>
+//-->
+</script>
+<link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-1.css" title="win2k-1">
+<script type="text/javascript" src="jscalendar/calendar.js"></script>
+<script type="text/javascript" src="jscalendar/lang/calendar-en.js"></script>
+<script type="text/javascript" src="jscalendar/calendar-setup.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+// Write your client script here, no need to add script tags.
+//-->
+</script>
+<% End If %>
+<script src="<%= EWRPT_FUSIONCHARTS_FREE_JSCLASS_FILE %>" type="text/javascript"></script>
+<% If pagos_vs_llamados.Export = "" Then %>
+<div id="ewrpt_PopupFilter"><div class="bd"></div></div>
+<script src="rptjs/ewrptpop.js" type="text/javascript"></script>
+<script type="text/javascript">
+<% Dim jsdata %>
+// popup fields
+</script>
+<% End If %>
+<!-- Table Container (Begin) -->
+<table id="ewContainer" cellspacing="0" cellpadding="0" border="0">
+<!-- Top Container (Begin) -->
+<tr><td colspan="3"><div id="ewTop" class="aspreportmaker">
+<!-- top slot -->
+<a name="top"></a>
+<p class="aspreportmaker ewTitle"><%= pagos_vs_llamados.TableCaption %>
+&nbsp;&nbsp;<% pagos_vs_llamados_summary.ExportOptions.Render "body", "" %></p>
+<% pagos_vs_llamados_summary.ShowPageHeader() %>
+<% pagos_vs_llamados_summary.ShowMessage() %>
+<br><br>
+</div></td></tr>
+<!-- Top Container (End) -->
+<tr>
+	<!-- Left Container (Begin) -->
+	<td style="vertical-align: top;"><div id="ewLeft" class="aspreportmaker">
+	<!-- Left slot -->
+	</div></td>
+	<!-- Left Container (End) -->
+	<!-- Center Container - Report (Begin) -->
+	<td style="vertical-align: top;" class="ewPadding"><div id="ewCenter" class="aspreportmaker">
+	<!-- center slot -->
+<!-- summary report starts -->
+<div id="report_summary">
+<% If pagos_vs_llamados.Export = "" Then %>
+<%
+If (pagos_vs_llamados.FilterPanelOption = 2) Or (pagos_vs_llamados.FilterPanelOption = 3 And pagos_vs_llamados_summary.FilterApplied) Or (pagos_vs_llamados_summary.Filter = "0=101") Then
+	sButtonImage = "rptimages/collapse.gif"
+	sDivDisplay = ""
+Else
+	sButtonImage = "rptimages/expand.gif"
+	sDivDisplay = " style=""display: none;"""
+End If
+%>
+<a href="javascript:ewrpt_ToggleFilterPanel();" style="text-decoration: none;"><img id="ewrptToggleFilterImg" src="<%= sButtonImage %>" alt="" width="9" height="9" border="0"></a><span class="aspreportmaker">&nbsp;<%= ReportLanguage.Phrase("Filters") %></span><br><br>
+<div id="ewrptExtFilterPanel"<%= sDivDisplay %>>
+<!-- Search form (begin) -->
+<form name="fpagos_vs_llamadossummaryfilter" id="fpagos_vs_llamadossummaryfilter" action="<%= ewrpt_CurrentPage %>" class="ewForm" onsubmit="return pagos_vs_llamados_summary.ValidateForm(this);">
+<table class="ewRptExtFilter">
+<%
+Dim cntf, cntd, totcnt, wrkcnt
+%>
+	<tr id="r_FECCANCEL">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.FECCANCEL.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_FECCANCEL" id="sv_FECCANCEL" multiple<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_FECCANCEL", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.FECCANCEL.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("SelectAll") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.FECCANCEL.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.FECCANCEL.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.FECCANCEL.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.FECCANCEL.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.FECCANCEL.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.FECCANCEL.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.FECCANCEL.DropDownValue, pagos_vs_llamados.FECCANCEL.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.FECCANCEL.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.FECCANCEL.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.FECCANCEL.DropDownValue, pagos_vs_llamados.FECCANCEL.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.FECCANCEL.DropDownList(i), "date", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr id="r_NOMBRE_C">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.NOMBRE_C.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_NOMBRE_C" id="sv_NOMBRE_C"<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_NOMBRE_C", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.NOMBRE_C.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.NOMBRE_C.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.NOMBRE_C.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.NOMBRE_C.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.NOMBRE_C.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.NOMBRE_C.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.NOMBRE_C.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.NOMBRE_C.DropDownValue, pagos_vs_llamados.NOMBRE_C.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.NOMBRE_C.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.NOMBRE_C.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.NOMBRE_C.DropDownValue, pagos_vs_llamados.NOMBRE_C.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.NOMBRE_C.DropDownList(i), "", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr id="r_ANO">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.ANO.FldCaption %></span></td>
+		<td><span class="ewRptSearchOpr"><%= ReportLanguage.Phrase("=") %><input type="hidden" name="so1_ANO" id="so1_ANO" value="="></span></td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspreportmaker">
+<input type="text" name="sv1_ANO" id="sv1_ANO" size="30" value="<%= ewrpt_HtmlEncode(pagos_vs_llamados.ANO.SearchValue) %>"<% If pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_ANO" Then Response.Write " class=""ewInputCleared""" %>>
+</span></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr id="r_PERIODO">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.PERIODO.FldCaption %></span></td>
+		<td><span class="ewRptSearchOpr"><%= ReportLanguage.Phrase("=") %><input type="hidden" name="so1_PERIODO" id="so1_PERIODO" value="="></span></td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspreportmaker">
+<input type="text" name="sv1_PERIODO" id="sv1_PERIODO" size="30" value="<%= ewrpt_HtmlEncode(pagos_vs_llamados.PERIODO.SearchValue) %>"<% If pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_PERIODO" Then Response.Write " class=""ewInputCleared""" %>>
+</span></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr id="r_CODCLI">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.CODCLI.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_CODCLI" id="sv_CODCLI"<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_CODCLI", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.CODCLI.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.CODCLI.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.CODCLI.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.CODCLI.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.CODCLI.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.CODCLI.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.CODCLI.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.CODCLI.DropDownValue, pagos_vs_llamados.CODCLI.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.CODCLI.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.CODCLI.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.CODCLI.DropDownValue, pagos_vs_llamados.CODCLI.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.CODCLI.DropDownList(i), "", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr id="r_ESTACAD">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.ESTACAD.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_ESTACAD" id="sv_ESTACAD"<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_ESTACAD", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ESTACAD.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.ESTACAD.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.ESTACAD.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.ESTACAD.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.ESTACAD.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.ESTACAD.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.ESTACAD.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ESTACAD.DropDownValue, pagos_vs_llamados.ESTACAD.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.ESTACAD.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.ESTACAD.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ESTACAD.DropDownValue, pagos_vs_llamados.ESTACAD.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.ESTACAD.DropDownList(i), "", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr id="r_ANO_MATRICULA">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.ANO_dbo.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_ANO_MATRICULA" id="sv_ANO_MATRICULA"<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_ANO_MATRICULA", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ANO_dbo.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.ANO_dbo.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.ANO_dbo.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.ANO_dbo.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.ANO_dbo.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.ANO_dbo.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.ANO_dbo.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ANO_dbo.DropDownValue, pagos_vs_llamados.ANO_dbo.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.ANO_dbo.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.ANO_dbo.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ANO_dbo.DropDownValue, pagos_vs_llamados.ANO_dbo.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.ANO_dbo.DropDownList(i), "", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr id="r_ANO_ULT_MAT">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.ANO_ULT_MAT.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_ANO_ULT_MAT" id="sv_ANO_ULT_MAT" multiple<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_ANO_ULT_MAT", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ANO_ULT_MAT.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("SelectAll") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.ANO_ULT_MAT.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.ANO_ULT_MAT.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.ANO_ULT_MAT.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.ANO_ULT_MAT.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.ANO_ULT_MAT.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.ANO_ULT_MAT.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ANO_ULT_MAT.DropDownValue, pagos_vs_llamados.ANO_ULT_MAT.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.ANO_ULT_MAT.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.ANO_ULT_MAT.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.ANO_ULT_MAT.DropDownValue, pagos_vs_llamados.ANO_ULT_MAT.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.ANO_ULT_MAT.DropDownList(i), "", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr id="r_PER_ULT_MAT">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.PER_ULT_MAT.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.PER_ULT_MAT.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.PER_ULT_MAT.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.PER_ULT_MAT.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.PER_ULT_MAT.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.PER_ULT_MAT.AdvancedFilters(i).Enabled Then
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_PER_ULT_MAT" id="sv_PER_ULT_MAT" value="<%= pagos_vs_llamados.PER_ULT_MAT.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.PER_ULT_MAT.DropDownValue, pagos_vs_llamados.PER_ULT_MAT.AdvancedFilters(i).ID) Then Response.Write " checked=""checked""" %>><%= pagos_vs_llamados.PER_ULT_MAT.AdvancedFilters(i).Name %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_PER_ULT_MAT" id="sv_PER_ULT_MAT" value="<%= pagos_vs_llamados.PER_ULT_MAT.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.PER_ULT_MAT.DropDownValue, pagos_vs_llamados.PER_ULT_MAT.DropDownList(i)) Then Response.Write " checked=""checked""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.PER_ULT_MAT.DropDownList(i), "", 0) %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</span></td>
+	</tr>
+	<tr id="r_DOCUM_PAGO">
+		<td><span class="aspreportmaker"><%= pagos_vs_llamados.DOCUM_PAGO.FldCaption %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_DOCUM_PAGO" id="sv_DOCUM_PAGO"<%= ewrpt_IIf(pagos_vs_llamados_summary.ClearExtFilter = "pagos_vs_llamados_DOCUM_PAGO", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.DOCUM_PAGO.DropDownValue, EWRPT_ALL_VALUE) Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+' Extended Filter
+If IsArray(pagos_vs_llamados.DOCUM_PAGO.AdvancedFilters) Then
+	cntf = UBound(pagos_vs_llamados.DOCUM_PAGO.AdvancedFilters)+1
+Else
+	cntf = 0
+End If
+If IsArray(pagos_vs_llamados.DOCUM_PAGO.DropDownList) Then
+	cntd = UBound(pagos_vs_llamados.DOCUM_PAGO.DropDownList)+1
+Else
+	cntd = 0
+End If
+totcnt = cntf + cntd
+wrkcnt = 0
+For i = 0 to cntf-1
+	If pagos_vs_llamados.DOCUM_PAGO.AdvancedFilters(i).Enabled Then
+%>
+		<option value="<%= pagos_vs_llamados.DOCUM_PAGO.AdvancedFilters(i).ID %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.DOCUM_PAGO.DropDownValue, pagos_vs_llamados.DOCUM_PAGO.AdvancedFilters(i).ID) Then Response.Write " selected=""selected""" %>><%= pagos_vs_llamados.DOCUM_PAGO.AdvancedFilters(i).Name %></option>
+<%
+	End If
+	wrkcnt = wrkcnt + 1
+Next
+For i = 0 to cntd-1
+%>
+		<option value="<%= pagos_vs_llamados.DOCUM_PAGO.DropDownList(i) %>"<% If ewrpt_MatchedFilterValue(pagos_vs_llamados.DOCUM_PAGO.DropDownValue, pagos_vs_llamados.DOCUM_PAGO.DropDownList(i)) Then Response.Write " selected=""selected""" %>><%= ewrpt_DropDownDisplayValue(pagos_vs_llamados.DOCUM_PAGO.DropDownList(i), "", 0) %></option>
+<%
+	wrkcnt = wrkcnt + 1
+Next
+%>
+		</select>
+		</span></td>
+	</tr>
+</table>
+<table class="ewRptExtFilter">
+	<tr>
+		<td><span class="aspreportmaker">
+			<input type="Submit" name="Submit" id="Submit" value="<%= ReportLanguage.Phrase("Search") %>">&nbsp;
+			<input type="Reset" name="Reset" id="Reset" value="<%= ReportLanguage.Phrase("Reset") %>">&nbsp;
+		</span></td>
+	</tr>
+</table>
+</form>
+<!-- Search form (end) -->
+</div>
+<br>
+<% End If %>
+<% If pagos_vs_llamados.ShowCurrentFilter Then %>
+<div id="ewrptFilterList">
+<% Call pagos_vs_llamados_summary.ShowFilterList() %>
+</div>
+<br>
+<% End If %>
+<table class="ewGrid" cellspacing="0"><tr>
+	<td class="ewGridContent">
+<!-- Report Grid (Begin) -->
+<div class="ewGridMiddlePanel">
+<table class="<%= pagos_vs_llamados_summary.ReportTableClass %>" cellspacing="0">
+<%
+
+' Set the last group to display if not export all
+If (pagos_vs_llamados.ExportAll And pagos_vs_llamados.Export <> "") Then
+	pagos_vs_llamados_summary.StopGrp = pagos_vs_llamados_summary.TotalGrps
+Else
+	pagos_vs_llamados_summary.StopGrp = pagos_vs_llamados_summary.StartGrp + pagos_vs_llamados_summary.DisplayGrps - 1
+End If
+
+' Stop group <= total number of groups
+If CLng(pagos_vs_llamados_summary.StopGrp) > CLng(pagos_vs_llamados_summary.TotalGrps) Then
+	pagos_vs_llamados_summary.StopGrp = pagos_vs_llamados_summary.TotalGrps
+End If
+pagos_vs_llamados_summary.RecCount = 0
+
+' Init Summary Values
+Call pagos_vs_llamados_summary.ResetLevelSummary(0)
+
+' Get first row
+If pagos_vs_llamados_summary.TotalGrps > 0 Then
+	Call pagos_vs_llamados_summary.GetRow(1)
+	pagos_vs_llamados_summary.GrpCount = 1
+End If
+Do While (Not rs.Eof And pagos_vs_llamados_summary.GrpCount <= pagos_vs_llamados_summary.DisplayGrps) Or (pagos_vs_llamados_summary.ShowFirstHeader)
+
+	' Show Header
+	If pagos_vs_llamados_summary.ShowFirstHeader Then
+%>
+	<thead>
+	<tr>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.SALDO.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.SALDO) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.SALDO.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.SALDO) %>',1);"><%= pagos_vs_llamados.SALDO.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.SALDO.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.SALDO.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.FECCANCEL.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.FECCANCEL) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.FECCANCEL.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.FECCANCEL) %>',1);"><%= pagos_vs_llamados.FECCANCEL.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.FECCANCEL.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.FECCANCEL.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.total.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.total) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.total.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.total) %>',1);"><%= pagos_vs_llamados.total.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.total.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.total.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.NOMBRE_C.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.NOMBRE_C) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.NOMBRE_C.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.NOMBRE_C) %>',1);"><%= pagos_vs_llamados.NOMBRE_C.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.NOMBRE_C.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.NOMBRE_C.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.ANO.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.ANO) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.ANO.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.ANO) %>',1);"><%= pagos_vs_llamados.ANO.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.ANO.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.ANO.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.PERIODO.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.PERIODO) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.PERIODO.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.PERIODO) %>',1);"><%= pagos_vs_llamados.PERIODO.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.PERIODO.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.PERIODO.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.CODCLI.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.CODCLI) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.CODCLI.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.CODCLI) %>',1);"><%= pagos_vs_llamados.CODCLI.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.CODCLI.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.CODCLI.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.DIG.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.DIG) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.DIG.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.DIG) %>',1);"><%= pagos_vs_llamados.DIG.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.DIG.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.DIG.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.PATERNO.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.PATERNO) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.PATERNO.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.PATERNO) %>',1);"><%= pagos_vs_llamados.PATERNO.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.PATERNO.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.PATERNO.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.MATERNO.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.MATERNO) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.MATERNO.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.MATERNO) %>',1);"><%= pagos_vs_llamados.MATERNO.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.MATERNO.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.MATERNO.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.NOMBRE.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.NOMBRE) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.NOMBRE.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.NOMBRE) %>',1);"><%= pagos_vs_llamados.NOMBRE.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.NOMBRE.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.NOMBRE.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.ESTACAD.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.ESTACAD) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.ESTACAD.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.ESTACAD) %>',1);"><%= pagos_vs_llamados.ESTACAD.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.ESTACAD.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.ESTACAD.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.ANO_dbo.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.ANO_MATRICULA) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.ANO_dbo.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.ANO_MATRICULA) %>',1);"><%= pagos_vs_llamados.ANO_dbo.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.ANO_dbo.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.ANO_dbo.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.ANO_ULT_MAT.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.ANO_ULT_MAT) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.ANO_ULT_MAT.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.ANO_ULT_MAT) %>',1);"><%= pagos_vs_llamados.ANO_ULT_MAT.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.ANO_ULT_MAT.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.ANO_ULT_MAT.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.PER_ULT_MAT.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.PER_ULT_MAT) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.PER_ULT_MAT.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.PER_ULT_MAT) %>',1);"><%= pagos_vs_llamados.PER_ULT_MAT.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.PER_ULT_MAT.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.PER_ULT_MAT.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If pagos_vs_llamados.Export <> "" Then %>
+<%= pagos_vs_llamados.DOCUM_PAGO.FldCaption %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If pagos_vs_llamados.SortUrl(pagos_vs_llamados.DOCUM_PAGO) = "" Then %>
+		<td style="vertical-align: bottom;"><%= pagos_vs_llamados.DOCUM_PAGO.FldCaption %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= pagos_vs_llamados.SortUrl(pagos_vs_llamados.DOCUM_PAGO) %>',1);"><%= pagos_vs_llamados.DOCUM_PAGO.FldCaption %></td><td style="width: 10px;">
+		<% If pagos_vs_llamados.DOCUM_PAGO.Sort = "ASC" Then %><img src="rptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf pagos_vs_llamados.DOCUM_PAGO.Sort = "DESC" Then %><img src="rptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+	</tr>
+	</thead>
+	<tbody>
+<%
+		pagos_vs_llamados_summary.ShowFirstHeader = False
+	End If
+	pagos_vs_llamados_summary.RecCount = pagos_vs_llamados_summary.RecCount + 1
+
+		' Render detail row
+		Call pagos_vs_llamados.ResetAttrs()
+		pagos_vs_llamados.RowType = EWRPT_ROWTYPE_DETAIL
+		Call pagos_vs_llamados_summary.RenderRow()
+%>
+	<tr<%= pagos_vs_llamados.RowAttributes %>>
+		<td<%= pagos_vs_llamados.SALDO.CellAttributes %>>
+<span<%= pagos_vs_llamados.SALDO.ViewAttributes %>><%= pagos_vs_llamados.SALDO.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.FECCANCEL.CellAttributes %>>
+<span<%= pagos_vs_llamados.FECCANCEL.ViewAttributes %>><%= pagos_vs_llamados.FECCANCEL.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.total.CellAttributes %>>
+<span<%= pagos_vs_llamados.total.ViewAttributes %>><%= pagos_vs_llamados.total.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.NOMBRE_C.CellAttributes %>>
+<span<%= pagos_vs_llamados.NOMBRE_C.ViewAttributes %>><%= pagos_vs_llamados.NOMBRE_C.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.ANO.CellAttributes %>>
+<span<%= pagos_vs_llamados.ANO.ViewAttributes %>><%= pagos_vs_llamados.ANO.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.PERIODO.CellAttributes %>>
+<span<%= pagos_vs_llamados.PERIODO.ViewAttributes %>><%= pagos_vs_llamados.PERIODO.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.CODCLI.CellAttributes %>>
+<span<%= pagos_vs_llamados.CODCLI.ViewAttributes %>><%= pagos_vs_llamados.CODCLI.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.DIG.CellAttributes %>>
+<span<%= pagos_vs_llamados.DIG.ViewAttributes %>><%= pagos_vs_llamados.DIG.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.PATERNO.CellAttributes %>>
+<span<%= pagos_vs_llamados.PATERNO.ViewAttributes %>><%= pagos_vs_llamados.PATERNO.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.MATERNO.CellAttributes %>>
+<span<%= pagos_vs_llamados.MATERNO.ViewAttributes %>><%= pagos_vs_llamados.MATERNO.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.NOMBRE.CellAttributes %>>
+<span<%= pagos_vs_llamados.NOMBRE.ViewAttributes %>><%= pagos_vs_llamados.NOMBRE.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.ESTACAD.CellAttributes %>>
+<span<%= pagos_vs_llamados.ESTACAD.ViewAttributes %>><%= pagos_vs_llamados.ESTACAD.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.ANO_dbo.CellAttributes %>>
+<span<%= pagos_vs_llamados.ANO_dbo.ViewAttributes %>><%= pagos_vs_llamados.ANO_dbo.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.ANO_ULT_MAT.CellAttributes %>>
+<span<%= pagos_vs_llamados.ANO_ULT_MAT.ViewAttributes %>><%= pagos_vs_llamados.ANO_ULT_MAT.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.PER_ULT_MAT.CellAttributes %>>
+<span<%= pagos_vs_llamados.PER_ULT_MAT.ViewAttributes %>><%= pagos_vs_llamados.PER_ULT_MAT.ListViewValue %></span>
+</td>
+		<td<%= pagos_vs_llamados.DOCUM_PAGO.CellAttributes %>>
+<span<%= pagos_vs_llamados.DOCUM_PAGO.ViewAttributes %>><%= pagos_vs_llamados.DOCUM_PAGO.ListViewValue %></span>
+</td>
+	</tr>
+<%
+
+		' Accumulate page summary
+		Call pagos_vs_llamados_summary.AccumulateSummary()
+
+		' Get next record
+		Call pagos_vs_llamados_summary.GetRow(2)
+		pagos_vs_llamados_summary.GrpCount = pagos_vs_llamados_summary.GrpCount + 1
+Loop
+%>
+	</tbody>
+	<tfoot>
+<%
+If pagos_vs_llamados_summary.TotalGrps > 0 Then
+	Call pagos_vs_llamados.ResetAttrs()
+	pagos_vs_llamados.RowType = EWRPT_ROWTYPE_TOTAL
+	pagos_vs_llamados.RowTotalType = EWRPT_ROWTOTAL_GRAND
+	pagos_vs_llamados.RowTotalSubType = EWRPT_ROWTOTAL_FOOTER
+	pagos_vs_llamados.RowAttrs.AddAttribute "class", "ewRptGrandSummary", True
+	Call pagos_vs_llamados_summary.RenderRow()
+%>
+	<!-- tr><td colspan="16"><span class="aspreportmaker">&nbsp;<br></span></td></tr -->
+	<tr<%= pagos_vs_llamados.RowAttributes %>><td colspan="16"><%= ReportLanguage.Phrase("RptGrandTotal") %>&nbsp;(<%= ewrpt_FormatNumber(pagos_vs_llamados_summary.TotCount,0,-2,-2,-2) %><%= ReportLanguage.Phrase("RptDtlRec") %>)</td></tr>
+<% End If %>
+	</tfoot>
+</table>
+</div>
+<% If pagos_vs_llamados.Export = "" Then %>
+<div class="ewGridLowerPanel">
+<form action="<%= ewrpt_CurrentPage %>" name="ewpagerform" id="ewpagerform" class="ewForm">
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="white-space: nowrap;">
+<% If Not IsObject(Pager) Then Set Pager = ewrpt_NewPrevNextPager(pagos_vs_llamados_summary.StartGrp, pagos_vs_llamados_summary.DisplayGrps, pagos_vs_llamados_summary.TotalGrps) %>
+<% If Pager.RecordCount > 0 Then %>
+	<table border="0" cellspacing="0" cellpadding="0"><tr><td><span class="aspreportmaker"><%= ReportLanguage.Phrase("Page") %>&nbsp;</span></td>
+<!--first page button-->
+	<% If Pager.FirstButton.Enabled Then %>
+	<td><a href="<%= ewrpt_CurrentPage %>?start=<%= Pager.FirstButton.Start %>"><img src="rptimages/first.gif" alt="<%= ReportLanguage.Phrase("PagerFirst") %>" width="16" height="16" border="0"></a></td>
+	<% Else %>
+	<td><img src="rptimages/firstdisab.gif" alt="<%= ReportLanguage.Phrase("PagerFirst") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+<!--previous page button-->
+	<% If Pager.PrevButton.Enabled Then %>
+	<td><a href="<%= ewrpt_CurrentPage %>?start=<%= Pager.PrevButton.Start %>"><img src="rptimages/prev.gif" alt="<%= ReportLanguage.Phrase("PagerPrevious") %>" width="16" height="16" border="0"></a></td>
+	<% Else %>
+	<td><img src="rptimages/prevdisab.gif" alt="<%= ReportLanguage.Phrase("PagerPrevious") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+<!--current page number-->
+	<td><input type="text" name="pageno" id="pageno" value="<%= Pager.CurrentPage %>" size="4"></td>
+<!--next page button-->
+	<% If Pager.NextButton.Enabled Then %>
+	<td><a href="<%= ewrpt_CurrentPage %>?start=<%= Pager.NextButton.Start %>"><img src="rptimages/next.gif" alt="<%= ReportLanguage.Phrase("PagerNext") %>" width="16" height="16" border="0"></a></td>	
+	<% Else %>
+	<td><img src="rptimages/nextdisab.gif" alt="<%= ReportLanguage.Phrase("PagerNext") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+<!--last page button-->
+	<% If Pager.LastButton.Enabled Then %>
+	<td><a href="<%= ewrpt_CurrentPage %>?start=<%= Pager.LastButton.Start %>"><img src="rptimages/last.gif" alt="<%= ReportLanguage.Phrase("PagerLast") %>" width="16" height="16" border="0"></a></td>	
+	<% Else %>
+	<td><img src="rptimages/lastdisab.gif" alt="<%= ReportLanguage.Phrase("PagerLast") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+	<td><span class="aspreportmaker">&nbsp;<%= ReportLanguage.Phrase("of") %>&nbsp;<%= Pager.PageCount %></span></td>
+	</tr></table>
+	</td>	
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>
+	<span class="aspreportmaker"><%= ReportLanguage.Phrase("Record") %>&nbsp;<%= Pager.FromIndex %>&nbsp;<%= ReportLanguage.Phrase("To") %>&nbsp;<%= Pager.ToIndex %>&nbsp;<%= ReportLanguage.Phrase("Of") %>&nbsp;<%=  Pager.RecordCount %></span>
+<% Else %>
+	<% If pagos_vs_llamados_summary.Filter = "0=101" Then %>
+	<span class="aspreportmaker"><%= ReportLanguage.Phrase("EnterSearchCriteria") %></span>
+	<% Else %>
+	<span class="aspreportmaker"><%= ReportLanguage.Phrase("NoRecord") %></span>
+	<% End If %>
+<% End If %>
+		</td>
+<% If pagos_vs_llamados_summary.TotalGrps > 0 Then %>
+		<td style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align="right" style="vertical-align: top; white-space: nowrap;"><span class="aspreportmaker"><%= ReportLanguage.Phrase("GroupsPerPage") %>&nbsp;
+<select name="<%= EWRPT_TABLE_GROUP_PER_PAGE %>" onchange="this.form.submit();">
+<option value="1"<% If pagos_vs_llamados_summary.DisplayGrps = 1 Then Response.Write " selected=""selected""" %>>1</option>
+<option value="2"<% If pagos_vs_llamados_summary.DisplayGrps = 2 Then Response.Write " selected=""selected""" %>>2</option>
+<option value="3"<% If pagos_vs_llamados_summary.DisplayGrps = 3 Then Response.Write " selected=""selected""" %>>3</option>
+<option value="4"<% If pagos_vs_llamados_summary.DisplayGrps = 4 Then Response.Write " selected=""selected""" %>>4</option>
+<option value="5"<% If pagos_vs_llamados_summary.DisplayGrps = 5 Then Response.Write " selected=""selected""" %>>5</option>
+<option value="10"<% If pagos_vs_llamados_summary.DisplayGrps = 10 Then Response.Write " selected=""selected""" %>>10</option>
+<option value="20"<% If pagos_vs_llamados_summary.DisplayGrps = 20 Then Response.Write " selected=""selected""" %>>20</option>
+<option value="50"<% If pagos_vs_llamados_summary.DisplayGrps = 50 Then Response.Write " selected=""selected""" %>>50</option>
+<option value="ALL"<% If pagos_vs_llamados.GroupPerPage = -1 Then Response.Write " selected=""selected""" %>><%= ReportLanguage.Phrase("AllRecords") %></option>
+</select>
+		</span></td>
+<% End If %>
+	</tr>
+</table>
+</form>
+</div>
+<% End If %>
+</td></tr></table>
+</div>
+<!-- Summary Report Ends -->
+	</div><br></td>
+	<!-- Center Container - Report (End) -->
+	<!-- Right Container (Begin) -->
+	<td style="vertical-align: top;"><div id="ewRight" class="aspreportmaker">
+	<!-- Right slot -->
+	</div></td>
+	<!-- Right Container (End) -->
+</tr>
+<!-- Bottom Container (Begin) -->
+<tr><td colspan="3"><div id="ewBottom" class="aspreportmaker">
+	<!-- Bottom slot -->
+	</div><br></td></tr>
+<!-- Bottom Container (End) -->
+</table>
+<!-- Table Container (End) -->
+<%
+pagos_vs_llamados_summary.ShowPageFooter()
+If EWRPT_DEBUG_ENABLED Then Response.Write ewrpt_DebugMsg()
+%>
+<%
+
+' Close recordset and connection
+rs.Close
+Set rs = Nothing
+%>
+<% If pagos_vs_llamados.Export = "" Then %>
+<script language="JavaScript" type="text/javascript">
+<!--
+// Write your table-specific startup script here
+// document.write("page loaded");
+//-->
+</script>
+<% End If %>
+<!--#include file="rptinc/footer.asp"-->
+<%
+
+' Drop page object
+Set pagos_vs_llamados_summary = Nothing
+%>
+<%
+
+' -----------------------------------------------------------------
+' Page Class
+'
+Class crpagos_vs_llamados_summary
+
+	' Page ID
+	Public Property Get PageID()
+		PageID = "summary"
+	End Property
+
+	' Table Name
+	Public Property Get TableName()
+		TableName = "pagos_vs_llamados"
+	End Property
+
+	' Page Object Name
+	Public Property Get PageObjName()
+		PageObjName = "pagos_vs_llamados_summary"
+	End Property
+
+	' Page Name
+	Public Property Get PageName()
+		PageName = ewrpt_CurrentPage()
+	End Property
+
+	' Page Url
+	Public Property Get PageUrl()
+		PageUrl = ewrpt_CurrentPage() & "?"
+		If pagos_vs_llamados.UseTokenInUrl Then PageUrl = PageUrl & "t=" & pagos_vs_llamados.TableVar & "&" ' add page token
+	End Property
+
+	' Export URLs
+	Dim ExportPrintUrl
+	Dim ExportExcelUrl
+	Dim ExportWordUrl
+	Dim ReportTableClass
+
+	' Message
+	Public Property Get Message()
+		Message = Session(EWRPT_SESSION_MESSAGE)
+	End Property
+
+	Public Property Let Message(v)
+		If Session(EWRPT_SESSION_MESSAGE) <> "" Then ' Append
+			Session(EWRPT_SESSION_MESSAGE) = Session(EWRPT_SESSION_MESSAGE) & "<br>" & v
+		Else
+			Session(EWRPT_SESSION_MESSAGE) = v
+		End If
+	End Property
+
+	' Show Message
+	Public Sub ShowMessage()
+		Dim sMessage
+		sMessage = Message
+		Call Message_Showing(sMessage)
+		If sMessage <> "" Then Response.Write "<p><span class=""ewMessage"">" & sMessage & "</span></p>"
+		Session(EWRPT_SESSION_MESSAGE) = "" ' Clear message in Session
+	End Sub
+	Dim PageHeader
+	Dim PageFooter
+
+	' Show Page Header
+	Sub ShowPageHeader()
+		Dim sHeader
+		sHeader = PageHeader
+		Call Page_DataRendering(sHeader)
+		If sHeader <> "" Then ' Header exists, display
+			Response.Write "<p><span class=""aspreportmaker"">" & sHeader & "</span></p>"
+		End If
+	End Sub
+
+	' Show Page Footer
+	Sub ShowPageFooter()
+		sFooter = PageFooter
+		Call Page_DataRendered(sFooter)
+		If sFooter <> "" Then ' Fotoer exists, display
+			Response.Write "<p><span class=""aspreportmaker"">" & sFooter & "</span></p>"
+		End If
+	End Sub
+
+	' Validate page request
+	Public Function IsPageRequest()
+		If pagos_vs_llamados.UseTokenInUrl Then
+			IsPageRequest = False
+			If Request.Form("t").Count > 0 Then
+				IsPageRequest = (pagos_vs_llamados.TableVar = Request.Form("t"))
+			End If
+			If Request.QueryString("t").Count > 0 Then
+				IsPageRequest = (pagos_vs_llamados.TableVar = Request.QueryString("t"))
+			End If
+		Else
+			IsPageRequest = True
+		End If
+	End Function
+
+	' -----------------------------------------------------------------
+	'  Class initialize
+	'  - init objects
+	'  - open ADO connection
+	'
+	Private Sub Class_Initialize()
+		StartTimer = Timer ' Init start time
+
+		' Language object
+		Set ReportLanguage = New crLanguage
+
+		' Initialize table object
+		Set pagos_vs_llamados = New crpagos_vs_llamados
+		Set Table = pagos_vs_llamados
+
+		' Initialize URLs
+		ExportPrintUrl = PageUrl & "export=print"
+		ExportExcelUrl = PageUrl & "export=excel"
+		ExportWordUrl = PageUrl & "export=word"
+
+		' Intialize page id
+		EWRPT_PAGE_ID = "summary"
+
+		' Initialize table name
+		EWRPT_TABLE_NAME = "pagos_vs_llamados"
+
+		' Open connection
+		Call ewrpt_Connect()
+
+		' Export options
+		Set ExportOptions = New crListOptions
+		ExportOptions.Tag = "span"
+		ExportOptions.Separator = "&nbsp;&nbsp;"
+	End Sub
+
+	' 
+	'  Page_Init
+	'
+	Sub Page_Init()
+
+		' Restore session
+		If Request.QueryString("session").Count > 0 Then
+			Call RestoreFromSession()
+		End If
+
+		' Get export parameters
+		If Request.QueryString("export").Count > 0 Then
+			pagos_vs_llamados.Export = Request.QueryString("export")
+		End If
+		gsExport = pagos_vs_llamados.Export ' Get export parameter, used in header
+		gsExportFile = pagos_vs_llamados.TableVar ' Get export file, used in header
+		If pagos_vs_llamados.Export = "excel" Then
+			Response.ContentType = "application/vnd.ms-excel;charset=utf-8"
+			Response.AddHeader "Content-Disposition", "attachment; filename=" & gsExportFile & ".xls"
+		End If
+
+		' Setup export options
+		Call SetupExportOptions()
+
+		' Global page loading event
+		Call Page_Loading()
+
+		' Page load event
+		Call Page_Load()
+
+		' Export to Email (Load content via XMLHttp)
+		If pagos_vs_llamados.Export = "email" Then
+			Dim sContent, sPage, sParm
+			sPage = ewrpt_CurrentPage
+			sParm = "export=print&session=" & GetSessionValues()
+			If Request.QueryString("contenttype") = "html" Then
+				sParm = sParm & "&html5=1"
+			End If
+			sContent = ewrpt_LoadContentFromUrl(ewrpt_ConvertFullUrl(sPage) & "?" & sParm)
+			Call ExportEmail(sContent)
+			Call Page_Terminate(sPage)
+		End If
+	End Sub
+
+	Private Function GetSessionValues()
+		Dim wrkstr, i, ar
+		wrkstr = "cmd=restoresession"
+
+		'wrkstr = "&filter=" & pagos_vs_llamados.SessionWhere
+		wrkstr = wrkstr & "&u=" & CStr(Session(EWRPT_SESSION_ENCRYPTED_USER)&"")
+		wrkstr = wrkstr & "&p=" & CStr(Session(EWRPT_SESSION_ENCRYPTED_PASSWORD)&"")
+		wrkstr = wrkstr & "&f=" & ew_Encode(CStr(Session(EWRPT_SESSION_FILTER)&""))
+		ar = Session(EWRPT_SESSION_COLUMN_SELECTION)
+		If IsArray(ar) Then
+			For i = 0 to UBound(ar)
+				wrkstr = wrkstr & "&c=" & ew_Encode(CStr(ar(i)&""))
+			Next
+		End If
+		wrkstr = wrkstr & "&o=" & ew_Encode(CStr(pagos_vs_llamados.OrderBy&""))
+		wrkstr = wrkstr & "&s=" & ew_Encode(CStr(pagos_vs_llamados.StartGroup&""))
+		wrkstr = ew_Encode(TEAencrypt(wrkstr, EWRPT_RANDOM_KEY))
+		GetSessionValues = wrkstr
+	End Function
+
+	Private Sub RestoreFromSession()
+		Dim QS, wrkstr, cmd, usr, pwd
+		QS = Split(Request.Querystring, "&")
+		wrkstr = GetQSValue(QS, "session")
+		wrkstr = TEAdecrypt(wrkstr, EWRPT_RANDOM_KEY)
+		QS = Split(wrkstr, "&")
+		cmd = GetQSValue(QS, "cmd")
+		If cmd = "restoresession" Then
+			usr = GetQSValue(QS, "u")
+			usr = TEAdecrypt(usr, EWRPT_RANDOM_KEY)
+			pwd = GetQSValue(QS, "p")
+			pwd = TEAdecrypt(pwd, EWRPT_RANDOM_KEY)
+			Call Security.ValidateUser(usr, pwd, True)
+			Session(EWRPT_SESSION_FILTER) = GetQSValue(QS, "f")
+			Session(EWRPT_SESSION_COLUMN_SELECTION) = GetQSArray(QS, "c")
+			pagos_vs_llamados.OrderBy = GetQSValue(QS, "o")
+			pagos_vs_llamados.StartGroup = GetQSValue(QS, "s")
+			pagos_vs_llamados.RestoreSession = True
+		End If
+	End Sub
+
+	Private Function GetQSValue(QS, Key)
+		Dim kv, i
+		If IsArray(QS) Then
+			For i = 0 To UBound(QS)
+				kv = Split(QS(i), "=")
+				If kv(0) = Key And UBound(kv) >= 1 Then
+					GetQSValue = ew_Decode(kv(1))
+					Exit Function
+				End If
+			Next
+		End If
+		GetQSValue = ""
+	End Function
+
+	Private Function GetQSArray(QS, Key)
+		Dim kv, i, ar, val
+		ar = ""
+		If IsArray(QS) Then
+			For i = 0 To UBound(QS)
+				kv = Split(QS(i), "=")
+				If kv(0) = Key And UBound(kv) >= 1 Then
+					val = ew_Decode(kv(1))
+					If IsArray(ar) Then
+						ReDim Preserve ar(UBound(ar)+1)
+					Else
+						ReDim ar(0)
+					End If
+					ar(UBound(ar)) = val
+				End If
+			Next
+		End If
+		GetQSArray = ar
+	End Function
+
+	' Set up export options
+	Sub SetupExportOptions()
+		Dim item
+
+		' Printer friendly
+		ExportOptions.Add("print")
+		Set item = ExportOptions.GetItem("print")
+		item.Body = "<a href=""" & ExportPrintUrl & """>" & ReportLanguage.Phrase("PrinterFriendly") & "</a>"
+		item.Visible = False
+
+		' Export to Excel
+		ExportOptions.Add("excel")
+		Set item = ExportOptions.GetItem("excel")
+		item.Body = "<a href=""" & ExportExcelUrl & """>" & ReportLanguage.Phrase("ExportToExcel") & "</a>"
+		item.Visible = True
+
+		' Export to Word
+		ExportOptions.Add("word")
+		Set item = ExportOptions.GetItem("word")
+		item.Body = "<a href=""" & ExportWordUrl & """>" & ReportLanguage.Phrase("ExportToWord") & "</a>"
+		item.Visible = False
+
+		' Export to Email
+		ExportOptions.Add("email")
+		Set item = ExportOptions.GetItem("email")
+		item.Body = "<a name=""emf_pagos_vs_llamados"" id=""emf_pagos_vs_llamados"" href=""javascript:void(0);"" onclick=""ewrpt_EmailDialogShow({lnk:'emf_pagos_vs_llamados',hdr:ewLanguage.Phrase('ExportToEmail')});"">" & ReportLanguage.Phrase("ExportToEmail") & "</a>"
+		item.Visible = False
+
+		' Reset filter
+		ExportOptions.Add("resetfilter")
+		Set item = ExportOptions.GetItem("resetfilter")
+		item.Body = "<a href=""" & ewrpt_CurrentPage & "?cmd=reset"">" & ReportLanguage.Phrase("ResetAllFilter") & "</a>"
+		item.Visible = True
+		Call SetupExportOptionsExt()
+
+		' Hide options for export
+		If pagos_vs_llamados.Export <> "" Then
+			ExportOptions.HideAllOptions()
+		End If
+
+		' Set up table class
+		If pagos_vs_llamados.Export = "word" Or pagos_vs_llamados.Export = "excel" Then
+			ReportTableClass = "ewTable"
+		Else
+			ReportTableClass = "ewTable ewTableSeparate"
+		End If
+	End Sub
+
+	'
+	' Class_Terminate
+	'
+	Private Sub Class_Terminate()
+		Call Page_Terminate("")
+	End Sub
+
+	'
+	' Page_Terminate
+	'
+	Sub Page_Terminate(url)
+
+		' Page unload event
+		Call Page_Unload()
+
+		' Global page unloaded event
+		Call Page_Unloaded()
+
+		' Close connection
+		If Not (conn Is Nothing) Then conn.Close
+		Set conn = Nothing
+		Set pagos_vs_llamados = Nothing
+
+		' Go to url if specified
+		Dim sRedirectUrl
+		sReDirectUrl = url
+		If sReDirectUrl <> "" Then
+			If Response.Buffer Then Response.Clear
+			Response.Redirect sReDirectUrl
+		End If
+	End Sub
+
+	' Initialize common variables
+	Dim ExportOptions ' Export options
+
+	' Paging variables
+	Dim RecCount ' Record count
+	Dim StartGrp ' Start group
+	Dim StopGrp ' Stop group
+	Dim TotalGrps ' Total groups
+	Dim GrpCount ' Group count
+	Dim DisplayGrps ' Groups per page
+	Dim GrpRange
+	Dim Sort
+	Dim Filter
+	Dim UserIDFilter
+
+	' Clear field for ext filter
+	Dim ClearExtFilter
+	Dim FilterApplied
+	Dim ShowFirstHeader
+	Dim Cnt, Col, Val, Smry, Mn, Mx, GrandSmry, GrandMn, GrandMx
+	Dim TotCount
+
+	'
+	' Page main
+	'
+	Sub Page_Main()
+		RecCount = 0 ' Record count
+		StartGrp = 0 ' Start group
+		StopGrp = 0 ' Stop group
+		TotalGrps = 0 ' Total groups
+		GrpCount = 0 ' Group count
+		DisplayGrps = 20 ' Groups per page
+		GrpRange = 10
+
+		' Clear field for ext filter
+		ClearExtFilter = ""
+
+		' Filter
+		UserIDFilter = ""
+		Filter = ""
+
+		' 1st dimension = no of groups (level 0 used for grand total)
+		' 2nd dimension = no of fields
+
+		Dim nDtls, nGrps
+		nDtls = 16
+		nGrps = 0
+		ReDim Col(nDtls), Val(nDtls), Cnt(nGrps, nDtls)
+		ReDim Smry(nGrps, nDtls), Mn(nGrps, nDtls), Mx(nGrps, nDtls)
+		ReDim GrandSmry(nDtls), GrandMn(nDtls), GrandMx(nDtls)
+
+		' Set up if accumulation required
+		Col(1) = False
+		Col(2) = False
+		Col(3) = False
+		Col(4) = False
+		Col(5) = False
+		Col(6) = False
+		Col(7) = False
+		Col(8) = False
+		Col(9) = False
+		Col(10) = False
+		Col(11) = False
+		Col(12) = False
+		Col(13) = False
+		Col(14) = False
+		Col(15) = False
+		Col(16) = False
+
+		' Set up groups per page dynamically
+		SetUpDisplayGrps()
+
+		' Load default filter values
+		Call LoadDefaultFilters()
+
+		' Load custom filters
+		Call pagos_vs_llamados.Filters_Load()
+
+		' Set up popup filter
+		Call SetupPopup()
+
+		' Extended filter
+		Dim sExtendedFilter
+		sExtendedFilter = ""
+
+		' Get dropdown values
+		Call GetExtendedFilterValues()
+
+		' Build extended filter
+		sExtendedFilter = GetExtendedFilter()
+		If sExtendedFilter <> "" Then
+			If Filter <> "" Then
+				Filter = "(" & Filter & ") AND (" & sExtendedFilter & ")"
+			Else
+				Filter = sExtendedFilter
+			End If
+		End If
+
+		' Build popup filter
+		Dim sPopupFilter
+		sPopupFilter = GetPopupFilter()
+		IF sPopupFilter <> "" Then
+			If Filter <> "" Then
+				Filter = "(" & Filter & ") AND (" & sPopupFilter & ")"
+			Else
+				Filter = sPopupFilter
+			End If
+		End If
+
+		' Check if filter applied
+		FilterApplied = CheckFilter()
+		ExportOptions.GetItem("resetfilter").Visible = FilterApplied
+
+		' Get sort
+		Sort = GetSort()
+
+		' Restore filter/sort from Session
+		If pagos_vs_llamados.RestoreSession Then
+			Filter = Session(EWRPT_SESSION_FILTER)
+		Else
+			Session(EWRPT_SESSION_FILTER) = Filter
+		End If
+
+		' Get total count
+		Dim sSql
+		sSql = ewrpt_BuildReportSql(pagos_vs_llamados.SqlSelect, pagos_vs_llamados.SqlWhere, pagos_vs_llamados.SqlGroupBy, pagos_vs_llamados.SqlHaving, pagos_vs_llamados.SqlOrderBy, Filter, Sort)
+		Call ewrpt_SetDebugMsg("(SQL): " & sSql)
+		TotalGrps = ewrpt_LoadRecordCount(sSql)
+
+		' Display all records
+		If DisplayGrps <= 0 Then
+			DisplayGrps = TotalGrps
+		End If
+		StartGrp = 1
+
+		' Show header
+		ShowFirstHeader = (TotalGrps > 0)
+
+		'ShowFirstHeader = True ' Uncomment to always show header
+		' Set up start position if not export all
+
+		If pagos_vs_llamados.ExportAll And pagos_vs_llamados.Export <> "" Then
+			DisplayGrps = TotalGrps
+		Else
+			Call SetUpStartGroup()
+		End If
+
+		' Hide all options if export
+		If pagos_vs_llamados.Export <> "" Then
+			Call ExportOptions.HideAllOptions()
+		End If
+
+		' Get current page records
+		Set rs = GetRs(sSql, StartGrp, DisplayGrps)
+	End Sub
+
+	' Accummulate summary
+	Sub AccumulateSummary()
+		Dim valwrk, ix, iy
+		For ix = 0 to UBound(Smry,1)
+			For iy = 1 to UBound(Smry,2)
+				Cnt(ix,iy) = Cnt(ix,iy) + 1
+				If Col(iy) Then
+					valwrk = Val(iy)
+					If IsNull(valwrk) Or Not IsNumeric(valwrk) Then
+
+						' skip
+					Else
+						Smry(ix,iy) = Smry(ix,iy) + valwrk
+						If IsNull(Mn(ix,iy)) Then
+							Mn(ix,iy) = valwrk
+							Mx(ix,iy) = valwrk
+						Else
+							If Mn(ix,iy) > valwrk Then Mn(ix,iy) = valwrk
+							If Mx(ix,iy) < valwrk Then Mx(ix,iy) = valwrk
+						End If
+					End If
+				End If
+			Next
+		Next
+		For ix = 1 to UBound(Smry,1)
+			Cnt(ix,0) = Cnt(ix,0) + 1
+		Next
+	End Sub
+
+	' Reset level summary
+	Sub ResetLevelSummary(lvl)
+		Dim ix, iy
+
+		' Clear summary values
+		For ix = lvl to UBound(Smry,1)
+			For iy = 1 to UBound(Smry,2)
+				Cnt(ix,iy) = 0
+				If Col(iy) Then
+					Smry(ix,iy) = 0
+					Mn(ix,iy) = Null
+					Mx(ix,iy) = Null
+				End If
+			Next
+		Next
+		For ix = lvl to UBound(Smry,1)
+			Cnt(ix,0) = 0
+		Next
+
+		' Reset record count
+		RecCount = 0
+	End Sub
+
+	' Accummulate grand summary
+	Sub AccumulateGrandSummary()
+		Dim iy, valwrk
+		Cnt(0,0) = Cnt(0,0) + 1
+		For iy = 1 to UBound(GrandSmry)
+			If Col(iy) Then
+				valwrk = Val(iy)
+				If IsNull(valwrk) Or Not IsNumeric(valwrk) Then
+
+					' skip
+				Else
+					GrandSmry(iy) = GrandSmry(iy) + valwrk
+					If IsNull(GrandMn(iy)) Then
+						GrandMn(iy) = valwrk
+						GrandMx(iy) = valwrk
+					Else
+						If GrandMn(iy) > valwrk Then GrandMn(iy) = valwrk
+						If GrandMx(iy) < valwrk Then GrandMx(iy) = valwrk
+					End If
+				End If
+			End If
+		Next
+	End Sub
+
+	' Get rs
+	Function GetRs(sql, start, grps)
+		Dim rswrk, wrksql
+		wrksql = sql
+		Set rswrk = ewrpt_LoadRs(wrksql)
+		If Not rswrk.Eof And start > 1 Then rswrk.Move (start-1)
+		Set GetRs = rswrk
+	End Function
+
+	' Get row values
+	Sub GetRow(opt)
+		If opt = 1 Then ' Get first row
+
+			'If Not rs.Eof Then rs.MoveFirst ' NOTE: no need to move position
+		Else ' Get next row
+			If Not rs.Eof Then rs.MoveNext
+		End If
+		If Not rs.Eof Then
+			pagos_vs_llamados.SALDO.DbValue = ewrpt_GetValue(rs("SALDO"))
+			pagos_vs_llamados.FECCANCEL.DbValue = ewrpt_GetValue(rs("FECCANCEL"))
+			pagos_vs_llamados.total.DbValue = ewrpt_GetValue(rs("total"))
+			pagos_vs_llamados.NOMBRE_C.DbValue = ewrpt_GetValue(rs("NOMBRE_C"))
+			pagos_vs_llamados.ANO.DbValue = ewrpt_GetValue(rs("ANO"))
+			pagos_vs_llamados.PERIODO.DbValue = ewrpt_GetValue(rs("PERIODO"))
+			pagos_vs_llamados.CODCLI.DbValue = ewrpt_GetValue(rs("CODCLI"))
+			pagos_vs_llamados.DIG.DbValue = ewrpt_GetValue(rs("DIG"))
+			pagos_vs_llamados.PATERNO.DbValue = ewrpt_GetValue(rs("PATERNO"))
+			pagos_vs_llamados.MATERNO.DbValue = ewrpt_GetValue(rs("MATERNO"))
+			pagos_vs_llamados.NOMBRE.DbValue = ewrpt_GetValue(rs("NOMBRE"))
+			pagos_vs_llamados.ESTACAD.DbValue = ewrpt_GetValue(rs("ESTACAD"))
+			pagos_vs_llamados.ANO_dbo.DbValue = ewrpt_GetValue(rs("ANO_MATRICULA"))
+			pagos_vs_llamados.ANO_ULT_MAT.DbValue = ewrpt_GetValue(rs("ANO_ULT_MAT"))
+			pagos_vs_llamados.PER_ULT_MAT.DbValue = ewrpt_GetValue(rs("PER_ULT_MAT"))
+			pagos_vs_llamados.DOCUM_PAGO.DbValue = ewrpt_GetValue(rs("DOCUM_PAGO"))
+			Val(1) = pagos_vs_llamados.SALDO.CurrentValue
+			Val(2) = pagos_vs_llamados.FECCANCEL.CurrentValue
+			Val(3) = pagos_vs_llamados.total.CurrentValue
+			Val(4) = pagos_vs_llamados.NOMBRE_C.CurrentValue
+			Val(5) = pagos_vs_llamados.ANO.CurrentValue
+			Val(6) = pagos_vs_llamados.PERIODO.CurrentValue
+			Val(7) = pagos_vs_llamados.CODCLI.CurrentValue
+			Val(8) = pagos_vs_llamados.DIG.CurrentValue
+			Val(9) = pagos_vs_llamados.PATERNO.CurrentValue
+			Val(10) = pagos_vs_llamados.MATERNO.CurrentValue
+			Val(11) = pagos_vs_llamados.NOMBRE.CurrentValue
+			Val(12) = pagos_vs_llamados.ESTACAD.CurrentValue
+			Val(13) = pagos_vs_llamados.ANO_dbo.CurrentValue
+			Val(14) = pagos_vs_llamados.ANO_ULT_MAT.CurrentValue
+			Val(15) = pagos_vs_llamados.PER_ULT_MAT.CurrentValue
+			Val(16) = pagos_vs_llamados.DOCUM_PAGO.CurrentValue
+		Else
+			pagos_vs_llamados.SALDO.DbValue = ""
+			pagos_vs_llamados.FECCANCEL.DbValue = ""
+			pagos_vs_llamados.total.DbValue = ""
+			pagos_vs_llamados.NOMBRE_C.DbValue = ""
+			pagos_vs_llamados.ANO.DbValue = ""
+			pagos_vs_llamados.PERIODO.DbValue = ""
+			pagos_vs_llamados.CODCLI.DbValue = ""
+			pagos_vs_llamados.DIG.DbValue = ""
+			pagos_vs_llamados.PATERNO.DbValue = ""
+			pagos_vs_llamados.MATERNO.DbValue = ""
+			pagos_vs_llamados.NOMBRE.DbValue = ""
+			pagos_vs_llamados.ESTACAD.DbValue = ""
+			pagos_vs_llamados.ANO_dbo.DbValue = ""
+			pagos_vs_llamados.ANO_ULT_MAT.DbValue = ""
+			pagos_vs_llamados.PER_ULT_MAT.DbValue = ""
+			pagos_vs_llamados.DOCUM_PAGO.DbValue = ""
+		End If
+	End Sub
+
+	'-------------------------------------------------------------------------------
+	' Function SetUpStartGroup
+	' - Set up Starting Record parameters based on Pager Navigation
+	' - Variables setup: StartGrp
+	Sub SetUpStartGroup()
+		Dim nPageNo
+
+		' Exit if DisplayGrps = 0
+		If DisplayGrps = 0 Then Exit Sub
+
+		' Check for a START parameter
+		If Request.QueryString(EWRPT_TABLE_START_GROUP).Count > 0 Then
+			StartGrp = Request.QueryString(EWRPT_TABLE_START_GROUP)
+			pagos_vs_llamados.StartGroup = StartGrp
+		ElseIf Request.QueryString("pageno").Count > 0 Then
+			nPageNo = Request.QueryString("pageno")
+			If IsNumeric(nPageNo) Then
+				StartGrp = (nPageNo-1)*DisplayGrps+1
+				If StartGrp <= 0 Then
+					StartGrp = 1
+				ElseIf StartGrp >= ((TotalGrps-1)\DisplayGrps)*DisplayGrps+1 Then
+					StartGrp = ((TotalGrps-1)\DisplayGrps)*DisplayGrps+1
+				End If
+				pagos_vs_llamados.StartGroup = nStartGrp
+			Else
+				StartGrp = pagos_vs_llamados.StartGroup
+			End If
+		Else
+			StartGrp = pagos_vs_llamados.StartGroup
+		End If
+
+		' Check if correct start group counter
+		If Not IsNumeric(StartGrp) Or StartGrp = "" Then ' Avoid invalid start group counter
+			StartGrp = 1 ' Reset start group counter
+			pagos_vs_llamados.StartGroup = StartGrp
+		ElseIf CLng(StartGrp) > CLng(TotalGrps) Then ' Avoid starting group > total groups
+			StartGrp = ((TotalGrps-1)\DisplayGrps)*DisplayGrps+1 ' Point to last page first group
+			pagos_vs_llamados.StartGroup = StartGrp
+		ElseIf (StartGrp-1) Mod DisplayGrps <> 0 Then
+			StartGrp = ((StartGrp-1)\DisplayGrps)*DisplayGrps+1 ' Point to page boundary
+			pagos_vs_llamados.StartGroup = StartGrp
+		End If
+	End Sub
+
+	' Set up popup
+	Sub SetupPopup()
+		Dim sName, arValues, cntValues
+		Dim i, ar
+		Dim sSql, rswrk
+		Dim bNullValue, bEmptyValue
+		Dim grpval
+
+		' Initialize popup
+		' Process post back form
+
+		If Request.Form.Count > 0 Then
+			sName = Request.Form("popup") ' Get popup form name
+			If sName <> "" Then
+				cntValues = Request.Form("sel_" & sName).Count
+				If cntValues > 0 Then
+					Redim arValues(cntValues-1)
+					For i = 1 to cntValues
+						arValues(i-1) = Request.Form("sel_" & sName)(i)
+					Next
+					If Trim(arValues(0)) = "" Then ' Select all
+						arValues = EWRPT_INIT_VALUE
+					End If
+					If Not ewrpt_MatchedArray(arValues, Session("sel_" & sName)) Then
+						If HasSessionFilterValues(sName) Then
+							ClearExtFilter = sName ' Clear extended filter for this field
+						End If
+					End If
+					Session("sel_" & sName) = arValues
+					Session("rf_" & sName) = Request.Form("rf_" & sName)
+					Session("rt_" & sName) = Request.Form("rt_" & sName)
+					Call ResetPager()
+				End If
+			End If
+
+		' Get Reset Cmd
+		ElseIf Request.QueryString("cmd").Count > 0 Then
+			Dim sCmd
+			sCmd = Request.QueryString("cmd")
+			If LCase(sCmd) = "reset" Then
+				Call ResetPager()
+			End If
+		End If
+
+		' Load selection criteria to array
+	End Sub
+
+	' Reset pager to starting position
+	Sub ResetPager()
+		StartGrp = 1
+		pagos_vs_llamados.StartGroup = StartGrp
+	End Sub
+
+	'-------------------------------------------------------------------------------
+	' Function SetUpDisplayGrps
+	' - Set up Number of Groups displayed per page based on Form element GrpPerPage
+	' - Variables setup: nDisplayGrps
+	Sub SetUpDisplayGrps()
+		Dim sWrk
+		sWrk = Request.QueryString(EWRPT_TABLE_GROUP_PER_PAGE)
+		If sWrk <> "" Then
+			If IsNumeric(sWrk) Then
+				DisplayGrps = CInt(sWrk)
+			Else
+				If UCase(sWrk) = "ALL" Then ' Display All Records
+					DisplayGrps = -1
+				Else
+					DisplayGrps = 20 ' Non-numeric, Load Default
+				End If
+			End If
+			pagos_vs_llamados.GroupPerPage = DisplayGrps ' Save to Session
+
+			' Reset Start Position (Reset Command)
+			StartGrp = 1
+			pagos_vs_llamados.StartGroup = nStartGrp
+		Else
+			If pagos_vs_llamados.GroupPerPage <> "" Then
+				DisplayGrps = pagos_vs_llamados.GroupPerPage ' Restore from Session
+			Else
+				DisplayGrps = 20 ' Load Default
+			End If
+		End If
+	End Sub
+
+	' Render row
+	Sub RenderRow()
+		If pagos_vs_llamados.RowTotalType = EWRPT_ROWTOTAL_GRAND Then ' Grand total
+
+			' Get total count from sql directly
+			Dim sSql, rstot
+			sSql = ewrpt_BuildReportSql(pagos_vs_llamados.SqlSelectCount, pagos_vs_llamados.SqlWhere, pagos_vs_llamados.SqlGroupBy, pagos_vs_llamados.SqlHaving, "", Filter, "")
+			Call ewrpt_SetDebugMsg("(Total SQL): " & sSql)
+			Set rstot = ewrpt_LoadRs(sSql)
+			If Not rstot.Eof Then
+				TotCount = ewrpt_GetValue(rstot(0))
+			Else
+				TotCount = 0
+			End If
+		End If
+
+		' Call Row_Rendering event
+		Call pagos_vs_llamados.Row_Rendering()
+
+		' --------------------
+		'  Render view codes
+		' --------------------
+
+		If pagos_vs_llamados.RowType = EWRPT_ROWTYPE_TOTAL Then ' Summary row
+		Else
+
+			' SALDO
+			pagos_vs_llamados.SALDO.ViewValue = pagos_vs_llamados.SALDO.CurrentValue
+			pagos_vs_llamados.SALDO.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' FECCANCEL
+			pagos_vs_llamados.FECCANCEL.ViewValue = pagos_vs_llamados.FECCANCEL.CurrentValue
+			pagos_vs_llamados.FECCANCEL.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' total
+			pagos_vs_llamados.total.ViewValue = pagos_vs_llamados.total.CurrentValue
+			pagos_vs_llamados.total.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' NOMBRE_C
+			pagos_vs_llamados.NOMBRE_C.ViewValue = pagos_vs_llamados.NOMBRE_C.CurrentValue
+			pagos_vs_llamados.NOMBRE_C.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' ANO
+			pagos_vs_llamados.ANO.ViewValue = pagos_vs_llamados.ANO.CurrentValue
+			pagos_vs_llamados.ANO.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' PERIODO
+			pagos_vs_llamados.PERIODO.ViewValue = pagos_vs_llamados.PERIODO.CurrentValue
+			pagos_vs_llamados.PERIODO.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' CODCLI
+			pagos_vs_llamados.CODCLI.ViewValue = pagos_vs_llamados.CODCLI.CurrentValue
+			pagos_vs_llamados.CODCLI.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' DIG
+			pagos_vs_llamados.DIG.ViewValue = pagos_vs_llamados.DIG.CurrentValue
+			pagos_vs_llamados.DIG.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' PATERNO
+			pagos_vs_llamados.PATERNO.ViewValue = pagos_vs_llamados.PATERNO.CurrentValue
+			pagos_vs_llamados.PATERNO.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' MATERNO
+			pagos_vs_llamados.MATERNO.ViewValue = pagos_vs_llamados.MATERNO.CurrentValue
+			pagos_vs_llamados.MATERNO.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' NOMBRE
+			pagos_vs_llamados.NOMBRE.ViewValue = pagos_vs_llamados.NOMBRE.CurrentValue
+			pagos_vs_llamados.NOMBRE.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' ESTACAD
+			pagos_vs_llamados.ESTACAD.ViewValue = pagos_vs_llamados.ESTACAD.CurrentValue
+			pagos_vs_llamados.ESTACAD.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' ANO_MATRICULA
+			pagos_vs_llamados.ANO_dbo.ViewValue = pagos_vs_llamados.ANO_dbo.CurrentValue
+			pagos_vs_llamados.ANO_dbo.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' ANO_ULT_MAT
+			pagos_vs_llamados.ANO_ULT_MAT.ViewValue = pagos_vs_llamados.ANO_ULT_MAT.CurrentValue
+			pagos_vs_llamados.ANO_ULT_MAT.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' PER_ULT_MAT
+			pagos_vs_llamados.PER_ULT_MAT.ViewValue = pagos_vs_llamados.PER_ULT_MAT.CurrentValue
+			pagos_vs_llamados.PER_ULT_MAT.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' DOCUM_PAGO
+			pagos_vs_llamados.DOCUM_PAGO.ViewValue = pagos_vs_llamados.DOCUM_PAGO.CurrentValue
+			pagos_vs_llamados.DOCUM_PAGO.CellAttrs.UpdateAttribute "class", ewrpt_IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+			' SALDO
+			pagos_vs_llamados.SALDO.HrefValue = ""
+
+			' FECCANCEL
+			pagos_vs_llamados.FECCANCEL.HrefValue = ""
+
+			' total
+			pagos_vs_llamados.total.HrefValue = ""
+
+			' NOMBRE_C
+			pagos_vs_llamados.NOMBRE_C.HrefValue = ""
+
+			' ANO
+			pagos_vs_llamados.ANO.HrefValue = ""
+
+			' PERIODO
+			pagos_vs_llamados.PERIODO.HrefValue = ""
+
+			' CODCLI
+			pagos_vs_llamados.CODCLI.HrefValue = ""
+
+			' DIG
+			pagos_vs_llamados.DIG.HrefValue = ""
+
+			' PATERNO
+			pagos_vs_llamados.PATERNO.HrefValue = ""
+
+			' MATERNO
+			pagos_vs_llamados.MATERNO.HrefValue = ""
+
+			' NOMBRE
+			pagos_vs_llamados.NOMBRE.HrefValue = ""
+
+			' ESTACAD
+			pagos_vs_llamados.ESTACAD.HrefValue = ""
+
+			' ANO_MATRICULA
+			pagos_vs_llamados.ANO_dbo.HrefValue = ""
+
+			' ANO_ULT_MAT
+			pagos_vs_llamados.ANO_ULT_MAT.HrefValue = ""
+
+			' PER_ULT_MAT
+			pagos_vs_llamados.PER_ULT_MAT.HrefValue = ""
+
+			' DOCUM_PAGO
+			pagos_vs_llamados.DOCUM_PAGO.HrefValue = ""
+		End If
+
+		' Call Cell_Rendered event
+		If pagos_vs_llamados.RowType = EWRPT_ROWTYPE_TOTAL Then ' Summary row
+		Else
+
+			' SALDO
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.SALDO, pagos_vs_llamados.SALDO.CurrentValue, pagos_vs_llamados.SALDO.ViewValue, pagos_vs_llamados.SALDO.ViewAttrs, pagos_vs_llamados.SALDO.CellAttrs, pagos_vs_llamados.SALDO.HrefValue)
+
+			' FECCANCEL
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.FECCANCEL, pagos_vs_llamados.FECCANCEL.CurrentValue, pagos_vs_llamados.FECCANCEL.ViewValue, pagos_vs_llamados.FECCANCEL.ViewAttrs, pagos_vs_llamados.FECCANCEL.CellAttrs, pagos_vs_llamados.FECCANCEL.HrefValue)
+
+			' total
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.total, pagos_vs_llamados.total.CurrentValue, pagos_vs_llamados.total.ViewValue, pagos_vs_llamados.total.ViewAttrs, pagos_vs_llamados.total.CellAttrs, pagos_vs_llamados.total.HrefValue)
+
+			' NOMBRE_C
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.NOMBRE_C, pagos_vs_llamados.NOMBRE_C.CurrentValue, pagos_vs_llamados.NOMBRE_C.ViewValue, pagos_vs_llamados.NOMBRE_C.ViewAttrs, pagos_vs_llamados.NOMBRE_C.CellAttrs, pagos_vs_llamados.NOMBRE_C.HrefValue)
+
+			' ANO
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.ANO, pagos_vs_llamados.ANO.CurrentValue, pagos_vs_llamados.ANO.ViewValue, pagos_vs_llamados.ANO.ViewAttrs, pagos_vs_llamados.ANO.CellAttrs, pagos_vs_llamados.ANO.HrefValue)
+
+			' PERIODO
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.PERIODO, pagos_vs_llamados.PERIODO.CurrentValue, pagos_vs_llamados.PERIODO.ViewValue, pagos_vs_llamados.PERIODO.ViewAttrs, pagos_vs_llamados.PERIODO.CellAttrs, pagos_vs_llamados.PERIODO.HrefValue)
+
+			' CODCLI
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.CODCLI, pagos_vs_llamados.CODCLI.CurrentValue, pagos_vs_llamados.CODCLI.ViewValue, pagos_vs_llamados.CODCLI.ViewAttrs, pagos_vs_llamados.CODCLI.CellAttrs, pagos_vs_llamados.CODCLI.HrefValue)
+
+			' DIG
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.DIG, pagos_vs_llamados.DIG.CurrentValue, pagos_vs_llamados.DIG.ViewValue, pagos_vs_llamados.DIG.ViewAttrs, pagos_vs_llamados.DIG.CellAttrs, pagos_vs_llamados.DIG.HrefValue)
+
+			' PATERNO
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.PATERNO, pagos_vs_llamados.PATERNO.CurrentValue, pagos_vs_llamados.PATERNO.ViewValue, pagos_vs_llamados.PATERNO.ViewAttrs, pagos_vs_llamados.PATERNO.CellAttrs, pagos_vs_llamados.PATERNO.HrefValue)
+
+			' MATERNO
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.MATERNO, pagos_vs_llamados.MATERNO.CurrentValue, pagos_vs_llamados.MATERNO.ViewValue, pagos_vs_llamados.MATERNO.ViewAttrs, pagos_vs_llamados.MATERNO.CellAttrs, pagos_vs_llamados.MATERNO.HrefValue)
+
+			' NOMBRE
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.NOMBRE, pagos_vs_llamados.NOMBRE.CurrentValue, pagos_vs_llamados.NOMBRE.ViewValue, pagos_vs_llamados.NOMBRE.ViewAttrs, pagos_vs_llamados.NOMBRE.CellAttrs, pagos_vs_llamados.NOMBRE.HrefValue)
+
+			' ESTACAD
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.ESTACAD, pagos_vs_llamados.ESTACAD.CurrentValue, pagos_vs_llamados.ESTACAD.ViewValue, pagos_vs_llamados.ESTACAD.ViewAttrs, pagos_vs_llamados.ESTACAD.CellAttrs, pagos_vs_llamados.ESTACAD.HrefValue)
+
+			' ANO_MATRICULA
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.ANO_MATRICULA, pagos_vs_llamados.ANO_dbo.CurrentValue, pagos_vs_llamados.ANO_dbo.ViewValue, pagos_vs_llamados.ANO_dbo.ViewAttrs, pagos_vs_llamados.ANO_dbo.CellAttrs, pagos_vs_llamados.ANO_dbo.HrefValue)
+
+			' ANO_ULT_MAT
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.ANO_ULT_MAT, pagos_vs_llamados.ANO_ULT_MAT.CurrentValue, pagos_vs_llamados.ANO_ULT_MAT.ViewValue, pagos_vs_llamados.ANO_ULT_MAT.ViewAttrs, pagos_vs_llamados.ANO_ULT_MAT.CellAttrs, pagos_vs_llamados.ANO_ULT_MAT.HrefValue)
+
+			' PER_ULT_MAT
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.PER_ULT_MAT, pagos_vs_llamados.PER_ULT_MAT.CurrentValue, pagos_vs_llamados.PER_ULT_MAT.ViewValue, pagos_vs_llamados.PER_ULT_MAT.ViewAttrs, pagos_vs_llamados.PER_ULT_MAT.CellAttrs, pagos_vs_llamados.PER_ULT_MAT.HrefValue)
+
+			' DOCUM_PAGO
+			Call pagos_vs_llamados.Cell_Rendered(pagos_vs_llamados.DOCUM_PAGO, pagos_vs_llamados.DOCUM_PAGO.CurrentValue, pagos_vs_llamados.DOCUM_PAGO.ViewValue, pagos_vs_llamados.DOCUM_PAGO.ViewAttrs, pagos_vs_llamados.DOCUM_PAGO.CellAttrs, pagos_vs_llamados.DOCUM_PAGO.HrefValue)
+		End If
+
+		' Call Row_Rendered event
+		Call pagos_vs_llamados.Row_Rendered()
+	End Sub
+
+	Function SetupExportOptionsExt()
+	End Function
+
+	' Get extended filter values
+	Sub GetExtendedFilterValues()
+		Dim sSelectFld, sSelect, sWhere, sOrderBy
+		Dim wrkSql, wrkRs
+
+		' Field FECCANCEL
+		sSelect = "SELECT DISTINCT [FECCANCEL] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[FECCANCEL] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.FECCANCEL.DropDownList = ewrpt_GetDistinctValues("date", wrkSql)
+
+		' Field NOMBRE_C
+		sSelect = "SELECT DISTINCT [NOMBRE_C] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[NOMBRE_C] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.NOMBRE_C.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+
+		' Field CODCLI
+		sSelect = "SELECT DISTINCT [CODCLI] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[CODCLI] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.CODCLI.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+
+		' Field ESTACAD
+		sSelect = "SELECT DISTINCT [ESTACAD] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[ESTACAD] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.ESTACAD.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+
+		' Field ANO_MATRICULA
+		sSelect = "SELECT DISTINCT [ANO_MATRICULA] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[ANO_MATRICULA] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.ANO_dbo.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+
+		' Field ANO_ULT_MAT
+		sSelect = "SELECT DISTINCT [ANO_ULT_MAT] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[ANO_ULT_MAT] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.ANO_ULT_MAT.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+
+		' Field PER_ULT_MAT
+		sSelect = "SELECT DISTINCT [PER_ULT_MAT] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[PER_ULT_MAT] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.PER_ULT_MAT.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+
+		' Field DOCUM_PAGO
+		sSelect = "SELECT DISTINCT [DOCUM_PAGO] FROM " & pagos_vs_llamados.SqlFrom
+		sWhere = pagos_vs_llamados.SqlWhere
+		sOrderBy = "[DOCUM_PAGO] ASC"
+		wrkSql = ewrpt_BuildReportSql(sSelect, sWhere, "", "", sOrderBy, UserIDFilter, "")
+		Call ewrpt_SetDebugMsg("(Extended filter SQL): " & sSql)
+		pagos_vs_llamados.DOCUM_PAGO.DropDownList = ewrpt_GetDistinctValues("", wrkSql)
+	End Sub
+
+	' Return extended filter
+	Function GetExtendedFilter()
+		Dim sFilter, sWrk, arwrk
+		sFilter = ""
+		Dim bPostBack, bRestoreSession, bSetupFilter
+		bPostBack = (Request.Form.Count > 0)
+		bRestoreSession = True
+		bSetupFilter = False
+
+		' Reset extended filter if filter changed
+		If bPostBack Then
+
+		' Reset search command
+		ElseIf Request.QueryString("cmd") = "reset" Then
+
+			' Load default values
+			' (already loaded) Call LoadDefaultFilters()
+			' Field FECCANCEL
+
+			Call SetSessionDropDownValue(pagos_vs_llamados.FECCANCEL.DropDownValue, "FECCANCEL")
+
+			' Field NOMBRE_C
+			Call SetSessionDropDownValue(pagos_vs_llamados.NOMBRE_C.DropDownValue, "NOMBRE_C")
+
+			' Field ANO
+			Call SetSessionFilterValues(pagos_vs_llamados.ANO.SearchValue, pagos_vs_llamados.ANO.SearchOperator, pagos_vs_llamados.ANO.SearchCondition, pagos_vs_llamados.ANO.SearchValue2, pagos_vs_llamados.ANO.SearchOperator2, "ANO")
+
+			' Field PERIODO
+			Call SetSessionFilterValues(pagos_vs_llamados.PERIODO.SearchValue, pagos_vs_llamados.PERIODO.SearchOperator, pagos_vs_llamados.PERIODO.SearchCondition, pagos_vs_llamados.PERIODO.SearchValue2, pagos_vs_llamados.PERIODO.SearchOperator2, "PERIODO")
+
+			' Field CODCLI
+			Call SetSessionDropDownValue(pagos_vs_llamados.CODCLI.DropDownValue, "CODCLI")
+
+			' Field ESTACAD
+			Call SetSessionDropDownValue(pagos_vs_llamados.ESTACAD.DropDownValue, "ESTACAD")
+
+			' Field ANO_MATRICULA
+			Call SetSessionDropDownValue(pagos_vs_llamados.ANO_dbo.DropDownValue, "ANO_MATRICULA")
+
+			' Field ANO_ULT_MAT
+			Call SetSessionDropDownValue(pagos_vs_llamados.ANO_ULT_MAT.DropDownValue, "ANO_ULT_MAT")
+
+			' Field PER_ULT_MAT
+			Call SetSessionDropDownValue(pagos_vs_llamados.PER_ULT_MAT.DropDownValue, "PER_ULT_MAT")
+
+			' Field DOCUM_PAGO
+			Call SetSessionDropDownValue(pagos_vs_llamados.DOCUM_PAGO.DropDownValue, "DOCUM_PAGO")
+			bSetupFilter = True ' Set up filter required
+		Else
+
+			' Field FECCANCEL
+			If GetDropDownValue(pagos_vs_llamados.FECCANCEL) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.FECCANCEL.DropDownValue) Then
+				If pagos_vs_llamados.FECCANCEL.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_FECCANCEL")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field NOMBRE_C
+			If GetDropDownValue(pagos_vs_llamados.NOMBRE_C) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.NOMBRE_C.DropDownValue) Then
+				If pagos_vs_llamados.NOMBRE_C.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_NOMBRE_C")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field ANO
+			If GetFilterValues(pagos_vs_llamados.ANO) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			End If
+
+			' Field PERIODO
+			If GetFilterValues(pagos_vs_llamados.PERIODO) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			End If
+
+			' Field CODCLI
+			If GetDropDownValue(pagos_vs_llamados.CODCLI) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.CODCLI.DropDownValue) Then
+				If pagos_vs_llamados.CODCLI.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_CODCLI")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field ESTACAD
+			If GetDropDownValue(pagos_vs_llamados.ESTACAD) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.ESTACAD.DropDownValue) Then
+				If pagos_vs_llamados.ESTACAD.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_ESTACAD")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field ANO_MATRICULA
+			If GetDropDownValue(pagos_vs_llamados.ANO_MATRICULA) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.ANO_dbo.DropDownValue) Then
+				If pagos_vs_llamados.ANO_dbo.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_ANO_MATRICULA")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field ANO_ULT_MAT
+			If GetDropDownValue(pagos_vs_llamados.ANO_ULT_MAT) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.ANO_ULT_MAT.DropDownValue) Then
+				If pagos_vs_llamados.ANO_ULT_MAT.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_ANO_ULT_MAT")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field PER_ULT_MAT
+			If GetDropDownValue(pagos_vs_llamados.PER_ULT_MAT) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.PER_ULT_MAT.DropDownValue) Then
+				If pagos_vs_llamados.PER_ULT_MAT.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_PER_ULT_MAT")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Field DOCUM_PAGO
+			If GetDropDownValue(pagos_vs_llamados.DOCUM_PAGO) Then
+				bSetupFilter = True ' Set up filter required
+				bRestoreSession = False ' Do not restore from session
+			ElseIf Not IsArray(pagos_vs_llamados.DOCUM_PAGO.DropDownValue) Then
+				If pagos_vs_llamados.DOCUM_PAGO.DropDownValue <> EWRPT_INIT_VALUE And IsEmpty(Session("sv_pagos_vs_llamados_DOCUM_PAGO")) Then
+					bSetupFilter = True ' Set up filter required
+				End If
+			End If
+
+			' Validate form
+			If Not ValidateForm() Then
+				Message = gsFormError
+				GetExtendedFilter = sFilter
+				Exit Function
+			End If
+		End If
+
+		' Restore session
+		If bRestoreSession Then
+
+			' Field FECCANCEL
+			Call GetSessionDropDownValue(pagos_vs_llamados.FECCANCEL)
+
+			' Field NOMBRE_C
+			Call GetSessionDropDownValue(pagos_vs_llamados.NOMBRE_C)
+
+			' Field ANO
+			Call GetSessionFilterValues(pagos_vs_llamados.ANO)
+
+			' Field PERIODO
+			Call GetSessionFilterValues(pagos_vs_llamados.PERIODO)
+
+			' Field CODCLI
+			Call GetSessionDropDownValue(pagos_vs_llamados.CODCLI)
+
+			' Field ESTACAD
+			Call GetSessionDropDownValue(pagos_vs_llamados.ESTACAD)
+
+			' Field ANO_MATRICULA
+			Call GetSessionDropDownValue(pagos_vs_llamados.ANO_MATRICULA)
+
+			' Field ANO_ULT_MAT
+			Call GetSessionDropDownValue(pagos_vs_llamados.ANO_ULT_MAT)
+
+			' Field PER_ULT_MAT
+			Call GetSessionDropDownValue(pagos_vs_llamados.PER_ULT_MAT)
+
+			' Field DOCUM_PAGO
+			Call GetSessionDropDownValue(pagos_vs_llamados.DOCUM_PAGO)
+		End If
+
+		' Call page filter validated event
+		Call pagos_vs_llamados.Page_FilterValidated()
+
+		' Build sql
+		' Field FECCANCEL
+
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.FECCANCEL, sFilter, "")
+
+		' Field NOMBRE_C
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.NOMBRE_C, sFilter, "")
+
+		' Field ANO
+		Call ewrpt_BuildExtendedFilter(pagos_vs_llamados.ANO, sFilter)
+
+		' Field PERIODO
+		Call ewrpt_BuildExtendedFilter(pagos_vs_llamados.PERIODO, sFilter)
+
+		' Field CODCLI
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.CODCLI, sFilter, "")
+
+		' Field ESTACAD
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.ESTACAD, sFilter, "")
+
+		' Field ANO_MATRICULA
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.ANO_MATRICULA, sFilter, "")
+
+		' Field ANO_ULT_MAT
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.ANO_ULT_MAT, sFilter, "")
+
+		' Field PER_ULT_MAT
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.PER_ULT_MAT, sFilter, "")
+
+		' Field DOCUM_PAGO
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.DOCUM_PAGO, sFilter, "")
+
+		' Save parms to Session
+		' Field FECCANCEL
+
+		Call SetSessionDropDownValue(pagos_vs_llamados.FECCANCEL.DropDownValue, "FECCANCEL")
+
+		' Field NOMBRE_C
+		Call SetSessionDropDownValue(pagos_vs_llamados.NOMBRE_C.DropDownValue, "NOMBRE_C")
+
+		' Field ANO
+		Call SetSessionFilterValues(pagos_vs_llamados.ANO.SearchValue, pagos_vs_llamados.ANO.SearchOperator, pagos_vs_llamados.ANO.SearchCondition, pagos_vs_llamados.ANO.SearchValue2, pagos_vs_llamados.ANO.SearchOperator2, "ANO")
+
+		' Field PERIODO
+		Call SetSessionFilterValues(pagos_vs_llamados.PERIODO.SearchValue, pagos_vs_llamados.PERIODO.SearchOperator, pagos_vs_llamados.PERIODO.SearchCondition, pagos_vs_llamados.PERIODO.SearchValue2, pagos_vs_llamados.PERIODO.SearchOperator2, "PERIODO")
+
+		' Field CODCLI
+		Call SetSessionDropDownValue(pagos_vs_llamados.CODCLI.DropDownValue, "CODCLI")
+
+		' Field ESTACAD
+		Call SetSessionDropDownValue(pagos_vs_llamados.ESTACAD.DropDownValue, "ESTACAD")
+
+		' Field ANO_MATRICULA
+		Call SetSessionDropDownValue(pagos_vs_llamados.ANO_dbo.DropDownValue, "ANO_MATRICULA")
+
+		' Field ANO_ULT_MAT
+		Call SetSessionDropDownValue(pagos_vs_llamados.ANO_ULT_MAT.DropDownValue, "ANO_ULT_MAT")
+
+		' Field PER_ULT_MAT
+		Call SetSessionDropDownValue(pagos_vs_llamados.PER_ULT_MAT.DropDownValue, "PER_ULT_MAT")
+
+		' Field DOCUM_PAGO
+		Call SetSessionDropDownValue(pagos_vs_llamados.DOCUM_PAGO.DropDownValue, "DOCUM_PAGO")
+
+		' Setup filter
+		If bSetupFilter Then
+		End If
+		GetExtendedFilter = sFilter
+	End Function
+
+	' Get drop down value from querystring
+	Function GetDropDownValue(fld)
+		Dim parm, arwrk
+		GetDropDownValue = False
+		If Request.Form.Count > 0 Then Exit Function ' Skip post back
+		parm = Mid(fld.FldVar,3)
+		If Request.QueryString("sv_" & parm).Count > 0 Then
+			Dim nParm, i
+			nParm = Request.QueryString("sv_" & parm).Count
+			If nParm = 1 Then
+				arwrk = Request.QueryString("sv_" & parm)
+			Else
+				ReDim arwrk(nParm-1)
+				For i = 1 to nParm
+					arwrk(i-1) = Request.QueryString("sv_" & parm)(i)
+				Next
+			End If
+			fld.DropDownValue = arwrk
+			GetDropDownValue = True
+		End If
+	End Function
+
+	' Get filter values from querystring
+	Function GetFilterValues(fld)
+		Dim parm
+		parm = Mid(fld.FldVar,3)
+		GetFilterValues = False
+		If Request.Form.Count > 0 Then Exit Function ' Skip post back
+		If Request.QueryString("sv1_" & parm).Count > 0 Then
+			fld.SearchValue = Request.QueryString("sv1_" & parm)
+			GetFilterValues = True
+		End If
+		If Request.QueryString("so1_" & parm).Count > 0 Then
+			fld.SearchOperator = Request.QueryString("so1_" & parm)
+			GetFilterValues = True
+		End If
+		If Request.QueryString("sc_" & parm).Count > 0 Then
+			fld.SearchCondition = Request.QueryString("sc_" & parm)
+			GetFilterValues = True
+		End If
+		If Request.QueryString("sv2_" & parm).Count > 0 Then
+			fld.SearchValue2 = Request.QueryString("sv2_" & parm)
+			GetFilterValues = True
+		End If
+		If Request.QueryString("so2_" & parm).Count > 0 Then
+			fld.SearchOperator2 = Request.QueryString("so2_" & parm)
+			GetFilterValues = True
+		End If
+	End Function
+
+	' Set default ext filter
+	Sub SetDefaultExtFilter(fld, so1, sv1, sc, so2, sv2)
+		fld.DefaultSearchValue = sv1 ' Default ext filter value 1
+		fld.DefaultSearchValue2 = sv2 ' Default ext filter value 2 (if operator 2 is enabled)
+		fld.DefaultSearchOperator = so1 ' Default search operator 1
+		fld.DefaultSearchOperator2 = so2 ' Default search operator 2 (if operator 2 is enabled)
+		fld.DefaultSearchCondition = sc ' Default search condition (if operator 2 is enabled)
+	End Sub
+
+	' Apply default ext filter
+	Sub ApplyDefaultExtFilter(fld)
+		fld.SearchValue = fld.DefaultSearchValue
+		fld.SearchValue2 = fld.DefaultSearchValue2
+		fld.SearchOperator = fld.DefaultSearchOperator
+		fld.SearchOperator2 = fld.DefaultSearchOperator2
+		fld.SearchCondition = fld.DefaultSearchCondition
+	End Sub
+
+	' Check if Text Filter applied
+	Function TextFilterApplied(fld)
+		TextFilterApplied = (fld.SearchValue&"" <> fld.DefaultSearchValue&"") Or _
+			(fld.SearchValue2&"" <> fld.DefaultSearchValue2&"") Or _
+			(fld.SearchValue&"" <> "" And fld.SearchOperator&"" <> fld.DefaultSearchOperator&"") Or _
+			(fld.SearchValue2&"" <> "" And fld.SearchOperator2&"" <> fld.DefaultSearchOperator2&"") Or _
+			(fld.SearchCondition&"" <> fld.DefaultSearchCondition&"")
+	End Function
+
+	' Check if Non-Text Filter applied
+	Function NonTextFilterApplied(fld)
+		If IsArray(fld.DropDownValue) And IsArray(fld.DefaultDropDownValue) Then
+			If UBound(fld.DropDownValue) <> Ubound(fld.DefaultDropDownValue) Then
+				NonTextFilterApplied = True
+				Exit Function
+			Else
+				Dim ar1, ar2
+				ar1 = fld.DropDownValue
+				ar2 = fld.DefaultDropDownValue
+				Call ewrpt_SortArray(ar1)
+				Call ewrpt_SortArray(ar2)
+				NonTextFilterApplied = Not ewrpt_MatchedArray(ar1, ar2)
+			End If
+		ElseIf IsArray(fld.DropDownValue) Or IsArray(fld.DefaultDropDownValue) Then
+			NonTextFilterApplied = True
+		Else
+			NonTextFilterApplied = (fld.DropDownValue&"" <> fld.DefaultDropDownValue&"")
+		End If
+	End Function
+
+	' Get dropdown value from Session
+	Sub GetSessionDropDownValue(fld)
+		Dim parm
+		parm = Mid(fld.FldVar,3)
+		If Not IsEmpty(Session("sv_pagos_vs_llamados_" & parm)) Then fld.DropDownValue = Session("sv_pagos_vs_llamados_" & parm)
+	End Sub
+
+	' Get filter values from Session
+	Sub GetSessionFilterValues(fld)
+		Dim parm
+		parm = Mid(fld.FldVar,3)
+		If Not IsEmpty(Session("sv1_pagos_vs_llamados_" & parm)) Then fld.SearchValue = Session("sv1_pagos_vs_llamados_" & parm)
+		If Not IsEmpty(Session("so1_pagos_vs_llamados_" & parm)) Then fld.SearchOperator = Session("so1_pagos_vs_llamados_" & parm)
+		If Not IsEmpty(Session("sc_pagos_vs_llamados_" & parm)) Then fld.SearchCondition = Session("sc_pagos_vs_llamados_" & parm)
+		If Not IsEmpty(Session("sv2_pagos_vs_llamados_" & parm)) Then fld.SearchValue2 = Session("sv2_pagos_vs_llamados_" & parm)
+		If Not IsEmpty(Session("so2_pagos_vs_llamados_" & parm)) Then fld.SearchOperator2 = Session("so2_pagos_vs_llamados_" & parm)
+	End Sub
+
+	' Set dropdown value to Session
+	Sub SetSessionDropDownValue(sv, parm)
+		Session("sv_pagos_vs_llamados_" & parm) = sv
+	End Sub
+
+	' Set filter values to Session
+	Sub SetSessionFilterValues(sv1, so1, sc, sv2, so2, parm)
+		Session("sv1_pagos_vs_llamados_" & parm) = sv1
+		Session("so1_pagos_vs_llamados_" & parm) = so1
+		Session("sc_pagos_vs_llamados_" & parm) = sc
+		Session("sv2_pagos_vs_llamados_" & parm) = sv2
+		Session("so2_pagos_vs_llamados_" & parm) = so2
+	End Sub
+
+	' Check if has Session filter values
+	Function HasSessionFilterValues(parm)
+		HasSessionFilterValues = _
+			(Session("sv_" & parm) <> "" And Session("sv_" & parm) <> EWRPT_INIT_VALUE) Or _
+			(Session("sv1_" & parm) <> "" And Session("sv1_" & parm) <> EWRPT_INIT_VALUE) Or _
+			(Session("sv2_" & parm) <> "" And Session("sv2_" & parm) <> EWRPT_INIT_VALUE)
+	End Function
+
+	' Check if dropdown filter
+	Function DropDownFilterExist(fld, FldOpr)
+		Dim sWrk
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(fld, sWrk, FldOpr)
+		DropDownFilterExist = (sWrk <> "")
+	End Function
+
+	' Check if extended filter
+	Function ExtendedFilterExist(fld)
+		Dim sExtWrk
+		sExtWrk = ""
+		Call ewrpt_BuildExtendedFilter(fld, sExtWrk)
+		ExtendedFilterExist = (sExtWrk <> "")
+	End Function
+
+	' Validate form
+	Function ValidateForm()
+
+		' Initialize form error message
+		gsFormError = ""
+
+		' Check if validation required
+		If Not EWRPT_SERVER_VALIDATE Then
+			ValidateForm = (gsFormError = "")
+			Exit Function
+		End If
+
+		' Validate fields
+		If Not ewrpt_CheckNumber(pagos_vs_llamados.ANO.SearchValue) Then
+			If gsFormError <> "" Then gsFormError = gsFormError & "<br>"
+			gsFormError = gsFormError & pagos_vs_llamados.ANO.FldErrMsg
+		End If
+		If Not ewrpt_CheckNumber(pagos_vs_llamados.PERIODO.SearchValue) Then
+			If gsFormError <> "" Then gsFormError = gsFormError & "<br>"
+			gsFormError = gsFormError & pagos_vs_llamados.PERIODO.FldErrMsg
+		End If
+
+		' Return validate result
+		ValidateForm = (gsFormError = "")
+
+		' Call Form_CustomValidate event
+		Dim sFormCustomError
+		sFormCustomError = ""
+		ValidateForm = ValidateForm And Form_CustomValidate(sFormCustomError)
+		If sFormCustomError <> "" Then
+			If gsFormError <> "" Then gsFormError = gsFormError & "<br>"
+			gsFormError = gsFormError & sFormCustomError
+		End If
+	End Function
+
+	' Clear selection stored in session
+	Sub ClearSessionSelection(parm)
+		Session("sel_pagos_vs_llamados_" & parm) = ""
+		Session("rf_pagos_vs_llamados_" & parm) = ""
+		Session("rt_pagos_vs_llamados_" & parm) = ""
+	End Sub
+
+	' Load selection from session
+	Sub LoadSelectionFromSession(parm)
+		Dim fld
+		Set fld = pagos_vs_llamados.GetField(parm)
+		fld.SelectionList = Session("sel_pagos_vs_llamados_" & parm)
+		fld.RangeFrom = Session("rf_pagos_vs_llamados_" & parm)
+		fld.RangeTo = Session("rt_pagos_vs_llamados_" & parm)
+	End Sub
+
+	' Load default value for filters
+	Sub LoadDefaultFilters()
+		Dim sWrk, sSql, arwrk
+
+		' --------------------------------------------------
+		'  Set up default values for dropdown filters
+		'
+		' Field FECCANCEL
+
+		pagos_vs_llamados.FECCANCEL.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.FECCANCEL.DropDownValue = pagos_vs_llamados.FECCANCEL.DefaultDropDownValue
+
+		' Field NOMBRE_C
+		pagos_vs_llamados.NOMBRE_C.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.NOMBRE_C.DropDownValue = pagos_vs_llamados.NOMBRE_C.DefaultDropDownValue
+
+		' Field CODCLI
+		pagos_vs_llamados.CODCLI.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.CODCLI.DropDownValue = pagos_vs_llamados.CODCLI.DefaultDropDownValue
+
+		' Field ESTACAD
+		pagos_vs_llamados.ESTACAD.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.ESTACAD.DropDownValue = pagos_vs_llamados.ESTACAD.DefaultDropDownValue
+
+		' Field ANO_MATRICULA
+		pagos_vs_llamados.ANO_dbo.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.ANO_dbo.DropDownValue = pagos_vs_llamados.ANO_dbo.DefaultDropDownValue
+
+		' Field ANO_ULT_MAT
+		pagos_vs_llamados.ANO_ULT_MAT.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.ANO_ULT_MAT.DropDownValue = pagos_vs_llamados.ANO_ULT_MAT.DefaultDropDownValue
+
+		' Field PER_ULT_MAT
+		pagos_vs_llamados.PER_ULT_MAT.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.PER_ULT_MAT.DropDownValue = pagos_vs_llamados.PER_ULT_MAT.DefaultDropDownValue
+
+		' Field DOCUM_PAGO
+		pagos_vs_llamados.DOCUM_PAGO.DefaultDropDownValue = EWRPT_INIT_VALUE
+		pagos_vs_llamados.DOCUM_PAGO.DropDownValue = pagos_vs_llamados.DOCUM_PAGO.DefaultDropDownValue
+
+		' --------------------------------------------------
+		'  Set up default values for extended filters
+		'
+		' Field ANO
+
+		Call SetDefaultExtFilter(pagos_vs_llamados.ANO, "=", Null, "AND", "=", Null)
+		Call ApplyDefaultExtFilter(pagos_vs_llamados.ANO)
+
+		' Field PERIODO
+		Call SetDefaultExtFilter(pagos_vs_llamados.PERIODO, "=", Null, "AND", "=", Null)
+		Call ApplyDefaultExtFilter(pagos_vs_llamados.PERIODO)
+
+		' --------------------------------------------------
+		'  Set up default values for popup filters
+		'  - NOTE: if extended filter is enabled, use default values in extended filter instead
+
+	End Sub
+
+	' Check if filter applied
+	Function CheckFilter()
+
+		' Check FECCANCEL non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.FECCANCEL) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check NOMBRE_C non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.NOMBRE_C) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check ANO Text filter
+		If TextFilterApplied(pagos_vs_llamados.ANO) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check PERIODO Text filter
+		If TextFilterApplied(pagos_vs_llamados.PERIODO) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check CODCLI non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.CODCLI) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check ESTACAD non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.ESTACAD) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check ANO_MATRICULA non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.ANO_MATRICULA) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check ANO_ULT_MAT non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.ANO_ULT_MAT) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check PER_ULT_MAT non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.PER_ULT_MAT) Then
+			CheckFilter = True
+			Exit Function
+		End If
+
+		' Check DOCUM_PAGO non-Text filter
+		If NonTextFilterApplied(pagos_vs_llamados.DOCUM_PAGO) Then
+			CheckFilter = True
+			Exit Function
+		End If
+		CheckFilter = False
+	End Function
+
+	' Show list of filters
+	Sub ShowFilterList()
+		Dim sFilterList
+		Dim sExtWrk, sWrk
+
+		' Initialize
+		sFilterList = ""
+
+		' Field FECCANCEL
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.FECCANCEL, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.FECCANCEL.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field NOMBRE_C
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.NOMBRE_C, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.NOMBRE_C.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field ANO
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildExtendedFilter(pagos_vs_llamados.ANO, sExtWrk)
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.ANO.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field PERIODO
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildExtendedFilter(pagos_vs_llamados.PERIODO, sExtWrk)
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.PERIODO.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field CODCLI
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.CODCLI, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.CODCLI.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field ESTACAD
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.ESTACAD, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.ESTACAD.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field ANO_MATRICULA
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.ANO_MATRICULA, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.ANO_dbo.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field ANO_ULT_MAT
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.ANO_ULT_MAT, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.ANO_ULT_MAT.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field PER_ULT_MAT
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.PER_ULT_MAT, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.PER_ULT_MAT.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Field DOCUM_PAGO
+		sExtWrk = ""
+		sWrk = ""
+		Call ewrpt_BuildDropDownFilter(pagos_vs_llamados.DOCUM_PAGO, sExtWrk, "")
+		If sExtWrk <> "" Or sWrk <> "" Then sFilterList = sFilterList & pagos_vs_llamados.DOCUM_PAGO.FldCaption & "<br>"
+		If sExtWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sExtWrk & "<br>"
+		If sWrk <> "" Then sFilterList = sFilterList & "&nbsp;&nbsp;" & sWrk & "<br>"
+
+		' Show Filters
+		If sFilterList <> "" Then
+			Response.Write ReportLanguage.Phrase("CurrentFilters") & "<br>"
+			Response.Write sFilterList
+		End If
+	End Sub
+
+	' Return poup filter
+	Function GetPopupFilter()
+		Dim sWrk
+		sWrk = ""
+		GetPopupFilter = sWrk
+	End Function
+
+	' -------------------------------------------------------------------------------
+	' Function getSort
+	' - Return Sort parameters based on Sort Links clicked
+	' - Variables setup: Session[EWRPT_TABLE_SESSION_ORDER_BY], Session["sort_Table_Field"]
+	Function GetSort()
+		Dim sOrderBy
+		Dim sSortSql
+		Dim bCtrl, sCmd
+
+		' Check for a resetsort command
+		If Request.QueryString("cmd").Count > 0 Then
+			sCmd = Request.QueryString("cmd")
+			If sCmd = "resetsort" Then
+				pagos_vs_llamados.OrderBy = ""
+				pagos_vs_llamados.StartGroup = 1
+				pagos_vs_llamados.SALDO.Sort = ""
+				pagos_vs_llamados.FECCANCEL.Sort = ""
+				pagos_vs_llamados.total.Sort = ""
+				pagos_vs_llamados.NOMBRE_C.Sort = ""
+				pagos_vs_llamados.ANO.Sort = ""
+				pagos_vs_llamados.PERIODO.Sort = ""
+				pagos_vs_llamados.CODCLI.Sort = ""
+				pagos_vs_llamados.DIG.Sort = ""
+				pagos_vs_llamados.PATERNO.Sort = ""
+				pagos_vs_llamados.MATERNO.Sort = ""
+				pagos_vs_llamados.NOMBRE.Sort = ""
+				pagos_vs_llamados.ESTACAD.Sort = ""
+				pagos_vs_llamados.ANO_dbo.Sort = ""
+				pagos_vs_llamados.ANO_ULT_MAT.Sort = ""
+				pagos_vs_llamados.PER_ULT_MAT.Sort = ""
+				pagos_vs_llamados.DOCUM_PAGO.Sort = ""
+			End If
+
+		' Check for an Order parameter
+		ElseIf Request.QueryString(EWRPT_TABLE_ORDER_BY).Count > 0 Then
+			pagos_vs_llamados.CurrentOrder = Request.QueryString(EWRPT_TABLE_ORDER_BY)
+			If Request.QueryString(EWRPT_TABLE_ORDER_BY_TYPE).Count > 0 Then
+				pagos_vs_llamados.CurrentOrderType = Request.QueryString(EWRPT_TABLE_ORDER_BY_TYPE)
+			Else
+				pagos_vs_llamados.CurrentOrderType = ""
+			End If
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.SALDO) ' SALDO
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.FECCANCEL) ' FECCANCEL
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.total) ' total
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.NOMBRE_C) ' NOMBRE_C
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.ANO) ' ANO
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.PERIODO) ' PERIODO
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.CODCLI) ' CODCLI
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.DIG) ' DIG
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.PATERNO) ' PATERNO
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.MATERNO) ' MATERNO
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.NOMBRE) ' NOMBRE
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.ESTACAD) ' ESTACAD
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.ANO_MATRICULA) ' ANO_MATRICULA
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.ANO_ULT_MAT) ' ANO_ULT_MAT
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.PER_ULT_MAT) ' PER_ULT_MAT
+			Call pagos_vs_llamados.UpdateSort(pagos_vs_llamados.DOCUM_PAGO) ' DOCUM_PAGO
+			sSortSql = pagos_vs_llamados.SortSql
+			pagos_vs_llamados.OrderBy = sSortSql
+			pagos_vs_llamados.StartGroup = 1
+		End If
+		GetSort = pagos_vs_llamados.OrderBy
+	End Function
+
+	' Page Load event
+	Sub Page_Load()
+
+		'Response.Write "Page Load"
+	End Sub
+
+	' Page Unload event
+	Sub Page_Unload()
+
+		'Response.Write "Page Unload"
+	End Sub
+
+	' Message Showing event
+	Sub Message_Showing(msg)
+
+		'msg = newmsg
+	End Sub
+
+	' Page Data Rendering event
+	Sub Page_DataRendering(header)
+
+		' Example:
+		'header = "your header"
+
+	End Sub
+
+	' Page Data Rendered event
+	Sub Page_DataRendered(footer)
+
+		' Example:
+		'footer = "your footer"
+
+	End Sub
+
+	' Form Custom Validate event
+	Function Form_CustomValidate(CustomError)
+
+		'Return error message in CustomError
+		Form_CustomValidate = True
+	End Function
+End Class
+%>

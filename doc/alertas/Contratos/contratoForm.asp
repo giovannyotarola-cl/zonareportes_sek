@@ -1,0 +1,94 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all" href="css/titles.css"/>
+<link href="css/project.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="css/thickbox.css"/>
+<link rel="stylesheet" href="css/datepicker.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-thickbox.js"></script>
+<script type="text/javascript" src="js/datepicker.js"></script>
+<script type="text/javascript" src="js/eye.js"></script>
+<script type="text/javascript" src="js/layout.js?ver=1.0.2"></script>
+<script type="text/javascript" src="js/function.js"></script>
+<div id="ewLayout">
+    <div id="underline">
+		<h1>Contrato educacional</h1>
+	</div>
+    <div class="formulario">
+        <form name="proyecto" id="proyecto" action="#" method="post" class="ewForm">
+            <table class="ewContentTable ewContentData">
+                <tr>
+                	<td class="ewDataTop">Alumno <span class="obligatorio">*</span></td>
+                    <td class="ewDataTop">
+                        <input type="text" id="alumno" name="alumno" readonly="readonly" value="" />
+                        <input type="hidden" id="codCarr" name="cosCarr" />
+                        <input type="hidden" id="codCli" name="codCli" />
+                        <a href="buscaAlumno.asp?keepThis=true&TB_iframe=true&height=350&width=700" title="Buscar Alumno" class="thickbox">buscar</a>  
+                    </td>
+                </tr>
+                 <tr>
+                	<td class="ewDataTop">Tipo de contrato: </td>
+                    <td class="ewDataTop"><table width="200" class="tabla_tipo_contrato">
+                      <tr>
+                        <td><label>
+                          <input name="tipoContrato" type="radio" id="tipoContrato_0" value="maestria" checked="checked" />
+                        Maestría</label></td>
+                      </tr>
+                      <tr>
+                        <td><label>
+                          <input type="radio" name="tipoContrato" value="crPresencial" id="tipoContrato_1" />
+                          Créditos Presencial</label></td>
+                      </tr>
+                      <tr>
+                        <td><label>
+                          <input type="radio" name="tipoContrato" value="crSemiPresencial" id="tipoContrato_2" />
+                          Créditos SemiPresencial</label></td>
+                      </tr>
+                      <tr>
+                        <td><label>
+                          <input type="radio" name="tipoContrato" value="modPresencial" id="tipoContrato_3" />
+                          Modalidad Presencial</label></td>
+                      </tr>
+                      <tr>
+                        <td><label>
+                          <input type="radio" name="tipoContrato" value="modSemiPresencial" id="tipoContrato_4" />
+                          Modalidad SemiPresencial</label></td>
+                      </tr>
+                    </table></td>
+                </tr>
+                  <tr>
+                	<td class="ewDataTop">Valor matrícula: </td>
+                    <td class="ewDataTop">
+                       $
+                       <input type="text" id="valorMatricula" name="valorMatricula" class="valorMatricula" style="width: 75px;" />
+                    </td>
+                </tr>
+                  <tr>
+                	<td class="ewDataTop">Valor semestral: </td>
+                    <td class="ewDataTop">$
+                       <input type="text" id="valorSemestre" name="valorSemestre" class="valorSemestre" style="width: 75px;" />
+                    </td>
+                </tr>
+                  <tr>
+                	<td class="ewDataTop">Semestre contrato: </td>
+                    <td class="ewDataTop"><select name="semestreContrato" id="semestreContrato">
+                    	<option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                	<td class="ewDataTop">Fecha: </td>
+                    <td class="ewDataTop">
+                       <input type="text" id="inputDate" name="inputDate" class="inputDate" value="<%=Date()%>" style="width: 75px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Los campos marcados con <span class="obligatorio">*</span> deben ser completados.</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input name="verContrato" type="button" id="verContrato" value="Ver Contrato" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div> 

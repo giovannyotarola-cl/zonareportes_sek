@@ -1,0 +1,44 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  
+}
+
+h1, h2 {
+    color: #2e89b6;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top-width: 0px;
+    border-top-style: none;
+    border-top-color: currentcolor;
+}
+
+.content h3, 
+.content h4, 
+.content h5, 
+.content h6 {
+    color: #fff;
+}
+
+.content form label {
+    color: #fff;
+}
+
+.container.footers {
+    background-color: #0B5A9C;
+}
+
+.header hr {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.content hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+    color: #0b5a9c;
+    background-color: #fff;
+}

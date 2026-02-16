@@ -1,0 +1,40 @@
+#underline h1{
+  background: url("../images/h1-underline.png") no-repeat scroll left bottom transparent;
+  font-family: georgia, "times new roman", times, serif;
+  font-weight: lighter;
+}
+
+.radio_conc {
+	font-size: 10px;
+}
+
+table.tablaNotas{
+	border-collapse:collapse;
+	border: 0;
+}
+
+th.cabNotas{
+	border: 0;
+	border-top: 2px solid black;	
+	border-bottom: 2px solid black;
+}
+
+td.notas_celda{
+	text-align: center;	
+}
+
+td.notas_nombre{
+	width: 500px;	
+}
+
+td.notas_nombre_dcha{
+	width: 500px;
+	text-align: right;
+	border-top: 2px solid black;	
+}
+
+td.notas_pie{
+	border-top: 2px solid black;	
+	text-align: center;
+	font-weight:700;
+}

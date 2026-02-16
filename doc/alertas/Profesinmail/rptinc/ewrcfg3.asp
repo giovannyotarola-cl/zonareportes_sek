@@ -1,0 +1,150 @@
+<%
+
+' ASP Report Maker 3.0 - web site configuration
+' Database Connection
+
+Dim EW_REPORT_CONNECTION_STRING
+EW_REPORT_CONNECTION_STRING = "Provider=SQLOLEDB;Persist Security Info=False;Data Source=192.168.100.226;Initial Catalog=Matricula;User Id=matricula;Password=dtb01s"
+
+' Debug
+Const EW_REPORT_DEBUG_ENABLED = False ' Change to True to debug SQL
+Const EW_REPORT_DEBUG_CHART_ENABLED = False ' Change to True to debug chart XML
+
+' General
+Const EW_REPORT_DATE_SEPARATOR = "/"
+Const EW_REPORT_RANDOM_KEY = "A&KW5B$vtuKNJ6Y0" ' Random key for encryption
+Const EW_REPORT_CHART_SCRIPT = ""
+Const EW_REPORT_CHART_WIDTH = 550
+Const EW_REPORT_CHART_HEIGHT = 440
+Const EW_REPORT_CHART_ALIGN = "middle"
+
+'
+' Password (MD5 and case-sensitivity)
+' Note: If you enable MD5 password, make sure that the passwords in your
+' user table are stored as MD5 hash (32-character hexadecimal number) of the
+' clear text password. If you also use case-insensitive password, convert the
+' clear text passwords to lower case first before calculating MD5 hash.
+' Otherwise, existing users will not be able to login.
+'
+
+Const EW_REPORT_MD5_PASSWORD = False ' Use MD5 password
+Const EW_REPORT_CASE_SENSITIVE_PASSWORD = False ' Case-sensitive password
+
+' Database
+Const EW_REPORT_DBMSNAME = "Microsoft SQL Server"
+Const EW_REPORT_DB_START_QUOTE = "["
+Const EW_REPORT_DB_END_QUOTE = "]"
+Const EW_REPORT_CURSOR_LOCATION = 3
+
+' Database Type
+Const EW_REPORT_IS_MSACCESS = False ' Access
+Const EW_REPORT_IS_MSSQL = True ' MS SQL
+Const EW_REPORT_IS_MYSQL = False ' MySQL
+Const EW_REPORT_IS_ORACLE = False ' Oracle
+
+' Filter
+Const EW_REPORT_NULL_LABEL = "(Null)"
+Const EW_REPORT_EMPTY_LABEL = "(Empty)"
+Const EW_REPORT_BOOLEAN_YES_LABEL = "Yes"
+Const EW_REPORT_BOOLEAN_NO_LABEL = "No"
+Const EW_REPORT_FILTER_PANEL_OPTION = 2 ' 1/2/3, 1 = always hide, 2 = always show, 3 = show when filtered
+Const EW_REPORT_SHOW_CURRENT_FILTER = False ' Change to True to show current filter
+
+' Session names
+Const EW_REPORT_PROJECT_NAME = "Profesinmail" ' Project Name
+Const EW_REPORT_PROJECT_VAR = "Profesinmail" ' Project Var
+Dim EW_REPORT_SESSION_STATUS: EW_REPORT_SESSION_STATUS = EW_REPORT_PROJECT_VAR & "_status" ' Login Status
+Dim EW_REPORT_SESSION_USERNAME:  EW_REPORT_SESSION_USERNAME = EW_REPORT_SESSION_STATUS & "_UserName" ' User Name
+Dim EW_REPORT_SESSION_USERID: EW_REPORT_SESSION_USERID = EW_REPORT_SESSION_STATUS & "_UserID" ' User ID
+Dim EW_REPORT_SESSION_USERLEVEL: EW_REPORT_SESSION_USERLEVEL = EW_REPORT_SESSION_STATUS & "_UserLevel" ' User Level
+Dim EW_REPORT_SESSION_PARENT_USERID: EW_REPORT_SESSION_PARENT_USERID = EW_REPORT_SESSION_STATUS & "_ParentUserID" ' Parent User ID
+Dim EW_REPORT_SESSION_SYSTEM_ADMIN: EW_REPORT_SESSION_SYSTEM_ADMIN = EW_REPORT_PROJECT_VAR & "_SysAdmin" ' System Admin
+Dim EW_REPORT_SESSION_AR_USER_LEVEL: EW_REPORT_SESSION_AR_USER_LEVEL = EW_REPORT_PROJECT_NAME & "_arUserLevel" ' User Level Array
+Dim EW_REPORT_SESSION_AR_USER_LEVEL_PRIV: EW_REPORT_SESSION_AR_USER_LEVEL_PRIV = EW_REPORT_PROJECT_NAME & "_arUserLevelPriv" ' User Level Privilege Array
+Dim EW_REPORT_SESSION_MESSAGE: EW_REPORT_SESSION_MESSAGE = EW_REPORT_PROJECT_VAR & "_Message" ' System Message
+
+' Hard code admin
+Const EW_REPORT_ADMIN_USERNAME = ""
+Const EW_REPORT_ADMIN_PASSWORD = ""
+
+' User admin
+Const EW_REPORT_USERNAME_FIELD = ""
+Const EW_REPORT_PASSWORD_FIELD = ""
+Const EW_REPORT_USERID_FIELD = ""
+Const EW_REPORT_PARENT_USERID_FIELD = ""
+Const EW_REPORT_USERLEVEL_ARRAY_FIELD = ""
+Dim EW_REPORT_LOGIN_SELECT_SQL
+EW_REPORT_LOGIN_SELECT_SQL = ""
+
+' User level constants
+Const EW_ALLOW_LIST = 8
+Const EW_ALLOW_REPORT = 8
+Const EW_ALLOW_ADMIN = 16
+
+' User id constants
+Const EW_USER_ID_IS_HIERARCHICAL = True ' Hierarchical user id
+
+' Table Level Constants
+Const EW_REPORT_TABLE_PREFIX = "||ASPReportMaker||"
+Const EW_REPORT_TABLE_GROUP_PER_PAGE = "grpperpage"
+Const EW_REPORT_TABLE_START_GROUP = "start"
+Const EW_REPORT_TABLE_CHILD_USER_ID = "childuserid"
+Const EW_REPORT_TABLE_ORDER_BY = "order"
+Const EW_REPORT_TABLE_ORDER_BY_TYPE = "ordertype"
+
+' Data Type
+Const EW_REPORT_DATATYPE_NUMBER = 1
+Const EW_REPORT_DATATYPE_DATE = 2
+Const EW_REPORT_DATATYPE_STRING = 3
+Const EW_REPORT_DATATYPE_BOOLEAN = 4
+Const EW_REPORT_DATATYPE_MEMO = 5
+Const EW_REPORT_DATATYPE_BLOB = 6
+Const EW_REPORT_DATATYPE_TIME = 7
+Const EW_REPORT_DATATYPE_GUID = 8
+Const EW_REPORT_DATATYPE_OTHER = 9
+
+' Empty/Null/Init/All values
+Const EW_REPORT_EMPTY_VALUE = "##empty##"
+Const EW_REPORT_NULL_VALUE = "##null##"
+Const EW_REPORT_INIT_VALUE = "##init##"
+Const EW_REPORT_ALL_VALUE = "##all##"
+Const EW_REPORT_BOOLEAN_YES = "1"
+Const EW_REPORT_BOOLEAN_NO = "0"
+
+' Month Quarter names
+Const EW_REPORT_QUARTER_1 = "1st Quarter"
+Const EW_REPORT_QUARTER_2 = "2nd Quarter"
+Const EW_REPORT_QUARTER_3 = "3rd Quarter"
+Const EW_REPORT_QUARTER_4 = "4th Quarter"
+Const EW_REPORT_MONTH_JAN = "Jan"
+Const EW_REPORT_MONTH_FEB = "Feb"
+Const EW_REPORT_MONTH_MAR = "Mar"
+Const EW_REPORT_MONTH_APR = "Apr"
+Const EW_REPORT_MONTH_MAY = "May"
+Const EW_REPORT_MONTH_JUN = "Jun"
+Const EW_REPORT_MONTH_JUL = "Jul"
+Const EW_REPORT_MONTH_AUG = "Aug"
+Const EW_REPORT_MONTH_SEP = "Sep"
+Const EW_REPORT_MONTH_OCT = "Oct"
+Const EW_REPORT_MONTH_NOV = "Nov"
+Const EW_REPORT_MONTH_DEC = "Dec"
+
+' Export
+' Const EW_REPORT_EXPORT_ALL = False ' export 1 page only
+
+Const EW_REPORT_EXPORT_ALL = True ' Export all records
+
+' Checkbox and radio button groups
+Const EW_REPORT_ITEM_TEMPLATE_CLASSNAME = "ewTemplate"
+Const EW_REPORT_ITEM_TABLE_CLASSNAME = "ewItemTable"
+
+' Global variables
+Dim conn
+%>
+<%
+
+' Menu
+Const EW_REPORT_MENUBAR_VERTICAL_CLASSNAME = "ewMenuBarVertical"
+Const EW_REPORT_MENUBAR_SUBMENU_CLASSNAME = ""
+Const EW_REPORT_MENUBAR_RIGHTHOVER_IMAGE = ""
+%>

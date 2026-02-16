@@ -1,0 +1,10 @@
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\bin\Homologaciones.dll
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\bin\Homologaciones.pdb
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\bin\Homologaciones.xml
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\Homologaciones.Resources.resources
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\Homologaciones.dll
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\Homologaciones.xml
+D:\Visual Studio 2010\Projects\Homologaciones\Homologaciones\Homologaciones\obj\Debug\Homologaciones.pdb

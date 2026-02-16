@@ -1,0 +1,69 @@
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\bin\carnetEstudiante.dll
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\bin\carnetEstudiante.pdb
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\bin\carnetEstudiante.xml
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\Interop.WIA.dll
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\Interop.WIAVIDEOLib.dll
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\carnetEstudiante.vbproj.ResolveComReference.cache
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\carnetEstudiante.Resources.resources
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\carnetEstudiante.dll
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\carnetEstudiante.xml
+D:\Visual Studio 2010\Projects\carnetEstudiante\carnetEstudiante\obj\Debug\carnetEstudiante.pdb
+C:\Users\PCUISEK\Desktop\carnetEstudiante\bin\carnetEstudiante.dll
+C:\Users\PCUISEK\Desktop\carnetEstudiante\bin\carnetEstudiante.pdb
+C:\Users\PCUISEK\Desktop\carnetEstudiante\bin\carnetEstudiante.xml
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\Interop.WIA.dll
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\Interop.WIAVIDEOLib.dll
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\carnetEstudiante.vbproj.ResolveComReference.cache
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\carnetEstudiante.Resources.resources
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\carnetEstudiante.vbproj.GenerateResource.Cache
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\carnetEstudiante.dll
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\carnetEstudiante.xml
+C:\Users\PCUISEK\Desktop\carnetEstudiante\obj\Debug\carnetEstudiante.pdb
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\bin\carnetEstudiante.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\bin\carnetEstudiante.pdb
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\bin\carnetEstudiante.xml
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\Interop.WIA.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\Interop.WIAVIDEOLib.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.vbproj.ResolveComReference.cache
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.Resources.resources
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.vbproj.GenerateResource.Cache
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.xml
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.pdb
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\bin\carnetEstudiante.dll
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\bin\carnetEstudiante.pdb
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\bin\carnetEstudiante.xml
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\Interop.WIA.dll
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\Interop.WIAVIDEOLib.dll
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.vbproj.ResolveComReference.cache
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.Resources.resources
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.vbproj.GenerateResource.Cache
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.dll
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.xml
+D:\Reportes\Reportes CL\carnetEstudianteNuevo\obj\Debug\carnetEstudiante.pdb
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\bin\carnetEstudiante.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\bin\carnetEstudiante.pdb
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\bin\carnetEstudiante.xml
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\Interop.WIA.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\Interop.WIAVIDEOLib.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\carnetEstudiante.vbproj.ResolveComReference.cache
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\carnetEstudiante.Resources.resources
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\carnetEstudiante.vbproj.GenerateResource.Cache
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\carnetEstudiante.dll
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\carnetEstudiante.xml
+C:\Users\PCUISEK\Desktop\carnetEstudianteNuevo2013-12-27\obj\Debug\carnetEstudiante.pdb
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\bin\carnetEstudiante.dll.config
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\bin\carnetEstudiante.dll
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\bin\carnetEstudiante.pdb
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\bin\carnetEstudiante.xml
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.vbprojResolveAssemblyReference.cache
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\Interop.WIA.dll
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.vbproj.ResolveComReference.cache
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.Resources.resources
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.vbproj.GenerateResource.Cache
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.dll
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.xml
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\carnetEstudiante\obj\Debug\carnetEstudiante.pdb

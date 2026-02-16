@@ -1,0 +1,126 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMenu.master.cs" Inherits="AutoPostulacion.SiteMenuMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%--<link rel="stylesheet" href="~/content/w3.css">--%>
+    <title id="title"><%: Page.Title %> - Postulación Automática</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+
+    <link rel="shortcut icon" href="~/media/favicon_sek.png?width=32&amp;height=32" type="image/png">
+    <link rel="apple-touch-icon" sizes="57x57" href="~/media/favicon_sek.png?width=57&amp;height=57">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/media/favicon_sek.png?width=60&amp;height=60">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/media/favicon_sek.png?width=72&amp;height=72">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/media/favicon_sek.png?width=76&amp;height=76">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/media/favicon_sek.png?width=114&amp;height=114">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/media/favicon_sek.png?width=120&amp;height=120">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/media/favicon_sek.png?width=144&amp;height=144">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/media/favicon_sek.png?width=152&amp;height=152">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/media/favicon_sek.png?width=180&amp;height=180">
+    <link rel="icon" type="image/png" href="~/media/favicon_sek.png?width=16&amp;height=16" sizes="16x16">
+    <link rel="icon" type="image/png" href="~/media/favicon_sek.png?width=32&amp;height=32" sizes="32x32">
+    <link rel="icon" type="image/png" href="~/media/favicon_sek.png?width=96&amp;height=96" sizes="96x96">
+    <link rel="icon" type="image/png" href="~/media/favicon_sek.png?width=192&amp;height=192" sizes="192x192">
+    <meta name="msapplication-square70x70logo" content="~/media/favicon_sek.png?width=70&amp;height=70">
+    <meta name="msapplication-square150x150logo" content="~/media/favicon_sek.png?width=150&amp;height=150">
+    <meta name="msapplication-square310x310logo" content="~/media/favicon_sek.png?width=310&amp;height=310">
+</head>
+<body>
+    
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--Para obtener más información sobre cómo agrupar scripts en ScriptManager, consulte http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Scripts de marco--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Scripts del sitio--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>
+
+        <div class="navbar navbar-inverse navbar-fixed-top navbar-aplicativo">
+            <div class="container">
+                <a runat="server" class="logo pull-right hidden-xs"></a>
+                <a runat="server" class="logo pull-left hidden-sm hidden-md hidden-lg"></a>
+                <div class="col-md-offset-0 col-md-8">
+                    <a>
+                        <h2 style="font-weight: bold; color: white" class="text-adapt">Postulación en Línea</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default" id="mainMenu" runat="server" visible="false">
+            <div class="container-fluid bg-primary">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menu_barra" runat="server" visible="false">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" style="color:#ffffff" id="menu_app" runat="server" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="menu_mant_carreras" runat="server" visible="false"><a href="MantencionCarreras.aspx">Carreras Incluídas</a></li>
+                                    <li id="menu_config_periodo_matricula" runat="server" visible="false"><a href="configurarPeriodo.aspx">Configuración de Periodo de Matrícula</a></li>
+                                    <li id="menu_actividad_alumnos" runat="server" visible="false"><a href="RegistroAlumno.aspx">Actividad de Alumnos</a></li>
+                                    <li id="menu_revision_archivos" runat="server" visible="false"><a href="RevisionArchivos.aspx">Revision de Archivos Enviados</a></li>
+                                    <li id="menu_subir_archivos" runat="server" visible="false"><a href="SubirArchivos.aspx">Carga de Archivos</a></li>
+                                    <li id="menu_Lista_Solicitudes" runat="server" visible="false"><a href="DetalleDocumentos.aspx">Lista Solicitudes</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+<%--                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="MantencionCarreras.aspx" class="w3-bar-item w3-button">Carreras Incluídas</a>
+                        <a href="configurarPeriodo.aspx" class="w3-bar-item w3-button">Configuración de Periodo de Matrícula</a>
+                        <a href="RegistroAlumno.aspx" class="w3-bar-item w3-button">Actividad de Alumnos</a>
+                        <a href="RevisionArchivos.aspx" class="w3-bar-item w3-button">Revision de Archivos Enviados</a>
+                        <a href="RevisionArchivos.aspx" class="w3-bar-item w3-button">Carga de Archivos</a>
+                    </div>--%>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Recursos Tecnológicos</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

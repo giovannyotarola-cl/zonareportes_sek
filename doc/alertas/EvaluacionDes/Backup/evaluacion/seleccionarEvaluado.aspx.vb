@@ -1,0 +1,13 @@
+﻿Public Class seleccionarEvaluado
+    Inherits System.Web.UI.Page
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'Consulta de la grilla con el personal subordinado al usuario actual y que no ha recibido evaluación este periodo
+        personal_por_evaluar.SelectCommand = "SELECT distinct dbo.Evaluacion_Users.id, dbo.Evaluacion_Users.username, dbo.Evaluacion_Users.nombre, dbo.Evaluacion_Users.apellidos, dbo.Evaluacion_Jerarquia.id_empleado FROM dbo.Evaluacion_Users INNER JOIN dbo.Evaluacion_Jerarquia ON dbo.Evaluacion_Users.id = dbo.Evaluacion_Jerarquia.id_empleado WHERE (dbo.Evaluacion_Jerarquia.id_superior = " + Session("user_id").ToString + ") AND dbo.Evaluacion_Users.id NOT IN (SELECT dbo.Evaluacion_Encuesta.id_empleado FROM dbo.Evaluacion_Encuesta INNER JOIN dbo.Evaluacion_Users ON dbo.Evaluacion_Encuesta.id_empleado = dbo.Evaluacion_Users.id WHERE dbo.Evaluacion_Encuesta.ano = " + Session("ano").ToString + " AND dbo.Evaluacion_Encuesta.semestre = " + Session("semestre").ToString + ")"
+        'Grilla con el personal ya evaluado
+        personal_evaluado.SelectCommand = "SELECT dbo.Evaluacion_Users.nombre, dbo.Evaluacion_Users.apellidos, dbo.Evaluacion_Encuesta.fecha, dbo.Evaluacion_Encuesta.ano, dbo.Evaluacion_Encuesta.semestre, dbo.Evaluacion_Encuesta.id, CASE dbo.Evaluacion_Encuesta.aceptada WHEN 0 THEN 'No' ELSE 'Si' END as Aceptada, ISNULL(comentario_evaluado, '') as comentario_evaluado FROM dbo.Evaluacion_Users INNER JOIN dbo.Evaluacion_Encuesta ON dbo.Evaluacion_Users.id = dbo.Evaluacion_Encuesta.id_empleado WHERE dbo.Evaluacion_Encuesta.id_evaluador = " + Session("user_id").ToString + " AND dbo.Evaluacion_Encuesta.ano =(select ano from evaluacion_parametros) and semestre=(select semestre from evaluacion_parametros)" 
+        'Grilla con las evaluaciones recibidas
+        evaluaciones_recibidas.SelectCommand = "SELECT dbo.Evaluacion_Users.nombre+' '+dbo.Evaluacion_Users.apellidos as Evaluador, dbo.Evaluacion_Encuesta.fecha, dbo.Evaluacion_Encuesta.ano, dbo.Evaluacion_Encuesta.semestre, dbo.Evaluacion_Encuesta.id, CASE dbo.Evaluacion_Encuesta.aceptada WHEN 0 THEN 'No' ELSE 'Si' END as Aceptada, ISNULL(comentario_evaluado, '') as comentario_evaluado FROM dbo.Evaluacion_Users INNER JOIN dbo.Evaluacion_Encuesta ON dbo.Evaluacion_Users.id = dbo.Evaluacion_Encuesta.id_evaluador WHERE dbo.Evaluacion_Encuesta.id_empleado = " + Session("user_id").ToString + " "
+    End Sub
+
+End Class

@@ -1,0 +1,21 @@
+
+.titulo {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:1.1em;
+    font-weight:bold;
+    color:#2e89b6;
+}
+.titulo_adv {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:1.3em;
+    font-weight:bold;
+    color:#2e89b6;
+}
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: 1px solid #dddddd;
+}
+

@@ -1,0 +1,19 @@
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\bin\SistemaPresupuestos.dll
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\bin\SistemaPresupuestos.pdb
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\bin\SistemaPresupuestos.xml
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\SistemaPresupuestos.Resources.resources
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\SistemaPresupuestos.dll
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\SistemaPresupuestos.xml
+D:\Visual Studio 2010\Projects\SistemaPresupuestos\SistemaPresupuestos\obj\Debug\SistemaPresupuestos.pdb
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\bin\SistemaPresupuestos.dll
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\bin\SistemaPresupuestos.pdb
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\bin\SistemaPresupuestos.xml
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\obj\Debug\SistemaPresupuestos.vbprojResolveAssemblyReference.cache
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\obj\Debug\SistemaPresupuestos.Resources.resources
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\obj\Debug\SistemaPresupuestos.vbproj.GenerateResource.Cache
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\obj\Debug\SistemaPresupuestos.dll
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\obj\Debug\SistemaPresupuestos.xml
+C:\Users\PCUISEK\Desktop\Pres_Gest_2012\obj\Debug\SistemaPresupuestos.pdb

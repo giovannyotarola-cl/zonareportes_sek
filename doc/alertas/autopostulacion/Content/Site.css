@@ -1,0 +1,328 @@
+﻿
+          .titulo_grid {
+            font-family: Segoe UI Light,Segoe UI,Segoe WP,Helvetica Neue,sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            color: #777777;
+        }
+
+          .borderless tbody > tr > td {
+            border: none;
+            border-top: 0px;
+            font-family: Segoe UI Light,Segoe UI,Segoe WP,Helvetica Neue,sans-serif;
+            font-weight: bolder;
+        }
+
+         .font_sek{
+            font-family: Segoe UI Light,Segoe UI,Segoe WP,Helvetica Neue,sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            color: #777777;
+        }
+
+
+        .btn-aplicativos {  
+           background-color: #4d90fe;   
+           color: white;  
+           border-color: #3079ed;
+           font-size: 13px;
+           font-weight: bold;
+           font-family: Arial, sans-serif;
+           border-radius: 4px;
+        }
+
+
+         .btn-aplicativos:hover {
+           background-color: #5991eb;   
+           color: #f7f7f7;  
+           border-color: #4d90fe;
+
+        }
+
+         .btn-aplicativos:active , .btn-aplicativos:focus  {
+           background-color: #4d90fe;   
+           color: white;  
+           border-color: #4d90fe;
+   
+         }
+
+        .navbar-aplicativo {
+            
+          background-color: #f8f8f8;
+          border-color: #2E89B6;
+        }
+
+        
+        .navbar-inverse {
+            background-color: #0b5a9c;
+            color: white;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: white;
+        }
+  
+        .navbar-inverse .navbar-brand {
+            color: white;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .collapsing, .in {background-color: #094373;}
+            .collapsing ul li a, .in ul li a {color: #fff!important;}
+            .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1!important;}
+            }
+
+        navbar-inverse .navbar-nav > .active > a,
+        navbar-inverse .navbar-nav > .active > a:hover,
+        navbar-inverse .navbar-nav > .active > a:focus {
+            color: #ffffff;
+            background-color: #054d8a;
+        }
+
+        .navbar-inverse .navbar-nav > .open > a,
+        .navbar-inverse .navbar-nav > .open > a:hover,
+        .navbar-inverse .navbar-nav > .open > a:focus {
+            color: #ffffff;
+            background-color: #054d8a;
+        }
+        
+
+
+.form-group {
+           margin-bottom: 1px;
+        }
+
+.text-adapt {
+    font-size: 4.3vw;
+    color:  rgba(11,90,156,1);
+}
+
+body {
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+.logo {
+    width: 125px;
+    height: 50px;
+    background-image: url('../media/logo_sek.png');
+    background-size: 125px 50px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+/*lg*/
+@media (min-width: 1200px) {
+    logo, .logo {
+        background-image: url('../media/logo_sek.png');
+        background-size: 250px 100px;
+        width: 250px;
+        height: 100px;
+        background-repeat: no-repeat;
+        float: right;
+    }
+    
+    body {    
+        padding-top: 100px;
+        padding-bottom: 20px;
+    }
+    text-adapt,.text-adapt {
+        font-size: 2.3vw;
+        color:  rgba(11,90,156,1);
+    }
+}
+/*md*/
+@media (min-width: 992px) and (max-width: 1199px) {
+    
+    logo,.logo  {        
+        background-image: url('../media/logo_sek.png');
+        background-size: 180px 80px;
+        width: 180px;
+        height: 80px;
+        background-repeat:no-repeat;
+        float:right;
+    }
+    text-adapt,.text-adapt {
+        font-size: 4.3vw;
+        color:  rgba(11,90,156,1);
+    }
+}
+/*sm*/
+@media (min-width: 768px) and (max-width: 991px) {
+    
+    logo,.logo  {
+        background-image: url('../media/logo_sek.png');
+        background-size: 170px 70px;
+        width: 170px;
+        height: 70px;
+        background-repeat:no-repeat;
+        float:right;
+    }
+    body {
+    
+    padding-top: 90px;
+    padding-bottom: 20px;
+    }
+    text-adapt,.text-adapt {
+        font-size: 4.3vw;
+        color:  rgba(11,90,156,1);
+
+    }
+}
+/*xs*/
+
+@media (max-width: 767px) {
+    
+    logo,.logo  {
+        background-image: url('../media/logo_sek.png');
+        background-size: 125px 55px;
+        width: 125px;
+        height: 55px;
+        background-repeat:no-repeat;
+        float:left;
+    }
+    body {
+    
+    padding-top: 90px;
+    padding-bottom: 20px;
+    }
+    text-adapt,.text-adapt {
+        font-size: 4.3vw;
+        color:  rgba(11,90,156,1);
+    }
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+    .body-content {
+        padding: 0;
+    }
+}
+
+
+/*tables Sorting*/
+
+.table-sorting .dataTables_paginate a.paginate_disabled_previous, .table-sorting .dataTables_paginate a.paginate_button_disabled, .table-sorting .dataTables_paginate a.paginate_disabled_next {
+    color: #CCCCCC;
+    cursor: default;
+}
+
+.table-sorting .dataTables_paginate a.paginate_disabled_previous, .table-sorting .dataTables_paginate a.paginate_disabled_next, .table-sorting .dataTables_paginate a.paginate_button, .table-sorting .paginate_enabled_next, .table-sorting .paginate_active, .table-sorting .paginate_enabled_previous {
+    background: -moz-linear-gradient(center top , #F9F9F9 0%, #F1F1F1 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #DDDDDD;
+    color: #333333;
+    cursor: pointer;
+    font-size: 11px;
+    margin-left: 3px;
+    padding: 3px 5px;
+    text-decoration: none;
+}
+.table-sorting {
+    background-color:  white;
+    font-size: 11px;
+    padding: 0;
+    position: relative;
+    top: 0px;
+    left: 200px;
+}
+
+.table-sorting .dataTables_wrapper {
+    float: left;
+    width: 100%;
+}
+
+.table-sorting .dataTables_paginate {
+    text-align: right;
+}
+
+.table-sorting .dataTables_paginate {
+    float: right;
+    padding: 8px 5px 5px;
+    text-align: right;
+}
+
+.table-sorting .paginate_active {
+    background: -moz-linear-gradient(center top , #5B7EA4 0%, #416C9B 100%) repeat scroll 0 0 ;
+    border: 1px solid #416C9B;
+    color: #FFFFFF;
+}
+
+.table caption + thead tr:first-child th, .table caption + thead tr:first-child td, .table colgroup + thead tr:first-child th, .table colgroup + thead tr:first-child td, .table thead:first-child tr:first-child th, .table thead:first-child tr:first-child td {
+    border-top: 0 none;
+
+}
+ .sorting {
+    background: url("../Images/sort_both.png") no-repeat scroll right center ;
+    color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+    cursor: pointer;
+}
+ .sorting_asc {
+    background: url("../Images/sort_asc.png") no-repeat scroll right center;
+    color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+    cursor: pointer;
+}
+.sorting_desc {
+    background: url("../Images/sort_desc.png") no-repeat scroll right center;
+    color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+    cursor: pointer;
+}
+.sorting_disabled  {
+    color: #ffffff;
+   background-color: #5bc0de;
+   border-color: #46b8da;
+    cursor: pointer;
+}
+
+.sorting_asc_disabled { background: url('../images/sort_asc_disabled.png') no-repeat center right; }
+.sorting_desc_disabled { background: url('../images/sort_desc_disabled.png') no-repeat center right; }
+
+.sorting:hover,.sorting_asc:hover,.sorting_desc:hover,.sorting_disabled:hover,
+.sorting:focus,.sorting_asc:focus,.sorting_desc:focus,.sorting_disabled:focus,
+.sorting:active,.sorting_asc:active,.sorting_desc:active,.sorting_disabled:active{
+  color: #ffffff;
+  background-color: #39b3d7;
+  border-color: #269abc;
+}
+.table-sorting .dataTables_paginate a.paginate_disabled_previous, .table-sorting .dataTables_paginate a.paginate_button_disabled, .table-sorting .dataTables_paginate a.paginate_disabled_next {
+    color: #CCCCCC;
+    cursor: default;
+
+}
+
+.table-sorting .dataTables_info {
+    color: #333333;
+    float: left;
+    font-size: 11px;
+    line-height: 16px;
+    padding: 8px 10px;
+}

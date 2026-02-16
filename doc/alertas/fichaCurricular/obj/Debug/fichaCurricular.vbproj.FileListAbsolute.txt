@@ -1,0 +1,28 @@
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\bin\fichaCurricular.dll
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\bin\fichaCurricular.pdb
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\bin\fichaCurricular.xml
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\fichaCurricular.Resources.resources
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\fichaCurricular.dll
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\fichaCurricular.xml
+D:\Visual Studio 2010\Projects\FichaCurricular\fichaCurricular\fichaCurricular\obj\Debug\fichaCurricular.pdb
+C:\Users\PCUISEK\Desktop\fichaCurricular\bin\fichaCurricular.dll
+C:\Users\PCUISEK\Desktop\fichaCurricular\bin\fichaCurricular.pdb
+C:\Users\PCUISEK\Desktop\fichaCurricular\bin\fichaCurricular.xml
+C:\Users\PCUISEK\Desktop\fichaCurricular\obj\Debug\fichaCurricular.Resources.resources
+C:\Users\PCUISEK\Desktop\fichaCurricular\obj\Debug\fichaCurricular.vbproj.GenerateResource.Cache
+C:\Users\PCUISEK\Desktop\fichaCurricular\obj\Debug\fichaCurricular.dll
+C:\Users\PCUISEK\Desktop\fichaCurricular\obj\Debug\fichaCurricular.xml
+C:\Users\PCUISEK\Desktop\fichaCurricular\obj\Debug\fichaCurricular.pdb
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\bin\fichaCurricular.dll.config
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\bin\fichaCurricular.dll
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\bin\fichaCurricular.pdb
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\bin\fichaCurricular.xml
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\obj\Debug\fichaCurricular.vbprojResolveAssemblyReference.cache
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\obj\Debug\fichaCurricular.Resources.resources
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\obj\Debug\fichaCurricular.vbproj.GenerateResource.Cache
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\obj\Debug\fichaCurricular.dll
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\obj\Debug\fichaCurricular.xml
+E:\SEK\Codigos\zonareportes_uisek_cl\doc\alertas\fichaCurricular\obj\Debug\fichaCurricular.pdb

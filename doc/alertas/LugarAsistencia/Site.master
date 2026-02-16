@@ -1,0 +1,71 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head id="Head1" runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />     
+    <title><%: Page.Title %> - Lugar Asistencia</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="Content/jquery.dataTables.css" rel="stylesheet" />
+    <link href="Content/autoFill.dataTables.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.11.3.min.js"></script>
+    <script src="Scripts/jquery-ui-1.11.4.js"></script>
+    <script src="Scripts/jquery.dataTables.js"></script>
+    <script src="Scripts/dataTables.autoFill.js"></script>
+    <script src="Scripts/menu.js"></script>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <header>
+        <div class="content-wrapper">            
+            <div class="float-left">
+                <p class="site-title">
+                    <a id="A1" runat="server" href="~/"><img id="Img1" runat="server" src="~/Images/logo.png" /></a></p>
+            </div>
+            <div id="infoRight" class="float-right">
+                <div class="welcome">
+                    <span>Bienvenido</span>
+                </div>
+                <div id='cssmenu'>
+                    <ul>
+                        <li><a href='Default.aspx'>Inicio</a></li>
+                        <li class='has-sub'><a href='#'>Reporte</a>
+                            <ul>
+                                <li><a href='LugarAsistencia.aspx'>Lugar Asistencia</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </header>
+    <div id="body">
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+        <section class="content-table clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="TableContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    &copy; <%: DateTime.Now.Year %> - Total Matriculados
+                </p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>

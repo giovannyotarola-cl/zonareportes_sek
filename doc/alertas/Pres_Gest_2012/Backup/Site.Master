@@ -1,0 +1,77 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="SistemaPresupuestos.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-1.8.0.min.js"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    Sistema de control presupuestario
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Debe iniciar sesión</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Bienvenido <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Refresh" 
+                            LogoutText="Cerrar sesión" LogoutPageUrl="~/Index.aspx" 
+                            onloggingout="HeadLoginStatus_LoggingOut"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:LoginView ID ="view_menu_superior" runat="server">
+                    <RoleGroups>
+                        <asp:RoleGroup Roles="admin">
+                            <ContentTemplate>
+                                <asp:Menu ID="NavigationMenuAdmin" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                    <Items>
+                                        <asp:MenuItem NavigateUrl="~/Index.aspx" Text="Inicio"/>
+                                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
+                                        <asp:MenuItem Text="Centros de Costo" NavigateUrl="~/SelUsuarioCosto.aspx"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="gestion_Usuarios.aspx" Text="Gestión Usuarios" 
+                                            Value="Gestión Usuarios"></asp:MenuItem>
+                                    </Items>
+                                </asp:Menu>
+                            </ContentTemplate>
+                        </asp:RoleGroup>
+                        <asp:RoleGroup Roles="user">
+                            <ContentTemplate>
+                                <asp:Menu ID="NavigationMenuUser" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                    <Items>
+                                        <asp:MenuItem NavigateUrl="~/Index.aspx" Text="Inicio"/>
+                                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
+                                    </Items>
+                                </asp:Menu>
+                            </ContentTemplate>
+                        </asp:RoleGroup>
+                    </RoleGroups>
+                </asp:LoginView>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

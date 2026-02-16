@@ -1,0 +1,84 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  
+}
+
+h1, h2 {
+    color: #2e89b6;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top-width: 0px;
+    border-top-style: none;
+    border-top-color: currentcolor;
+}
+
+form {
+    padding: 20px 15px 40px 15px;
+}
+
+.content h3, 
+.content h4, 
+.content h5, 
+.content h6 {
+    color: #fff;
+}
+
+.container {
+    max-width: 1500px;
+}
+
+.content form label {
+    color: #fff;
+}
+
+.container.footers {
+    background-color: #0B5A9C;
+}
+
+.header hr {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    padding: 15px 15px;
+    background-color: #0B5A9C;
+}
+.content hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+    color: #0b5a9c;
+    background-color: #fff;
+}
+
+.loader {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.table-responsive {
+    background-color: #fff;
+    font-size: 11px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.table .thead-dark th {
+    background-color: #0B5A9C;
+}
+
+.breadcrumb {
+    border-radius: 0;
+    font-size: 11px;
+}

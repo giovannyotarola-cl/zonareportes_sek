@@ -1,0 +1,4157 @@
+<%@ Page ClassName="Total_Matriculadossmry" Language="VB" MasterPageFile="rmasterpage.master" Inherits="AspNetReportMaker4_TotalMatriculados" %>
+<%@ Import Namespace="System" %>
+<%@ Import Namespace="System.Collections" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Collections.Specialized" %>
+<%@ Import Namespace="System.Web" %>
+<%@ Import Namespace="System.Web.UI" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.Common" %>
+<%@ Import Namespace="System.Xml" %>
+<%@ Import Namespace="System.IO" %>
+<%@ Import Namespace="System.Security.Cryptography" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="System.Drawing" %>
+<%@ Import Namespace="System.Drawing.Imaging" %>
+<%@ Import Namespace="System.Drawing.Drawing2D" %>
+<%@ Import Namespace="System.Reflection" %>
+<%@ Import Namespace="System.Net" %>
+<%@ Import Namespace="System.Net.Mail" %>
+<%@ Import Namespace="System.Net.Mime" %>
+<%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="Microsoft.VisualBasic" %>
+<%@ Import Namespace="System.Data.SqlClient" %>
+<script runat="server">
+
+    ' Table object
+    Public Total_Matriculados As crTotal_Matriculados = Nothing
+
+    '
+    ' Table class (for Total_Matriculados)
+    '
+    Public Class crTotal_Matriculados
+        Inherits AspNetReportMakerBase
+
+        Public ShowCurrentFilter As Boolean = EWRPT_SHOW_CURRENT_FILTER
+
+        Public FilterPanelOption As Integer = EWRPT_FILTER_PANEL_OPTION
+
+        Public CurrentOrder As String = "" ' Current order
+
+        Public CurrentOrderType As String = ""  ' Current order type
+
+        ' Define table level constants
+        Public UseTokenInUrl As Boolean = EWRPT_USE_TOKEN_IN_URL
+
+        ' Table variable
+        Public ReadOnly Property TableVar() As String
+            Get
+                Return "Total_Matriculados"
+            End Get
+        End Property
+
+        ' Table name
+        Public ReadOnly Property TableName() As String
+            Get
+                Return "Total_Matriculados"
+            End Get
+        End Property
+
+        ' Table type
+        Public ReadOnly Property TableType() As String
+            Get
+                Return "REPORT"
+            End Get
+        End Property
+
+        ' Table caption
+        Public Function TableCaption() As String
+            Return ReportLanguage.TablePhrase(TableVar, "TblCaption")
+        End Function
+
+        ' Session Group Per Page
+        Public Property GroupPerPage() As Integer
+            Get
+                Return ew_ConvertToInt(ew_Session(EWRPT_PROJECT_NAME + "_" + TableVar + "_grpperpage"))
+            End Get
+            Set
+                ew_Session(EWRPT_PROJECT_NAME + "_" + TableVar + "_grpperpage") = Value
+            End Set
+        End Property
+
+        ' Session Start Group
+        Public Property StartGroup() As Integer
+            Get
+                Return ew_ConvertToInt(ew_Session(EWRPT_PROJECT_NAME + "_" + TableVar + "_start"))
+            End Get
+            Set
+                ew_Session(EWRPT_PROJECT_NAME + "_" + TableVar + "_start") = Value
+            End Set
+        End Property
+
+        ' Session Order By
+        Public Property OrderBy() As String
+            Get
+                Return Convert.ToString(ew_Session(EWRPT_PROJECT_NAME + "_" + TableVar + "_orderby"))
+            End Get
+            Set
+                ew_Session(EWRPT_PROJECT_NAME + "_" + TableVar + "_orderby") = Value
+            End Set
+        End Property
+
+        Public Fields As New Dictionary(Of String, crField)()
+
+        Public CODCLI As crField
+
+        Public DIG As crField
+
+        Public PATERNO As crField
+
+        Public MATERNO As crField
+
+        Public NOMBRE As crField
+
+        Public DESCRIPCION As crField
+
+        Public NOMBRE_C As crField
+
+        Public CODCARR As crField
+
+        Public JORNADA As crField
+
+        Public ESTACAD As crField
+
+        Public FEC_MAT As crField
+
+        Public ANO As crField
+
+        Public ANO_MAT As crField
+
+        Public ESTADO As crField
+
+        Public SITUACION As crField
+
+        Public TIPOSITU As crField
+
+        Public AL_FONO As crField
+
+        Public MAIL As crField
+
+        Public CELULAR As crField
+
+        Public DIRACTUAL As crField
+
+        Public CODFAC As crField
+
+        Public FONOACT As crField
+
+        Public SEXO As crField
+
+        Public COMUNA As crField
+
+        Public CIUDADACT As crField
+
+        Public FECNAC As crField
+
+        Public COLEGIO As crField
+
+        Public COMUNACOLEGIO As crField
+
+        Public DEPENDENCIA As crField
+
+        Public COMUNAALUMNO As crField
+
+        Public FECHATIT As crField
+
+        Public FECHAEGR As crField
+
+        Public MODALIDAD As crField
+
+        Public CATEGORIA As crField
+
+        Public Export As String = ""    ' Export
+
+        Public ExportAll As Boolean = True
+
+        Public RowType As Integer   ' Row type
+
+        Public RowTotalType As Integer  ' Row total type
+
+        Public RowTotalSubType As Integer   ' Row total subtype
+
+        Public RowGroupLevel As Integer ' Row group level
+
+        Public RowAttrs As New Hashtable()  ' Row attributes
+
+        ' Reset CSS styles for table object
+        Public Sub ResetCSS()
+            RowAttrs("style") = ""
+            RowAttrs("class") = ""
+            For Each fld As KeyValuePair(Of String, crField) In Fields
+                fld.Value.ResetCSS()
+            Next
+        End Sub
+
+        '
+        ' Table class constructor
+        '		
+        Public Sub New(APage As AspNetReportMakerPage)
+            m_Page = APage
+            m_ParentPage = APage.ParentPage
+
+            ' CODCLI
+            CODCLI = New crField("Total_Matriculados", "Total_Matriculados", "x_CODCLI", "CODCLI", "[CODCLI]", 200, EWRPT_DATATYPE_STRING, -1)
+            CODCLI.Page = APage
+            CODCLI.ParentPage = APage.ParentPage
+            Fields.Add("CODCLI", CODCLI)
+            CODCLI.DateFilter = ""
+            CODCLI.SqlSelect = ""
+            CODCLI.SqlOrderBy = ""
+
+            ' DIG
+            DIG = New crField("Total_Matriculados", "Total_Matriculados", "x_DIG", "DIG", "[DIG]", 200, EWRPT_DATATYPE_STRING, -1)
+            DIG.Page = APage
+            DIG.ParentPage = APage.ParentPage
+            Fields.Add("DIG", DIG)
+            DIG.DateFilter = ""
+            DIG.SqlSelect = ""
+            DIG.SqlOrderBy = ""
+
+            ' PATERNO
+            PATERNO = New crField("Total_Matriculados", "Total_Matriculados", "x_PATERNO", "PATERNO", "[PATERNO]", 200, EWRPT_DATATYPE_STRING, -1)
+            PATERNO.Page = APage
+            PATERNO.ParentPage = APage.ParentPage
+            Fields.Add("PATERNO", PATERNO)
+            PATERNO.DateFilter = ""
+            PATERNO.SqlSelect = ""
+            PATERNO.SqlOrderBy = ""
+
+            ' MATERNO
+            MATERNO = New crField("Total_Matriculados", "Total_Matriculados", "x_MATERNO", "MATERNO", "[MATERNO]", 200, EWRPT_DATATYPE_STRING, -1)
+            MATERNO.Page = APage
+            MATERNO.ParentPage = APage.ParentPage
+            Fields.Add("MATERNO", MATERNO)
+            MATERNO.DateFilter = ""
+            MATERNO.SqlSelect = ""
+            MATERNO.SqlOrderBy = ""
+
+            ' NOMBRE
+            NOMBRE = New crField("Total_Matriculados", "Total_Matriculados", "x_NOMBRE", "NOMBRE", "[NOMBRE]", 200, EWRPT_DATATYPE_STRING, -1)
+            NOMBRE.Page = APage
+            NOMBRE.ParentPage = APage.ParentPage
+            Fields.Add("NOMBRE", NOMBRE)
+            NOMBRE.DateFilter = ""
+            NOMBRE.SqlSelect = ""
+            NOMBRE.SqlOrderBy = ""
+
+            ' DESCRIPCION
+            DESCRIPCION = New crField("Total_Matriculados", "Total_Matriculados", "x_DESCRIPCION", "DESCRIPCION", "[DESCRIPCION]", 200, EWRPT_DATATYPE_STRING, -1)
+            DESCRIPCION.Page = APage
+            DESCRIPCION.ParentPage = APage.ParentPage
+            Fields.Add("DESCRIPCION", DESCRIPCION)
+            DESCRIPCION.DateFilter = ""
+            DESCRIPCION.SqlSelect = ""
+            DESCRIPCION.SqlOrderBy = ""
+
+            ' NOMBRE_C
+            NOMBRE_C = New crField("Total_Matriculados", "Total_Matriculados", "x_NOMBRE_C", "NOMBRE_C", "[NOMBRE_C]", 200, EWRPT_DATATYPE_STRING, -1)
+            NOMBRE_C.Page = APage
+            NOMBRE_C.ParentPage = APage.ParentPage
+            Fields.Add("NOMBRE_C", NOMBRE_C)
+            NOMBRE_C.DateFilter = ""
+            NOMBRE_C.SqlSelect = ""
+            NOMBRE_C.SqlOrderBy = ""
+
+            ' CODCARR
+            CODCARR = New crField("Total_Matriculados", "Total_Matriculados", "x_CODCARR", "CODCARR", "[CODCARR]", 200, EWRPT_DATATYPE_STRING, -1)
+            CODCARR.Page = APage
+            CODCARR.ParentPage = APage.ParentPage
+            Fields.Add("CODCARR", CODCARR)
+            CODCARR.DateFilter = ""
+            CODCARR.SqlSelect = ""
+            CODCARR.SqlOrderBy = ""
+
+            ' JORNADA
+            JORNADA = New crField("Total_Matriculados", "Total_Matriculados", "x_JORNADA", "JORNADA", "[JORNADA]", 200, EWRPT_DATATYPE_STRING, -1)
+            JORNADA.Page = APage
+            JORNADA.ParentPage = APage.ParentPage
+            Fields.Add("JORNADA", JORNADA)
+            JORNADA.DateFilter = ""
+            JORNADA.SqlSelect = ""
+            JORNADA.SqlOrderBy = ""
+
+            ' ESTACAD
+            ESTACAD = New crField("Total_Matriculados", "Total_Matriculados", "x_ESTACAD", "ESTACAD", "[ESTACAD]", 200, EWRPT_DATATYPE_STRING, -1)
+            ESTACAD.Page = APage
+            ESTACAD.ParentPage = APage.ParentPage
+            Fields.Add("ESTACAD", ESTACAD)
+            ESTACAD.DateFilter = ""
+            ESTACAD.SqlSelect = ""
+            ESTACAD.SqlOrderBy = ""
+
+            ' FEC_MAT
+            FEC_MAT = New crField("Total_Matriculados", "Total_Matriculados", "x_FEC_MAT", "FEC_MAT", "[FEC_MAT]", 135, EWRPT_DATATYPE_DATE, 7)
+            FEC_MAT.Page = APage
+            FEC_MAT.ParentPage = APage.ParentPage
+            FEC_MAT.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectDateDMY").Replace("%s", "/")
+            Fields.Add("FEC_MAT", FEC_MAT)
+            FEC_MAT.DateFilter = ""
+            FEC_MAT.SqlSelect = ""
+            FEC_MAT.SqlOrderBy = ""
+
+            ' ANO
+            ANO = New crField("Total_Matriculados", "Total_Matriculados", "x_ANO", "ANO", "[ANO]", 131, EWRPT_DATATYPE_NUMBER, -1)
+            ANO.Page = APage
+            ANO.ParentPage = APage.ParentPage
+            ANO.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+            Fields.Add("ANO", ANO)
+            ANO.DateFilter = ""
+            ANO.SqlSelect = ""
+            ANO.SqlOrderBy = ""
+
+            ' ANO_MAT
+            ANO_MAT = New crField("Total_Matriculados", "Total_Matriculados", "x_ANO_MAT", "ANO_MAT", "[ANO_MAT]", 131, EWRPT_DATATYPE_NUMBER, -1)
+            ANO_MAT.Page = APage
+            ANO_MAT.ParentPage = APage.ParentPage
+            ANO_MAT.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+            Fields.Add("ANO_MAT", ANO_MAT)
+            ANO_MAT.DateFilter = ""
+            ANO_MAT.SqlSelect = ""
+            ANO_MAT.SqlOrderBy = ""
+
+            ' ESTADO
+            ESTADO = New crField("Total_Matriculados", "Total_Matriculados", "x_ESTADO", "ESTADO", "[ESTADO]", 200, EWRPT_DATATYPE_STRING, -1)
+            ESTADO.Page = APage
+            ESTADO.ParentPage = APage.ParentPage
+            Fields.Add("ESTADO", ESTADO)
+            ESTADO.DateFilter = ""
+            ESTADO.SqlSelect = ""
+            ESTADO.SqlOrderBy = ""
+
+            ' SITUACION
+            SITUACION = New crField("Total_Matriculados", "Total_Matriculados", "x_SITUACION", "SITUACION", "[SITUACION]", 200, EWRPT_DATATYPE_STRING, -1)
+            SITUACION.Page = APage
+            SITUACION.ParentPage = APage.ParentPage
+            Fields.Add("SITUACION", SITUACION)
+            SITUACION.DateFilter = ""
+            SITUACION.SqlSelect = ""
+            SITUACION.SqlOrderBy = ""
+
+            ' TIPOSITU
+            TIPOSITU = New crField("Total_Matriculados", "Total_Matriculados", "x_TIPOSITU", "TIPOSITU", "[TIPOSITU]", 131, EWRPT_DATATYPE_NUMBER, -1)
+            TIPOSITU.Page = APage
+            TIPOSITU.ParentPage = APage.ParentPage
+            TIPOSITU.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectFloat")
+            Fields.Add("TIPOSITU", TIPOSITU)
+            TIPOSITU.DateFilter = ""
+            TIPOSITU.SqlSelect = ""
+            TIPOSITU.SqlOrderBy = ""
+
+            ' AL_FONO
+            AL_FONO = New crField("Total_Matriculados", "Total_Matriculados", "x_AL_FONO", "AL_FONO", "[AL_FONO]", 200, EWRPT_DATATYPE_STRING, -1)
+            AL_FONO.Page = APage
+            AL_FONO.ParentPage = APage.ParentPage
+            Fields.Add("AL_FONO", AL_FONO)
+            AL_FONO.DateFilter = ""
+            AL_FONO.SqlSelect = ""
+            AL_FONO.SqlOrderBy = ""
+
+            ' MAIL
+            MAIL = New crField("Total_Matriculados", "Total_Matriculados", "x_MAIL", "MAIL", "[MAIL]", 200, EWRPT_DATATYPE_STRING, -1)
+            MAIL.Page = APage
+            MAIL.ParentPage = APage.ParentPage
+            Fields.Add("MAIL", MAIL)
+            MAIL.DateFilter = ""
+            MAIL.SqlSelect = ""
+            MAIL.SqlOrderBy = ""
+
+            ' CELULAR
+            CELULAR = New crField("Total_Matriculados", "Total_Matriculados", "x_CELULAR", "CELULAR", "[CELULAR]", 200, EWRPT_DATATYPE_STRING, -1)
+            CELULAR.Page = APage
+            CELULAR.ParentPage = APage.ParentPage
+            Fields.Add("CELULAR", CELULAR)
+            CELULAR.DateFilter = ""
+            CELULAR.SqlSelect = ""
+            CELULAR.SqlOrderBy = ""
+
+            ' DIRACTUAL
+            DIRACTUAL = New crField("Total_Matriculados", "Total_Matriculados", "x_DIRACTUAL", "DIRACTUAL", "[DIRACTUAL]", 200, EWRPT_DATATYPE_STRING, -1)
+            DIRACTUAL.Page = APage
+            DIRACTUAL.ParentPage = APage.ParentPage
+            Fields.Add("DIRACTUAL", DIRACTUAL)
+            DIRACTUAL.DateFilter = ""
+            DIRACTUAL.SqlSelect = ""
+            DIRACTUAL.SqlOrderBy = ""
+
+            ' CODFAC
+            CODFAC = New crField("Total_Matriculados", "Total_Matriculados", "x_CODFAC", "CODFAC", "[CODFAC]", 200, EWRPT_DATATYPE_STRING, -1)
+            CODFAC.Page = APage
+            CODFAC.ParentPage = APage.ParentPage
+            Fields.Add("CODFAC", CODFAC)
+            CODFAC.DateFilter = ""
+            CODFAC.SqlSelect = ""
+            CODFAC.SqlOrderBy = ""
+
+            ' FONOACT
+            FONOACT = New crField("Total_Matriculados", "Total_Matriculados", "x_FONOACT", "FONOACT", "[FONOACT]", 200, EWRPT_DATATYPE_STRING, -1)
+            FONOACT.Page = APage
+            FONOACT.ParentPage = APage.ParentPage
+            Fields.Add("FONOACT", FONOACT)
+            FONOACT.DateFilter = ""
+            FONOACT.SqlSelect = ""
+            FONOACT.SqlOrderBy = ""
+
+            ' SEXO
+            SEXO = New crField("Total_Matriculados", "Total_Matriculados", "x_SEXO", "SEXO", "[SEXO]", 200, EWRPT_DATATYPE_STRING, -1)
+            SEXO.Page = APage
+            SEXO.ParentPage = APage.ParentPage
+            Fields.Add("SEXO", SEXO)
+            SEXO.DateFilter = ""
+            SEXO.SqlSelect = ""
+            SEXO.SqlOrderBy = ""
+
+            ' COMUNA
+            COMUNA = New crField("Total_Matriculados", "Total_Matriculados", "x_COMUNA", "COMUNA", "[COMUNA]", 200, EWRPT_DATATYPE_STRING, -1)
+            COMUNA.Page = APage
+            COMUNA.ParentPage = APage.ParentPage
+            Fields.Add("COMUNA", COMUNA)
+            COMUNA.DateFilter = ""
+            COMUNA.SqlSelect = ""
+            COMUNA.SqlOrderBy = ""
+
+            ' CIUDADACT
+            CIUDADACT = New crField("Total_Matriculados", "Total_Matriculados", "x_CIUDADACT", "CIUDADACT", "[CIUDADACT]", 200, EWRPT_DATATYPE_STRING, -1)
+            CIUDADACT.Page = APage
+            CIUDADACT.ParentPage = APage.ParentPage
+            Fields.Add("CIUDADACT", CIUDADACT)
+            CIUDADACT.DateFilter = ""
+            CIUDADACT.SqlSelect = ""
+            CIUDADACT.SqlOrderBy = ""
+
+            ' FECNAC
+            FECNAC = New crField("Total_Matriculados", "Total_Matriculados", "x_FECNAC", "FECNAC", "[FECNAC]", 135, EWRPT_DATATYPE_DATE, 7)
+            FECNAC.Page = APage
+            FECNAC.ParentPage = APage.ParentPage
+            FECNAC.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectDateDMY").Replace("%s", "/")
+            Fields.Add("FECNAC", FECNAC)
+            FECNAC.DateFilter = ""
+            FECNAC.SqlSelect = ""
+            FECNAC.SqlOrderBy = ""
+
+            ' COLEGIO
+            COLEGIO = New crField("Total_Matriculados", "Total_Matriculados", "x_COLEGIO", "COLEGIO", "[COLEGIO]", 200, EWRPT_DATATYPE_STRING, -1)
+            COLEGIO.Page = APage
+            COLEGIO.ParentPage = APage.ParentPage
+            Fields.Add("COLEGIO", COLEGIO)
+            COLEGIO.DateFilter = ""
+            COLEGIO.SqlSelect = ""
+            COLEGIO.SqlOrderBy = ""
+
+
+            ' COMUNACOLEGIO
+            COMUNACOLEGIO = New crField("Total_Matriculados", "Total_Matriculados", "x_COMUNACOLEGIO", "COMUNACOLEGIO", "[COMUNACOLEGIO]", 200, EWRPT_DATATYPE_STRING, -1)
+            COMUNACOLEGIO.Page = APage
+            COMUNACOLEGIO.ParentPage = APage.ParentPage
+            Fields.Add("COMUNACOLEGIO", COMUNACOLEGIO)
+            COMUNACOLEGIO.DateFilter = ""
+            COMUNACOLEGIO.SqlSelect = ""
+            COMUNACOLEGIO.SqlOrderBy = ""
+
+
+            ' DEPENDENCIA
+            DEPENDENCIA = New crField("Total_Matriculados", "Total_Matriculados", "x_DEPENDENCIA", "DEPENDENCIA", "[DEPENDENCIA]", 200, EWRPT_DATATYPE_STRING, -1)
+            DEPENDENCIA.Page = APage
+            DEPENDENCIA.ParentPage = APage.ParentPage
+            Fields.Add("DEPENDENCIA", DEPENDENCIA)
+            DEPENDENCIA.DateFilter = ""
+            DEPENDENCIA.SqlSelect = ""
+            DEPENDENCIA.SqlOrderBy = ""
+
+
+            ' COMUNAALUMNO
+            COMUNAALUMNO = New crField("Total_Matriculados", "Total_Matriculados", "x_COMUNAALUMNO", "COMUNAALUMNO", "[COMUNAALUMNO]", 200, EWRPT_DATATYPE_STRING, -1)
+
+            COMUNAALUMNO.Page = APage
+            COMUNAALUMNO.ParentPage = APage.ParentPage
+            Fields.Add("COMUNAALUMNO", COMUNAALUMNO)
+            COMUNAALUMNO.DateFilter = ""
+            COMUNAALUMNO.SqlSelect = ""
+            COMUNAALUMNO.SqlOrderBy = ""
+
+            ' FECHATIT
+            FECHATIT = New crField("Total_Matriculados", "Total_Matriculados", "x_FECHATIT", "FECHATIT", "[FECHATIT]", 135, EWRPT_DATATYPE_DATE, 7)
+            FECHATIT.Page = APage
+            FECHATIT.ParentPage = APage.ParentPage
+            FECHATIT.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectDateDMY").Replace("%s", "/")
+            Fields.Add("FECHATIT", FECHATIT)
+            FECHATIT.DateFilter = ""
+            FECHATIT.SqlSelect = ""
+            FECHATIT.SqlOrderBy = ""
+
+            ' FECHAEGR
+            FECHAEGR = New crField("Total_Matriculados", "Total_Matriculados", "x_FECHAEGR", "FECHAEGR", "[FECHAEGR]", 135, EWRPT_DATATYPE_DATE, 7)
+            FECHAEGR.Page = APage
+            FECHAEGR.ParentPage = APage.ParentPage
+            FECHAEGR.FldDefaultErrMsg = ReportLanguage.Phrase("IncorrectDateDMY").Replace("%s", "/")
+            Fields.Add("FECHAEGR", FECHAEGR)
+            FECHAEGR.DateFilter = ""
+            FECHAEGR.SqlSelect = ""
+            FECHAEGR.SqlOrderBy = ""
+
+
+            ' MODALIDAD
+            MODALIDAD = New crField("Total_Matriculados", "Total_Matriculados", "x_MODALIDAD", "MODALIDAD", "[MODALIDAD]", 200, EWRPT_DATATYPE_STRING, -1)
+
+            MODALIDAD.Page = APage
+            MODALIDAD.ParentPage = APage.ParentPage
+            Fields.Add("MODALIDAD", MODALIDAD)
+            MODALIDAD.DateFilter = ""
+            MODALIDAD.SqlSelect = ""
+            MODALIDAD.SqlOrderBy = ""
+
+            ' CATEGORIA
+            CATEGORIA = New crField("Total_Matriculados", "Total_Matriculados", "x_CATEGORIA", "CATEGORIA", "[CATEGORIA]", 200, EWRPT_DATATYPE_STRING, -1)
+
+            CATEGORIA.Page = APage
+            CATEGORIA.ParentPage = APage.ParentPage
+            Fields.Add("CATEGORIA", CATEGORIA)
+            CATEGORIA.DateFilter = ""
+            CATEGORIA.SqlSelect = ""
+            CATEGORIA.SqlOrderBy = ""
+
+        End Sub
+
+        ' Single column sort
+        Public Sub UpdateSort(ofld As crField)
+            If (CurrentOrder = ofld.FldName) Then
+                Dim sLastSort As String = ofld.Sort
+                Dim sThisSort As String
+                If (CurrentOrderType = "ASC" OrElse CurrentOrderType = "DESC") Then
+                    sThisSort = CurrentOrderType
+                Else
+                    sThisSort = IIf(sLastSort = "ASC", "DESC", "ASC")
+                End If
+                ofld.Sort = sThisSort
+            Else
+                If (ofld.GroupingFieldId = 0) Then ofld.Sort = ""
+            End If
+        End Sub
+
+        ' Get Sort SQL
+        Public Function SortSql() As String
+            Dim sDtlSortSql As String = ""
+            Dim argrps As New List(Of String)()
+            For Each field As KeyValuePair(Of String, crField) In Fields
+                Dim fld As crField = field.Value
+                If ew_NotEmpty(fld.Sort) Then
+                    If fld.GroupingFieldId > 0 Then
+                        If ew_NotEmpty(fld.FldGroupSql) Then
+                            argrps.Add(fld.FldGroupSql.Replace("%s", fld.FldExpression) + " " + fld.Sort)
+                        Else
+                            argrps.Add(fld.FldExpression + " " + fld.Sort)
+                        End If
+                    Else
+                        If ew_NotEmpty(sDtlSortSql) Then
+                            sDtlSortSql += ", "
+                        End If
+                        sDtlSortSql += fld.FldExpression + " " + fld.Sort
+                    End If
+                End If
+            Next
+            Dim sSortSql As String = ""
+            For Each grp As String In argrps
+                If ew_NotEmpty(sSortSql) Then
+                    sSortSql += ", "
+                End If
+                sSortSql += grp
+            Next
+            If ew_NotEmpty(sDtlSortSql) Then
+                If ew_NotEmpty(sSortSql) Then
+                    sSortSql += ", "
+                End If
+                sSortSql += sDtlSortSql
+            End If
+            Return sSortSql
+        End Function
+
+        ' Table level SQL
+        Public ReadOnly Property SqlFrom As String ' From
+            Get
+                Return "[SEK_Alumnos_Matriculados_Total]"
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlSelect As String ' Select
+            Get
+                Return "SELECT * FROM " + SqlFrom
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlWhere As String ' Where
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlGroupBy As String ' Group By
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlHaving As String ' Having
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlOrderBy As String ' Order By
+            Get
+                Return ""
+            End Get
+        End Property
+
+        ' Table Level Group SQL
+        Public ReadOnly Property SqlFirstGroupField As String
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlSelectGroup As String
+            Get
+                Return "SELECT DISTINCT " + SqlFirstGroupField + " FROM " + SqlFrom
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlOrderByGroup As String
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlSelectAgg As String
+            Get
+                Return "SELECT * FROM " + SqlFrom
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlAggPfx As String
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlAggSfx As String
+            Get
+                Return ""
+            End Get
+        End Property
+
+        Public ReadOnly Property SqlSelectCount As String
+            Get
+                Return "SELECT COUNT(*) FROM " + SqlFrom
+            End Get
+        End Property
+
+        ' Sort URL
+        Public Function SortUrl(fld As crField) As String
+            Return ""
+        End Function
+
+        ' Row attributes
+        Public Function RowAttributes() As String
+            Dim sAtt As String = ""
+            For Each Attr As DictionaryEntry In RowAttrs
+                If ew_NotEmpty(Attr.Value) Then
+                    sAtt += " " + Attr.Key + "=""" + Convert.ToString(Attr.Value).Trim() + """"
+                End If
+            Next
+            Return sAtt
+        End Function
+
+        ' Table level events
+        ' Row Rendering event
+        Public Sub Row_Rendering()
+
+            ' Enter your code here	
+        End Sub
+
+        ' Row Rendered event
+        Public Sub Row_Rendered()
+
+            ' To view properties of field class, use:
+            ' ew_Write(<FieldName>.AsString())
+
+        End Sub
+
+        ' Load Custom Filters event
+        Public Sub CustomFilters_Load()
+
+            'Enter your code here	
+            'ewrpt_RegisterCustomFilter(<Field>, "LastMonth", "Last Month", "GetLastMonthFilter") ' Date example
+            'ewrpt_RegisterCustomFilter(<Field>, "StartsWithA", "Starts With A", "GetStartsWithAFilter") ' String example
+
+        End Sub
+
+        ' Page Filter Validated event
+        Public Sub Page_FilterValidated()
+
+            'Example:
+            'MyField1.SearchValue = "your search criteria" ' Search value
+
+        End Sub
+
+        ' Chart Rendering event
+        Public Sub Chart_Rendering(ByRef chart As Object)
+
+            'Dim cht As crChart = CType(chart, crChart) ' Convert to crChart type or
+            'Dim cht As crGantt = CType(chart, crGantt) ' Convert to crGantt type
+            ' Enter your code here
+
+        End Sub
+
+        ' Chart Rendered event
+        Public Sub Chart_Rendered(chart As Object, ByRef chartxml As String)
+
+            'Dim cht As crChart = CType(chart, crChart) ' Convert to crChart type or
+            'Dim cht As crGantt = CType(chart, crGantt) ' Convert to crGantt type
+            ' Enter your code here
+
+        End Sub
+
+        ' Email Sending event
+        Public Function Email_Sending(ByRef Email As crEmail, Args As Hashtable) As Boolean
+
+            'ew_Write(Email.AsString())
+            'HttpContext.Current.Response.End()
+
+            Return True
+        End Function
+    End Class
+
+    ' Page object
+    Public Total_Matriculados_summary As crTotal_Matriculados_summary
+
+    '
+    ' Page class
+    '
+    Public Class crTotal_Matriculados_summary
+        Inherits AspNetReportMakerPage
+        Implements IDisposable
+
+        ' Page URL
+        Public Function PageUrl() As String
+            Dim sUrl As String = ew_CurrentPage() & "?"
+            If (Total_Matriculados.UseTokenInUrl) Then
+                sUrl &= "t=" & Total_Matriculados.TableVar & "&" ' Add page token
+            End If
+            Return sUrl
+        End Function
+
+        ' Export URLs
+        Public ExportPrintUrl As String = ""
+
+        Public ExportExcelUrl As String = ""
+
+        Public ExportWordUrl As String = ""
+
+        ' Message
+        Public Property Message As String
+            Get
+                Return Convert.ToString(ew_Session(EWRPT_SESSION_MESSAGE))
+            End Get
+            Set(ByVal Value As String)
+                If (ew_NotEmpty(ew_Session(EWRPT_SESSION_MESSAGE))) Then ' Append
+                    ew_Session(EWRPT_SESSION_MESSAGE) &= "<br>" & Value
+                Else
+                    ew_Session(EWRPT_SESSION_MESSAGE) = Value
+                End If
+            End Set
+        End Property
+
+        ' Show message
+        Public Sub ShowMessage()
+            Dim sMessage As String = Message
+            Message_Showing(sMessage)
+            If (ew_NotEmpty(sMessage)) Then ' Message in Session, display
+                ew_Write("<div class=""ewMessage"">" & sMessage & "</div>")
+                ew_Session(EWRPT_SESSION_MESSAGE) = "" ' Clear message in Session
+            End If
+        End Sub
+
+        Public PageHeader As String = ""
+
+        Public PageFooter As String = ""
+
+        ' Show Page Header
+        Public Sub ShowPageHeader()
+            Dim sHeader As String = PageHeader
+            Page_DataRendering(sHeader)
+            If (ew_NotEmpty(sHeader)) Then ' Header exists, display
+                ew_Write("<p><span class=""aspnetreportmaker"">" & sHeader & "</span></p>")
+            End If
+        End Sub
+
+        ' Show Page Footer
+        Public Sub ShowPageFooter()
+            Dim sFooter As String = PageFooter
+            Page_DataRendered(sFooter)
+            If (ew_NotEmpty(sFooter)) Then ' Footer exists, display
+                ew_Write("<p><span class=""aspnetreportmaker"">" & sFooter & "</span></p>")
+            End If
+        End Sub
+
+        ' Validate page request
+        Public Function IsPageRequest() As Boolean
+            If (Total_Matriculados.UseTokenInUrl) Then
+                If (HttpContext.Current.Request.RequestType = "POST") Then
+                    Return (ew_SameStr(Total_Matriculados.TableVar, ew_Post("t")))
+                End If
+                If (ew_NotEmpty(ew_Get("t"))) Then
+                    Return (ew_SameStr(Total_Matriculados.TableVar, ew_Get("t")))
+                End If
+            End If
+            Return True
+        End Function
+
+        ' ASP.NET page object
+        Public ReadOnly Property AspNetPage As Total_Matriculadossmry
+            Get
+                Return CType(m_ParentPage, Total_Matriculadossmry)
+            End Get
+        End Property
+
+        ' Table object (Total_Matriculados)
+        Public Property Total_Matriculados As crTotal_Matriculados
+            Get
+                Return AspNetPage.Total_Matriculados ' Unlike ASP.NET Maker, the table object is not in the base class.
+            End Get
+            Set(ByVal Value As crTotal_Matriculados)
+                AspNetPage.Total_Matriculados = Value
+            End Set
+        End Property
+
+        '
+        ' Page class constructor
+        '
+        Public Sub New(APage As AspNetReportMaker4_TotalMatriculados)
+            m_ParentPage = APage
+            m_Page = Me
+            m_PageID = "summary"
+            m_PageObjName = "Total_Matriculados_summary"
+            m_PageObjTypeName = "crTotal_Matriculados_summary"
+
+            ' Table name
+            m_TableName = "Total_Matriculados"
+
+            ' Language object
+            ReportLanguage = New crLanguage(Me)
+
+            ' Table object (Total_Matriculados)
+            Total_Matriculados = New crTotal_Matriculados(Me)
+
+            ' Initialize URLs
+            ExportPrintUrl = PageUrl() & "export=print"
+            ExportExcelUrl = PageUrl() & "export=excel"
+            ExportWordUrl = PageUrl() & "export=word"
+
+            ' Open connection
+            Conn = New cConnection()
+        End Sub
+
+        ' 
+        '  Page_Init
+        '
+        Public Sub Page_Init()
+
+            ' Get export parameters
+            If (ew_NotEmpty(ew_Get("export"))) Then
+                Total_Matriculados.Export = ew_Get("export")
+            End If
+            gsExport = Total_Matriculados.Export ' Get export parameter, used in header
+            gsExportFile = Total_Matriculados.TableVar ' Get export file, used in header
+            If (Total_Matriculados.Export = "excel") Then
+                HttpContext.Current.Response.ContentType = "application/vnd.ms-excel;charset=utf-8"
+                HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=" & gsExportFile & ".xls")
+            End If
+
+            ' Global Page Loading event (in userfn*.aspx)
+            ParentPage.Page_Loading()
+
+            ' Page Load event
+            Page_Load()
+        End Sub
+
+        '
+        '  Class terminate
+        '
+        Public Sub Dispose() Implements IDisposable.Dispose
+            Page_Terminate("")
+        End Sub
+
+        '
+        ' Page_Terminate
+        '
+        Public Sub Page_Terminate(url As String)
+
+            ' Page Unload event
+            Page_Unload()
+
+            ' Global Page Unloaded event (in userfn*.aspx)
+            ParentPage.Page_Unloaded()
+
+            ' Close connection
+            Conn.Dispose()
+
+            ' Go to URL if specified
+            If (ew_NotEmpty(url)) Then
+                HttpContext.Current.Response.Clear()
+                HttpContext.Current.Response.Redirect(url)
+            End If
+        End Sub
+
+        ' Temp variables
+        Public dr As SqlDataReader  ' DataReader
+
+        Public rs As New ArrayList()
+
+        Public rsgrp As New ArrayList()
+
+        Public HasRow As Boolean
+
+        Public GrpIndex As Integer = 0
+
+        Public RowIndex As Integer = 0
+
+        ' Page variables
+        Public RecCount As Integer = 0 ' Record count
+
+        Public StartGrp As Integer = 0 ' Start group
+
+        Public StopGrp As Integer = 0   ' Stop group
+
+        Public TotalGrps As Integer = 0 ' Total groups
+
+        Public GrpCount As Integer = 0 ' Group count
+
+        Public DisplayGrps As Integer = 20  ' Groups per page
+
+        Public GrpRange As Integer = 10
+
+        Public Sort As String = ""
+
+        Public Filter As String = ""
+
+        Public UserIDFilter As String = ""
+
+        ' Clear field for ext filter
+        Public ClearExtFilter As String = ""
+
+        Public FilterApplied As Boolean
+
+        Public ShowFirstHeader As Boolean
+
+        Public Val As Object() = New Object(34) {}
+
+        Public Cnt As Integer()() = New Integer(0)() {}
+
+        Public Smry As Object()() = New Object(0)() {}
+
+        Public Mn As Object()() = New Object(0)() {}
+
+        Public Mx As Object()() = New Object(0)() {}
+
+        Public GrandSmry As Object() = New Object(30) {}
+
+        Public GrandMn As Object() = New Object(30) {}
+
+        Public GrandMx As Object() = New Object(30) {}
+
+        ' Set up if accumulation required
+        Public Col() As Boolean = {False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False}
+
+        Public TotCount As Integer
+
+        '
+        ' Page main
+        '
+        Public Sub Page_Main()
+
+            ' Aggregate variables		
+            Dim nDtls As Integer = 30 ' No. of fields
+            Dim nGrps As Integer = 1 ' No. of groups (level 0 used for grand total)
+            For i As Integer = 0 To nGrps - 1
+                Cnt(i) = New Integer(nDtls - 1) {}
+                Smry(i) = New Object(nDtls - 1) {}
+                Mn(i) = New Object(nDtls - 1) {}
+                Mx(i) = New Object(nDtls - 1) {}
+            Next
+
+            ' Set up groups per page dynamically
+            SetUpDisplayGrps()
+
+            ' Load default filter values
+            LoadDefaultFilters()
+
+            ' Set up popup filter
+            SetupPopup()
+
+            ' Extended filter
+            Dim sExtendedFilter As String = ""
+
+            ' Get dropdown values
+            GetExtendedFilterValues()
+
+            ' Load custom filters
+            Total_Matriculados.CustomFilters_Load()
+
+            ' Build extended filter
+            sExtendedFilter = GetExtendedFilter()
+            If (ew_NotEmpty(sExtendedFilter)) Then
+                If (ew_NotEmpty(Filter)) Then
+                    Filter = "(" + Filter + ") AND (" + sExtendedFilter + ")"
+                Else
+                    Filter = sExtendedFilter
+                End If
+            End If
+
+            ' Build popup filter
+            Dim sPopupFilter As String = GetPopupFilter()
+
+            'ew_SetDebugMsg("popup filter: " + sPopupFilter)
+            If (ew_NotEmpty(sPopupFilter)) Then
+                If (ew_NotEmpty(Filter)) Then
+                    Filter = "(" + Filter + ") AND (" + sPopupFilter + ")"
+                Else
+                    Filter = sPopupFilter
+                End If
+            End If
+
+            ' Check if filter applied
+            FilterApplied = CheckFilter()
+
+            ' Get sort
+            Sort = GetSort()
+
+            ' Get total count
+            Dim sSql As String = ewrpt_BuildReportSql(Total_Matriculados.SqlSelect, Total_Matriculados.SqlWhere, Total_Matriculados.SqlGroupBy, Total_Matriculados.SqlHaving, Total_Matriculados.SqlOrderBy, Filter, Sort)
+            TotalGrps = GetCnt(sSql)
+            If (DisplayGrps <= 0) Then ' Display all groups
+                DisplayGrps = TotalGrps
+            End If
+            StartGrp = 1
+
+            ' Show header
+            ShowFirstHeader = (TotalGrps > 0)
+
+            'ShowFirstHeader = True ' Uncomment to always show header
+            ' Set up start position if not export all
+
+            If (Total_Matriculados.ExportAll AndAlso ew_NotEmpty(Total_Matriculados.Export)) Then
+                DisplayGrps = TotalGrps
+            Else
+                SetUpStartGroup()
+            End If
+
+            ' Get current page records
+            dr = GetRs(sSql, StartGrp, DisplayGrps)
+        End Sub
+
+        ' Accummulate summary
+        Public Sub AccumulateSummary()
+            Dim cntx As Integer = Smry.Length
+            For ix As Integer = 0 To cntx - 1
+                Dim cnty As Integer = Smry(ix).Length
+                For iy As Integer = 1 To cnty - 1
+                    Cnt(ix)(iy) += 1
+                    If Col(iy) Then
+                        Dim valwrk As Object = Val(iy)
+                        If Convert.IsDBNull(valwrk) OrElse Not ewrpt_IsNumeric(valwrk) Then
+
+                            ' Skip
+                        Else
+                            Smry(ix)(iy) = Convert.ToDouble(Smry(ix)(iy)) + Convert.ToDouble(valwrk)
+                            If Mn(ix)(iy) Is Nothing Then
+                                Mn(ix)(iy) = valwrk
+                                Mx(ix)(iy) = valwrk
+                            Else
+                                If Convert.ToDouble(Mn(ix)(iy)) > Convert.ToDouble(valwrk) Then
+                                    Mn(ix)(iy) = valwrk
+                                End If
+                                If Convert.ToDouble(Mx(ix)(iy)) < Convert.ToDouble(valwrk) Then
+                                    Mx(ix)(iy) = valwrk
+                                End If
+                            End If
+                        End If
+                    End If
+                Next
+            Next
+            cntx = Smry.Length
+            For ix As Integer = 1 To cntx - 1
+                Cnt(ix)(0) += 1
+            Next
+        End Sub
+
+        ' Reset level summary
+        Public Sub ResetLevelSummary(ByVal lvl As Integer)
+            Dim cntx As Integer = Smry.Length
+            For ix As Integer = lvl To cntx - 1
+                Dim cnty As Integer = Smry(ix).Length
+                For iy As Integer = 1 To cnty - 1
+                    Cnt(ix)(iy) = 0
+                    If Col(iy) Then
+                        Smry(ix)(iy) = 0
+                        Mn(ix)(iy) = Nothing
+                        Mx(ix)(iy) = Nothing
+                    End If
+                Next
+            Next
+            cntx = Smry.Length
+            For ix As Integer = lvl To cntx - 1
+                Cnt(ix)(0) = 0
+            Next
+
+            ' Reset record count
+            RecCount = 0
+        End Sub
+
+        ' Accummulate grand summary
+        Public Sub AccumulateGrandSummary()
+            Cnt(0)(0) += 1
+            Dim cntgs As Integer = GrandSmry.Length
+            For iy As Integer = 1 To cntgs - 1
+                If Col(iy) Then
+                    Dim valwrk As Object = Val(iy)
+
+                    ' skip
+                    If Convert.IsDBNull(valwrk) OrElse Not ewrpt_IsNumeric(valwrk) Then
+                    Else
+                        GrandSmry(iy) = Convert.ToDouble(GrandSmry(iy)) + Convert.ToDouble(valwrk)
+                        If ew_Empty(GrandMn(iy)) Then
+                            GrandMn(iy) = valwrk
+                            GrandMx(iy) = valwrk
+                        Else
+                            If Convert.ToDouble(GrandMn(iy)) > Convert.ToDouble(valwrk) Then
+                                GrandMn(iy) = valwrk
+                            End If
+                            If Convert.ToDouble(GrandMx(iy)) < Convert.ToDouble(valwrk) Then
+                                GrandMx(iy) = valwrk
+                            End If
+                        End If
+                    End If
+                End If
+            Next
+        End Sub
+
+        ' Get count
+        Public Function GetCnt(ByVal sql As String) As Integer
+            Try
+                Dim cnt As Object = ew_ExecuteScalar("SELECT COUNT(*) FROM (" + sql + ") AS EWRPT_TEMP_TABLE")
+                If cnt IsNot Nothing Then
+                    Return ew_ConvertToInt(cnt)
+                Else
+                    Throw New Exception("Failed to get record count")
+                End If
+            Catch
+                Dim dr As SqlDataReader = Conn.GetTempDataReader(sql)
+                Dim rscnt As Integer = 0
+                If dr IsNot Nothing AndAlso dr.HasRows Then
+                    While dr.Read()
+                        rscnt += 1
+                    End While
+                End If
+                Conn.CloseTempDataReader()
+                Return rscnt
+            End Try
+        End Function
+
+        ' Get rs
+        Public Function GetRs(ByVal sql As String, ByVal start As Integer, ByVal grps As Integer) As SqlDataReader
+            GrpIndex = -1
+            Dim dr As SqlDataReader = Conn.GetDataReader(sql)
+            For i As Integer = 1 To start - 1
+                HasRow = dr.Read()
+                GrpIndex += 1
+                If Not HasRow Then
+                    Exit For
+                End If
+            Next
+            Return dr
+        End Function
+
+        ' Get row values
+        Public Sub GetRow(opt As Integer)
+            Dim Row As OrderedDictionary
+            If (RowIndex >= rs.Count) Then Return
+            RowIndex = IIf(opt = 1, 0, RowIndex + 1)
+            If (RowIndex < rs.Count) Then
+                Row = CType(rs(RowIndex), OrderedDictionary)
+                Total_Matriculados.CODCLI.DbValue = Row("CODCLI")
+                Total_Matriculados.DIG.DbValue = Row("DIG")
+                Total_Matriculados.PATERNO.DbValue = Row("PATERNO")
+                Total_Matriculados.MATERNO.DbValue = Row("MATERNO")
+                Total_Matriculados.NOMBRE.DbValue = Row("NOMBRE")
+                Total_Matriculados.DESCRIPCION.DbValue = Row("DESCRIPCION")
+                Total_Matriculados.NOMBRE_C.DbValue = Row("NOMBRE_C")
+                Total_Matriculados.CODCARR.DbValue = Row("CODCARR")
+                Total_Matriculados.JORNADA.DbValue = Row("JORNADA")
+                Total_Matriculados.ESTACAD.DbValue = Row("ESTACAD")
+                Total_Matriculados.FEC_MAT.DbValue = Row("FEC_MAT")
+                Total_Matriculados.ANO.DbValue = Row("ANO")
+                Total_Matriculados.ANO_MAT.DbValue = Row("ANO_MAT")
+                Total_Matriculados.ESTADO.DbValue = Row("ESTADO")
+                Total_Matriculados.SITUACION.DbValue = Row("SITUACION")
+                Total_Matriculados.TIPOSITU.DbValue = Row("TIPOSITU")
+                Total_Matriculados.AL_FONO.DbValue = Row("AL_FONO")
+                Total_Matriculados.MAIL.DbValue = Row("MAIL")
+                Total_Matriculados.CELULAR.DbValue = Row("CELULAR")
+                Total_Matriculados.DIRACTUAL.DbValue = Row("DIRACTUAL")
+                Total_Matriculados.CODFAC.DbValue = Row("CODFAC")
+                Total_Matriculados.FONOACT.DbValue = Row("FONOACT")
+                Total_Matriculados.SEXO.DbValue = Row("SEXO")
+                Total_Matriculados.COMUNA.DbValue = Row("COMUNA")
+                Total_Matriculados.CIUDADACT.DbValue = Row("CIUDADACT")
+                Total_Matriculados.FECNAC.DbValue = Row("FECNAC")
+                Total_Matriculados.COLEGIO.DbValue = Row("COLEGIO")
+                Total_Matriculados.COMUNACOLEGIO.DbValue = Row("COMUNACOLEGIO")
+                Total_Matriculados.DEPENDENCIA.DbValue = Row("DEPENDENCIA")
+                Total_Matriculados.COMUNAALUMNO.DbValue = Row("COMUNAALUMNO")
+                Total_Matriculados.FECHATIT.DbValue = Row("FECHATIT")
+                Total_Matriculados.FECHAEGR.DbValue = Row("FECHAEGR")
+                Total_Matriculados.MODALIDAD.DbValue = Row("MODALIDAD")
+                Total_Matriculados.CATEGORIA.DbValue = Row("CATEGOROA")
+                Val(1) = Total_Matriculados.CODCLI.CurrentValue
+                Val(2) = Total_Matriculados.DIG.CurrentValue
+                Val(3) = Total_Matriculados.PATERNO.CurrentValue
+                Val(4) = Total_Matriculados.MATERNO.CurrentValue
+                Val(5) = Total_Matriculados.NOMBRE.CurrentValue
+                Val(6) = Total_Matriculados.DESCRIPCION.CurrentValue
+                Val(7) = Total_Matriculados.NOMBRE_C.CurrentValue
+                Val(8) = Total_Matriculados.CODCARR.CurrentValue
+                Val(9) = Total_Matriculados.JORNADA.CurrentValue
+                Val(10) = Total_Matriculados.ESTACAD.CurrentValue
+                Val(11) = Total_Matriculados.FEC_MAT.CurrentValue
+                Val(12) = Total_Matriculados.ANO.CurrentValue
+                Val(13) = Total_Matriculados.ANO_MAT.CurrentValue
+                Val(14) = Total_Matriculados.ESTADO.CurrentValue
+                Val(15) = Total_Matriculados.SITUACION.CurrentValue
+                Val(16) = Total_Matriculados.TIPOSITU.CurrentValue
+                Val(17) = Total_Matriculados.AL_FONO.CurrentValue
+                Val(18) = Total_Matriculados.MAIL.CurrentValue
+                Val(19) = Total_Matriculados.CELULAR.CurrentValue
+                Val(20) = Total_Matriculados.DIRACTUAL.CurrentValue
+                Val(21) = Total_Matriculados.CODFAC.CurrentValue
+                Val(22) = Total_Matriculados.FONOACT.CurrentValue
+                Val(23) = Total_Matriculados.SEXO.CurrentValue
+                Val(24) = Total_Matriculados.COMUNA.CurrentValue
+                Val(25) = Total_Matriculados.CIUDADACT.CurrentValue
+                Val(26) = Total_Matriculados.FECNAC.CurrentValue
+                Val(27) = Total_Matriculados.COLEGIO.CurrentValue
+                Val(28) = Total_Matriculados.COMUNACOLEGIO.CurrentValue
+                Val(29) = Total_Matriculados.DEPENDENCIA.CurrentValue
+                Val(30) = Total_Matriculados.COMUNAALUMNO.CurrentValue
+                Val(31) = Total_Matriculados.FECHATIT.CurrentValue
+                Val(32) = Total_Matriculados.FECHAEGR.CurrentValue
+                Val(33) = Total_Matriculados.MODALIDAD.CurrentValue
+                Val(34) = Total_Matriculados.CATEGORIA.CurrentValue
+            Else
+                Total_Matriculados.CODCLI.DbValue = ""
+                Total_Matriculados.DIG.DbValue = ""
+                Total_Matriculados.PATERNO.DbValue = ""
+                Total_Matriculados.MATERNO.DbValue = ""
+                Total_Matriculados.NOMBRE.DbValue = ""
+                Total_Matriculados.DESCRIPCION.DbValue = ""
+                Total_Matriculados.NOMBRE_C.DbValue = ""
+                Total_Matriculados.CODCARR.DbValue = ""
+                Total_Matriculados.JORNADA.DbValue = ""
+                Total_Matriculados.ESTACAD.DbValue = ""
+                Total_Matriculados.FEC_MAT.DbValue = ""
+                Total_Matriculados.ANO.DbValue = ""
+                Total_Matriculados.ANO_MAT.DbValue = ""
+                Total_Matriculados.ESTADO.DbValue = ""
+                Total_Matriculados.SITUACION.DbValue = ""
+                Total_Matriculados.TIPOSITU.DbValue = ""
+                Total_Matriculados.AL_FONO.DbValue = ""
+                Total_Matriculados.MAIL.DbValue = ""
+                Total_Matriculados.CELULAR.DbValue = ""
+                Total_Matriculados.DIRACTUAL.DbValue = ""
+                Total_Matriculados.CODFAC.DbValue = ""
+                Total_Matriculados.FONOACT.DbValue = ""
+                Total_Matriculados.SEXO.DbValue = ""
+                Total_Matriculados.COMUNA.DbValue = ""
+                Total_Matriculados.CIUDADACT.DbValue = ""
+                Total_Matriculados.FECNAC.DbValue = ""
+                Total_Matriculados.COLEGIO.DbValue = ""
+                Total_Matriculados.COMUNACOLEGIO.DbValue = ""
+                Total_Matriculados.DEPENDENCIA.DbValue = ""
+                Total_Matriculados.COMUNAALUMNO.DbValue = ""
+                Total_Matriculados.FECHATIT.DbValue = ""
+                Total_Matriculados.FECHAEGR.DbValue = ""
+                Total_Matriculados.MODALIDAD.DbValue = ""
+                Total_Matriculados.CATEGORIA.DbValue = ""
+            End If
+        End Sub
+
+        ' Get row values from data reader ' ASPXRPT
+        Public Function GetRow() As Boolean
+            HasRow = (dr IsNot Nothing AndAlso dr.Read())
+            If (HasRow) Then
+                GrpIndex += 1
+                Total_Matriculados.CODCLI.DbValue = dr("CODCLI")
+                Total_Matriculados.DIG.DbValue = dr("DIG")
+                Total_Matriculados.PATERNO.DbValue = dr("PATERNO")
+                Total_Matriculados.MATERNO.DbValue = dr("MATERNO")
+                Total_Matriculados.NOMBRE.DbValue = dr("NOMBRE")
+                Total_Matriculados.DESCRIPCION.DbValue = dr("DESCRIPCION")
+                Total_Matriculados.NOMBRE_C.DbValue = dr("NOMBRE_C")
+                Total_Matriculados.CODCARR.DbValue = dr("CODCARR")
+                Total_Matriculados.JORNADA.DbValue = dr("JORNADA")
+                Total_Matriculados.ESTACAD.DbValue = dr("ESTACAD")
+                Total_Matriculados.FEC_MAT.DbValue = dr("FEC_MAT")
+                Total_Matriculados.ANO.DbValue = dr("ANO")
+                Total_Matriculados.ANO_MAT.DbValue = dr("ANO_MAT")
+                Total_Matriculados.ESTADO.DbValue = dr("ESTADO")
+                Total_Matriculados.SITUACION.DbValue = dr("SITUACION")
+                Total_Matriculados.TIPOSITU.DbValue = dr("TIPOSITU")
+                Total_Matriculados.AL_FONO.DbValue = dr("AL_FONO")
+                Total_Matriculados.MAIL.DbValue = dr("MAIL")
+                Total_Matriculados.CELULAR.DbValue = dr("CELULAR")
+                Total_Matriculados.DIRACTUAL.DbValue = dr("DIRACTUAL")
+                Total_Matriculados.CODFAC.DbValue = dr("CODFAC")
+                Total_Matriculados.FONOACT.DbValue = dr("FONOACT")
+                Total_Matriculados.SEXO.DbValue = dr("SEXO")
+                Total_Matriculados.COMUNA.DbValue = dr("COMUNA")
+                Total_Matriculados.CIUDADACT.DbValue = dr("CIUDADACT")
+                Total_Matriculados.FECNAC.DbValue = dr("FECNAC")
+                Total_Matriculados.COLEGIO.DbValue = dr("COLEGIO")
+                Total_Matriculados.COMUNACOLEGIO.DbValue = dr("COMUNACOLEGIO")
+                Total_Matriculados.DEPENDENCIA.DbValue = dr("DEPENDENCIA")
+                Total_Matriculados.COMUNAALUMNO.DbValue = dr("COMUNAALUMNO")
+                Total_Matriculados.FECHATIT.DbValue = dr("FECHATIT")
+                Total_Matriculados.FECHAEGR.DbValue = dr("FECHAEGR")
+                Total_Matriculados.MODALIDAD.DbValue = dr("MODALIDAD")
+                Total_Matriculados.CATEGORIA.DbValue = dr("CATEGORIA")
+                Val(1) = Total_Matriculados.CODCLI.CurrentValue
+                Val(2) = Total_Matriculados.DIG.CurrentValue
+                Val(3) = Total_Matriculados.PATERNO.CurrentValue
+                Val(4) = Total_Matriculados.MATERNO.CurrentValue
+                Val(5) = Total_Matriculados.NOMBRE.CurrentValue
+                Val(6) = Total_Matriculados.DESCRIPCION.CurrentValue
+                Val(7) = Total_Matriculados.NOMBRE_C.CurrentValue
+                Val(8) = Total_Matriculados.CODCARR.CurrentValue
+                Val(9) = Total_Matriculados.JORNADA.CurrentValue
+                Val(10) = Total_Matriculados.ESTACAD.CurrentValue
+                Val(11) = Total_Matriculados.FEC_MAT.CurrentValue
+                Val(12) = Total_Matriculados.ANO.CurrentValue
+                Val(13) = Total_Matriculados.ANO_MAT.CurrentValue
+                Val(14) = Total_Matriculados.ESTADO.CurrentValue
+                Val(15) = Total_Matriculados.SITUACION.CurrentValue
+                Val(16) = Total_Matriculados.TIPOSITU.CurrentValue
+                Val(17) = Total_Matriculados.AL_FONO.CurrentValue
+                Val(18) = Total_Matriculados.MAIL.CurrentValue
+                Val(19) = Total_Matriculados.CELULAR.CurrentValue
+                Val(20) = Total_Matriculados.DIRACTUAL.CurrentValue
+                Val(21) = Total_Matriculados.CODFAC.CurrentValue
+                Val(22) = Total_Matriculados.FONOACT.CurrentValue
+                Val(23) = Total_Matriculados.SEXO.CurrentValue
+                Val(24) = Total_Matriculados.COMUNA.CurrentValue
+                Val(25) = Total_Matriculados.CIUDADACT.CurrentValue
+                Val(26) = Total_Matriculados.FECNAC.CurrentValue
+                Val(27) = Total_Matriculados.COLEGIO.CurrentValue
+                Val(28) = Total_Matriculados.COMUNACOLEGIO.CurrentValue
+                Val(29) = Total_Matriculados.DEPENDENCIA.CurrentValue
+                Val(30) = Total_Matriculados.COMUNAALUMNO.CurrentValue
+                Val(31) = Total_Matriculados.FECHATIT.CurrentValue
+                Val(32) = Total_Matriculados.FECHAEGR.CurrentValue
+                Val(33) = Total_Matriculados.MODALIDAD.CurrentValue
+                Val(34) = Total_Matriculados.CATEGORIA.CurrentValue
+            Else
+                Total_Matriculados.CODCLI.DbValue = ""
+                Total_Matriculados.DIG.DbValue = ""
+                Total_Matriculados.PATERNO.DbValue = ""
+                Total_Matriculados.MATERNO.DbValue = ""
+                Total_Matriculados.NOMBRE.DbValue = ""
+                Total_Matriculados.DESCRIPCION.DbValue = ""
+                Total_Matriculados.NOMBRE_C.DbValue = ""
+                Total_Matriculados.CODCARR.DbValue = ""
+                Total_Matriculados.JORNADA.DbValue = ""
+                Total_Matriculados.ESTACAD.DbValue = ""
+                Total_Matriculados.FEC_MAT.DbValue = ""
+                Total_Matriculados.ANO.DbValue = ""
+                Total_Matriculados.ANO_MAT.DbValue = ""
+                Total_Matriculados.ESTADO.DbValue = ""
+                Total_Matriculados.SITUACION.DbValue = ""
+                Total_Matriculados.TIPOSITU.DbValue = ""
+                Total_Matriculados.AL_FONO.DbValue = ""
+                Total_Matriculados.MAIL.DbValue = ""
+                Total_Matriculados.CELULAR.DbValue = ""
+                Total_Matriculados.DIRACTUAL.DbValue = ""
+                Total_Matriculados.CODFAC.DbValue = ""
+                Total_Matriculados.FONOACT.DbValue = ""
+                Total_Matriculados.SEXO.DbValue = ""
+                Total_Matriculados.COMUNA.DbValue = ""
+                Total_Matriculados.CIUDADACT.DbValue = ""
+                Total_Matriculados.FECNAC.DbValue = ""
+                Total_Matriculados.COLEGIO.DbValue = ""
+                Total_Matriculados.COMUNACOLEGIO.DbValue = ""
+                Total_Matriculados.DEPENDENCIA.DbValue = ""
+                Total_Matriculados.COMUNAALUMNO.DbValue = ""
+                Total_Matriculados.FECHATIT.DbValue = ""
+                Total_Matriculados.FECHAEGR.DbValue = ""
+                Total_Matriculados.MODALIDAD.DbValue = ""
+                Total_Matriculados.CATEGORIA.DbValue = ""
+            End If
+            Return HasRow
+        End Function
+
+        ' Set up starting group
+        Public Sub SetUpStartGroup()
+
+            ' Exit if no groups
+            If DisplayGrps = 0 Then
+                Return
+            End If
+
+            ' Check for a "start" parameter 
+            If ew_NotEmpty(ew_Get(EWRPT_TABLE_START_GROUP)) AndAlso ewrpt_IsNumeric(ew_Get(EWRPT_TABLE_START_GROUP)) Then
+                StartGrp = ew_ConvertToInt(ew_Get(EWRPT_TABLE_START_GROUP))
+                Total_Matriculados.StartGroup = StartGrp
+            ElseIf ew_NotEmpty(ew_Get("pageno")) Then
+                If ewrpt_IsNumeric(ew_Get("pageno")) Then
+                    Dim nPageNo As Integer = ew_ConvertToInt(ew_Get("pageno"))
+                    StartGrp = (nPageNo - 1) * DisplayGrps + 1
+                    If StartGrp <= 0 Then
+                        StartGrp = 1
+                    ElseIf StartGrp >= ((TotalGrps - 1) / DisplayGrps) * DisplayGrps + 1 Then
+                        StartGrp = ((TotalGrps - 1) / DisplayGrps) * DisplayGrps + 1
+                    End If
+                    Total_Matriculados.StartGroup = StartGrp
+                Else
+                    StartGrp = Total_Matriculados.StartGroup
+                End If
+            Else
+                StartGrp = Total_Matriculados.StartGroup
+            End If
+
+            ' Check if correct start group counter 
+            If StartGrp <= 0 Then   ' Avoid invalid start group counter 
+                StartGrp = 1 ' Reset start group counter 
+                Total_Matriculados.StartGroup = StartGrp
+            ElseIf StartGrp > TotalGrps Then ' Avoid starting group > total groups 
+                StartGrp = ((TotalGrps - 1) / DisplayGrps) * DisplayGrps + 1 ' Point to last page first group 
+                Total_Matriculados.StartGroup = StartGrp
+            ElseIf (StartGrp - 1) Mod DisplayGrps <> 0 Then
+                StartGrp = ((StartGrp - 1) / DisplayGrps) * DisplayGrps + 1 ' Point to page boundary 
+                Total_Matriculados.StartGroup = StartGrp
+            End If
+        End Sub
+
+        ' Set up popup
+        Public Sub SetupPopup()
+            Dim sSql As String = ""
+            Dim rswrk As SqlDataReader
+            Dim bNullValue As Boolean
+            Dim bEmptyValue As Boolean
+            Dim grpval As Object
+
+            ' Initialize popup
+            ' Process post back form
+
+            If (HttpContext.Current.Request.Form.Count > 0) Then
+                Dim sName As String = ew_Post("popup") ' Get popup form name
+                If (ew_NotEmpty(sName)) Then
+                    Dim arValues As Object = HttpContext.Current.Request.Form.GetValues("sel_" + sName)
+                    Dim cntValues As Integer = CType(arValues, String()).Length
+                    If (cntValues > 0) Then
+                        If (ew_Empty(CType(arValues, String())(0))) Then ' Select all
+                            arValues = EWRPT_INIT_VALUE
+                        End If
+                        If Not ewrpt_MatchedArray(arValues, ew_Session("sel_" + sName)) Then
+                            If (HasSessionFilterValues(sName)) Then
+                                ClearExtFilter = sName ' Clear extended filter for this field
+                            End If
+                        End If
+                        ew_Session("sel_" + sName) = arValues
+                        ew_Session("rf_" + sName) = ew_Post("rf_" + sName)
+                        ew_Session("rt_" + sName) = ew_Post("rt_" + sName)
+                        ResetPager()
+                    End If
+                End If
+
+                ' Get 'reset' command
+            ElseIf (ew_NotEmpty(ew_Get("cmd"))) Then '  Get reset cmd
+                Dim sCmd As String = ew_Get("cmd")
+                If (ew_SameText(sCmd, "reset")) Then
+                    ResetPager()
+                End If
+            End If
+
+            ' Load selection criteria to array
+        End Sub
+
+        ' Reset pager to starting position
+        Public Sub ResetPager()
+            StartGrp = 1
+            Total_Matriculados.StartGroup = StartGrp
+        End Sub
+
+        Public Pager As cPrevNextPager
+
+        ' Set up number of groups displayed per page based on form element GrpPerPage 
+        Public Sub SetUpDisplayGrps()
+            Dim sWrk As String = ew_Get(EWRPT_TABLE_GROUP_PER_PAGE)
+            If (ew_NotEmpty(sWrk)) Then
+                If (ewrpt_IsNumeric(sWrk)) Then
+                    DisplayGrps = ew_ConvertToInt(sWrk)
+                Else
+                    If (ew_SameText(sWrk, "ALL")) Then ' Display all records 
+                        DisplayGrps = -1
+                    Else
+                        DisplayGrps = 20 ' Non-numeric, load default 
+                    End If
+                End If
+                Total_Matriculados.GroupPerPage = DisplayGrps ' Save to session
+                StartGrp = 1 ' Reset start position (reset command)				
+                Total_Matriculados.StartGroup = StartGrp
+            Else
+                If (Total_Matriculados.GroupPerPage <> 0) Then
+                    DisplayGrps = ew_ConvertToInt(Total_Matriculados.GroupPerPage) ' Restore from Session 
+                Else
+                    DisplayGrps = 20 ' Load default 
+                End If
+            End If
+        End Sub
+
+        Public Sub RenderRow()
+            If (Total_Matriculados.RowTotalType = EWRPT_ROWTOTAL_GRAND) Then ' Grand total
+
+                ' Get total count from SQL directly
+                Dim sSql As String = ewrpt_BuildReportSql(Total_Matriculados.SqlSelectCount, Total_Matriculados.SqlWhere, Total_Matriculados.SqlGroupBy, Total_Matriculados.SqlHaving, "", Filter, "")
+                TotCount = ew_ConvertToInt(ew_ExecuteScalar(sSql))
+            End If
+
+            ' Call Row_Rendering event
+            Total_Matriculados.Row_Rendering()
+
+            '
+            ' Render view codes
+            '
+
+            If (Total_Matriculados.RowType = EWRPT_ROWTYPE_TOTAL) Then ' Summary row
+
+                ' CODCLI
+                Total_Matriculados.CODCLI.ViewValue = Convert.ToString(Total_Matriculados.CODCLI.Summary)
+
+                ' DIG
+                Total_Matriculados.DIG.ViewValue = Convert.ToString(Total_Matriculados.DIG.Summary)
+
+                ' PATERNO
+                Total_Matriculados.PATERNO.ViewValue = Convert.ToString(Total_Matriculados.PATERNO.Summary)
+
+                ' MATERNO
+                Total_Matriculados.MATERNO.ViewValue = Convert.ToString(Total_Matriculados.MATERNO.Summary)
+
+                ' NOMBRE
+                Total_Matriculados.NOMBRE.ViewValue = Convert.ToString(Total_Matriculados.NOMBRE.Summary)
+
+                ' DESCRIPCION
+                Total_Matriculados.DESCRIPCION.ViewValue = Convert.ToString(Total_Matriculados.DESCRIPCION.Summary)
+
+                ' NOMBRE_C
+                Total_Matriculados.NOMBRE_C.ViewValue = Convert.ToString(Total_Matriculados.NOMBRE_C.Summary)
+
+                ' CODCARR
+                Total_Matriculados.CODCARR.ViewValue = Convert.ToString(Total_Matriculados.CODCARR.Summary)
+
+                ' JORNADA
+                Total_Matriculados.JORNADA.ViewValue = Convert.ToString(Total_Matriculados.JORNADA.Summary)
+
+                ' ESTACAD
+                Total_Matriculados.ESTACAD.ViewValue = Convert.ToString(Total_Matriculados.ESTACAD.Summary)
+
+                ' FEC_MAT
+                Total_Matriculados.FEC_MAT.ViewValue = Convert.ToString(Total_Matriculados.FEC_MAT.Summary)
+                Total_Matriculados.FEC_MAT.ViewValue = ew_FormatDateTime(Total_Matriculados.FEC_MAT.ViewValue, 7)
+
+                ' ANO
+                Total_Matriculados.ANO.ViewValue = Convert.ToString(Total_Matriculados.ANO.Summary)
+
+                ' ANO_MAT
+                Total_Matriculados.ANO_MAT.ViewValue = Convert.ToString(Total_Matriculados.ANO_MAT.Summary)
+
+                ' ESTADO
+                Total_Matriculados.ESTADO.ViewValue = Convert.ToString(Total_Matriculados.ESTADO.Summary)
+
+                ' SITUACION
+                Total_Matriculados.SITUACION.ViewValue = Convert.ToString(Total_Matriculados.SITUACION.Summary)
+
+                ' TIPOSITU
+                Total_Matriculados.TIPOSITU.ViewValue = Convert.ToString(Total_Matriculados.TIPOSITU.Summary)
+
+                ' AL_FONO
+                Total_Matriculados.AL_FONO.ViewValue = Convert.ToString(Total_Matriculados.AL_FONO.Summary)
+
+                ' MAIL
+                Total_Matriculados.MAIL.ViewValue = Convert.ToString(Total_Matriculados.MAIL.Summary)
+
+                ' CELULAR
+                Total_Matriculados.CELULAR.ViewValue = Convert.ToString(Total_Matriculados.CELULAR.Summary)
+
+                ' DIRACTUAL
+                Total_Matriculados.DIRACTUAL.ViewValue = Convert.ToString(Total_Matriculados.DIRACTUAL.Summary)
+
+                ' CODFAC
+                Total_Matriculados.CODFAC.ViewValue = Convert.ToString(Total_Matriculados.CODFAC.Summary)
+
+                ' FONOACT
+                Total_Matriculados.FONOACT.ViewValue = Convert.ToString(Total_Matriculados.FONOACT.Summary)
+
+                ' SEXO
+                Total_Matriculados.SEXO.ViewValue = Convert.ToString(Total_Matriculados.SEXO.Summary)
+
+                ' COMUNA
+                Total_Matriculados.COMUNA.ViewValue = Convert.ToString(Total_Matriculados.COMUNA.Summary)
+
+                ' CIUDADACT
+                Total_Matriculados.CIUDADACT.ViewValue = Convert.ToString(Total_Matriculados.CIUDADACT.Summary)
+
+                ' FECNAC
+                Total_Matriculados.FECNAC.ViewValue = Convert.ToString(Total_Matriculados.FECNAC.Summary)
+                'Total_Matriculados.FECNAC.ViewValue = ew_FormatDateTime(Total_Matriculados.FECNAC.ViewValue, 7)
+
+                ' COLEGIO
+                Total_Matriculados.COLEGIO.ViewValue = Convert.ToString(Total_Matriculados.COLEGIO.Summary)
+                'Total_Matriculados.COLEGIO.ViewValue = ew_FormatDateTime(Total_Matriculados.COLEGIO.ViewValue, 7)
+
+                ' COMUNACOLEGIO
+                Total_Matriculados.COMUNACOLEGIO.ViewValue = Convert.ToString(Total_Matriculados.COMUNACOLEGIO.Summary)
+                'Total_Matriculados.COMUNACOLEGIO.ViewValue = ew_FormatDateTime(Total_Matriculados.COMUNACOLEGIO.ViewValue, 7)
+
+                ' DEPENDENCIA
+                Total_Matriculados.DEPENDENCIA.ViewValue = Convert.ToString(Total_Matriculados.DEPENDENCIA.Summary)
+                'Total_Matriculados.DEPENDENCIA.ViewValue = ew_FormatDateTime(Total_Matriculados.DEPENDENCIA.ViewValue, 7)
+
+                ' COMUNAALUMNO
+                Total_Matriculados.COMUNAALUMNO.ViewValue = Convert.ToString(Total_Matriculados.COMUNAALUMNO.Summary)
+                ''  Total_Matriculados.COMUNAALUMNO.ViewValue = ew_FormatDateTime(Total_Matriculados.COMUNAALUMNO.ViewValue, 7)
+
+                ' FECHATIT
+                Total_Matriculados.FECHATIT.ViewValue = Convert.ToString(Total_Matriculados.FECHATIT.Summary)
+                'Total_Matriculados.ANOTIT.ViewValue = ew_FormatDateTime(Total_Matriculados.ANOTIT.ViewValue, 7)
+
+                ' FECHAEGR
+                Total_Matriculados.FECHAEGR.ViewValue = Convert.ToString(Total_Matriculados.FECHAEGR.Summary)
+                'Total_Matriculados.ANOEGR.ViewValue = ew_FormatDateTime(Total_Matriculados.ANOEGR.ViewValue, 7)				
+
+                ' MODALIDAD
+                Total_Matriculados.MODALIDAD.ViewValue = Convert.ToString(Total_Matriculados.MODALIDAD.Summary)
+                'Total_Matriculados.ANOEGR.ViewValue = ew_FormatDateTime(Total_Matriculados.ANOEGR.ViewValue, 7)				
+
+                ' CATEGORIA
+                Total_Matriculados.CATEGORIA.ViewValue = Convert.ToString(Total_Matriculados.CATEGORIA.Summary)
+                'Total_Matriculados.ANOEGR.ViewValue = ew_FormatDateTime(Total_Matriculados.ANOEGR.ViewValue, 7)				
+
+            Else
+
+                ' CODCLI
+                Total_Matriculados.CODCLI.ViewValue = Convert.ToString(Total_Matriculados.CODCLI.CurrentValue)
+                Total_Matriculados.CODCLI.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' DIG
+                Total_Matriculados.DIG.ViewValue = Convert.ToString(Total_Matriculados.DIG.CurrentValue)
+                Total_Matriculados.DIG.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' PATERNO
+                Total_Matriculados.PATERNO.ViewValue = Convert.ToString(Total_Matriculados.PATERNO.CurrentValue)
+                Total_Matriculados.PATERNO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' MATERNO
+                Total_Matriculados.MATERNO.ViewValue = Convert.ToString(Total_Matriculados.MATERNO.CurrentValue)
+                Total_Matriculados.MATERNO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' NOMBRE
+                Total_Matriculados.NOMBRE.ViewValue = Convert.ToString(Total_Matriculados.NOMBRE.CurrentValue)
+                Total_Matriculados.NOMBRE.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' DESCRIPCION
+                Total_Matriculados.DESCRIPCION.ViewValue = Convert.ToString(Total_Matriculados.DESCRIPCION.CurrentValue)
+                Total_Matriculados.DESCRIPCION.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' NOMBRE_C
+                Total_Matriculados.NOMBRE_C.ViewValue = Convert.ToString(Total_Matriculados.NOMBRE_C.CurrentValue)
+                Total_Matriculados.NOMBRE_C.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' CODCARR
+                Total_Matriculados.CODCARR.ViewValue = Convert.ToString(Total_Matriculados.CODCARR.CurrentValue)
+                Total_Matriculados.CODCARR.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' JORNADA
+                Total_Matriculados.JORNADA.ViewValue = Convert.ToString(Total_Matriculados.JORNADA.CurrentValue)
+                Total_Matriculados.JORNADA.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' ESTACAD
+                Total_Matriculados.ESTACAD.ViewValue = Convert.ToString(Total_Matriculados.ESTACAD.CurrentValue)
+                Total_Matriculados.ESTACAD.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' FEC_MAT
+                Total_Matriculados.FEC_MAT.ViewValue = Convert.ToString(Total_Matriculados.FEC_MAT.CurrentValue)
+                Total_Matriculados.FEC_MAT.ViewValue = ew_FormatDateTime(Total_Matriculados.FEC_MAT.ViewValue, 7)
+                Total_Matriculados.FEC_MAT.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' ANO
+                Total_Matriculados.ANO.ViewValue = Convert.ToString(Total_Matriculados.ANO.CurrentValue)
+                Total_Matriculados.ANO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' ANO_MAT
+                Total_Matriculados.ANO_MAT.ViewValue = Convert.ToString(Total_Matriculados.ANO_MAT.CurrentValue)
+                Total_Matriculados.ANO_MAT.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' ESTADO
+                Total_Matriculados.ESTADO.ViewValue = Convert.ToString(Total_Matriculados.ESTADO.CurrentValue)
+                Total_Matriculados.ESTADO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' SITUACION
+                Total_Matriculados.SITUACION.ViewValue = Convert.ToString(Total_Matriculados.SITUACION.CurrentValue)
+                Total_Matriculados.SITUACION.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' TIPOSITU
+                Total_Matriculados.TIPOSITU.ViewValue = Convert.ToString(Total_Matriculados.TIPOSITU.CurrentValue)
+                Total_Matriculados.TIPOSITU.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' AL_FONO
+                Total_Matriculados.AL_FONO.ViewValue = Convert.ToString(Total_Matriculados.AL_FONO.CurrentValue)
+                Total_Matriculados.AL_FONO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' MAIL
+                Total_Matriculados.MAIL.ViewValue = Convert.ToString(Total_Matriculados.MAIL.CurrentValue)
+                Total_Matriculados.MAIL.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' CELULAR
+                Total_Matriculados.CELULAR.ViewValue = Convert.ToString(Total_Matriculados.CELULAR.CurrentValue)
+                Total_Matriculados.CELULAR.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' DIRACTUAL
+                Total_Matriculados.DIRACTUAL.ViewValue = Convert.ToString(Total_Matriculados.DIRACTUAL.CurrentValue)
+                Total_Matriculados.DIRACTUAL.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' CODFAC
+                Total_Matriculados.CODFAC.ViewValue = Convert.ToString(Total_Matriculados.CODFAC.CurrentValue)
+                Total_Matriculados.CODFAC.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' FONOACT
+                Total_Matriculados.FONOACT.ViewValue = Convert.ToString(Total_Matriculados.FONOACT.CurrentValue)
+                Total_Matriculados.FONOACT.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' SEXO
+                Total_Matriculados.SEXO.ViewValue = Convert.ToString(Total_Matriculados.SEXO.CurrentValue)
+                Total_Matriculados.SEXO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' COMUNA
+                Total_Matriculados.COMUNA.ViewValue = Convert.ToString(Total_Matriculados.COMUNA.CurrentValue)
+                Total_Matriculados.COMUNA.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' CIUDADACT
+                Total_Matriculados.CIUDADACT.ViewValue = Convert.ToString(Total_Matriculados.CIUDADACT.CurrentValue)
+                Total_Matriculados.CIUDADACT.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' FECNAC
+                Total_Matriculados.FECNAC.ViewValue = Convert.ToString(Total_Matriculados.FECNAC.CurrentValue)
+                Total_Matriculados.FECNAC.ViewValue = ew_FormatDateTime(Total_Matriculados.FECNAC.ViewValue, 7)
+                Total_Matriculados.FECNAC.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' COLEGIO
+
+
+                Total_Matriculados.COLEGIO.ViewValue = Convert.ToString(Total_Matriculados.COLEGIO.CurrentValue)
+                '   Total_Matriculados.COLEGIO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' COMUNACOLEGIO
+                Total_Matriculados.COMUNACOLEGIO.ViewValue = Convert.ToString(Total_Matriculados.COMUNACOLEGIO.CurrentValue)
+                '  Total_Matriculados.COMUNACOLEGIO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' DEPENDENCIA
+                Total_Matriculados.DEPENDENCIA.ViewValue = Convert.ToString(Total_Matriculados.DEPENDENCIA.CurrentValue)
+                '   Total_Matriculados.DEPENDENCIA.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' COMUNAALUMNO
+                Total_Matriculados.COMUNAALUMNO.ViewValue = Convert.ToString(Total_Matriculados.COMUNAALUMNO.CurrentValue)
+                '  Total_Matriculados.COMUNAALUMNO.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' FECHATIT
+                Total_Matriculados.FECHATIT.ViewValue = Convert.ToString(Total_Matriculados.FECHATIT.CurrentValue)
+                Total_Matriculados.FECHATIT.ViewValue = ew_FormatDateTime(Total_Matriculados.FECHATIT.ViewValue, 7)
+                Total_Matriculados.FECHATIT.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' FECHAEGR
+                Total_Matriculados.FECHAEGR.ViewValue = Convert.ToString(Total_Matriculados.FECHAEGR.CurrentValue)
+                Total_Matriculados.FECHAEGR.ViewValue = ew_FormatDateTime(Total_Matriculados.FECHAEGR.ViewValue, 7)
+                Total_Matriculados.FECHAEGR.CellAttrs("class") = IIf(RecCount Mod 2 <> 1, "ewTableAltRow", "ewTableRow")
+
+                ' MODALIDAD
+                Total_Matriculados.MODALIDAD.ViewValue = Convert.ToString(Total_Matriculados.MODALIDAD.CurrentValue)
+
+                ' CATEGORIA
+                Total_Matriculados.CATEGORIA.ViewValue = Convert.ToString(Total_Matriculados.CATEGORIA.CurrentValue)
+
+
+            End If
+
+            ' CODCLI
+            Total_Matriculados.CODCLI.HrefValue = ""
+
+            ' DIG
+            Total_Matriculados.DIG.HrefValue = ""
+
+            ' PATERNO
+            Total_Matriculados.PATERNO.HrefValue = ""
+
+            ' MATERNO
+            Total_Matriculados.MATERNO.HrefValue = ""
+
+            ' NOMBRE
+            Total_Matriculados.NOMBRE.HrefValue = ""
+
+            ' DESCRIPCION
+            Total_Matriculados.DESCRIPCION.HrefValue = ""
+
+            ' NOMBRE_C
+            Total_Matriculados.NOMBRE_C.HrefValue = ""
+
+            ' CODCARR
+            Total_Matriculados.CODCARR.HrefValue = ""
+
+            ' JORNADA
+            Total_Matriculados.JORNADA.HrefValue = ""
+
+            ' ESTACAD
+            Total_Matriculados.ESTACAD.HrefValue = ""
+
+            ' FEC_MAT
+            Total_Matriculados.FEC_MAT.HrefValue = ""
+
+            ' ANO
+            Total_Matriculados.ANO.HrefValue = ""
+
+            ' ANO_MAT
+            Total_Matriculados.ANO_MAT.HrefValue = ""
+
+            ' ESTADO
+            Total_Matriculados.ESTADO.HrefValue = ""
+
+            ' SITUACION
+            Total_Matriculados.SITUACION.HrefValue = ""
+
+            ' TIPOSITU
+            Total_Matriculados.TIPOSITU.HrefValue = ""
+
+            ' AL_FONO
+            Total_Matriculados.AL_FONO.HrefValue = ""
+
+            ' MAIL
+            Total_Matriculados.MAIL.HrefValue = ""
+
+            ' CELULAR
+            Total_Matriculados.CELULAR.HrefValue = ""
+
+            ' DIRACTUAL
+            Total_Matriculados.DIRACTUAL.HrefValue = ""
+
+            ' CODFAC
+            Total_Matriculados.CODFAC.HrefValue = ""
+
+            ' FONOACT
+            Total_Matriculados.FONOACT.HrefValue = ""
+
+            ' SEXO
+            Total_Matriculados.SEXO.HrefValue = ""
+
+            ' COMUNA
+            Total_Matriculados.COMUNA.HrefValue = ""
+
+            ' CIUDADACT
+            Total_Matriculados.CIUDADACT.HrefValue = ""
+
+            ' FECNAC
+            Total_Matriculados.FECNAC.HrefValue = ""
+
+            ' COLEGIO
+            Total_Matriculados.COLEGIO.HrefValue = ""
+
+            ' COMUNACOLEGIO
+            Total_Matriculados.COMUNACOLEGIO.HrefValue = ""
+
+            ' DEPENDENCIA
+            Total_Matriculados.DEPENDENCIA.HrefValue = ""
+
+            ' COMUNAALUMNO
+            Total_Matriculados.COMUNAALUMNO.HrefValue = ""
+
+            ' FECHATIT
+            Total_Matriculados.FECHATIT.HrefValue = ""
+
+            ' FECHAEGR
+            Total_Matriculados.FECHAEGR.HrefValue = ""
+
+            ' MODALIDAD
+            Total_Matriculados.MODALIDAD.HrefValue = ""
+
+            ' CATEGORIA
+            Total_Matriculados.CATEGORIA.HrefValue = ""
+
+
+            ' Call Row_Rendered event
+            Total_Matriculados.Row_Rendered()
+        End Sub
+
+        '
+        ' Extended filter
+        '
+        ' Get extended filter values
+        Public Sub GetExtendedFilterValues()
+            Dim sSelect As String
+            Dim sWhere As String = ""
+            Dim sOrderBy As String
+            Dim wrkSql As String
+
+            ' Field NOMBRE_C
+            sSelect = "SELECT DISTINCT [NOMBRE_C] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[NOMBRE_C] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.NOMBRE_C.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+
+            ' Field JORNADA
+            sSelect = "SELECT DISTINCT [JORNADA] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[JORNADA] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.JORNADA.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+
+            ' Field ESTACAD
+            sSelect = "SELECT DISTINCT [ESTACAD] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[ESTACAD] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.ESTACAD.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+
+            ' Field ANO
+            sSelect = "SELECT DISTINCT [ANO] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[ANO] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.ANO.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+
+            ' Field ANO_MAT
+            sSelect = "SELECT DISTINCT [ANO_MAT] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[ANO_MAT] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.ANO_MAT.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+
+            ' Field ESTADO
+            sSelect = "SELECT DISTINCT [ESTADO] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[ESTADO] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.ESTADO.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+
+            ' Field SITUACION
+            sSelect = "SELECT DISTINCT [SITUACION] FROM " + Total_Matriculados.SqlFrom
+            sOrderBy = "[SITUACION] ASC"
+            wrkSql = ewrpt_BuildReportSql(sSelect, Total_Matriculados.SqlWhere, "", "", sOrderBy, UserIDFilter, "")
+            Total_Matriculados.SITUACION.DropDownList = ParentPage.ewrpt_GetDistinctValues("", wrkSql)
+        End Sub
+
+        ' Return extended filter
+        Public Function GetExtendedFilter() As String
+            Dim sFilter As String = ""
+            Dim sWrk As String
+            Dim bPostBack As Boolean = (HttpContext.Current.Request.Form.Count > 0)
+            Dim bRestoreSession As Boolean = True
+            Dim bSetupFilter As Boolean = False
+            If bPostBack Then ' Reset extended filter if filter changed
+            ElseIf ew_SameText(ew_Get("cmd"), "reset") Then ' Reset search command
+
+                ' Field CODCLI
+                SetSessionFilterValues(Total_Matriculados.CODCLI)
+
+                ' Field PATERNO
+                SetSessionFilterValues(Total_Matriculados.PATERNO)
+
+                ' Field MATERNO
+                SetSessionFilterValues(Total_Matriculados.MATERNO)
+
+                ' Field NOMBRE
+                SetSessionFilterValues(Total_Matriculados.NOMBRE)
+
+                ' Field NOMBRE_C
+                SetSessionDropDownValue(Total_Matriculados.NOMBRE_C.DropDownValue, Total_Matriculados.NOMBRE_C)
+
+                ' Field JORNADA
+                SetSessionDropDownValue(Total_Matriculados.JORNADA.DropDownValue, Total_Matriculados.JORNADA)
+
+                ' Field ESTACAD
+                SetSessionDropDownValue(Total_Matriculados.ESTACAD.DropDownValue, Total_Matriculados.ESTACAD)
+
+                ' Field FEC_MAT
+                SetSessionFilterValues(Total_Matriculados.FEC_MAT)
+
+                ' Field ANO
+                SetSessionDropDownValue(Total_Matriculados.ANO.DropDownValue, Total_Matriculados.ANO)
+
+                ' Field ANO_MAT
+                SetSessionDropDownValue(Total_Matriculados.ANO_MAT.DropDownValue, Total_Matriculados.ANO_MAT)
+
+                ' Field ESTADO
+                SetSessionDropDownValue(Total_Matriculados.ESTADO.DropDownValue, Total_Matriculados.ESTADO)
+
+                ' Field SITUACION
+                SetSessionDropDownValue(Total_Matriculados.SITUACION.DropDownValue, Total_Matriculados.SITUACION)
+                bSetupFilter = True ' Set up filter required
+
+
+
+            Else
+
+                ' Field CODCLI
+                If (GetFilterValues(Total_Matriculados.CODCLI)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                End If
+
+                ' Field PATERNO
+                If (GetFilterValues(Total_Matriculados.PATERNO)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                End If
+
+                ' Field MATERNO
+                If (GetFilterValues(Total_Matriculados.MATERNO)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                End If
+
+                ' Field NOMBRE
+                If (GetFilterValues(Total_Matriculados.NOMBRE)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                End If
+
+                ' Field NOMBRE_C
+                If (GetDropDownValue(Total_Matriculados.NOMBRE_C)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.NOMBRE_C.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.NOMBRE_C.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_NOMBRE_C") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+
+                ' Field JORNADA
+                If (GetDropDownValue(Total_Matriculados.JORNADA)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.JORNADA.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.JORNADA.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_JORNADA") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+
+                ' Field ESTACAD
+                If (GetDropDownValue(Total_Matriculados.ESTACAD)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.ESTACAD.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.ESTACAD.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_ESTACAD") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+
+                ' Field FEC_MAT
+                If (GetFilterValues(Total_Matriculados.FEC_MAT)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                End If
+
+                ' Field ANO
+                If (GetDropDownValue(Total_Matriculados.ANO)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.ANO.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.ANO.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_ANO") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+
+                ' Field ANO_MAT
+                If (GetDropDownValue(Total_Matriculados.ANO_MAT)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.ANO_MAT.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.ANO_MAT.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_ANO_MAT") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+
+                ' Field ESTADO
+                If (GetDropDownValue(Total_Matriculados.ESTADO)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.ESTADO.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.ESTADO.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_ESTADO") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+
+                ' Field SITUACION
+                If (GetDropDownValue(Total_Matriculados.SITUACION)) Then
+                    bSetupFilter = True ' Set up filter required
+                    bRestoreSession = False ' Do not restore from session
+                ElseIf Not ew_IsArrayList(Total_Matriculados.SITUACION.DropDownValue) Then
+                    If Not ew_SameStr(Total_Matriculados.SITUACION.DropDownValue, EWRPT_INIT_VALUE) AndAlso ew_Session("sv_Total_Matriculados_SITUACION") Is Nothing Then
+                        bSetupFilter = True ' Set up filter required
+                    End If
+                End If
+                If Not ValidateForm() Then
+                    Message = gsFormError
+                    Return sFilter
+                End If
+            End If
+
+            ' Restore session
+            If bRestoreSession Then
+
+                ' Field CODCLI
+                GetSessionFilterValues(Total_Matriculados.CODCLI)
+
+                ' Field PATERNO
+                GetSessionFilterValues(Total_Matriculados.PATERNO)
+
+                ' Field MATERNO
+                GetSessionFilterValues(Total_Matriculados.MATERNO)
+
+                ' Field NOMBRE
+                GetSessionFilterValues(Total_Matriculados.NOMBRE)
+
+                ' Field NOMBRE_C
+                GetSessionDropDownValue(Total_Matriculados.NOMBRE_C)
+
+                ' Field JORNADA
+                GetSessionDropDownValue(Total_Matriculados.JORNADA)
+
+                ' Field ESTACAD
+                GetSessionDropDownValue(Total_Matriculados.ESTACAD)
+
+                ' Field FEC_MAT
+                GetSessionFilterValues(Total_Matriculados.FEC_MAT)
+
+                ' Field ANO
+                GetSessionDropDownValue(Total_Matriculados.ANO)
+
+                ' Field ANO_MAT
+                GetSessionDropDownValue(Total_Matriculados.ANO_MAT)
+
+                ' Field ESTADO
+                GetSessionDropDownValue(Total_Matriculados.ESTADO)
+
+                ' Field SITUACION
+                GetSessionDropDownValue(Total_Matriculados.SITUACION)
+            End If
+
+            ' Call page filter validated event
+            Total_Matriculados.Page_FilterValidated()
+
+            ' Build SQL
+            ' Field CODCLI
+
+            BuildExtendedFilter(Total_Matriculados.CODCLI, sFilter)
+
+            ' Field PATERNO
+            BuildExtendedFilter(Total_Matriculados.PATERNO, sFilter)
+
+            ' Field MATERNO
+            BuildExtendedFilter(Total_Matriculados.MATERNO, sFilter)
+
+            ' Field NOMBRE
+            BuildExtendedFilter(Total_Matriculados.NOMBRE, sFilter)
+
+            ' Field NOMBRE_C
+            BuildDropDownFilter(Total_Matriculados.NOMBRE_C, sFilter, "")
+
+            ' Field JORNADA
+            BuildDropDownFilter(Total_Matriculados.JORNADA, sFilter, "")
+
+            ' Field ESTACAD
+            BuildDropDownFilter(Total_Matriculados.ESTACAD, sFilter, "")
+
+            ' Field FEC_MAT
+            BuildExtendedFilter(Total_Matriculados.FEC_MAT, sFilter)
+
+            ' Field ANO
+            BuildDropDownFilter(Total_Matriculados.ANO, sFilter, "")
+
+            ' Field ANO_MAT
+            BuildDropDownFilter(Total_Matriculados.ANO_MAT, sFilter, "")
+
+            ' Field ESTADO
+            BuildDropDownFilter(Total_Matriculados.ESTADO, sFilter, "")
+
+            ' Field SITUACION
+            BuildDropDownFilter(Total_Matriculados.SITUACION, sFilter, "")
+
+            ' Save parms to Session
+            ' Field CODCLI
+
+            SetSessionFilterValues(Total_Matriculados.CODCLI)
+
+            ' Field PATERNO
+            SetSessionFilterValues(Total_Matriculados.PATERNO)
+
+            ' Field MATERNO
+            SetSessionFilterValues(Total_Matriculados.MATERNO)
+
+            ' Field NOMBRE
+            SetSessionFilterValues(Total_Matriculados.NOMBRE)
+
+            ' Field NOMBRE_C
+            SetSessionDropDownValue(Total_Matriculados.NOMBRE_C.DropDownValue, Total_Matriculados.NOMBRE_C)
+
+            ' Field JORNADA
+            SetSessionDropDownValue(Total_Matriculados.JORNADA.DropDownValue, Total_Matriculados.JORNADA)
+
+            ' Field ESTACAD
+            SetSessionDropDownValue(Total_Matriculados.ESTACAD.DropDownValue, Total_Matriculados.ESTACAD)
+
+            ' Field FEC_MAT
+            SetSessionFilterValues(Total_Matriculados.FEC_MAT)
+
+            ' Field ANO
+            SetSessionDropDownValue(Total_Matriculados.ANO.DropDownValue, Total_Matriculados.ANO)
+
+            ' Field ANO_MAT
+            SetSessionDropDownValue(Total_Matriculados.ANO_MAT.DropDownValue, Total_Matriculados.ANO_MAT)
+
+            ' Field ESTADO
+            SetSessionDropDownValue(Total_Matriculados.ESTADO.DropDownValue, Total_Matriculados.ESTADO)
+
+            ' Field SITUACION
+            SetSessionDropDownValue(Total_Matriculados.SITUACION.DropDownValue, Total_Matriculados.SITUACION)
+
+            ' Setup filter
+            If bSetupFilter Then
+                Dim sSql As String
+            End If
+            Return sFilter
+        End Function
+
+        ' Get drop down value from querystring 
+        Public Function GetDropDownValue(ByRef fld As crField) As Boolean
+            If HttpContext.Current.Request.Form.Count > 0 Then
+                Return False
+            End If
+
+            ' Skip post back
+            Dim parm As String = fld.FldVar.Substring(2)
+            If ew_NotEmpty(ew_Get("sv_" + parm)) Then
+                Dim sv As Object = HttpContext.Current.Request.QueryString.GetValues("sv_" + parm)
+                If DirectCast(sv, String()).Length = 1 Then
+                    sv = ew_Get("sv_" + parm)
+                End If
+                fld.DropDownValue = sv
+                Return True
+            End If
+            Return False
+        End Function
+
+        ' Get filter values from querystring 
+        Public Function GetFilterValues(ByRef fld As crField) As Boolean
+            Dim parm As String = fld.FldVar.Substring(2)
+            Dim ReturnValue As Boolean = False
+
+            ' Skip post back 
+            If HttpContext.Current.Request.Form.Count > 0 Then Return ReturnValue
+            If HttpContext.Current.Request.QueryString("sv1_" & parm) IsNot Nothing Then
+                fld.SearchValue = ew_Get("sv1_" & parm)
+                ReturnValue = True
+            End If
+            If HttpContext.Current.Request.QueryString("so1_" & parm) IsNot Nothing Then
+                fld.SearchOperator = ew_Get("so1_" & parm)
+                ReturnValue = True
+            End If
+            If HttpContext.Current.Request.QueryString("sc_" & parm) IsNot Nothing Then
+                fld.SearchCondition = ew_Get("sc_" & parm)
+                ReturnValue = True
+            End If
+            If HttpContext.Current.Request.QueryString("sv2_" & parm) IsNot Nothing Then
+                fld.SearchValue2 = ew_Get("sv2_" & parm)
+                ReturnValue = True
+            End If
+            If HttpContext.Current.Request.QueryString("so2_" & parm) IsNot Nothing Then
+                fld.SearchOperator2 = ew_Get("so2_" & parm)
+                ReturnValue = True
+            End If
+            Return ReturnValue
+        End Function
+
+        ' Set default ext filter
+        Public Sub SetDefaultExtFilter(ByRef fld As crField, ByVal so1 As String, ByVal sv1 As String, ByVal sc As String, ByVal so2 As String, ByVal sv2 As String)
+            fld.DefaultSearchValue = sv1 ' Default ext filter value 1
+            fld.DefaultSearchOperator = so1 ' Default search operator 1
+            fld.DefaultSearchCondition = sc ' Default search condition (if operator 2 is enabled)
+            fld.DefaultSearchValue2 = sv2   ' Default ext filter value 2 (if operator 2 is enabled)
+            fld.DefaultSearchOperator2 = so2 ' Default search operator 2 (if operator 2 is enabled)
+        End Sub
+
+        ' Apply default ext filter
+        Public Sub ApplyDefaultExtFilter(ByRef fld As crField)
+            fld.SearchValue = fld.DefaultSearchValue
+            fld.SearchOperator = fld.DefaultSearchOperator
+            fld.SearchCondition = fld.DefaultSearchCondition
+            fld.SearchValue2 = fld.DefaultSearchValue2
+            fld.SearchOperator2 = fld.DefaultSearchOperator2
+        End Sub
+
+        ' Check if Text Filter applied
+        Public Function TextFilterApplied(ByRef fld As crField) As Boolean
+            Return (Not ew_SameStr(fld.SearchValue, fld.DefaultSearchValue) OrElse Not ew_SameStr(fld.SearchValue2, fld.DefaultSearchValue2) OrElse (ew_NotEmpty(fld.SearchValue) AndAlso Not ew_SameStr(fld.SearchOperator, fld.DefaultSearchOperator)) OrElse (ew_NotEmpty(fld.SearchValue2) AndAlso Not ew_SameStr(fld.SearchOperator2, fld.DefaultSearchOperator2)) OrElse Not ew_SameStr(fld.SearchCondition, fld.DefaultSearchCondition))
+        End Function
+
+        ' Check if Non-Text Filter applied
+        Public Function NonTextFilterApplied(ByRef fld As crField) As Boolean
+            If ewrpt_IsArray(fld.DefaultDropDownValue) AndAlso ewrpt_IsArray(fld.DropDownValue) Then
+                Dim ar1 As String() = DirectCast(fld.DropDownValue, String())
+                Dim ar2 As String() = DirectCast(fld.DefaultDropDownValue, String())
+                If ar1.Length <> ar2.Length Then
+                    Return True
+                Else
+                    Array.Sort(ar1)
+                    Array.Sort(ar2)
+                    Return Not ewrpt_MatchedArray(ar1, ar2)
+                End If
+            ElseIf ewrpt_IsArray(fld.DefaultDropDownValue) OrElse ewrpt_IsArray(fld.DropDownValue) Then
+                Return True
+            Else
+                Dim v1 As String = Convert.ToString(fld.DefaultDropDownValue)
+                If v1 = EWRPT_INIT_VALUE Then
+                    v1 = ""
+                End If
+                Dim v2 As String = Convert.ToString(fld.DropDownValue)
+                If v2 = EWRPT_INIT_VALUE OrElse v2 = EWRPT_ALL_VALUE Then
+                    v2 = ""
+                End If
+                Return (Not ew_SameStr(v1, v2))
+            End If
+        End Function
+
+        ' Load selection from a filter clause
+        Public Sub LoadSelectionFromFilter(ByRef fld As crField, ByVal filter As String, ByRef sel As ArrayList)
+            sel.Clear()
+            If ew_NotEmpty(filter) Then
+                Dim sSql As String = ewrpt_BuildReportSql(fld.SqlSelect, "", "", "", fld.SqlOrderBy, filter, "")
+                ParentPage.ewrpt_LoadArrayListFromSql(sSql, sel)
+            End If
+        End Sub
+
+        ' Load selection from a filter clause
+        Public Sub LoadSelectionFromFilter(ByRef fld As crField, ByVal filter As String, ByRef sel As String())
+            sel = New String(-1) {}
+            If ew_NotEmpty(filter) Then
+                Dim sSql As String = ewrpt_BuildReportSql(fld.SqlSelect, "", "", "", fld.SqlOrderBy, filter, "")
+                ParentPage.ewrpt_LoadArrayFromSql(sSql, sel)
+            End If
+        End Sub
+
+        ' Get dropdown value from Session 
+        Public Sub GetSessionDropDownValue(ByRef fld As crField)
+            Dim parm As String = fld.FldVar.Substring(2)
+            If ew_Session("sv_Total_Matriculados_" + parm) IsNot Nothing Then
+                fld.DropDownValue = ew_Session("sv_Total_Matriculados_" + parm)
+            End If
+        End Sub
+
+        ' Set dropdown value to Session 
+        Public Sub SetSessionDropDownValue(ByVal sv As Object, ByRef fld As crField)
+            Dim parm As String = fld.FldVar.Substring(2)
+            ew_Session("sv_Total_Matriculados_" + parm) = sv
+        End Sub
+
+        ' Get filter values from Session 
+        Public Sub GetSessionFilterValues(ByRef fld As crField)
+            Dim parm As String = fld.FldVar.Substring(2)
+            If ew_Session("sv1_Total_Matriculados_" + parm) IsNot Nothing Then
+                fld.SearchValue = ew_Session("sv1_Total_Matriculados_" + parm)
+            End If
+            If ew_Session("so1_Total_Matriculados_" + parm) IsNot Nothing Then
+                fld.SearchOperator = Convert.ToString(ew_Session("so1_Total_Matriculados_" + parm))
+            End If
+            If ew_Session("sc_Total_Matriculados_" + parm) IsNot Nothing Then
+                fld.SearchCondition = Convert.ToString(ew_Session("sc_Total_Matriculados_" + parm))
+            End If
+            If ew_Session("sv2_Total_Matriculados_" + parm) IsNot Nothing Then
+                fld.SearchValue2 = ew_Session("sv2_Total_Matriculados_" + parm)
+            End If
+            If ew_Session("so2_Total_Matriculados_" + parm) IsNot Nothing Then
+                fld.SearchOperator2 = Convert.ToString(ew_Session("so2_Total_Matriculados_" + parm))
+            End If
+        End Sub
+
+        ' Set filter values to Session		
+        Public Sub SetSessionFilterValues(ByRef fld As crField)
+            Dim parm As String = fld.FldVar.Substring(2)
+            ew_Session("sv1_Total_Matriculados_" + parm) = fld.SearchValue
+            ew_Session("so1_Total_Matriculados_" + parm) = fld.SearchOperator
+            ew_Session("sc_Total_Matriculados_" + parm) = fld.SearchCondition
+            ew_Session("sv2_Total_Matriculados_" + parm) = fld.SearchValue2
+            ew_Session("so2_Total_Matriculados_" + parm) = fld.SearchOperator2
+        End Sub
+
+        ' Clear filter values from Session		
+        Public Sub ClearSessionFilterValues(ByRef fld As crField)
+            Dim parm As String = fld.FldVar.Substring(2)
+            ew_Session("sv1_Total_Matriculados_" + parm) = ""
+            ew_Session("so1_Total_Matriculados_" + parm) = "="
+            ew_Session("sc_Total_Matriculados_" + parm) = "AND"
+            ew_Session("sv2_Total_Matriculados_" + parm) = ""
+            ew_Session("so2_Total_Matriculados_" + parm) = "="
+        End Sub
+
+        ' Check if has Session filter values 
+        Public Function HasSessionFilterValues(ByVal parm As String) As Boolean
+            Return (ew_NotEmpty(ew_Session("sv_" + parm)) AndAlso Not ew_SameStr(ew_Session("sv_" + parm), EWRPT_INIT_VALUE)) OrElse (ew_NotEmpty(ew_Session("sv1_" + parm)) AndAlso Not ew_SameStr(ew_Session("sv1_" + parm), EWRPT_INIT_VALUE)) OrElse (ew_NotEmpty(ew_Session("sv2_" + parm)) AndAlso Not ew_SameStr(ew_Session("sv2_" + parm), EWRPT_INIT_VALUE))
+        End Function
+
+        ' Check if dropdown filter
+        Public Function DropDownFilterExist(ByRef fld As crField, ByVal FldOpr As String) As Boolean
+            Dim sWrk As String = ""
+            BuildDropDownFilter(fld, sWrk, FldOpr)
+            Return ew_NotEmpty(sWrk)
+        End Function
+
+        ' Build dropdown filter
+        Public Sub BuildDropDownFilter(ByRef fld As crField, ByRef FilterClause As String, ByVal FldOpr As String)
+            Dim FldVal As Object = fld.DropDownValue
+            Dim sSql As String = ""
+            If ewrpt_IsArray(FldVal) Then
+                Dim arwrk As String() = DirectCast(FldVal, String())
+                Dim sWrk As String
+                For Each val As String In arwrk
+                    sWrk = GetDropDownFilter(fld, val, FldOpr)
+                    If ew_NotEmpty(sWrk) Then
+                        sSql = IIf(ew_NotEmpty(sSql), sSql + " OR " + sWrk, sWrk)
+                    End If
+                Next
+            Else
+                sSql = GetDropDownFilter(fld, Convert.ToString(FldVal), FldOpr)
+            End If
+            If ew_NotEmpty(sSql) Then
+                If ew_NotEmpty(FilterClause) Then
+                    FilterClause = "(" + FilterClause + ") AND "
+                End If
+                FilterClause += "(" + sSql + ")"
+            End If
+        End Sub
+
+        ' Get dropdown filter 
+        Public Function GetDropDownFilter(ByRef fld As crField, ByVal FldVal As String, ByVal FldOpr As String) As String
+            Dim FldName As String = fld.FldName
+            Dim FldExpression As String = fld.FldExpression
+            Dim FldDataType As Integer = fld.FldDataType
+            Dim sWrk As String = ""
+            If FldVal = EWRPT_NULL_VALUE Then
+                sWrk = FldExpression + " IS NULL"
+            ElseIf FldVal = EWRPT_EMPTY_VALUE Then
+                sWrk = FldExpression + " = ''"
+            Else
+                If FldVal.StartsWith("@@") Then
+                    sWrk = ParentPage.ewrpt_GetCustomFilter(fld, FldVal)
+                Else
+                    If ew_NotEmpty(FldVal) AndAlso Not ew_SameStr(FldVal, EWRPT_INIT_VALUE) AndAlso Not ew_SameStr(FldVal, EWRPT_ALL_VALUE) Then
+                        If FldDataType = EWRPT_DATATYPE_DATE AndAlso FldOpr <> "" Then
+                            sWrk = DateFilterString(FldOpr, FldVal, FldDataType)
+                        Else
+                            sWrk = FilterString("=", FldVal, FldDataType)
+                        End If
+                    End If
+                    If ew_NotEmpty(sWrk) Then
+                        sWrk = FldExpression + sWrk
+                    End If
+                End If
+            End If
+            Return sWrk
+        End Function
+
+        ' Check if extended filter
+        Public Function ExtendedFilterExist(ByRef fld As crField) As Boolean
+            Dim sExtWrk As String = ""
+            BuildExtendedFilter(fld, sExtWrk)
+            Return ew_NotEmpty(sExtWrk)
+        End Function
+
+        ' Build extended filter 
+        Public Sub BuildExtendedFilter(ByRef fld As crField, ByRef FilterClause As String)
+            Dim IsValidValue As Boolean
+            Dim sWrk As String = ""
+            Dim wrkFldVal1 As String
+            Dim wrkFldVal2 As String
+            Dim FldName As String = fld.FldName
+            Dim FldExpression As String = fld.FldExpression
+            Dim FldDataType As Integer = fld.FldDataType
+            Dim FldDateTimeFormat As Integer = fld.FldDateTimeFormat
+            Dim FldVal1 As String = Convert.ToString(fld.SearchValue)
+            Dim FldOpr1 As String = fld.SearchOperator
+            Dim FldCond As String = fld.SearchCondition
+            Dim FldVal2 As String = Convert.ToString(fld.SearchValue2)
+            Dim FldOpr2 As String = fld.SearchOperator2
+            FldOpr1 = IIf(FldOpr1 IsNot Nothing, FldOpr1.Trim().ToUpper(), "")
+            If ew_Empty(FldOpr1) Then
+                FldOpr1 = "="
+            End If
+            FldOpr2 = IIf(FldOpr2 IsNot Nothing, FldOpr2.Trim().ToUpper(), "")
+            If ew_Empty(FldOpr2) Then
+                FldOpr2 = "="
+            End If
+            wrkFldVal1 = FldVal1
+            wrkFldVal2 = FldVal2
+            If FldDataType = EWRPT_DATATYPE_BOOLEAN Then
+                If wrkFldVal1 <> "" Then
+                    wrkFldVal1 = IIf(wrkFldVal1 = "1", "True", "False")
+                End If
+                If wrkFldVal2 <> "" Then
+                    wrkFldVal2 = IIf(wrkFldVal2 = "1", "True", "False")
+                End If
+            ElseIf FldDataType = EWRPT_DATATYPE_DATE Then
+                If wrkFldVal1 <> "" Then
+                    wrkFldVal1 = ew_UnFormatDateTime(wrkFldVal1, FldDateTimeFormat)
+                End If
+                If wrkFldVal2 <> "" Then
+                    wrkFldVal2 = ew_UnFormatDateTime(wrkFldVal2, FldDateTimeFormat)
+                End If
+            End If
+            If FldOpr1 = "BETWEEN" Then
+                IsValidValue = (FldDataType <> EWRPT_DATATYPE_NUMBER) OrElse (FldDataType = EWRPT_DATATYPE_NUMBER AndAlso ewrpt_IsNumeric(wrkFldVal1) AndAlso ewrpt_IsNumeric(wrkFldVal2))
+                If wrkFldVal1 <> "" AndAlso wrkFldVal2 <> "" AndAlso IsValidValue Then
+                    sWrk = FldExpression + " BETWEEN " + ew_QuotedValue(wrkFldVal1, FldDataType) + " AND " + ew_QuotedValue(wrkFldVal2, FldDataType)
+                End If
+            ElseIf FldOpr1 = "IS NULL" OrElse FldOpr1 = "IS NOT NULL" Then
+                sWrk = FldExpression + " " + wrkFldVal1
+            Else
+                IsValidValue = (FldDataType <> EWRPT_DATATYPE_NUMBER) OrElse (FldDataType = EWRPT_DATATYPE_NUMBER AndAlso ewrpt_IsNumeric(wrkFldVal1))
+                If wrkFldVal1 <> "" AndAlso IsValidValue AndAlso ew_IsValidOpr(FldOpr1, FldDataType) Then
+                    sWrk = FldExpression + FilterString(FldOpr1, wrkFldVal1, FldDataType)
+                End If
+                IsValidValue = (FldDataType <> EWRPT_DATATYPE_NUMBER) OrElse (FldDataType = EWRPT_DATATYPE_NUMBER AndAlso ewrpt_IsNumeric(wrkFldVal2))
+                If wrkFldVal2 <> "" AndAlso IsValidValue AndAlso ew_IsValidOpr(FldOpr2, FldDataType) Then
+                    If sWrk <> "" Then
+                        sWrk += " " + IIf(FldCond = "OR", "OR", "AND") + " "
+                    End If
+                    sWrk += FldExpression + FilterString(FldOpr2, wrkFldVal2, FldDataType)
+                End If
+            End If
+            If sWrk <> "" Then
+                If FilterClause <> "" Then
+                    FilterClause += " AND "
+                End If
+                FilterClause += "(" + sWrk + ")"
+            End If
+        End Sub
+
+        ' Validate form
+        Public Function ValidateForm() As Boolean
+
+            ' Initialize form error message
+            gsFormError = ""
+
+            ' Check if validation required
+            If Not EWRPT_SERVER_VALIDATE Then
+                Return ew_Empty(gsFormError)
+            End If
+            If Not ewrpt_CheckEuroDate(Convert.ToString(Total_Matriculados.FEC_MAT.SearchValue)) Then
+                If ew_NotEmpty(gsFormError) Then gsFormError &= "<br>"
+                gsFormError &= Total_Matriculados.FEC_MAT.FldErrMsg()
+            End If
+            If Not ewrpt_CheckEuroDate(Convert.ToString(Total_Matriculados.FEC_MAT.SearchValue2)) Then
+                If ew_NotEmpty(gsFormError) Then gsFormError &= "<br>"
+                gsFormError &= Total_Matriculados.FEC_MAT.FldErrMsg()
+            End If
+
+            ' Return validate result
+            Dim valid As Boolean = ew_Empty(gsFormError)
+
+            ' Call Form_CustomValidate event
+            Dim sFormCustomError As String = ""
+            valid = valid AndAlso Form_CustomValidate(sFormCustomError)
+            If Not ew_Empty(sFormCustomError) Then
+                gsFormError &= IIf(ew_NotEmpty(gsFormError), "<br>", "")
+                gsFormError &= sFormCustomError
+            End If
+            Return valid
+        End Function
+
+        ' Return filter string 
+        Public Function FilterString(ByVal FldOpr As String, ByVal FldVal As Object, ByVal FldType As Integer) As String
+            If ew_Empty(FldVal) Then
+                Return ""
+            End If
+            If FldOpr = "LIKE" OrElse FldOpr = "NOT LIKE" Then
+                Return " " + FldOpr + " " + ew_QuotedValue("%" + FldVal + "%", FldType)
+            ElseIf FldOpr = "STARTS WITH" Then
+                Return " LIKE " + ew_QuotedValue(FldVal + "%", FldType)
+            Else
+                Return " " + FldOpr + " " + ew_QuotedValue(FldVal, FldType)
+            End If
+        End Function
+
+        ' Return date search string 
+        Public Function DateFilterString(ByVal FldOpr As String, ByVal FldVal As String, ByVal FldType As Integer) As String
+            Dim wrkVal1 As Object = ewrpt_DateVal(FldOpr, FldVal, 1)
+            Dim wrkVal2 As Object = ewrpt_DateVal(FldOpr, FldVal, 2)
+            If ew_NotEmpty(wrkVal1) AndAlso ew_NotEmpty(wrkVal2) Then
+                Return " BETWEEN " + ew_QuotedValue(wrkVal1, FldType) + " AND " + ew_QuotedValue(wrkVal2, FldType)
+            Else
+                Return ""
+            End If
+        End Function
+
+        ' Clear selection stored in session
+        Public Sub ClearSessionSelection(parm As String)
+            ew_Session("sel_Total_Matriculados_" & parm) = ""
+            ew_Session("rf_Total_Matriculados_" & parm) = ""
+            ew_Session("rt_Total_Matriculados_" & parm) = ""
+        End Sub
+
+        ' Load selection from session
+        Public Sub LoadSelectionFromSession(parm As String)
+            Dim fld As crField = Total_Matriculados.Fields(parm)
+            fld.SelectionList = CType(ew_Session("sel_Total_Matriculados_" & parm), String())
+            fld.RangeFrom = Convert.ToString(ew_Session("rf_Total_Matriculados_" & parm))
+            fld.RangeTo = Convert.ToString(ew_Session("rt_Total_Matriculados_" & parm))
+        End Sub
+
+        ' Load default value for filters
+        Public Sub LoadDefaultFilters()
+            Dim sWrk As String
+            Dim sSql As String
+
+            ' Set up default values for dropdown filters
+            ' Field NOMBRE_C
+
+            Total_Matriculados.NOMBRE_C.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.NOMBRE_C.DropDownValue = Total_Matriculados.NOMBRE_C.DefaultDropDownValue
+
+            ' Field JORNADA
+            Total_Matriculados.JORNADA.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.JORNADA.DropDownValue = Total_Matriculados.JORNADA.DefaultDropDownValue
+
+            ' Field ESTACAD
+            Total_Matriculados.ESTACAD.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.ESTACAD.DropDownValue = Total_Matriculados.ESTACAD.DefaultDropDownValue
+
+            ' Field ANO
+            Total_Matriculados.ANO.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.ANO.DropDownValue = Total_Matriculados.ANO.DefaultDropDownValue
+
+            ' Field ANO_MAT
+            Total_Matriculados.ANO_MAT.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.ANO_MAT.DropDownValue = Total_Matriculados.ANO_MAT.DefaultDropDownValue
+
+            ' Field ESTADO
+            Total_Matriculados.ESTADO.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.ESTADO.DropDownValue = Total_Matriculados.ESTADO.DefaultDropDownValue
+
+            ' Field SITUACION
+            Total_Matriculados.SITUACION.DefaultDropDownValue = EWRPT_INIT_VALUE
+            Total_Matriculados.SITUACION.DropDownValue = Total_Matriculados.SITUACION.DefaultDropDownValue
+
+            ' Set up default values for extended filters
+            ' Field CODCLI
+
+            SetDefaultExtFilter(Total_Matriculados.CODCLI, "LIKE", Nothing, "AND", "=", Nothing)
+            ApplyDefaultExtFilter(Total_Matriculados.CODCLI)
+
+            ' Field PATERNO
+            SetDefaultExtFilter(Total_Matriculados.PATERNO, "LIKE", Nothing, "AND", "=", Nothing)
+            ApplyDefaultExtFilter(Total_Matriculados.PATERNO)
+
+            ' Field MATERNO
+            SetDefaultExtFilter(Total_Matriculados.MATERNO, "LIKE", Nothing, "AND", "=", Nothing)
+            ApplyDefaultExtFilter(Total_Matriculados.MATERNO)
+
+            ' Field NOMBRE
+            SetDefaultExtFilter(Total_Matriculados.NOMBRE, "LIKE", Nothing, "AND", "=", Nothing)
+            ApplyDefaultExtFilter(Total_Matriculados.NOMBRE)
+
+            ' Field FEC_MAT
+            SetDefaultExtFilter(Total_Matriculados.FEC_MAT, "BETWEEN", Nothing, "AND", "=", Nothing)
+            ApplyDefaultExtFilter(Total_Matriculados.FEC_MAT)
+
+            ' Set up default values for popup filters
+            ' - NOTE: if extended filter is enabled, use default values in extended filter instead
+
+        End Sub
+
+        ' Check if filter applied
+        Public Function CheckFilter() As Boolean
+            Dim bFilterExist As Boolean = False
+
+            ' Check CODCLI extended filter
+            If (TextFilterApplied(Total_Matriculados.CODCLI)) Then bFilterExist = True
+
+            ' Check PATERNO extended filter
+            If (TextFilterApplied(Total_Matriculados.PATERNO)) Then bFilterExist = True
+
+            ' Check MATERNO extended filter
+            If (TextFilterApplied(Total_Matriculados.MATERNO)) Then bFilterExist = True
+
+            ' Check NOMBRE extended filter
+            If (TextFilterApplied(Total_Matriculados.NOMBRE)) Then bFilterExist = True
+
+            ' Check NOMBRE_C dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.NOMBRE_C)) Then bFilterExist = True
+
+            ' Check JORNADA dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.JORNADA)) Then bFilterExist = True
+
+            ' Check ESTACAD dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.ESTACAD)) Then bFilterExist = True
+
+            ' Check FEC_MAT extended filter
+            If (TextFilterApplied(Total_Matriculados.FEC_MAT)) Then bFilterExist = True
+
+            ' Check ANO dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.ANO)) Then bFilterExist = True
+
+            ' Check ANO_MAT dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.ANO_MAT)) Then bFilterExist = True
+
+            ' Check ESTADO dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.ESTADO)) Then bFilterExist = True
+
+            ' Check SITUACION dropdown filter
+            If (NonTextFilterApplied(Total_Matriculados.SITUACION)) Then bFilterExist = True
+            Return bFilterExist
+        End Function
+
+        ' Show list of filters
+        Public Sub ShowFilterList()
+            Dim sFilterList As String = ""
+            Dim sExtWrk As String
+            Dim sWrk As String
+
+            ' Field CODCLI
+            sExtWrk = ""
+            sWrk = ""
+            BuildExtendedFilter(Total_Matriculados.CODCLI, sExtWrk)
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.CODCLI.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field PATERNO
+            sExtWrk = ""
+            sWrk = ""
+            BuildExtendedFilter(Total_Matriculados.PATERNO, sExtWrk)
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.PATERNO.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field MATERNO
+            sExtWrk = ""
+            sWrk = ""
+            BuildExtendedFilter(Total_Matriculados.MATERNO, sExtWrk)
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.MATERNO.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field NOMBRE
+            sExtWrk = ""
+            sWrk = ""
+            BuildExtendedFilter(Total_Matriculados.NOMBRE, sExtWrk)
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.NOMBRE.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field NOMBRE_C
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.NOMBRE_C, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.NOMBRE_C.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field JORNADA
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.JORNADA, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.JORNADA.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field ESTACAD
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.ESTACAD, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.ESTACAD.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field FEC_MAT
+            sExtWrk = ""
+            sWrk = ""
+            BuildExtendedFilter(Total_Matriculados.FEC_MAT, sExtWrk)
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.FEC_MAT.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field ANO
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.ANO, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.ANO.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field ANO_MAT
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.ANO_MAT, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.ANO_MAT.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field ESTADO
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.ESTADO, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.ESTADO.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Field SITUACION
+            sExtWrk = ""
+            sWrk = ""
+            BuildDropDownFilter(Total_Matriculados.SITUACION, sExtWrk, "")
+            If (ew_NotEmpty(sExtWrk) OrElse ew_NotEmpty(sWrk)) Then sFilterList &= Total_Matriculados.SITUACION.FldCaption() & "<br>"
+            If (ew_NotEmpty(sExtWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sExtWrk & "<br>"
+            If (ew_NotEmpty(sWrk)) Then sFilterList &= "&nbsp;&nbsp;" & sWrk & "<br>"
+
+            ' Show Filters
+            If (ew_NotEmpty(sFilterList)) Then
+                ew_Write("CURRENT FILTERS:<br>")
+                ew_Write(sFilterList)
+            End If
+        End Sub
+
+        ' Return popup filter
+        Public Function GetPopupFilter() As String
+            Dim sWrk As String = ""
+            Return sWrk
+        End Function
+
+        ' Return Sort parameters based on Sort links clicked
+        Public Function GetSort() As String
+            Dim bCtrl As Boolean = False
+            Dim sOrder As String, sOrderType As String, sOrderBy As String
+            Dim sSortField As String, sLastSort As String, sThisSort As String = "", sSortSql As String = ""
+
+            ' Check for a resetsort command
+            If ew_NotEmpty(ew_Get("cmd")) Then
+                Dim sCmd As String = ew_Get("cmd")
+                If ew_SameText(sCmd, "resetsort") Then
+                    Total_Matriculados.OrderBy = ""
+                    Total_Matriculados.StartGroup = 1
+                    Total_Matriculados.CODCLI.Sort = ""
+                    Total_Matriculados.DIG.Sort = ""
+                    Total_Matriculados.PATERNO.Sort = ""
+                    Total_Matriculados.MATERNO.Sort = ""
+                    Total_Matriculados.NOMBRE.Sort = ""
+                    Total_Matriculados.DESCRIPCION.Sort = ""
+                    Total_Matriculados.NOMBRE_C.Sort = ""
+                    Total_Matriculados.CODCARR.Sort = ""
+                    Total_Matriculados.JORNADA.Sort = ""
+                    Total_Matriculados.ESTACAD.Sort = ""
+                    Total_Matriculados.FEC_MAT.Sort = ""
+                    Total_Matriculados.ANO.Sort = ""
+                    Total_Matriculados.ANO_MAT.Sort = ""
+                    Total_Matriculados.ESTADO.Sort = ""
+                    Total_Matriculados.SITUACION.Sort = ""
+                    Total_Matriculados.TIPOSITU.Sort = ""
+                    Total_Matriculados.AL_FONO.Sort = ""
+                    Total_Matriculados.MAIL.Sort = ""
+                    Total_Matriculados.CELULAR.Sort = ""
+                    Total_Matriculados.DIRACTUAL.Sort = ""
+                    Total_Matriculados.CODFAC.Sort = ""
+                    Total_Matriculados.FONOACT.Sort = ""
+                    Total_Matriculados.SEXO.Sort = ""
+                    Total_Matriculados.COMUNA.Sort = ""
+                    Total_Matriculados.CIUDADACT.Sort = ""
+                    Total_Matriculados.FECNAC.Sort = ""
+                    Total_Matriculados.COLEGIO.Sort = ""
+                    Total_Matriculados.COMUNACOLEGIO.Sort = ""
+                    Total_Matriculados.DEPENDENCIA.Sort = ""
+                    Total_Matriculados.COMUNAALUMNO.Sort = ""
+                    Total_Matriculados.FECHATIT.Sort = ""
+                    Total_Matriculados.FECHAEGR.Sort = ""
+                    Total_Matriculados.MODALIDAD.Sort = ""
+                    Total_Matriculados.CATEGORIA.Sort = ""
+                End If
+
+                ' Check for an Order parameter
+            ElseIf (ew_NotEmpty(ew_Get("order"))) Then
+                Total_Matriculados.CurrentOrder = ew_Get("order")
+                Total_Matriculados.CurrentOrderType = ew_Get("ordertype")
+                sSortSql = Total_Matriculados.SortSql()
+                Total_Matriculados.OrderBy = sSortSql
+                Total_Matriculados.StartGroup = 1
+            End If
+            Return Total_Matriculados.OrderBy
+        End Function
+
+        ' Page Load event
+        Public Sub Page_Load()
+
+            'ew_Write("Page Load")
+        End Sub
+
+        ' Page Unload event
+        Public Sub Page_Unload()
+
+            'ew_Write("Page Unload")
+        End Sub
+
+        ' Message Showing event
+        Public Sub Message_Showing(ByRef msg As String)
+
+            'msg = newmsg
+        End Sub
+
+        ' Page Data Rendering event
+        Public Sub Page_DataRendering(ByRef header As String)
+
+            ' Example:
+            'header = "your header"
+
+        End Sub
+
+        ' Page Data Rendered event
+        Public Sub Page_DataRendered(ByRef footer As String)
+
+            ' Example:
+            'footer = "your footer"
+
+        End Sub
+
+        ' Form Custom Validate event
+        Public Function Form_CustomValidate(ByRef CustomError As String) As Boolean
+
+            'Return error message in CustomError
+            Return True
+        End Function
+    End Class
+
+    '
+    ' ASP.NET Page_Load event
+    '
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs)
+        gsDebugMsg = ""
+
+        ' Page init
+        Total_Matriculados_summary = New crTotal_Matriculados_summary(Me)
+        Total_Matriculados_summary.Page_Init()
+
+        ' Set buffer/cache option
+        Response.Buffer = EWRPT_RESPONSE_BUFFER
+        Response.Cache.SetCacheability(HttpCacheability.NoCache)
+
+        ' Page main processing
+        Total_Matriculados_summary.Page_Main()
+    End Sub
+
+    '
+    ' ASP.NET Page_Unload event
+    '
+
+    Protected Sub Page_Unload(ByVal sender As Object, ByVal e As System.EventArgs)
+
+        ' Dispose page object
+        If (Total_Matriculados_summary IsNot Nothing) Then Total_Matriculados_summary.Dispose()
+    End Sub
+</script>
+<asp:Content ID="Content" ContentPlaceHolderID="ReportContent" runat="server">
+<% If (Total_Matriculados.Export = "") Then %>
+<script type="text/javascript">
+var EWRPT_DATE_SEPARATOR = "/";
+if (EWRPT_DATE_SEPARATOR == "") EWRPT_DATE_SEPARATOR = "/"; // Default date separator
+</script>
+<script type="text/javascript" src="aspxrptjs/ewrpt.js"></script>
+<script type="text/javascript">
+// Create page object
+var Total_Matriculados_summary = new ewrpt_Page("Total_Matriculados_summary");
+// page properties
+Total_Matriculados_summary.PageID = "summary"; // page ID
+Total_Matriculados_summary.FormID = "fTotal_Matriculadossummaryfilter"; // form ID
+var EWRPT_PAGE_ID = Total_Matriculados_summary.PageID;
+// extend page with ValidateForm function
+Total_Matriculados_summary.ValidateForm = function(fobj) {
+	if (!this.ValidateRequired)
+		return true; // ignore validation
+	var elm = fobj.sv1_FEC_MAT;
+if (elm && !ewrpt_CheckEuroDate(elm.value)) {
+	if (!ewrpt_OnError(elm, "<%= ew_JsEncode2(Total_Matriculados.FEC_MAT.FldErrMsg()) %>"))
+		return false;
+}
+	var elm = fobj.sv2_FEC_MAT;
+if (elm && !ewrpt_CheckEuroDate(elm.value)) {
+	if (!ewrpt_OnError(elm, "<%= ew_JsEncode2(Total_Matriculados.FEC_MAT.FldErrMsg()) %>"))
+		return false;
+}
+	// Call Form Custom Validate event
+	if (!this.Form_CustomValidate(fobj)) return false;
+	return true;
+}
+// extend page with Form_CustomValidate function
+Total_Matriculados_summary.Form_CustomValidate =  
+ function(fobj) { // DO NOT CHANGE THIS LINE!
+ 	// Your custom validation code here, return false if invalid. 
+ 	return true;
+ }
+<% If (EWRPT_CLIENT_VALIDATE) Then %>
+Total_Matriculados_summary.ValidateRequired = true; // uses JavaScript validation
+<% Else %>
+Total_Matriculados_summary.ValidateRequired = false; // no JavaScript validation
+<% End If %>
+</script>
+<link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-1.css" title="win2k-1" />
+<script type="text/javascript" src="jscalendar/calendar.js"></script>
+<script type="text/javascript" src="jscalendar/lang/calendar-en.js"></script>
+<script type="text/javascript" src="jscalendar/calendar-setup.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+// Write your client script here, no need to add script tags.
+// To include another .js script, use:
+// ew_ClientScriptInclude("my_javascript.js"); 
+//-->
+</script>
+<% End If %>
+<% Total_Matriculados_summary.ShowPageHeader() %>
+<script src="FusionChartsFree/JSClass/FusionCharts.js" type="text/javascript"></script>
+<% If (Total_Matriculados.Export = "") Then %>
+<script src="aspxrptjs/popup.js" type="text/javascript"></script>
+<script src="aspxrptjs/ewrptpop.js" type="text/javascript"></script>
+<script type="text/javascript">
+// popup fields
+</script>
+<% End If %>
+<% If (Total_Matriculados.Export = "") Then %>
+<!-- Table Container (Begin) -->
+<table id="ewContainer" cellspacing="0" cellpadding="0" border="0">
+<!-- Top Container (Begin) -->
+<tr><td colspan="3"><div id="ewTop" class="aspnetreportmaker">
+<!-- top slot -->
+<a name="top"></a>
+<% End If %>
+<div id="underline"><h1><%= Total_Matriculados.TableCaption() %></h1></div>
+<% If (Total_Matriculados.Export = "") Then %>
+&nbsp;&nbsp;<a href="<%= Total_Matriculados_summary.ExportExcelUrl %>"><img src="images/excel.png" border="0" title="Exportar a Excel" alt="Exportar a Excel" /></a>
+<% End If %>
+</div><br><br>
+<% Total_Matriculados_summary.ShowMessage() %>
+<% If (Total_Matriculados.Export = "") Then %>
+</div></td></tr>
+<!-- Top Container (End) -->
+<tr>
+	<!-- Left Container (Begin) -->
+	<td style="vertical-align: top;"><div id="ewLeft" class="aspnetreportmaker">
+	<!-- Left slot -->
+<% End If %>
+<% If (Total_Matriculados.Export = "") Then %>
+	</div></td>
+	<!-- Left Container (End) -->
+	<!-- Center Container - Report (Begin) -->
+	<td style="vertical-align: top;" class="ewPadding"><div id="ewCenter" class="aspnetreportmaker">
+	<!-- center slot -->
+<% End If %>
+<!-- summary report starts -->
+<div id="report_summary">
+<% If (Total_Matriculados.Export = "") Then %>
+<%
+    Dim sButtonImage As String, sDivDisplay As String
+    If (Total_Matriculados.FilterPanelOption = 2 OrElse (Total_Matriculados.FilterPanelOption = 3 AndAlso Total_Matriculados_summary.FilterApplied) OrElse Total_Matriculados_summary.Filter = "0=101") Then
+        sButtonImage = "aspxrptimages/collapse.gif"
+        sDivDisplay = ""
+    Else
+        sButtonImage = "aspxrptimages/expand.gif"
+        sDivDisplay = " style=""display: none;"""
+    End If
+%>
+<a href="javascript:ewrpt_ToggleFilterPanel();" style="text-decoration: none;"><img id="ewrptToggleFilterImg" src="<%= sButtonImage %>" alt="" width="9" height="9" border="0"></a><span class="aspnetreportmaker">&nbsp;<%= ReportLanguage.Phrase("Filters") %></span><br><br>
+<div id="ewrptExtFilterPanel"<%= sDivDisplay %>>
+<!-- Search form (begin) -->
+<form name="fTotal_Matriculadossummaryfilter" id="fTotal_Matriculadossummaryfilter" action="Total_Matriculadossmry.aspx" class="ewForm" onsubmit="return Total_Matriculados_summary.ValidateForm(this);">
+<table id="ewRptExtFilterTable" class="ewRptExtFilter">
+<%
+
+    ' Popup Filter
+    Dim cntf As Integer = Total_Matriculados.FEC_MAT.CustomFilters.Count
+    Dim totcnt As Integer, wrkcnt As Integer
+%>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.CODCLI.FldCaption() %></span></td>
+		<td>&nbsp;</td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspnetreportmaker">
+<input type="text" name="sv1_CODCLI" id="sv1_CODCLI" size="30" maxlength="30" value="<%= ew_HtmlEncode(Total_Matriculados.CODCLI.SearchValue) %>"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_CODCLI", " class=""ewInputCleared""", "") %>>
+</span></td>
+				<td></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.PATERNO.FldCaption() %></span></td>
+		<td>&nbsp;</td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspnetreportmaker">
+<input type="text" name="sv1_PATERNO" id="sv1_PATERNO" size="30" maxlength="30" value="<%= ew_HtmlEncode(Total_Matriculados.PATERNO.SearchValue) %>"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_PATERNO", " class=""ewInputCleared""", "") %>>
+</span></td>
+				<td></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.MATERNO.FldCaption() %></span></td>
+		<td>&nbsp;</td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspnetreportmaker">
+<input type="text" name="sv1_MATERNO" id="sv1_MATERNO" size="30" maxlength="30" value="<%= ew_HtmlEncode(Total_Matriculados.MATERNO.SearchValue) %>"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_MATERNO", " class=""ewInputCleared""", "") %>>
+</span></td>
+				<td></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.NOMBRE.FldCaption() %></span></td>
+		<td>&nbsp;</td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspnetreportmaker">
+<input type="text" name="sv1_NOMBRE" id="sv1_NOMBRE" size="30" maxlength="32" value="<%= ew_HtmlEncode(Total_Matriculados.NOMBRE.SearchValue) %>"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_NOMBRE", " class=""ewInputCleared""", "") %>>
+</span></td>
+				<td></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.NOMBRE_C.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_NOMBRE_C" id="sv_NOMBRE_C"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_NOMBRE_C", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.NOMBRE_C.DropDownValue, EWRPT_ALL_VALUE)) Then Response.Write(" selected=""selected""") %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.NOMBRE_C.CustomFilters.Count + Total_Matriculados.NOMBRE_C.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.NOMBRE_C.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "NOMBRE_C")) Then
+%>
+		<option value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.NOMBRE_C.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" selected=""selected""") %>><%= CustomFilter.DisplayName %></option>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.NOMBRE_C.DropDownList
+%>
+		<option value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.NOMBRE_C.DropDownValue, value)) Then Response.Write(" selected=""selected""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></option>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</select>
+		</span></td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.JORNADA.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.JORNADA.CustomFilters.Count + Total_Matriculados.JORNADA.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.JORNADA.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "JORNADA")) Then
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="Total_Matriculados.JORNADA.DropDownValue" id="Total_Matriculados.JORNADA.DropDownValue" value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.JORNADA.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" checked=""checked""") %>><%= CustomFilter.DisplayName %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.JORNADA.DropDownList
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_JORNADA" id="sv_JORNADA" value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.JORNADA.DropDownValue, value)) Then Response.Write(" checked=""checked""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</span></td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.ESTACAD.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.ESTACAD.CustomFilters.Count + Total_Matriculados.ESTACAD.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.ESTACAD.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "ESTACAD")) Then
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="Total_Matriculados.ESTACAD.DropDownValue" id="Total_Matriculados.ESTACAD.DropDownValue" value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ESTACAD.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" checked=""checked""") %>><%= CustomFilter.DisplayName %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.ESTACAD.DropDownList
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_ESTACAD" id="sv_ESTACAD" value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ESTACAD.DropDownValue, value)) Then Response.Write(" checked=""checked""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</span></td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.FEC_MAT.FldCaption() %></span></td>
+		<td>&nbsp;</td>
+		<td>
+			<table cellspacing="0" class="ewItemTable"><tr>
+				<td><span class="aspnetreportmaker">
+<input type="text" name="sv1_FEC_MAT" id="sv1_FEC_MAT" value="<%= ew_HtmlEncode(Total_Matriculados.FEC_MAT.SearchValue) %>"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_FEC_MAT", " class=""ewInputCleared""", "") %>>
+<img src="aspxrptimages/calendar.png" id="csv1_FEC_MAT" alt="<%= ReportLanguage.Phrase("PickDate") %>" style="cursor:pointer;cursor:hand;">
+<script type="text/javascript">
+Calendar.setup({
+inputField : "sv1_FEC_MAT", // ID of the input field
+ifFormat : "%d-%m-%Y", // the date format
+button : "csv1_FEC_MAT" // ID of the button
+})
+</script>
+</span></td>
+				<td></td>
+					<td><span class="ewRptSearchOpr" id="btw1_FEC_MAT" name="btw1_FEC_MAT">&nbsp;<%= ReportLanguage.Phrase("AND") %>&nbsp;</span></td>
+					<td><span class="aspnetreportmaker" id="btw1_FEC_MAT" name="btw1_FEC_MAT">
+<input type="text" name="sv2_FEC_MAT" id="sv2_FEC_MAT" value="<%= ew_HtmlEncode(Total_Matriculados.FEC_MAT.SearchValue2) %>"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_FEC_MAT", " class=""ewInputCleared""", "") %>>
+<img src="aspxrptimages/calendar.png" id="csv2_FEC_MAT" alt="<%= ReportLanguage.Phrase("PickDate") %>" style="cursor:pointer;cursor:hand;">
+<script type="text/javascript">
+Calendar.setup({
+inputField : "sv2_FEC_MAT", // ID of the input field
+ifFormat : "%d-%m-%Y", // the date format
+button : "csv2_FEC_MAT" // ID of the button
+})
+</script>
+</span></td>
+			</tr></table>			
+		</td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.ANO.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.ANO.CustomFilters.Count + Total_Matriculados.ANO.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.ANO.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "ANO")) Then
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="Total_Matriculados.ANO.DropDownValue" id="Total_Matriculados.ANO.DropDownValue" value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ANO.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" checked=""checked""") %>><%= CustomFilter.DisplayName %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.ANO.DropDownList
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_ANO" id="sv_ANO" value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ANO.DropDownValue, value)) Then Response.Write(" checked=""checked""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</span></td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.ANO_MAT.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.ANO_MAT.CustomFilters.Count + Total_Matriculados.ANO_MAT.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.ANO_MAT.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "ANO_MAT")) Then
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="Total_Matriculados.ANO_MAT.DropDownValue" id="Total_Matriculados.ANO_MAT.DropDownValue" value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ANO_MAT.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" checked=""checked""") %>><%= CustomFilter.DisplayName %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.ANO_MAT.DropDownList
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_ANO_MAT" id="sv_ANO_MAT" value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ANO_MAT.DropDownValue, value)) Then Response.Write(" checked=""checked""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</span></td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.ESTADO.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.ESTADO.CustomFilters.Count + Total_Matriculados.ESTADO.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.ESTADO.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "ESTADO")) Then
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="Total_Matriculados.ESTADO.DropDownValue" id="Total_Matriculados.ESTADO.DropDownValue" value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ESTADO.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" checked=""checked""") %>><%= CustomFilter.DisplayName %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.ESTADO.DropDownList
+%>
+		<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 1) %>
+<label><input type="checkbox" name="sv_ESTADO" id="sv_ESTADO" value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.ESTADO.DropDownValue, value)) Then Response.Write(" checked=""checked""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></label>
+<%= ewrpt_RepeatColumnTable(totcnt, wrkcnt, 5, 2) %>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</span></td>
+	</tr>
+	<tr>
+		<td><span class="aspnetreportmaker"><%= Total_Matriculados.SITUACION.FldCaption() %></span></td>
+		<td></td>
+		<td colspan="4"><span class="ewRptSearchOpr">
+		<select name="sv_SITUACION" id="sv_SITUACION"<%= IIf(Total_Matriculados_summary.ClearExtFilter = "Total_Matriculados_SITUACION", " class=""ewInputCleared""", "") %>>
+		<option value="<%= EWRPT_ALL_VALUE %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.SITUACION.DropDownValue, EWRPT_ALL_VALUE)) Then Response.Write(" selected=""selected""") %>><%= ReportLanguage.Phrase("PleaseSelect") %></option>
+<%
+
+    ' Extended Filters
+    totcnt = Total_Matriculados.SITUACION.CustomFilters.Count + Total_Matriculados.SITUACION.DropDownList.Count
+    wrkcnt = 0
+
+    ' Custom filters
+    For Each CustomFilter As crCustomFilter In Total_Matriculados.SITUACION.CustomFilters
+        If (ew_SameStr(CustomFilter.FldName, "SITUACION")) Then
+%>
+		<option value="<%= "@@" & CustomFilter.FilterName %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.SITUACION.DropDownValue, "@@" & CustomFilter.FilterName)) Then Response.Write(" selected=""selected""") %>><%= CustomFilter.DisplayName %></option>
+<%
+            wrkcnt += 1
+        End If
+    Next
+    For Each value As Object In Total_Matriculados.SITUACION.DropDownList
+%>
+		<option value="<%= value %>"<% If (ewrpt_MatchedFilterValue(Total_Matriculados.SITUACION.DropDownValue, value)) Then Response.Write(" selected=""selected""") %>><%= ewrpt_DropDownDisplayValue(value, "", 0) %></option>
+<%
+        wrkcnt += 1
+    Next
+%>
+		</select>
+		</span></td>
+	</tr>
+</table>
+<table class="ewRptExtFilter">
+	<tr>
+		<td><span class="aspnetreportmaker">
+			<input type="submit" name="Submit" id="Submit" value="<%= ReportLanguage.Phrase("Search") %>">			
+		</span></td>
+	</tr>
+</table>
+</form>
+<!-- Search form (end) -->
+</div>
+<br>
+<% End If %>
+<% If (Total_Matriculados.ShowCurrentFilter) Then %>
+<div id="ewrptFilterList">
+<% Total_Matriculados_summary.ShowFilterList() %>
+</div>
+<br>
+<% End If %>
+<table class="ewGrid" cellspacing="0"><tr>
+	<td class="ewGridContent">
+<!-- Report Grid (Begin) -->
+<div class="ewGridMiddlePanel">
+<table class="ewTable ewTableSeparate" cellspacing="0">
+<%
+
+    ' Set the last group to display if not export all
+    If (Total_Matriculados.ExportAll AndAlso ew_NotEmpty(Total_Matriculados.Export)) Then
+        Total_Matriculados_summary.StopGrp = Total_Matriculados_summary.TotalGrps
+    Else
+        Total_Matriculados_summary.StopGrp = Total_Matriculados_summary.StartGrp + Total_Matriculados_summary.DisplayGrps - 1
+    End If
+
+    ' Stop group <= total number of groups
+    If (Total_Matriculados_summary.StopGrp > Total_Matriculados_summary.TotalGrps) Then
+        Total_Matriculados_summary.StopGrp = Total_Matriculados_summary.TotalGrps
+    End If
+    Total_Matriculados_summary.RecCount = 0
+
+    ' Get first row
+    If (Total_Matriculados_summary.TotalGrps > 0) Then
+        Total_Matriculados_summary.GetRow() ' ASPXRPT
+        Total_Matriculados_summary.GrpCount = 1
+    End If
+    While ((Total_Matriculados_summary.HasRow AndAlso Total_Matriculados_summary.GrpIndex < Total_Matriculados_summary.StopGrp) OrElse Total_Matriculados_summary.ShowFirstHeader)
+
+        ' Show header
+        If (Total_Matriculados_summary.ShowFirstHeader) Then
+%>
+	<thead>
+	<tr>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.CODCLI.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.CODCLI))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.CODCLI.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.CODCLI) %>',0);"><%= Total_Matriculados.CODCLI.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.CODCLI.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.CODCLI.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.DIG.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.DIG))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.DIG.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.DIG) %>',0);"><%= Total_Matriculados.DIG.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.DIG.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.DIG.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.PATERNO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.PATERNO))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.PATERNO.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.PATERNO) %>',0);"><%= Total_Matriculados.PATERNO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.PATERNO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.PATERNO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.MATERNO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.MATERNO))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.MATERNO.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.MATERNO) %>',0);"><%= Total_Matriculados.MATERNO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.MATERNO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.MATERNO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.NOMBRE.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.NOMBRE))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.NOMBRE.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.NOMBRE) %>',0);"><%= Total_Matriculados.NOMBRE.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.NOMBRE.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.NOMBRE.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.DESCRIPCION.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.DESCRIPCION))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.DESCRIPCION.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.DESCRIPCION) %>',0);"><%= Total_Matriculados.DESCRIPCION.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.DESCRIPCION.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.DESCRIPCION.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.NOMBRE_C.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.NOMBRE_C))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.NOMBRE_C.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.NOMBRE_C) %>',0);"><%= Total_Matriculados.NOMBRE_C.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.NOMBRE_C.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.NOMBRE_C.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.CODCARR.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.CODCARR))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.CODCARR.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.CODCARR) %>',0);"><%= Total_Matriculados.CODCARR.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.CODCARR.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.CODCARR.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.JORNADA.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.JORNADA))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.JORNADA.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.JORNADA) %>',0);"><%= Total_Matriculados.JORNADA.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.JORNADA.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.JORNADA.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.ESTACAD.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.ESTACAD))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.ESTACAD.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.ESTACAD) %>',0);"><%= Total_Matriculados.ESTACAD.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.ESTACAD.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.ESTACAD.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.FEC_MAT.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.FEC_MAT))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.FEC_MAT.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.FEC_MAT) %>',0);"><%= Total_Matriculados.FEC_MAT.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.FEC_MAT.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.FEC_MAT.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.ANO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.ANO))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.ANO.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.ANO) %>',0);"><%= Total_Matriculados.ANO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.ANO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.ANO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.ANO_MAT.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.ANO_MAT))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.ANO_MAT.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.ANO_MAT) %>',0);"><%= Total_Matriculados.ANO_MAT.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.ANO_MAT.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.ANO_MAT.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.ESTADO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.ESTADO))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.ESTADO.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.ESTADO) %>',0);"><%= Total_Matriculados.ESTADO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.ESTADO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.ESTADO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.SITUACION.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.SITUACION))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.SITUACION.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.SITUACION) %>',0);"><%= Total_Matriculados.SITUACION.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.SITUACION.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.SITUACION.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.TIPOSITU.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.TIPOSITU))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.TIPOSITU.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.TIPOSITU) %>',0);"><%= Total_Matriculados.TIPOSITU.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.TIPOSITU.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.TIPOSITU.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.AL_FONO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.AL_FONO))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.AL_FONO.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.AL_FONO) %>',0);"><%= Total_Matriculados.AL_FONO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.AL_FONO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.AL_FONO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.MAIL.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.MAIL))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.MAIL.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.MAIL) %>',0);"><%= Total_Matriculados.MAIL.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.MAIL.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.MAIL.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.CELULAR.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.CELULAR))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.CELULAR.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.CELULAR) %>',0);"><%= Total_Matriculados.CELULAR.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.CELULAR.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.CELULAR.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.DIRACTUAL.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.DIRACTUAL))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.DIRACTUAL.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.DIRACTUAL) %>',0);"><%= Total_Matriculados.DIRACTUAL.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.DIRACTUAL.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.DIRACTUAL.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.CODFAC.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.CODFAC))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.CODFAC.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.CODFAC) %>',0);"><%= Total_Matriculados.CODFAC.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.CODFAC.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.CODFAC.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.FONOACT.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.FONOACT))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.FONOACT.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.FONOACT) %>',0);"><%= Total_Matriculados.FONOACT.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.FONOACT.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.FONOACT.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.SEXO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.SEXO))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.SEXO.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.SEXO) %>',0);"><%= Total_Matriculados.SEXO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.SEXO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.SEXO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.COMUNA.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.COMUNA))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.COMUNA.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.COMUNA) %>',0);"><%= Total_Matriculados.COMUNA.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.COMUNA.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.COMUNA.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.CIUDADACT.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.CIUDADACT))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.CIUDADACT.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.CIUDADACT) %>',0);"><%= Total_Matriculados.CIUDADACT.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.CIUDADACT.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.CIUDADACT.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.FECNAC.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.FECNAC))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.FECNAC.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.FECNAC) %>',0);"><%= Total_Matriculados.FECNAC.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.FECNAC.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.FECNAC.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+
+<td class="ewTableHeader" style="hola1">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.COLEGIO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn" style="hola2"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.COLEGIO))) Then %>
+		<td style="hola3" style="vertical-align: bottom;">Colegio</td>
+<% Else %>
+		<td style="hola4" class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.COLEGIO) %>',0);"><%= Total_Matriculados.COLEGIO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.COLEGIO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.COLEGIO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.COMUNACOLEGIO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.COMUNACOLEGIO))) Then %>
+		<td style="vertical-align: bottom;">Comuna Colegio</td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.COMUNACOLEGIO) %>',0);"><%= Total_Matriculados.COMUNACOLEGIO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.COMUNACOLEGIO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.COMUNACOLEGIO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.DEPENDENCIA.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.DEPENDENCIA))) Then %>
+		<td style="vertical-align: bottom;">Dependencia</td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.DEPENDENCIA) %>',0);"><%= Total_Matriculados.DEPENDENCIA.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.DEPENDENCIA.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.DEPENDENCIA.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+<td class="ewTableHeader" >
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.COMUNAALUMNO.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.COMUNAALUMNO))) Then %>
+		<td style="vertical-align: bottom;">Comuna Alumno</td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.COMUNAALUMNO) %>',0);"><%= Total_Matriculados.COMUNAALUMNO.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.COMUNAALUMNO.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.COMUNAALUMNO.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.FECHATIT.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.FECHATIT))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.FECHATIT.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.FECHATIT) %>',0);"><%= Total_Matriculados.FECHATIT.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.FECHATIT.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.FECHATIT.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+<td class="ewTableHeader">
+<% If (ew_NotEmpty(Total_Matriculados.Export)) Then %>
+<%= Total_Matriculados.FECHAEGR.FldCaption() %>
+<% Else %>
+	<table cellspacing="0" class="ewTableHeaderBtn"><tr>
+<% If (ew_Empty(Total_Matriculados.SortUrl(Total_Matriculados.FECHAEGR))) Then %>
+		<td style="vertical-align: bottom;"><%= Total_Matriculados.FECHAEGR.FldCaption() %></td>
+<% Else %>
+		<td class="ewPointer" onmousedown="ewrpt_Sort(event,'<%= Total_Matriculados.SortUrl(Total_Matriculados.FECHAEGR) %>',0);"><%= Total_Matriculados.FECHAEGR.FldCaption() %></td><td style="width: 10px;">
+		<% If (Total_Matriculados.FECHAEGR.Sort = "ASC") Then %><img src="aspxrptimages/sortup.gif" width="10" height="9" border="0"><% ElseIf (Total_Matriculados.FECHAEGR.Sort = "DESC") Then %><img src="aspxrptimages/sortdown.gif" width="10" height="9" border="0"><% End If %></td>
+<% End If %>
+	</tr></table>
+<% End If %>
+</td>
+
+
+	</tr>
+	</thead>
+	<tbody>
+<%
+        Total_Matriculados_summary.ShowFirstHeader = False
+    End If
+    Total_Matriculados_summary.RecCount += 1
+
+    ' Render detail row
+    Total_Matriculados.ResetCSS()
+    Total_Matriculados.RowType = EWRPT_ROWTYPE_DETAIL
+    Total_Matriculados_summary.RenderRow()
+%>
+	<tr<%= Total_Matriculados.RowAttributes() %>>
+		<td<%= Total_Matriculados.CODCLI.CellAttributes %>>
+<div<%= Total_Matriculados.CODCLI.ViewAttributes%>><%= Total_Matriculados.CODCLI.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.DIG.CellAttributes %>>
+<div<%= Total_Matriculados.DIG.ViewAttributes%>><%= Total_Matriculados.DIG.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.PATERNO.CellAttributes %>>
+<div<%= Total_Matriculados.PATERNO.ViewAttributes%>><%= Total_Matriculados.PATERNO.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.MATERNO.CellAttributes %>>
+<div<%= Total_Matriculados.MATERNO.ViewAttributes%>><%= Total_Matriculados.MATERNO.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.NOMBRE.CellAttributes %>>
+<div<%= Total_Matriculados.NOMBRE.ViewAttributes%>><%= Total_Matriculados.NOMBRE.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.DESCRIPCION.CellAttributes %>>
+<div<%= Total_Matriculados.DESCRIPCION.ViewAttributes%>><%= Total_Matriculados.DESCRIPCION.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.NOMBRE_C.CellAttributes %>>
+<div<%= Total_Matriculados.NOMBRE_C.ViewAttributes%>><%= Total_Matriculados.NOMBRE_C.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.CODCARR.CellAttributes %>>
+<div<%= Total_Matriculados.CODCARR.ViewAttributes%>><%= Total_Matriculados.CODCARR.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.JORNADA.CellAttributes %>>
+<div<%= Total_Matriculados.JORNADA.ViewAttributes%>><%= Total_Matriculados.JORNADA.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.ESTACAD.CellAttributes %>>
+<div<%= Total_Matriculados.ESTACAD.ViewAttributes%>><%= Total_Matriculados.ESTACAD.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.FEC_MAT.CellAttributes %>>
+<div<%= Total_Matriculados.FEC_MAT.ViewAttributes%>><%= Total_Matriculados.FEC_MAT.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.ANO.CellAttributes %>>
+<div<%= Total_Matriculados.ANO.ViewAttributes%>><%= Total_Matriculados.ANO.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.ANO_MAT.CellAttributes %>>
+<div<%= Total_Matriculados.ANO_MAT.ViewAttributes%>><%= Total_Matriculados.ANO_MAT.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.ESTADO.CellAttributes %>>
+<div<%= Total_Matriculados.ESTADO.ViewAttributes%>><%= Total_Matriculados.ESTADO.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.SITUACION.CellAttributes %>>
+<div<%= Total_Matriculados.SITUACION.ViewAttributes%>><%= Total_Matriculados.SITUACION.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.TIPOSITU.CellAttributes %>>
+<div<%= Total_Matriculados.TIPOSITU.ViewAttributes%>><%= Total_Matriculados.TIPOSITU.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.AL_FONO.CellAttributes %>>
+<div<%= Total_Matriculados.AL_FONO.ViewAttributes%>><%= Total_Matriculados.AL_FONO.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.MAIL.CellAttributes %>>
+<div<%= Total_Matriculados.MAIL.ViewAttributes%>><%= Total_Matriculados.MAIL.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.CELULAR.CellAttributes %>>
+<div<%= Total_Matriculados.CELULAR.ViewAttributes%>><%= Total_Matriculados.CELULAR.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.DIRACTUAL.CellAttributes %>>
+<div<%= Total_Matriculados.DIRACTUAL.ViewAttributes%>><%= Total_Matriculados.DIRACTUAL.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.CODFAC.CellAttributes %>>
+<div<%= Total_Matriculados.CODFAC.ViewAttributes%>><%= Total_Matriculados.CODFAC.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.FONOACT.CellAttributes %>>
+<div<%= Total_Matriculados.FONOACT.ViewAttributes%>><%= Total_Matriculados.FONOACT.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.SEXO.CellAttributes %>>
+<div<%= Total_Matriculados.SEXO.ViewAttributes%>><%= Total_Matriculados.SEXO.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.COMUNA.CellAttributes %>>
+<div<%= Total_Matriculados.COMUNA.ViewAttributes%>><%= Total_Matriculados.COMUNA.ListViewValue%></div>
+</td>
+		<td<%= Total_Matriculados.CIUDADACT.CellAttributes %>>
+<div<%= Total_Matriculados.CIUDADACT.ViewAttributes%>><%= Total_Matriculados.CIUDADACT.ListViewValue%></div>
+</td>
+
+		<td<%= Total_Matriculados.FECNAC.CellAttributes %>>
+<div<%= Total_Matriculados.FECNAC.ViewAttributes%>><%= Total_Matriculados.FECNAC.ListViewValue%></div>
+</td>
+
+		<td <%= Total_Matriculados.COLEGIO.CellAttributes %>>
+<div<%= Total_Matriculados.COLEGIO.ViewAttributes%>><%= Total_Matriculados.COLEGIO.ListViewValue%></div>
+</td>
+
+<td<%= Total_Matriculados.COMUNACOLEGIO.CellAttributes %>>
+<div<%= Total_Matriculados.COMUNACOLEGIO.ViewAttributes%>><%= Total_Matriculados.COMUNACOLEGIO.ListViewValue%></div>
+</td>
+
+    <td<%= Total_Matriculados.DEPENDENCIA.CellAttributes %>>
+<div<%= Total_Matriculados.DEPENDENCIA.ViewAttributes%>><%= Total_Matriculados.DEPENDENCIA.ListViewValue%></div>
+</td>
+
+ <td<%= Total_Matriculados.COMUNAALUMNO.CellAttributes %>>
+<div<%= Total_Matriculados.COMUNAALUMNO.ViewAttributes%>><%= Total_Matriculados.COMUNAALUMNO.ListViewValue%></div>
+</td>
+
+		<td<%= Total_Matriculados.FECHATIT.CellAttributes %>>
+<div<%= Total_Matriculados.FECHATIT.ViewAttributes%>><%= Total_Matriculados.FECHATIT.ListViewValue%></div>
+</td>
+
+		<td<%= Total_Matriculados.FECHAEGR.CellAttributes %>>
+<div<%= Total_Matriculados.FECHAEGR.ViewAttributes%>><%= Total_Matriculados.FECHAEGR.ListViewValue%></div>
+</td>
+
+		<td<%= Total_Matriculados.MODALIDAD.CellAttributes %>>
+<div<%= Total_Matriculados.MODALIDAD.ViewAttributes%>><%= Total_Matriculados.MODALIDAD.ListViewValue%></div>
+</td>
+
+		<td<%= Total_Matriculados.CATEGORIA.CellAttributes %>>
+<div<%= Total_Matriculados.CATEGORIA.ViewAttributes%>><%= Total_Matriculados.CATEGORIA.ListViewValue%></div>
+</td>
+
+<%
+        ' Accumulate page summary
+        Total_Matriculados_summary.AccumulateSummary()
+
+        ' Get next record
+        Total_Matriculados_summary.GetRow() ' ASPXRPT
+        Total_Matriculados_summary.GrpCount += 1
+    End While
+%>
+	</tbody>
+	<tfoot>
+<%
+    If (Total_Matriculados_summary.TotalGrps > 0) Then
+        Total_Matriculados.ResetCSS()
+        Total_Matriculados.RowType = EWRPT_ROWTYPE_TOTAL
+        Total_Matriculados.RowTotalType = EWRPT_ROWTOTAL_GRAND
+        Total_Matriculados.RowTotalSubType = EWRPT_ROWTOTAL_FOOTER
+        Total_Matriculados.RowAttrs("class") = "ewRptGrandSummary"
+        Total_Matriculados_summary.RenderRow()
+%>
+	<!-- tr><td colspan="26"><span class="aspnetreportmaker">&nbsp;<br></span></td></tr -->
+	<tr<%= Total_Matriculados.RowAttributes() %>><td colspan="26"><%= ReportLanguage.Phrase("RptGrandTotal") %> (<%= ewrpt_FormatNumber(Total_Matriculados_summary.TotCount, 0) %> <%= ReportLanguage.Phrase("RptDtlRec") %>)</td></tr>
+<% End If %>
+	</tfoot>
+</table>
+</div>
+<% If (Total_Matriculados.Export = "") Then %>
+<div class="ewGridLowerPanel">
+<form name="ewpagerform" id="ewpagerform" class="ewForm">
+<table id="ewRptPagerTable" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="white-space: nowrap;">
+<% If Total_Matriculados_summary.Pager Is Nothing Then Total_Matriculados_summary.Pager = New cPrevNextPager(Total_Matriculados_summary.StartGrp, Total_Matriculados_summary.DisplayGrps, Total_Matriculados_summary.TotalGrps) %>
+<% If Total_Matriculados_summary.Pager.RecordCount > 0 Then %>
+	<table border="0" cellspacing="0" cellpadding="0"><tr><td><span class="aspnetreportmaker"><%= ReportLanguage.Phrase("Page") %>&nbsp;</span></td>
+<!--first page button-->
+	<% If Total_Matriculados_summary.Pager.FirstButton.Enabled Then %>
+	<td><a href="Total_Matriculadossmry.aspx?start=<%= Total_Matriculados_summary.Pager.FirstButton.Start %>"><img src="aspxrptimages/first.gif" alt="<%= ReportLanguage.Phrase("PagerFirst") %>" width="16" height="16" border="0"></a></td>
+	<% Else %>
+	<td><img src="aspxrptimages/firstdisab.gif" alt="<%= ReportLanguage.Phrase("PagerFirst") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+<!--previous page button-->
+	<% If Total_Matriculados_summary.Pager.PrevButton.Enabled Then %>
+	<td><a href="Total_Matriculadossmry.aspx?start=<%= Total_Matriculados_summary.Pager.PrevButton.Start %>"><img src="aspxrptimages/prev.gif" alt="<%= ReportLanguage.Phrase("PagerPrevious") %>" width="16" height="16" border="0"></a></td>
+	<% Else %>
+	<td><img src="aspxrptimages/prevdisab.gif" alt="<%= ReportLanguage.Phrase("PagerPrevious") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+<!--current page number-->
+	<td><input type="text" name="pageno" id="pageno" value="<%= Total_Matriculados_summary.Pager.CurrentPage %>" size="4" /></td>
+<!--next page button-->
+	<% If Total_Matriculados_summary.Pager.NextButton.Enabled Then %>
+	<td><a href="Total_Matriculadossmry.aspx?start=<%= Total_Matriculados_summary.Pager.NextButton.Start %>"><img src="aspxrptimages/next.gif" alt="<%= ReportLanguage.Phrase("PagerNext") %>" width="16" height="16" border="0"></a></td>
+	<% Else %>
+	<td><img src="aspxrptimages/nextdisab.gif" alt="<%= ReportLanguage.Phrase("PagerNext") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+<!--last page button-->
+	<% If Total_Matriculados_summary.Pager.LastButton.Enabled Then %>
+	<td><a href="Total_Matriculadossmry.aspx?start=<%= Total_Matriculados_summary.Pager.LastButton.Start %>"><img src="aspxrptimages/last.gif" alt="<%= ReportLanguage.Phrase("PagerLast") %>" width="16" height="16" border="0"></a></td>	
+	<% Else %>
+	<td><img src="aspxrptimages/lastdisab.gif" alt="<%= ReportLanguage.Phrase("PagerLast") %>" width="16" height="16" border="0"></td>
+	<% End If %>
+	<td><span class="aspnetreportmaker">&nbsp;<%= ReportLanguage.Phrase("of") %> <%= Total_Matriculados_summary.Pager.PageCount %></span></td>
+	</tr></table>
+	</td>	
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td>
+	<span class="aspnetreportmaker"><%= ReportLanguage.Phrase("Record") %> <%= Total_Matriculados_summary.Pager.FromIndex %> <%= ReportLanguage.Phrase("To") %> <%= Total_Matriculados_summary.Pager.ToIndex %> <%= ReportLanguage.Phrase("Of") %> <%= Total_Matriculados_summary.Pager.RecordCount %></span>	
+<% Else %>
+	<% If Total_Matriculados_summary.Filter = "0=101" Then %>
+	<span class="aspnetreportmaker"><%= ReportLanguage.Phrase("EnterSearchCriteria") %></span>
+	<% Else %>
+	<span class="aspnetreportmaker"><%= ReportLanguage.Phrase("NoRecord") %></span>
+	<% End If %>
+<% End If %>
+		</td>
+<% If (Total_Matriculados_summary.TotalGrps > 0) Then %>
+		<td style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td align="right" style="vertical-align: top; white-space: nowrap;"><span class="aspnetreportmaker"><%= ReportLanguage.Phrase("GroupsPerPage") %>&nbsp;
+<select id="<%= EWRPT_TABLE_GROUP_PER_PAGE %>" name="<%= EWRPT_TABLE_GROUP_PER_PAGE %>" class="aspnetreportmaker" onchange="this.form.submit();">
+<option value="20"<% If Total_Matriculados_summary.DisplayGrps = 20 Then Response.Write(" selected=""selected""") %>>20</option>
+<option value="50"<% If Total_Matriculados_summary.DisplayGrps = 50 Then Response.Write(" selected=""selected""") %>>50</option>
+<option value="ALL"<% If (Total_Matriculados.GroupPerPage = -1) Then Response.Write(" selected=""selected""") %>><%= ReportLanguage.Phrase("AllRecords") %></option>
+</select>
+		</span></td>
+<% End If %>
+	</tr>
+</table>
+</form>
+</div>
+<% End If %>
+</td></tr></table>
+</div>
+<!-- Summary Report Ends -->
+<% If (Total_Matriculados.Export = "") Then %>
+	</div><br></td>
+	<!-- Center Container - Report (End) -->
+	<!-- Right Container (Begin) -->
+	<td style="vertical-align: top;"><div id="ewRight" class="aspnetreportmaker">
+	<!-- Right slot -->
+<% End If %>
+<% If (Total_Matriculados.Export = "") Then %>
+	</div></td>
+	<!-- Right Container (End) -->
+</tr>
+<!-- Bottom Container (Begin) -->
+<tr><td colspan="3"><div id="ewBottom" class="aspnetreportmaker">
+	<!-- Bottom slot -->
+<% End If %>
+<% If (Total_Matriculados.Export = "") Then %>
+	</div><br></td></tr>
+<!-- Bottom Container (End) -->
+</table>
+<!-- Table Container (End) -->
+<% End If %>
+<% Total_Matriculados_summary.ShowPageFooter() %>
+<% If (EWRPT_DEBUG_ENABLED) Then ew_Write(ew_DebugMsg()) %>
+<% If (Total_Matriculados.Export = "") Then %>
+<script language="JavaScript" type="text/javascript">
+<!--
+// Write your table-specific startup script here
+// document.write("page loaded");
+//-->
+</script>
+<% End If %>
+</asp:Content>
+

@@ -1,0 +1,1268 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<ew-language date="2011/10/27" version="4.0.0" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+	<global>
+		<phrase id="allrecords" value="All"/>
+		<phrase id="alwaysask" value="Always ask for my user name and password"/>
+		<phrase id="autologin" value="Auto login until I logout explicitly"/>
+		<phrase id="backtologin" value="Back to Login Page"/>
+		<phrase id="booleanno" value="No"/>
+		<phrase id="booleanyes" value="Yes"/>
+		<phrase id="cancelbtn" value="Cancel" client="1"/>
+		<phrase id="currentfilters" value="CURRENT FILTERS:"/>
+		<phrase id="entersenderemail" value="Please enter sender email" client="1"/>
+		<phrase id="enterpropersenderemail" value="Exceed maximum sender email count or email address incorrect" client="1"/>
+		<phrase id="enterrecipientemail" value="Please enter recipient email" client="1"/>
+		<phrase id="enterproperrecipientemail" value="Exceed maximum recipient email count or email address incorrect" client="1"/>
+		<phrase id="enterproperccemail" value="Exceed maximum cc email count or email address incorrect" client="1"/>
+		<phrase id="enterproperbccemail" value="Exceed maximum bcc email count or email address incorrect" client="1"/>
+		<phrase id="entersubject" value="Please enter subject" client="1"/>
+		<phrase id="emailformsender" value="From"/>
+		<phrase id="emailformrecipient" value="To"/>
+		<phrase id="emailformcc" value="Cc"/>
+		<phrase id="emailformbcc" value="Bcc"/>
+		<phrase id="emailformsubject" value="Subject"/>
+		<phrase id="emailformmessage" value="Message"/>
+		<phrase id="emailformcontenttype" value="Send as"/>
+		<phrase id="emailformcontenttypeurl" value="URL"/>
+		<phrase id="emailformcontenttypehtml" value="HTML"/>
+		<phrase id="emptylabel" value="(Empty)"/>
+		<phrase id="enterpassword" value="Please enter password" client="1"/>
+		<phrase id="enterpwd" value="Please enter password" client="1"/>
+		<phrase id="entersearchcriteria" value="Please enter search criteria"/>
+		<phrase id="enteruid" value="Please enter user ID" client="1"/>
+		<phrase id="exceedmaxemailexport" value="Exceed maximum export email count. Please try again later."/>
+		<phrase id="exporttoemail" value="Email" client="1"/>
+		<phrase id="exporttoexcel" value="Export to Excel"/>
+		<phrase id="exporttoword" value="Export to Word"/>
+		<phrase id="filters" value="Filtros"/>
+		<phrase id="incorrectcreditcard" value="Incorrect credit card number" client="1"/>
+		<phrase id="incorrectdateymd" value="Incorrect date, format = yyyy%smm%sdd"/>
+		<phrase id="incorrectdatemdy" value="Incorrect date, format = mm%sdd%syyyy"/>
+		<phrase id="incorrectdatedmy" value="Incorrect date, format = dd%smm%syyyy"/>
+		<phrase id="incorrectemail" value="Incorrect email" client="1"/>
+		<phrase id="incorrectfield" value="Incorrect field" client="1"/>
+		<phrase id="incorrectfloat" value="Incorrect floating point number" client="1"/>
+		<phrase id="incorrectguid" value="Incorrect GUID" client="1"/>
+		<phrase id="incorrectinteger" value="Incorrect integer" client="1"/>
+		<phrase id="incorrectphone" value="Incorrect phone number" client="1"/>
+		<phrase id="incorrectrange" value="Number must be between %1 and %2" client="1"/>
+		<phrase id="incorrectregexp" value="Regular expression not matched" client="1"/>
+		<phrase id="incorrectssn" value="Incorrect Social Security Number" client="1"/>
+		<phrase id="incorrecttime" value="Incorrect time (hh:mm:ss)" client="1"/>
+		<phrase id="incorrectzip" value="Incorrect ZIP code" client="1"/>
+		<phrase id="invaliduidpwd" value="Incorrect user ID or password"/>
+		<phrase id="login" value="Login"/>
+		<phrase id="loginpage" value="Login Page"/>
+		<phrase id="logout" value="Logout"/>
+		<phrase id="monthjan" value="Jan"/>
+		<phrase id="monthfeb" value="Feb"/>
+		<phrase id="monthmar" value="Mar"/>
+		<phrase id="monthapr" value="Apr"/>
+		<phrase id="monthmay" value="May"/>
+		<phrase id="monthjun" value="Jun"/>
+		<phrase id="monthjul" value="Jul"/>
+		<phrase id="monthaug" value="Aug"/>
+		<phrase id="monthsep" value="Sep"/>
+		<phrase id="monthoct" value="Oct"/>
+		<phrase id="monthnov" value="Nov"/>
+		<phrase id="monthdec" value="Dec"/>
+		<phrase id="next" value="Next"/>
+		<phrase id="nopermission" value="You do not have the right permission to view the page"/>
+		<phrase id="norecord" value="No records found"/>
+		<phrase id="noreportorcharts" value="No report or charts is selected for generation. Please check your report/charts settings."/>
+		<phrase id="nodistinctcolvals" value="No distinct column values for sql: "/>
+		<phrase id="nulllabel" value="(Null)"/>
+		<phrase id="of" value="de"/>
+		<phrase id="page" value="Página"/>
+		<phrase id="pagerfirst" value="First"/>
+		<phrase id="pagerlast" value="Last"/>
+		<phrase id="pagernext" value="Next"/>
+		<phrase id="pagerprevious" value="Previous"/>
+		<phrase id="password" value="Password"/>
+		<phrase id="pleaseselect" value=""/>
+		<phrase id="popupall" value="(All)" client="1"/>
+		<phrase id="popupcancel" value="Cancel" client="1"/>
+		<phrase id="popupfrom" value="From" client="1"/>
+		<phrase id="popupnovalue" value="No value selected!" client="1"/>
+		<phrase id="popupok" value="  OK  " client="1"/>
+		<phrase id="popupselect" value="Please Select" client="1"/>
+		<phrase id="popupto" value="To" client="1"/>
+		<phrase id="prev" value="Prev"/>
+		<phrase id="printerfriendly" value="Printer Friendly"/>
+		<phrase id="group" value="Groups"/>
+		<phrase id="groupsperpage" value="Groups Per Page"/>
+		<phrase id="qtr1" value="1st Quarter"/>
+		<phrase id="qtr2" value="2nd Quarter"/>
+		<phrase id="qtr3" value="3rd Quarter"/>
+		<phrase id="qtr4" value="4th Quarter"/>
+		<phrase id="record" value="Registros"/>
+		<phrase id="recordsperpage" value="Registros por Página"/>
+		<phrase id="report" value="Reports"/>
+		<phrase id="reset" value="Cancelar"/>
+		<phrase id="resetallfilter" value="Resetear Filtros"/>
+		<phrase id="resetsearch" value="Reset Search Criteria"/>
+		<phrase id="rptavg" value="AVERAGE"/>
+		<phrase id="rptcnt" value="COUNT"/>
+		<phrase id="rptdtlrec" value="Detail Records"/>
+		<phrase id="rptgrandsummary" value="Grand Summary"/>
+		<phrase id="rptgrandtotal" value="Grand Total"/>
+		<phrase id="rptmax" value="MAXIMUM"/>
+		<phrase id="rptmin" value="MINIMUM"/>
+		<phrase id="rptpagesummary" value="Page Summary"/>
+		<phrase id="rptpagetotal" value="Page Total"/>
+		<phrase id="rptsum" value="SUM"/>
+		<phrase id="rptsumhead" value="Summary for"/>
+		<phrase id="saveusername" value="Save my user name"/>
+		<phrase id="search" value="Buscar"/>
+		<phrase id="selectall" value="(All)"/>
+		<phrase id="sendemailbtn" value="Send" client="1"/>
+		<phrase id="sendemailsuccess" value="Email sent successfully" client="1"/>
+		<phrase id="showall" value="Show all"/>
+		<phrase id="summary" value="Summary"/>
+		<phrase id="tasks" value="Tasks"/>
+		<phrase id="to" value="a"/>
+		<phrase id="top" value="Top"/>
+		<phrase id="total" value="Total"/>
+		<phrase id="username" value="User Name"/>
+		<phrase id="week" value="Week"/>
+		<phrase id="year" value="Year"/>
+		<!-- Search Operators -->
+		<phrase id="=" value=":"/>
+		<phrase id="&lt;&gt;" value="&lt;&gt;"/>
+		<phrase id="&lt;" value="&lt;"/>
+		<phrase id="&lt;=" value="&lt;="/>
+		<phrase id="&gt;" value="&gt;"/>
+		<phrase id="&gt;=" value="&gt;="/>
+		<phrase id="like" value="contains"/>
+		<phrase id="not like" value="not contains"/>
+		<phrase id="starts with" value="starts with"/>
+		<phrase id="between" value="between"/>
+		<phrase id="and" value="and"/>
+		<phrase id="or" value="or"/>
+		<!-- Menu Prefix/Suffix -->
+		<phrase id="simplereportmenuitemprefix" value=""/>
+		<phrase id="simplereportmenuitemsuffix" value=""/>
+		<phrase id="detailsummaryreportmenuitemprefix" value=""/>
+		<phrase id="detailsummaryreportmenuitemsuffix" value=""/>
+		<phrase id="crosstabreportmenuitemprefix" value=""/>
+		<phrase id="crosstabreportmenuitemsuffix" value=""/>
+		<phrase id="chartreportmenuitemprefix" value=""/>
+		<phrase id="chartreportmenuitemsuffix" value=""/>
+		<!-- Advanced Filter -->
+		<phrase id="future" value="Future"/>
+		<phrase id="past" value="Past"/>
+		<phrase id="last14days" value="Last 14 days"/>
+		<phrase id="last30days" value="Last 30 days"/>
+		<phrase id="last7days" value="Last 7 days"/>
+		<phrase id="next14days" value="Next 14 days"/>
+		<phrase id="next30days" value="Next 30 days"/>
+		<phrase id="next7days" value="Next 7 days"/>
+		<phrase id="today" value="Today"/>
+		<phrase id="tomorrow" value="Tomorrow"/>
+		<phrase id="yesterday" value="Yesterday"/>
+		<phrase id="lastmonth" value="Last month"/>
+		<phrase id="nextmonth" value="Next month"/>
+		<phrase id="thismonth" value="This month"/>
+		<phrase id="lasttwoweeks" value="Last two weeks"/>
+		<phrase id="lastweek" value="Last week"/>
+		<phrase id="nexttwoweeks" value="Next two weeks"/>
+		<phrase id="nextweek" value="Next week"/>
+		<phrase id="thisweek" value="This week"/>
+		<phrase id="lastyear" value="Last year"/>
+		<phrase id="nextyear" value="Next year"/>
+		<phrase id="thisyear" value="This year"/>
+	</global>
+	<project><phrase id="footertext" value="&amp;copy;2011 e.World Technology Ltd. All rights reserved."/>
+<menu id="1"><phrase id="menutext" value="RA SITU"/>
+</menu>
+<menu id="2"><phrase id="menutext" value="RA TIPOSITU"/>
+</menu>
+<menu id="3"><phrase id="menutext" value="MT ALUMNO"/>
+</menu>
+<menu id="4"><phrase id="menutext" value="MT CLIENT"/>
+</menu>
+<menu id="5"><phrase id="menutext" value="cambioCarrera"/>
+</menu>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id="mt_alumno"><phrase id="tblcaption" value="MT ALUMNO"/>
+<field id="codcli"><phrase id="fldcaption" value="CODCLI"/>
+</field>
+<field id="codcarpr"><phrase id="fldcaption" value="CODCARPR"/>
+</field>
+<field id="codcarpt"><phrase id="fldcaption" value="CODCARPT"/>
+</field>
+<field id="estacad"><phrase id="fldcaption" value="ESTACAD"/>
+</field>
+<field id="estfinan"><phrase id="fldcaption" value="ESTFINAN"/>
+</field>
+<field id="ano"><phrase id="fldcaption" value="ANO"/>
+</field>
+<field id="biblioteca"><phrase id="fldcaption" value="BIBLIOTECA"/>
+</field>
+<field id="codacad"><phrase id="fldcaption" value="CODACAD"/>
+</field>
+<field id="periodo"><phrase id="fldcaption" value="PERIODO"/>
+</field>
+<field id="ord_ing"><phrase id="fldcaption" value="ORD ING"/>
+</field>
+<field id="ponderado"><phrase id="fldcaption" value="PONDERADO"/>
+</field>
+<field id="fecreg"><phrase id="fldcaption" value="FECREG"/>
+</field>
+<field id="codpestud"><phrase id="fldcaption" value="CODPESTUD"/>
+</field>
+<field id="estacadobs"><phrase id="fldcaption" value="ESTACADOBS"/>
+</field>
+<field id="estfinanobs"><phrase id="fldcaption" value="ESTFINANOBS"/>
+</field>
+<field id="clave"><phrase id="fldcaption" value="CLAVE"/>
+</field>
+<field id="puntaje"><phrase id="fldcaption" value="PUNTAJE"/>
+</field>
+<field id="anopestud"><phrase id="fldcaption" value="ANOPESTUD"/>
+</field>
+<field id="usuario"><phrase id="fldcaption" value="USUARIO"/>
+</field>
+<field id="fecmod"><phrase id="fldcaption" value="FECMOD"/>
+</field>
+<field id="rut"><phrase id="fldcaption" value="RUT"/>
+</field>
+<field id="matfraplazo"><phrase id="fldcaption" value="MATFRAPLAZO"/>
+</field>
+<field id="jornada"><phrase id="fldcaption" value="JORNADA"/>
+</field>
+<field id="nivel"><phrase id="fldcaption" value="NIVEL"/>
+</field>
+<field id="causalelim"><phrase id="fldcaption" value="CAUSALELIM"/>
+</field>
+<field id="fecing"><phrase id="fldcaption" value="FECING"/>
+</field>
+<field id="anoegre"><phrase id="fldcaption" value="ANOEGRE"/>
+</field>
+<field id="periodoegre"><phrase id="fldcaption" value="PERIODOEGRE"/>
+</field>
+<field id="promegr"><phrase id="fldcaption" value="PROMEGR"/>
+</field>
+<field id="periodotit"><phrase id="fldcaption" value="PERIODOTIT"/>
+</field>
+<field id="anotit"><phrase id="fldcaption" value="ANOTIT"/>
+</field>
+<field id="esudd"><phrase id="fldcaption" value="ESUDD"/>
+</field>
+<field id="codaval"><phrase id="fldcaption" value="CODAVAL"/>
+</field>
+<field id="codasegurado"><phrase id="fldcaption" value="CODASEGURADO"/>
+</field>
+<field id="fec_mat"><phrase id="fldcaption" value="FEC MAT"/>
+</field>
+<field id="ano_mat"><phrase id="fldcaption" value="ANO MAT"/>
+</field>
+<field id="periodo_mat"><phrase id="fldcaption" value="PERIODO MAT"/>
+</field>
+<field id="matriculado"><phrase id="fldcaption" value="MATRICULADO"/>
+</field>
+<field id="codsede"><phrase id="fldcaption" value="CODSEDE"/>
+</field>
+<field id="tipositu"><phrase id="fldcaption" value="TIPOSITU"/>
+</field>
+<field id="paa"><phrase id="fldcaption" value="PAA"/>
+</field>
+<field id="matriculable"><phrase id="fldcaption" value="MATRICULABLE"/>
+</field>
+<field id="tipositupro"><phrase id="fldcaption" value="TIPOSITUPRO"/>
+</field>
+<field id="estanivel"><phrase id="fldcaption" value="ESTANIVEL"/>
+</field>
+<field id="fechasitu"><phrase id="fldcaption" value="FECHASITU"/>
+</field>
+<field id="folio"><phrase id="fldcaption" value="FOLIO"/>
+</field>
+<field id="expediente"><phrase id="fldcaption" value="EXPEDIENTE"/>
+</field>
+<field id="decreto"><phrase id="fldcaption" value="DECRETO"/>
+</field>
+<field id="nuevo"><phrase id="fldcaption" value="NUEVO"/>
+</field>
+<field id="tipo_ingreso"><phrase id="fldcaption" value="TIPO INGRESO"/>
+</field>
+<field id="encdoc"><phrase id="fldcaption" value="ENCDOC"/>
+</field>
+<field id="periodo_ed"><phrase id="fldcaption" value="PERIODO ED"/>
+</field>
+<field id="ano_ed"><phrase id="fldcaption" value="ANO ED"/>
+</field>
+<field id="nummaxper"><phrase id="fldcaption" value="NUMMAXPER"/>
+</field>
+<field id="entregotesis"><phrase id="fldcaption" value="ENTREGOTESIS"/>
+</field>
+<field id="combo"><phrase id="fldcaption" value="COMBO"/>
+</field>
+<field id="foliogrado"><phrase id="fldcaption" value="FOLIOGRADO"/>
+</field>
+<field id="anositupro"><phrase id="fldcaption" value="ANOSITUPRO"/>
+</field>
+<field id="periodositupro"><phrase id="fldcaption" value="PERIODOSITUPRO"/>
+</field>
+<field id="regultasigpro"><phrase id="fldcaption" value="REGULTASIGPRO"/>
+</field>
+<field id="codcliexterno"><phrase id="fldcaption" value="CODCLIEXTERNO"/>
+</field>
+<field id="codseccteo"><phrase id="fldcaption" value="codseccteo"/>
+</field>
+<field id="nivelranking"><phrase id="fldcaption" value="NIVELRANKING"/>
+</field>
+<field id="jornadaranking"><phrase id="fldcaption" value="JORNADARANKING"/>
+</field>
+<field id="anomalla"><phrase id="fldcaption" value="ANOMALLA"/>
+</field>
+<field id="periodos"><phrase id="fldcaption" value="PERIODOS"/>
+</field>
+<field id="comboaux"><phrase id="fldcaption" value="COMBOAUX"/>
+</field>
+</table>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id="mt_client"><phrase id="tblcaption" value="MT CLIENT"/>
+<field id="codcli"><phrase id="fldcaption" value="CODCLI"/>
+</field>
+<field id="dig"><phrase id="fldcaption" value="DIG"/>
+</field>
+<field id="paterno"><phrase id="fldcaption" value="PATERNO"/>
+</field>
+<field id="materno"><phrase id="fldcaption" value="MATERNO"/>
+</field>
+<field id="nombre"><phrase id="fldcaption" value="NOMBRE"/>
+</field>
+<field id="sexo"><phrase id="fldcaption" value="SEXO"/>
+</field>
+<field id="nacionalidad"><phrase id="fldcaption" value="NACIONALIDAD"/>
+</field>
+<field id="doblenacion"><phrase id="fldcaption" value="DOBLENACION"/>
+</field>
+<field id="tipovisa"><phrase id="fldcaption" value="TIPOVISA"/>
+</field>
+<field id="pasaporte"><phrase id="fldcaption" value="PASAPORTE"/>
+</field>
+<field id="fecnac"><phrase id="fldcaption" value="FECNAC"/>
+</field>
+<field id="estcivil"><phrase id="fldcaption" value="ESTCIVIL"/>
+</field>
+<field id="codsissalud"><phrase id="fldcaption" value="CODSISSALUD"/>
+</field>
+<field id="dirproc"><phrase id="fldcaption" value="DIRPROC"/>
+</field>
+<field id="ciuproc"><phrase id="fldcaption" value="CIUPROC"/>
+</field>
+<field id="comunapro"><phrase id="fldcaption" value="COMUNAPRO"/>
+</field>
+<field id="fonoproc"><phrase id="fldcaption" value="FONOPROC"/>
+</field>
+<field id="diractual"><phrase id="fldcaption" value="DIRACTUAL"/>
+</field>
+<field id="comuna"><phrase id="fldcaption" value="COMUNA"/>
+</field>
+<field id="ciudadact"><phrase id="fldcaption" value="CIUDADACT"/>
+</field>
+<field id="fonoact"><phrase id="fldcaption" value="FONOACT"/>
+</field>
+<field id="colegio"><phrase id="fldcaption" value="COLEGIO"/>
+</field>
+<field id="anoeem"><phrase id="fldcaption" value="ANOEEM"/>
+</field>
+<field id="notaem"><phrase id="fldcaption" value="NOTAEM"/>
+</field>
+<field id="universidad"><phrase id="fldcaption" value="UNIVERSIDAD"/>
+</field>
+<field id="es_pais"><phrase id="fldcaption" value="ES PAIS"/>
+</field>
+<field id="es_ciudad"><phrase id="fldcaption" value="ES CIUDAD"/>
+</field>
+<field id="es_carr"><phrase id="fldcaption" value="ES CARR"/>
+</field>
+<field id="es_titulado"><phrase id="fldcaption" value="ES TITULADO"/>
+</field>
+<field id="es_titulo"><phrase id="fldcaption" value="ES TITULO"/>
+</field>
+<field id="es_ulano"><phrase id="fldcaption" value="ES ULANO"/>
+</field>
+<field id="es_iniano"><phrase id="fldcaption" value="ES INIANO"/>
+</field>
+<field id="es_semap"><phrase id="fldcaption" value="ES SEMAP"/>
+</field>
+<field id="al_activi"><phrase id="fldcaption" value="AL ACTIVI"/>
+</field>
+<field id="al_emp"><phrase id="fldcaption" value="AL EMP"/>
+</field>
+<field id="al_dircom"><phrase id="fldcaption" value="AL DIRCOM"/>
+</field>
+<field id="al_fono"><phrase id="fldcaption" value="AL FONO"/>
+</field>
+<field id="codapod"><phrase id="fldcaption" value="CODAPOD"/>
+</field>
+<field id="documentado"><phrase id="fldcaption" value="DOCUMENTADO"/>
+</field>
+<field id="fecdoc"><phrase id="fldcaption" value="FECDOC"/>
+</field>
+<field id="aran_bas"><phrase id="fldcaption" value="ARAN BAS"/>
+</field>
+<field id="fecarbas"><phrase id="fldcaption" value="FECARBAS"/>
+</field>
+<field id="ciudnac"><phrase id="fldcaption" value="CIUDNAC"/>
+</field>
+<field id="ano"><phrase id="fldcaption" value="ANO"/>
+</field>
+<field id="emergencia"><phrase id="fldcaption" value="EMERGENCIA"/>
+</field>
+<field id="fonoemerg"><phrase id="fldcaption" value="FONOEMERG"/>
+</field>
+<field id="usuario"><phrase id="fldcaption" value="USUARIO"/>
+</field>
+<field id="fecmod"><phrase id="fldcaption" value="FECMOD"/>
+</field>
+<field id="fecinipas"><phrase id="fldcaption" value="FECINIPAS"/>
+</field>
+<field id="fecfinpas"><phrase id="fldcaption" value="FECFINPAS"/>
+</field>
+<field id="rutcli"><phrase id="fldcaption" value="RUTCLI"/>
+</field>
+<field id="dolencia"><phrase id="fldcaption" value="DOLENCIA"/>
+</field>
+<field id="mail"><phrase id="fldcaption" value="MAIL"/>
+</field>
+<field id="contraindicacion"><phrase id="fldcaption" value="CONTRAINDICACION"/>
+</field>
+<field id="correspondencia"><phrase id="fldcaption" value="CORRESPONDENCIA"/>
+</field>
+<field id="anoingreso"><phrase id="fldcaption" value="ANOINGRESO"/>
+</field>
+<field id="periodo"><phrase id="fldcaption" value="PERIODO"/>
+</field>
+<field id="vigente"><phrase id="fldcaption" value="VIGENTE"/>
+</field>
+<field id="fec_mat"><phrase id="fldcaption" value="FEC MAT"/>
+</field>
+<field id="fecing"><phrase id="fldcaption" value="FECING"/>
+</field>
+<field id="relacion"><phrase id="fldcaption" value="RELACION"/>
+</field>
+<field id="fotos"><phrase id="fldcaption" value="FOTOS"/>
+</field>
+<field id="codaval"><phrase id="fldcaption" value="CODAVAL"/>
+</field>
+<field id="codasegurado"><phrase id="fldcaption" value="CODASEGURADO"/>
+</field>
+<field id="viadmision"><phrase id="fldcaption" value="VIADMISION"/>
+</field>
+<field id="achsafil"><phrase id="fldcaption" value="ACHSAFIL"/>
+</field>
+<field id="achshijoafil"><phrase id="fldcaption" value="ACHSHIJOAFIL"/>
+</field>
+<field id="achsccaf18"><phrase id="fldcaption" value="ACHSCCAF18"/>
+</field>
+<field id="achsliceo"><phrase id="fldcaption" value="ACHSLICEO"/>
+</field>
+<field id="localidadact"><phrase id="fldcaption" value="LOCALIDADACT"/>
+</field>
+<field id="localidadpro"><phrase id="fldcaption" value="LOCALIDADPRO"/>
+</field>
+<field id="datos_p"><phrase id="fldcaption" value="DATOS P"/>
+</field>
+<field id="matriculable"><phrase id="fldcaption" value="MATRICULABLE"/>
+</field>
+<field id="deuda_biblioteca"><phrase id="fldcaption" value="DEUDA BIBLIOTECA"/>
+</field>
+<field id="codmedio"><phrase id="fldcaption" value="CODMEDIO"/>
+</field>
+<field id="viaconsulta"><phrase id="fldcaption" value="VIACONSULTA"/>
+</field>
+<field id="desbl_tomaramos"><phrase id="fldcaption" value="DESBL TOMARAMOS"/>
+</field>
+<field id="categoria"><phrase id="fldcaption" value="CATEGORIA"/>
+</field>
+<field id="codempresa"><phrase id="fldcaption" value="CODEMPRESA"/>
+</field>
+<field id="codtramo"><phrase id="fldcaption" value="CODTRAMO"/>
+</field>
+<field id="codmotivo"><phrase id="fldcaption" value="CODMOTIVO"/>
+</field>
+<field id="reglicem"><phrase id="fldcaption" value="REGLICEM"/>
+</field>
+<field id="numinscripcion"><phrase id="fldcaption" value="NUMINSCRIPCION"/>
+</field>
+<field id="fechainscrip"><phrase id="fldcaption" value="FECHAINSCRIP"/>
+</field>
+<field id="circunscripcion"><phrase id="fldcaption" value="CIRCUNSCRIPCION"/>
+</field>
+<field id="anoinscrip"><phrase id="fldcaption" value="ANOINSCRIP"/>
+</field>
+<field id="deuda"><phrase id="fldcaption" value="DEUDA"/>
+</field>
+<field id="nrohijos"><phrase id="fldcaption" value="NROHIJOS"/>
+</field>
+<field id="atrabajado"><phrase id="fldcaption" value="ATRABAJADO"/>
+</field>
+<field id="sence"><phrase id="fldcaption" value="SENCE"/>
+</field>
+</table>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id="ra_situ"><phrase id="tblcaption" value="RA SITU"/>
+<field id="codcli"><phrase id="fldcaption" value="CODCLI"/>
+</field>
+<field id="ano"><phrase id="fldcaption" value="ANO"/>
+</field>
+<field id="periodo"><phrase id="fldcaption" value="PERIODO"/>
+</field>
+<field id="tipositu"><phrase id="fldcaption" value="TIPOSITU"/>
+</field>
+<field id="observacion"><phrase id="fldcaption" value="OBSERVACION"/>
+</field>
+<field id="codsitu"><phrase id="fldcaption" value="CODSITU"/>
+</field>
+<field id="emision"><phrase id="fldcaption" value="EMISION"/>
+</field>
+<field id="fechareg"><phrase id="fldcaption" value="FECHAREG"/>
+</field>
+<field id="registro"><phrase id="fldcaption" value="REGISTRO"/>
+</field>
+<field id="usuario"><phrase id="fldcaption" value="USUARIO"/>
+</field>
+<field id="codsede"><phrase id="fldcaption" value="CODSEDE"/>
+</field>
+<field id="tuvocarga"><phrase id="fldcaption" value="TUVOCARGA"/>
+</field>
+</table>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id="ra_tipositu"><phrase id="tblcaption" value="RA TIPOSITU"/>
+<field id="codigo"><phrase id="fldcaption" value="CODIGO"/>
+</field>
+<field id="descripcion"><phrase id="fldcaption" value="DESCRIPCION"/>
+</field>
+<field id="sigla"><phrase id="fldcaption" value="SIGLA"/>
+</field>
+<field id="estacad"><phrase id="fldcaption" value="ESTACAD"/>
+</field>
+<field id="concepto"><phrase id="fldcaption" value="CONCEPTO"/>
+</field>
+<field id="deletecarga"><phrase id="fldcaption" value="DELETECARGA"/>
+</field>
+<field id="codgrupo"><phrase id="fldcaption" value="codgrupo"/>
+</field>
+<field id="esretiro"><phrase id="fldcaption" value="ESRETIRO"/>
+</field>
+<field id="tipositurechazo"><phrase id="fldcaption" value="TIPOSITURECHAZO"/>
+</field>
+<field id="estanivel"><phrase id="fldcaption" value="ESTANIVEL"/>
+</field>
+<field id="validadocpend"><phrase id="fldcaption" value="VALIDADOCPEND"/>
+</field>
+<field id="codproc"><phrase id="fldcaption" value="CODPROC"/>
+</field>
+<field id="alteraestaniveltitint"><phrase id="fldcaption" value="ALTERAESTANIVELTITINT"/>
+</field>
+<field id="glosadescriptiva"><phrase id="fldcaption" value="GLOSADESCRIPTIVA"/>
+</field>
+<field id="maxres"><phrase id="fldcaption" value="MAXRES"/>
+</field>
+<field id="otorgatitulo"><phrase id="fldcaption" value="OTORGATITULO"/>
+</field>
+<field id="reincorpora"><phrase id="fldcaption" value="REINCORPORA"/>
+</field>
+<field id="cambiocarrera"><phrase id="fldcaption" value="CAMBIOCARRERA"/>
+</field>
+<field id="obsactaexa"><phrase id="fldcaption" value="OBSACTAEXA"/>
+</field>
+</table>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id=""/>
+<table id="cambiocarrera"><phrase id="tblcaption" value="Cambios de Carrera"/>
+<field id="paterno"><phrase id="fldcaption" value="Paterno"/>
+</field>
+<field id="materno"><phrase id="fldcaption" value="Materno"/>
+</field>
+<field id="nombre"><phrase id="fldcaption" value="Nombre"/>
+</field>
+<field id="cf3digo_carrera"><phrase id="fldcaption" value="Código Carrera"/>
+</field>
+<field id="jornada"><phrase id="fldcaption" value="Jornada"/>
+</field>
+<field id="periodo"><phrase id="fldcaption" value="Periodo"/>
+</field>
+<field id="af1o"><phrase id="fldcaption" value="Año"/>
+</field>
+<field id="cod_tipo_situacif3n"><phrase id="fldcaption" value="Cod Tipo Situación"/>
+</field>
+<field id="descripcif3n"><phrase id="fldcaption" value="Descripción"/>
+</field>
+<field id="observacif3n"><phrase id="fldcaption" value="Observación"/>
+</field>
+<field id="codigo_cliente"><phrase id="fldcaption" value="Codigo Cliente"/>
+</field>
+</table>
+</project>
+</ew-language>

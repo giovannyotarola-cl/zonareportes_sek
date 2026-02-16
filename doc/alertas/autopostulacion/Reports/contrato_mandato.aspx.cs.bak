@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.IO;
+using SelectPdf;
+
+namespace AutoPostulacion.Reports
+{
+    public partial class contrato_mandato : System.Web.UI.Page
+    {
+        private bool startConversion = false;
+        string RUT = string.Empty;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            RUT = Request.QueryString["user"];
+            //lblNombreAlumno1.Text = "nombre1+nombre2+apellido1+apellido2";
+            crearPDF();
+        }
+        protected void crearPDF()
+        {
+            startConversion = true;
+        }
+        protected override void Render(HtmlTextWriter writer)
+        {
+            if (startConversion)
+            {
+                // get html of the page
+                TextWriter myWriter = new StringWriter();
+                HtmlTextWriter htmlWriter = new HtmlTextWriter(myWriter);
+                base.Render(htmlWriter);
+
+                // instantiate a html to pdf converter object
+                HtmlToPdf converter = new HtmlToPdf();
+
+                // create a new pdf document converting the html string of the page
+                PdfDocument doc = converter.ConvertHtmlString(
+                    myWriter.ToString(), Request.Url.AbsoluteUri);
+
+                // save pdf document
+                doc.Save(Response, false, "Contrato_Mandato.pdf");
+
+                // close pdf document
+                doc.Close();
+            }
+            else
+            {
+                // render web page in browser
+                base.Render(writer);
+            }
+        }
+    }
+}

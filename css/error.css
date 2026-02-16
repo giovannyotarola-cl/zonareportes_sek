@@ -1,0 +1,8 @@
+body {
+	background: #FFFFFF;
+}
+#error-container{
+	width:631px !important;
+	height:312px !important;
+	text-align:center;
+}

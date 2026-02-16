@@ -1,0 +1,6 @@
+﻿<?xml version="1.0"?>
+<configuration date="2013/12/02" author="e.World Technology Ltd.">
+<project id="{5E252714-15AD-4FF5-8F78-DA7E4D955D0D}" file="" name="project1" product="ASPNETReportMaker" version="6.0" datetime="2013/12/02 16:49:55" languagefolder="aspxrptlang" userlevel="0,&quot;Default&quot;,0">
+<table id="SEK_CanalDenuncias" name="SEK_CanalDenuncias" caption="SEK Canal Denuncias" userlevel="0,&quot;Default&quot;,0" priv="1"/>
+<table id="CanalDenuncias" name="CanalDenuncias" caption="Canal Denuncias" userlevel="0,&quot;Default&quot;,0" priv="1"/>
+</project></configuration>

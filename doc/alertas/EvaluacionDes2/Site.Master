@@ -1,0 +1,94 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="SistemaEvaluacion.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <img alt="" src="~/img/logo.jpg" runat="server" class ="logo"/>
+            <div class="title">
+                <h1>
+                    Sistema de evaluación del desempeño
+                </h1>
+            </div>
+           
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Iniciar sesión</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <span class="bold"><%=Session("nombre").ToString %></span>!<br />
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:LoginView ID="menu_superior" runat="server">
+                    <RoleGroups>
+                        <asp:RoleGroup Roles="admin">
+                            <ContentTemplate>
+                                 <asp:Menu ID="NavigationMenuAdmin" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                    <Items>
+                                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Inicio"/>
+                                        <asp:MenuItem NavigateUrl="evaluacion/perfil.aspx" Text="Perfil" 
+                                            Value="Perfil">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Evaluaciones" Value="Evaluación usuarios" 
+                                            NavigateUrl="evaluacion/seleccionarEvaluado.aspx">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Gestión usuarios" Value="Gestión usuarios" 
+                                            NavigateUrl="evaluacion/gestion_usuarios.aspx">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/evaluacion/jerarquias_usuarios.aspx" 
+                                            Text="Jerarquías" Value="Gestión jerarquías">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/evaluacion/parametros.aspx" 
+                                            Text="Parámetros" Value="Gestión parámetros">
+                                        </asp:MenuItem>
+                                    </Items>
+                                </asp:Menu>
+                            </ContentTemplate>
+                        </asp:RoleGroup>
+                        <asp:RoleGroup Roles="user">
+                            <ContentTemplate>
+                                 <asp:Menu ID="NavigationMenuUser" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                    <Items>
+                                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Inicio"/>
+                                        <asp:MenuItem NavigateUrl="evaluacion/perfil.aspx" Text="Perfil" 
+                                            Value="Perfil">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Evaluaciones" Value="Evaluación usuarios" 
+                                            NavigateUrl="evaluacion/seleccionarEvaluado.aspx">
+                                        </asp:MenuItem>
+                                    </Items>
+                                </asp:Menu>
+                            </ContentTemplate>
+                        </asp:RoleGroup>
+                    </RoleGroups>
+                </asp:LoginView>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        <div class = "footer_content">
+	        <span class="footer_sistema">Sistema de Evaluaci&oacute;n del Desempe&ntilde;o</span> | Departamento de Recursos Tecnol&oacute;gicos <a href="http://www.usek.cl/" target="_blank" class = "enlace_footer">Universidad SEK</a> 2017
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿body {
+}
+
+.panel-heading {
+    margin-bottom: 0.75rem;
+}
+.panel-footer {
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+}
+
+.card-block::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.bd-example > .card {
+    max-width: 20rem;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+    .card-block:hover {
+        border: 1px solid rgb(0, 49, 138);
+    }
+
+.card {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    position: relative;
+}
+
+.card-link {
+    float:right;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modalbox {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+.textbox {
+    position: absolute;
+    text-align: center;
+    top: 53%;
+    width: 100%;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+.loading .modalbox {
+    display: block;
+}

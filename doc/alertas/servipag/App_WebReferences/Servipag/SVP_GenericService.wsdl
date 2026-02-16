@@ -1,0 +1,97 @@
+<wsdl:definitions targetNamespace="http://www.servipag.cl/ESB/wsdl/GenericService-v1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://www.servipag.cl/ESB/wsdl/GenericService-v1.0" xmlns:consultareq="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Req-v2014.12" xmlns:consultaresp="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Resp-v2014.12" xmlns:pagoreq="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Req-v2014.12" xmlns:pagoresp="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Resp-v2014.12">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.servipag.cl/ESB/wsdl/GenericService-v1.0" elementFormDefault="qualified">
+			<xs:import namespace="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Req-v2014.12" schemaLocation="../Schemas/ESB_GenericService_ConsultarDeudaReq.xsd"/>
+			<xs:import namespace="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Resp-v2014.12" schemaLocation="../Schemas/ESB_GenericService_ConsultarDeudaResp.xsd"/>
+			<xs:import namespace="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Req-v2014.12" schemaLocation="../Schemas/ESB_GenericService_NotificarPagoReq.xsd"/>
+			<xs:import namespace="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Resp-v2014.12" schemaLocation="../Schemas/ESB_GenericService_NotificarPagoResp.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="consultarDeudaMsgRequest">
+		<wsdl:part name="consultarDeudaMsgReqParam" element="consultareq:consultarDeudaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="consultarDeudaMsgResponse">
+		<wsdl:part name="consultarDeudaMsgRespParam" element="consultaresp:consultarDeudaResponse"/>
+	</wsdl:message>
+	<wsdl:message name="notifcarPagoMsgRequest">
+		<wsdl:part name="notifcarPagoMsgReqParam" element="pagoreq:notificarPagoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="notifcarPagoMsgResponse">
+		<wsdl:part name="notifcarPagoMsgRespParam" element="pagoresp:notificarPagoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="reversarPagoMsgRequest">
+		<wsdl:part name="reversarPagoMsgReqParam" element="pagoreq:notificarPagoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="reversarPagoMsgResponse">
+		<wsdl:part name="notifcarPagoMsgRespParam" element="pagoresp:notificarPagoResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="consultaDeudaPort">
+		<wsdl:operation name="consultaDeudaOp">
+			<wsdl:input message="tns:consultarDeudaMsgRequest"/>
+			<wsdl:output message="tns:consultarDeudaMsgResponse"/>			
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="notificaPagoPort">
+		<wsdl:operation name="notificaPagoOp">
+			<wsdl:input message="tns:notifcarPagoMsgRequest"/>
+			<wsdl:output message="tns:notifcarPagoMsgResponse"/>			
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:portType name="reversaPagoPort">
+		<wsdl:operation name="reversaPagoOp">
+			<wsdl:input message="tns:reversarPagoMsgRequest"/>
+			<wsdl:output message="tns:reversarPagoMsgResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="consultaDeudaBinding" type="tns:consultaDeudaPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="consultaDeudaOp">
+			<soap:operation soapAction="http://www.servipag.cl/ESB/wsdl/GenericService-v1.0/ConsultaDeuda/Op" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="notificaPagoBinding" type="tns:notificaPagoPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="notificaPagoOp">
+			<soap:operation soapAction="http://www.servipag.cl/ESB/wsdl/GenericService-v1.0/NotificarPago/Op" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="reversaPagoBinding" type="tns:reversaPagoPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="reversaPagoOp">
+			<soap:operation soapAction="http://www.servipag.cl/ESB/wsdl/GenericService-v1.0/ReversarPago/Op" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="consultaDeudaService">
+		<wsdl:port name="consultaDeudaPort" binding="tns:consultaDeudaBinding">
+			<soap:address location="http://localhost"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="notificaPagoService">
+		<wsdl:port name="notificaPagoPort" binding="tns:notificaPagoBinding">
+			<soap:address location="http://localhost"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:service name="reversaPagoService">
+		<wsdl:port name="reversaPagoPort" binding="tns:reversaPagoBinding">
+			<soap:address location="http://localhost"/>
+		</wsdl:port>
+	</wsdl:service>	
+</wsdl:definitions>

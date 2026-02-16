@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<ew-language date="2012/10/24" version="4.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+	<global>
+		<phrase id="allrecords" value="All"/>
+		<phrase id="alwaysask" value="Always ask for my user name and password"/>
+		<phrase id="autologin" value="Auto login until I logout explicitly"/>
+		<phrase id="backtologin" value="Back to Login Page"/>
+		<phrase id="booleanno" value="No"/>
+		<phrase id="booleanyes" value="Yes"/>
+		<phrase id="cancelbtn" value="Cancel" client="1"/>
+		<phrase id="currentfilters" value="CURRENT FILTERS:"/>
+		<phrase id="entersenderemail" value="Please enter sender email" client="1"/>
+		<phrase id="enterpropersenderemail" value="Exceed maximum sender email count or email address incorrect" client="1"/>
+		<phrase id="enterrecipientemail" value="Please enter recipient email" client="1"/>
+		<phrase id="enterproperrecipientemail" value="Exceed maximum recipient email count or email address incorrect" client="1"/>
+		<phrase id="enterproperccemail" value="Exceed maximum cc email count or email address incorrect" client="1"/>
+		<phrase id="enterproperbccemail" value="Exceed maximum bcc email count or email address incorrect" client="1"/>
+		<phrase id="entersubject" value="Please enter subject" client="1"/>
+		<phrase id="emailformsender" value="From"/>
+		<phrase id="emailformrecipient" value="To"/>
+		<phrase id="emailformcc" value="Cc"/>
+		<phrase id="emailformbcc" value="Bcc"/>
+		<phrase id="emailformsubject" value="Subject"/>
+		<phrase id="emailformmessage" value="Message"/>
+		<phrase id="emailformcontenttype" value="Send as"/>
+		<phrase id="emailformcontenttypeurl" value="URL"/>
+		<phrase id="emailformcontenttypehtml" value="HTML"/>
+		<phrase id="emptylabel" value="(Empty)"/>
+		<phrase id="enterpassword" value="Please enter password" client="1"/>
+		<phrase id="enterpwd" value="Please enter password" client="1"/>
+		<phrase id="entersearchcriteria" value="Please enter search criteria"/>
+		<phrase id="enteruid" value="Please enter user ID" client="1"/>
+		<phrase id="exceedmaxemailexport" value="Exceed maximum export email count. Please try again later."/>
+		<phrase id="exporttoemail" value="Email" client="1"/>
+		<phrase id="exporttoexcel" value="Export to Excel"/>
+		<phrase id="exporttoword" value="Export to Word"/>
+		<phrase id="filters" value="Filtros"/>
+		<phrase id="incorrectcreditcard" value="Incorrect credit card number" client="1"/>
+		<phrase id="incorrectdateymd" value="Incorrect date, format = yyyy%smm%sdd"/>
+		<phrase id="incorrectdatemdy" value="Incorrect date, format = mm%sdd%syyyy"/>
+		<phrase id="incorrectdatedmy" value="Incorrect date, format = dd%smm%syyyy"/>
+		<phrase id="incorrectemail" value="Incorrect email" client="1"/>
+		<phrase id="incorrectfield" value="Incorrect field" client="1"/>
+		<phrase id="incorrectfloat" value="Incorrect floating point number" client="1"/>
+		<phrase id="incorrectguid" value="Incorrect GUID" client="1"/>
+		<phrase id="incorrectinteger" value="Incorrect integer" client="1"/>
+		<phrase id="incorrectphone" value="Incorrect phone number" client="1"/>
+		<phrase id="incorrectrange" value="Number must be between %1 and %2" client="1"/>
+		<phrase id="incorrectregexp" value="Regular expression not matched" client="1"/>
+		<phrase id="incorrectssn" value="Incorrect Social Security Number" client="1"/>
+		<phrase id="incorrecttime" value="Incorrect time (hh:mm:ss)" client="1"/>
+		<phrase id="incorrectzip" value="Incorrect ZIP code" client="1"/>
+		<phrase id="invaliduidpwd" value="Incorrect user ID or password"/>
+		<phrase id="language" value="Language"/>
+		<phrase id="login" value="Login"/>
+		<phrase id="loginpage" value="Login Page"/>
+		<phrase id="logout" value="Logout"/>
+		<phrase id="monthjan" value="Jan"/>
+		<phrase id="monthfeb" value="Feb"/>
+		<phrase id="monthmar" value="Mar"/>
+		<phrase id="monthapr" value="Apr"/>
+		<phrase id="monthmay" value="May"/>
+		<phrase id="monthjun" value="Jun"/>
+		<phrase id="monthjul" value="Jul"/>
+		<phrase id="monthaug" value="Aug"/>
+		<phrase id="monthsep" value="Sep"/>
+		<phrase id="monthoct" value="Oct"/>
+		<phrase id="monthnov" value="Nov"/>
+		<phrase id="monthdec" value="Dec"/>
+		<phrase id="next" value="Next"/>
+		<phrase id="nopermission" value="You do not have the right permission to view the page"/>
+		<phrase id="norecord" value="No records found"/>
+		<phrase id="noreportorcharts" value="No report or charts is selected for generation. Please check your report/charts settings."/>
+		<phrase id="nodistinctcolvals" value="No distinct column values for sql: "/>
+		<phrase id="nulllabel" value="(Null)"/>
+		<phrase id="of" value="de"/>
+		<phrase id="page" value="Página"/>
+		<phrase id="pagerfirst" value="First"/>
+		<phrase id="pagerlast" value="Last"/>
+		<phrase id="pagernext" value="Next"/>
+		<phrase id="pagerprevious" value="Previous"/>
+		<phrase id="password" value="Password"/>
+		<phrase id="pleaseselect" value=""/>
+		<phrase id="popupall" value="(All)" client="1"/>
+		<phrase id="popupcancel" value="Cancel" client="1"/>
+		<phrase id="popupfrom" value="From" client="1"/>
+		<phrase id="popupnovalue" value="No value selected!" client="1"/>
+		<phrase id="popupok" value="  OK  " client="1"/>
+		<phrase id="popupselect" value="Please Select" client="1"/>
+		<phrase id="popupto" value="To" client="1"/>
+		<phrase id="prev" value="Prev"/>
+		<phrase id="printerfriendly" value="Printer Friendly"/>
+		<phrase id="group" value="Groups"/>
+		<phrase id="groupsperpage" value="Registros por página"/>
+		<phrase id="qtr1" value="1st Quarter"/>
+		<phrase id="qtr2" value="2nd Quarter"/>
+		<phrase id="qtr3" value="3rd Quarter"/>
+		<phrase id="qtr4" value="4th Quarter"/>
+		<phrase id="record" value="Registros"/>
+		<phrase id="recordsperpage" value="Records Per Page"/>
+		<phrase id="report" value="Reports"/>
+		<phrase id="reset" value="Reset"/>
+		<phrase id="resetallfilter" value="Reiniciar filtros"/>
+		<phrase id="resetsearch" value="Reset Search Criteria"/>
+		<phrase id="rptavg" value="AVERAGE"/>
+		<phrase id="rptcnt" value="COUNT"/>
+		<phrase id="rptdtlrec" value="Registros detallados"/>
+		<phrase id="rptgrandsummary" value="Grand Summary"/>
+		<phrase id="rptgrandtotal" value="Total"/>
+		<phrase id="rptmax" value="MAXIMUM"/>
+		<phrase id="rptmin" value="MINIMUM"/>
+		<phrase id="rptpagesummary" value="Page Summary"/>
+		<phrase id="rptpagetotal" value="Page Total"/>
+		<phrase id="rptsum" value="SUM"/>
+		<phrase id="rptsumhead" value="Summary for"/>
+		<phrase id="saveusername" value="Save my user name"/>
+		<phrase id="search" value="Buscar"/>
+		<phrase id="selectall" value="(All)"/>
+		<phrase id="sendemailbtn" value="Send" client="1"/>
+		<phrase id="sendemailsuccess" value="Email sent successfully" client="1"/>
+		<phrase id="showall" value="Show all"/>
+		<phrase id="summary" value="Summary"/>
+		<phrase id="tasks" value="Tasks"/>
+		<phrase id="to" value="a"/>
+		<phrase id="top" value="Top"/>
+		<phrase id="total" value="Total"/>
+		<phrase id="username" value="User Name"/>
+		<phrase id="week" value="Week"/>
+		<phrase id="year" value="Year"/>
+		<!-- Search Operators -->
+		<phrase id="=" value="="/>
+		<phrase id="&lt;&gt;" value="&lt;&gt;"/>
+		<phrase id="&lt;" value="&lt;"/>
+		<phrase id="&lt;=" value="&lt;="/>
+		<phrase id="&gt;" value="&gt;"/>
+		<phrase id="&gt;=" value="&gt;="/>
+		<phrase id="like" value="contains"/>
+		<phrase id="not like" value="not contains"/>
+		<phrase id="starts with" value="starts with"/>
+		<phrase id="between" value="between"/>
+		<phrase id="and" value="and"/>
+		<phrase id="or" value="or"/>
+		<!-- Menu Prefix/Suffix -->
+		<phrase id="simplereportmenuitemprefix" value=""/>
+		<phrase id="simplereportmenuitemsuffix" value=""/>
+		<phrase id="detailsummaryreportmenuitemprefix" value=""/>
+		<phrase id="detailsummaryreportmenuitemsuffix" value=""/>
+		<phrase id="crosstabreportmenuitemprefix" value=""/>
+		<phrase id="crosstabreportmenuitemsuffix" value=""/>
+		<phrase id="chartreportmenuitemprefix" value=""/>
+		<phrase id="chartreportmenuitemsuffix" value=""/>
+		<!-- Advanced Filter -->
+		<phrase id="future" value="Future"/>
+		<phrase id="past" value="Past"/>
+		<phrase id="last14days" value="Last 14 days"/>
+		<phrase id="last30days" value="Last 30 days"/>
+		<phrase id="last7days" value="Last 7 days"/>
+		<phrase id="next14days" value="Next 14 days"/>
+		<phrase id="next30days" value="Next 30 days"/>
+		<phrase id="next7days" value="Next 7 days"/>
+		<phrase id="today" value="Today"/>
+		<phrase id="tomorrow" value="Tomorrow"/>
+		<phrase id="yesterday" value="Yesterday"/>
+		<phrase id="lastmonth" value="Last month"/>
+		<phrase id="nextmonth" value="Next month"/>
+		<phrase id="thismonth" value="This month"/>
+		<phrase id="lasttwoweeks" value="Last two weeks"/>
+		<phrase id="lastweek" value="Last week"/>
+		<phrase id="nexttwoweeks" value="Next two weeks"/>
+		<phrase id="nextweek" value="Next week"/>
+		<phrase id="thisweek" value="This week"/>
+		<phrase id="lastyear" value="Last year"/>
+		<phrase id="nextyear" value="Next year"/>
+		<phrase id="thisyear" value="This year"/>
+	</global>
+	<project><phrase id="bodytitle" value="Consultas Web"/>
+<phrase id="footertext" value="&amp;copy;2011 e.World Technology Ltd. All rights reserved."/>
+<menu id="1"><phrase id="menutext" value="SEK V Consultas Web"/>
+</menu>
+<menu id="2"><phrase id="menutext" value="Consultas Web"/>
+</menu>
+<table id="z_campusint_alumnostrabajo"/>
+<table id="z_campusint_anuario_articulos"/>
+<table id="z_campusint_convenios"/>
+<table id="z_campusint_cursos_centros"/>
+<table id="z_campusint_cursos_curso"/>
+<table id="z_campusint_cursos_masinfo"/>
+<table id="z_campusint_cursos_modalidad"/>
+<table id="z_campusint_cursos_precioincluye"/>
+<table id="z_campusint_cursos_publicaren"/>
+<table id="z_campusint_cursos_reqcondplazos"/>
+<table id="z_campusint_cursos_usuarios"/>
+<table id="z_campusint_elementosseccion"/>
+<table id="z_campusint_foros"/>
+<table id="z_campusint_grupostrab"/>
+<table id="z_campusint_links"/>
+<table id="z_campusint_linkscategorias"/>
+<table id="z_campusint_linkssubcategorias"/>
+<table id="z_campusint_menus"/>
+<table id="z_campusint_personpp"/>
+<table id="z_campusint_proginternac"/>
+<table id="z_campusint_seccionesportada"/>
+<table id="z_campusint_submenus"/>
+<table id="z_campusint_users"/>
+<table id="z_campusint_users_v2"/>
+<table id="z_campusint_userspendrech"/>
+<table id="z_campusint_webct_altas_1iuhfev"/>
+<table id="z_campusint_webct_altas_2iuhfev"/>
+<table id="z_campusint_webct_altas_copia"/>
+<table id="z_campusint_webct_cursos"/>
+<table id="z_campusint_webct_mpcc_usuarios"/>
+<table id="z_campusint_webct_usuarios"/>
+<table id="z_campusint_webct_usuarios_introduccionwebct"/>
+<table id="z_campusint_webct_usuarios_iuhfev2"/>
+<table id="z_categorias"/>
+<table id="z_chat_chat"/>
+<table id="z_chat_rooms"/>
+<table id="z_chat_roomseng"/>
+<table id="z_chat_users"/>
+<table id="z_chat_usersreg"/>
+<table id="z_clientes"/>
+<table id="z_descargas"/>
+<table id="z_encuestasecuador"/>
+<table id="z_encuestasprofesores"/>
+<table id="z_facultades"/>
+<table id="z_iisek_lognoticiascrack"/>
+<table id="z_libroscarcelen"/>
+<table id="z_libroseiris"/>
+<table id="z_librosguapulo"/>
+<table id="z_log_registro_"/>
+<table id="z_log_registro_calificaciones"/>
+<table id="z_noticiassek"/>
+<table id="z_noticiassek_centros"/>
+<table id="z_noticiassek_publicaren"/>
+<table id="z_noticiassek_tipos"/>
+<table id="z_noticiassek_usuarios"/>
+<table id="z_ofertas_clientes"/>
+<table id="z_ofertastrabajo"/>
+<table id="z_profesionales"/>
+<table id="z_pruebas"/>
+<table id="z_publicaciones_datos"/>
+<table id="z_publicaciones_tipos"/>
+<table id="z_sekedu"/>
+<table id="z_sekedu_formatospagina"/>
+<table id="z_sekedu_imagenes"/>
+<table id="z_sekedu_menuimagenes"/>
+<table id="z_usek_concursobecas"/>
+<table id="z_usek_internacional"/>
+<table id="z_usek_proyectosinvestigacion"/>
+<table id="z_usuariosgestores"/>
+<table id="z_videoconferencias"/>
+<table id="z_videoconfusuarios"/>
+<table id="anuario_autores"/>
+<table id="anuario_publicaciones"/>
+<table id="anuario_temas"/>
+<table id="campusint_videos"/>
+<table id="datos_ue"/>
+<table id="ertecnologicos"/>
+<table id="grupocreativo"/>
+<table id="grupocreativo_datos_elementos"/>
+<table id="grupocreativo_datos_informe"/>
+<table id="grupocreativo_datos_informe_mantpersonalizado"/>
+<table id="grupocreativo_directoresrectores"/>
+<table id="grupocreativo_elementos"/>
+<table id="grupocreativo_formatospagina"/>
+<table id="grupocreativo_imagenes"/>
+<table id="grupocreativo_informe"/>
+<table id="grupocreativo_menuimagenes"/>
+<table id="grupocreativo_solapas"/>
+<table id="grupocreativo_solicitudesobras"/>
+<table id="grupocreativo_subelementos"/>
+<table id="grupocreativo_trimestres"/>
+<table id="grupocreativo_trimestresacad"/>
+<table id="grupos"/>
+<table id="hoja124"/>
+<table id="iessurvey2009"/>
+<table id="iisek_admisioninternet"/>
+<table id="iisek_admisioninternet_faqs"/>
+<table id="iisek_admisioninternet_information"/>
+<table id="iisek_admisioninternet_inscripcion"/>
+<table id="iisek_biblioteca_autores"/>
+<table id="iisek_biblioteca_libros"/>
+<table id="iisek_biblioteca_materias"/>
+<table id="iisek_blogs_articulos"/>
+<table id="iisek_blogs_blogs"/>
+<table id="iisek_blogs_categorias"/>
+<table id="iisek_blogs_comentarios"/>
+<table id="iisek_centroatencion"/>
+<table id="iisek_centros"/>
+<table id="iisek_cursos"/>
+<table id="iisek_cursos_publicaren"/>
+<table id="iisek_cursos_tipo"/>
+<table id="iisek_encuestas"/>
+<table id="iisek_encuestas_contestadas"/>
+<table id="iisek_encuestas_preguntas"/>
+<table id="iisek_encuestas_respuestas"/>
+<table id="iisek_fichas_enfermeria"/>
+<table id="iisek_login_desvinculados"/>
+<table id="iisek_menuscolegios"/>
+<table id="iisek_menuscolegios_comentarios"/>
+<table id="iisek_menuscolegios_comentarios_bak"/>
+<table id="iisek_menuwebcolegios"/>
+<table id="iisek_modulosacceso"/>
+<table id="iisek_noticias"/>
+<table id="iisek_noticias_publicaren"/>
+<table id="iisek_noticias_suscript"/>
+<table id="iisek_noticias_suscriptcentros"/>
+<table id="iisek_noticias_tipos"/>
+<table id="iisek_tipousuario"/>
+<table id="iisek_user_desvinculados"/>
+<table id="iisek_usuarios"/>
+<table id="iisek_usuarios_accesoacentro"/>
+<table id="iisek_usuarios_accesos"/>
+<table id="iisek_usuarios_accesos_blogs"/>
+<table id="iisek_web_sitemap_seknet"/>
+<table id="iisek_webcolegios_tipospagina"/>
+<table id="iisek_webscolegios"/>
+<table id="iisek_webscolegios_agendasek"/>
+<table id="iisek_webscolegios_archivos"/>
+<table id="iisek_webscolegios_departamentos"/>
+<table id="iisek_webscolegios_departamentospersonal"/>
+<table id="iisek_webscolegios_galeriasimg"/>
+<table id="iisek_webscolegios_links"/>
+<table id="iisek_webscolegios_links_categorias"/>
+<table id="iisek_webscolegios_menuimagenes"/>
+<table id="iisek_webscolegios_menuimagenes_imagenes"/>
+<table id="iisek_webscolegios_metatags"/>
+<table id="iisek_webscolegios_metatags_tipos"/>
+<table id="iisek_webscolegios_personal"/>
+<table id="iisek_webscolegios_pordefecto"/>
+<table id="iisek_webscolegios_sitemap"/>
+<table id="iisek_webscolegios_sitemap_admincms"/>
+<table id="iisek_webscolegios_sitemap_chile"/>
+<table id="iisek_webscolegios_sitemap_contenido"/>
+<table id="iisek_webscolegios_sitemap_costa_rica"/>
+<table id="iisek_webscolegios_sitemap_ecuador"/>
+<table id="iisek_webscolegios_sitemap_eiris"/>
+<table id="iisek_webscolegios_sitemap_guatemala"/>
+<table id="iisek_webscolegios_sitemap_guayaquil"/>
+<table id="iisek_webscolegios_sitemap_lasamericas"/>
+<table id="iisek_webscolegios_sitemap_levante"/>
+<table id="iisek_webscolegios_sitemap_losvalles"/>
+<table id="iisek_webscolegios_sitemap_mexico"/>
+<table id="iisek_webscolegios_sitemap_pacifico"/>
+<table id="iisek_webscolegios_somossek"/>
+<table id="iisek_webscolegios_variables"/>
+<table id="iisek_webscolegios_variables_pordefecto"/>
+<table id="juansuarez_carro"/>
+<table id="juansuarez_configuracion"/>
+<table id="juansuarez_productos"/>
+<table id="juansuarez_productos_categorias"/>
+<table id="juansuarez_proveedores"/>
+<table id="loginsfallidos"/>
+<table id="my_sysprocesses"/>
+<table id="registro_antiguosalumnos"/>
+<table id="registro_centroatencion"/>
+<table id="registro_hotelplanas"/>
+<table id="registro_inscripciononline"/>
+<table id="sek_solicitud_certificados"/>
+<table id="sekcc_actividades"/>
+<table id="sekcc_curriculum"/>
+<table id="sekcc_curriculum_actanteriores"/>
+<table id="sekcc_curriculum_ayudasbecas"/>
+<table id="sekcc_curriculum_congresos"/>
+<table id="sekcc_curriculum_estancias"/>
+<table id="sekcc_curriculum_experdocente"/>
+<table id="sekcc_curriculum_experprofesional"/>
+<table id="sekcc_curriculum_formacademica"/>
+<table id="sekcc_curriculum_obras"/>
+<table id="sekcc_curriculum_patentes"/>
+<table id="sekcc_curriculum_proyectoscontratos"/>
+<table id="sekcc_curriculum_publicaciones"/>
+<table id="sekcc_curriculum_secciones"/>
+<table id="sekcc_curriculum_tesis"/>
+<table id="sekcc_diccionariorrhh"/>
+<table id="sekcc_especialidades"/>
+<table id="sekcc_estudios"/>
+<table id="sekcc_grados"/>
+<table id="sekcc_ofertas"/>
+<table id="sekcc_ofertascurriculum"/>
+<table id="sekcc_profesiones"/>
+<table id="sekcc_publicaciones"/>
+<table id="sekcc_publicaciones_grupos"/>
+<table id="sekchat_chat"/>
+<table id="sekchat_salas"/>
+<table id="sekchat_salas_tipos"/>
+<table id="sekchat_salas_usuarios"/>
+<table id="sekchat_usuarios"/>
+<table id="sekchat_usuarios_tipos"/>
+<table id="seknet_imagenes"/>
+<table id="seknet_menuimagenes"/>
+<table id="t_jiaozhu"/>
+<table id="trazauserquery"/>
+<table id="usergoogle"/>
+<table id="usuariosgoogleapps"/>
+<table id="xtmp"/>
+<table id="z_vcampusint_cursos"/>
+<table id="z_vcampusint_cursos_resultbusq"/>
+<table id="z_vcampusint_foros"/>
+<table id="z_vcampusint_foros_v2"/>
+<table id="z_vcampusint_grupostrab"/>
+<table id="z_vcampusint_links"/>
+<table id="z_vcampusint_menus"/>
+<table id="z_vcampusint_usersforos"/>
+<table id="z_vchat_rooms_numusers"/>
+<table id="z_vchat_usuarios"/>
+<table id="z_vchat_usuarioseng"/>
+<table id="z_vdownload"/>
+<table id="z_vgruposprofesion"/>
+<table id="z_vinscritosnuevos"/>
+<table id="z_vinscritosoferta"/>
+<table id="z_vnotcentronom"/>
+<table id="z_vnotcentrotipo"/>
+<table id="z_vnotportada"/>
+<table id="z_vnumeroofertascategoria"/>
+<table id="z_vnumofertagrupo"/>
+<table id="z_vofertas_clientes"/>
+<table id="z_vofertascategoria"/>
+<table id="z_vsekedu_menuimagenes"/>
+<table id="z_vsekedu_menuprincipal"/>
+<table id="noticias10"/>
+<table id="sek_v_consultasweb"><phrase id="tblcaption" value="SEK V Consultas Web"/>
+<field id="id"><phrase id="fldcaption" value="ID"/>
+</field>
+<field id="codigocentro"><phrase id="fldcaption" value="Codigo Centro"/>
+</field>
+<field id="nombre"><phrase id="fldcaption" value="Nombre"/>
+</field>
+<field id="apellidos"><phrase id="fldcaption" value="Apellidos"/>
+</field>
+<field id="pais"><phrase id="fldcaption" value="Pais"/>
+</field>
+<field id="telefono"><phrase id="fldcaption" value="Telefono"/>
+</field>
+<field id="email"><phrase id="fldcaption" value="Email"/>
+</field>
+<field id="motivo"><phrase id="fldcaption" value="Motivo"/>
+</field>
+<field id="mensaje"><phrase id="fldcaption" value="Mensaje"/>
+</field>
+<field id="modocontacto"><phrase id="fldcaption" value="Modo Contacto"/>
+</field>
+<field id="destinatario"><phrase id="fldcaption" value="Destinatario"/>
+</field>
+<field id="destinatariocc"><phrase id="fldcaption" value="Destinatario CC"/>
+</field>
+<field id="ip"><phrase id="fldcaption" value="IP"/>
+</field>
+<field id="web"><phrase id="fldcaption" value="Web"/>
+</field>
+<field id="formularioweb"><phrase id="fldcaption" value="Formulario Web"/>
+</field>
+<field id="detalle"><phrase id="fldcaption" value="Detalle"/>
+</field>
+<field id="fechahora"><phrase id="fldcaption" value="Fecha Hora"/>
+</field>
+<field id="centro"><phrase id="fldcaption" value="Centro"/>
+</field>
+<field id="ciudad"><phrase id="fldcaption" value="Ciudad"/>
+</field>
+</table>
+<table id="vanuario_autores"/>
+<table id="vanuario_publicaciones"/>
+<table id="vgrupocreativo_centrostrimestres"/>
+<table id="vgrupocreativo_centrostrimestresacad"/>
+<table id="vgrupocreativo_informe"/>
+<table id="vgrupocreativo_mant_elementos"/>
+<table id="vgrupocreativo_mant_informe"/>
+<table id="vgrupocreativo_mant_informe_acad"/>
+<table id="vgrupocreativo_menuimagenes"/>
+<table id="vgrupocreativo_menuprincipal"/>
+<table id="viisek_accesoacentro"/>
+<table id="viisek_admisioninternet_faqs"/>
+<table id="viisek_biblioteca"/>
+<table id="viisek_blogs_articulos"/>
+<table id="viisek_blogs_categorias"/>
+<table id="viisek_blogs_comentarios"/>
+<table id="viisek_blogs_num"/>
+<table id="viisek_blogs_numarticuloscategoria"/>
+<table id="viisek_blogs_numarticulosmeses"/>
+<table id="viisek_blogs_numcomentarios"/>
+<table id="viisek_blogs_web"/>
+<table id="viisek_centroatencion"/>
+<table id="viisek_cursos"/>
+<table id="viisek_cursos_resultbusq"/>
+<table id="viisek_grilla_desvinculados"/>
+<table id="viisek_menuscomedor"/>
+<table id="viisek_noticias"/>
+<table id="viisek_noticias_index"/>
+<table id="viisek_noticias_index_resumen"/>
+<table id="viisek_noticias_resultbusq"/>
+<table id="viisek_noticias_rss"/>
+<table id="viisek_noticias_suscriptcentros"/>
+<table id="viisek_noticias_suscriptemail"/>
+<table id="viisek_noticiasseknet"/>
+<table id="viisek_ofertascentro"/>
+<table id="viisek_registro_centro_atencion"/>
+<table id="viisek_usuariosaccesos"/>
+<table id="viisek_usuariosaccesosblogs"/>
+<table id="viisek_webscolegios_agendasek"/>
+<table id="viisek_webscolegios_configurarioncentros"/>
+<table id="viisek_webscolegios_contenido"/>
+<table id="viisek_webscolegios_contenidopordefecto"/>
+<table id="viisek_webscolegios_galeriasimg"/>
+<table id="viisek_webscolegios_links"/>
+<table id="viisek_webscolegios_links_categorias"/>
+<table id="viisek_webscolegios_links_ultimos"/>
+<table id="viisek_webscolegios_menu"/>
+<table id="viisek_webscolegios_menu_admin"/>
+<table id="viisek_webscolegios_menu_galerias"/>
+<table id="viisek_webscolegios_menueng"/>
+<table id="viisek_webscolegios_menuimagenes"/>
+<table id="viisek_webscolegios_menupordefecto"/>
+<table id="viisek_webscolegios_metatags"/>
+<table id="viisek_webscolegios_noticias"/>
+<table id="viisek_webscolegios_noticias_index"/>
+<table id="viisek_webscolegios_personal"/>
+<table id="viisek_webscolegios_sitemap"/>
+<table id="viisek_webscolegios_tutores"/>
+<table id="viisek_webscolegios_variables"/>
+<table id="vjuansuarez_carro"/>
+<table id="vjuansuarez_categorias"/>
+<table id="vjuansuarez_configuracion"/>
+<table id="vjuansuarez_productos"/>
+<table id="vjuansuarez_productos_pagprincipal"/>
+<table id="vjuansuarez_proveedores"/>
+<table id="vjuansuarez_subcategorias"/>
+<table id="vnoticias_costa_rica"/>
+<table id="vnoticias_eiris"/>
+<table id="vnoticias_guadalajara"/>
+<table id="vnoticias_guatemala"/>
+<table id="vnoticias_guayaquil"/>
+<table id="vnoticias_las_americas"/>
+<table id="vnoticias_levante"/>
+<table id="vnoticias_los_valles"/>
+<table id="vnoticias_pacifico"/>
+<table id="vnoticias_quito"/>
+<table id="vnoticias_santiago"/>
+<table id="vsekcc_actividadesprofesiones"/>
+<table id="vsekcc_curriculum"/>
+<table id="vsekcc_curriculum_titulaciones"/>
+<table id="vsekcc_ofertascategoria"/>
+<table id="vsekcc_ofertascentro"/>
+<table id="vsekcc_ofertascentro_numinscritos"/>
+<table id="vsekcc_ofertascentrocurriculum"/>
+<table id="vsekcc_ofertasclientes"/>
+<table id="vsekcc_usuariosborradoscv"/>
+<table id="vsekchat_chat"/>
+<table id="vsekchat_salas_numusuarios"/>
+<table id="vsekchat_salas_usuarios"/>
+<table id="vsekchat_usuarios"/>
+<table id="vseknet_menuimagenes"/>
+<table id="consultas_web"><phrase id="tblcaption" value="Consultas Web"/>
+<field id="id"><phrase id="fldcaption" value="ID"/>
+</field>
+<field id="codigocentro"><phrase id="fldcaption" value="Codigo Centro"/>
+</field>
+<field id="nombre"><phrase id="fldcaption" value="Nombre"/>
+</field>
+<field id="apellidos"><phrase id="fldcaption" value="Apellidos"/>
+</field>
+<field id="pais"><phrase id="fldcaption" value="Pais"/>
+</field>
+<field id="telefono"><phrase id="fldcaption" value="Telefono"/>
+</field>
+<field id="email"><phrase id="fldcaption" value="Email"/>
+</field>
+<field id="motivo"><phrase id="fldcaption" value="Motivo"/>
+</field>
+<field id="mensaje"><phrase id="fldcaption" value="Mensaje"/>
+</field>
+<field id="modocontacto"><phrase id="fldcaption" value="Modo Contacto"/>
+</field>
+<field id="destinatario"><phrase id="fldcaption" value="Destinatario"/>
+</field>
+<field id="destinatariocc"><phrase id="fldcaption" value="Destinatario CC"/>
+</field>
+<field id="ip"><phrase id="fldcaption" value="IP"/>
+</field>
+<field id="web"><phrase id="fldcaption" value="Web"/>
+</field>
+<field id="formularioweb"><phrase id="fldcaption" value="Formulario Web"/>
+</field>
+<field id="detalle"><phrase id="fldcaption" value="Detalle"/>
+</field>
+<field id="fechahora"><phrase id="fldcaption" value="Fecha Hora"/>
+</field>
+<field id="centro"><phrase id="fldcaption" value="Centro"/>
+</field>
+<field id="ciudad"><phrase id="fldcaption" value="Ciudad"/>
+</field>
+</table>
+</project>
+</ew-language>

@@ -1,0 +1,18 @@
+<SCRIPT LANGUAGE='VBScript' RUNAT='Server'> 
+
+Sub Application_OnStart
+	Application ("TituloWEB") = "Zona Reportes"
+	Application ("TituloCajaLogin") = "Zona Reportes"
+	Application ("ConnDSN") = "Matricula"
+	Application ("ConnUser") = "sa"
+	Application ("ConnPassword") = "Sa070507"	
+	
+	Application ("ConnPermisosUser") = "sa"	
+	Application ("ConnPermisosPass") = "Sa070507"
+	
+	Application ("DirectorioWeb") = ""
+	
+	Application ("EmailCentroAtencion") = "pablo.santibanez@sekmail.com"
+	Application ("EmailAltaUsuario") = "pablo.santibanez@sekmail.com"
+End Sub 
+</SCRIPT>666

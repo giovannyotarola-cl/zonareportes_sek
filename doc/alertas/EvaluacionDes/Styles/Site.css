@@ -1,0 +1,617 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+
+body   
+{
+    background: #d6d6d9;
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: #696969;
+}
+
+a:link, a:visited
+{
+    color: #034af3;
+}
+
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active
+{
+    color: #034af3;
+}
+
+p
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #666666;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 200;
+    margin-bottom: 0px;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+.page
+{
+    width: 1000px;
+    background-color: #fff;
+    margin: 20px auto 0px auto;
+    border: 1px solid #496077;
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background: #4b6c9e;
+    width: 100%;
+}
+
+.header h1
+{
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    color: #f9f9f9;
+    border: none;
+    line-height: 2em;
+    font-size: 2em;
+}
+
+.main
+{
+    padding: 0px 12px;
+    margin: 12px 8px 8px 8px;
+    min-height: 420px;
+}
+
+.leftCol
+{
+    padding: 6px 0px;
+    margin: 12px 8px 8px 8px;
+    width: 200px;
+    min-height: 200px;
+}
+
+.footer
+{
+    color: #4e5766;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}
+
+div.footer_content{
+	padding-top: 15px;
+	color: Black;
+}
+
+span.footer_sistema{
+	font-weight: 800;	
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.hideSkiplink
+{
+    background-color:#3a4f63;
+    width:100%;
+}
+
+div.menu
+{
+    padding: 4px 0px 4px 8px;
+}
+
+div.menu ul
+{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+}
+
+div.menu ul li a, div.menu ul li a:visited
+{
+    background-color: #465c71;
+    border: 1px #4e667d solid;
+    color: #dde4ec;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+div.menu ul li a:hover
+{
+    background-color: #bfcbd6;
+    color: #465c71;
+    text-decoration: none;
+}
+
+div.menu ul li a:active
+{
+    background-color: #465c71;
+    color: #cfdbe6;
+    text-decoration: none;
+}
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+    margin: 1em 0px;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+fieldset label.inline 
+{
+    display: inline;
+}
+
+legend 
+{
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
+}
+
+input.textEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+input.passwordEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+    width: 42%;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+
+.clear
+{
+    clear: both;
+}
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+
+.loginDisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: White;
+}
+
+.loginDisplay a:link
+{
+    color: white;
+}
+
+.loginDisplay a:visited
+{
+    color: white;
+}
+
+.loginDisplay a:hover
+{
+    color: white;
+}
+
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.submitButton
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+
+/*****Seleccionar empleado para evaluar *****/
+
+table.tabla_sel_ev
+{
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 12px;
+}
+
+td.td_sel_ev, th.td_sel_ev
+{
+    padding: 5px;
+    border: 1px solid #1e1e1e;
+}
+
+
+/*****Evaluar usuarios *****/
+
+div.evaluar_title
+{
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+div.evaluar_link{
+	color: #003c5e;
+	font-size: 12px;
+	margin-bottom: 7px;
+	margin-left: 15px;
+}
+
+div.evaluar_titulo{
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+div.div_barra{
+	text-align:center;	
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+div.evaluacion_mensaje{
+	color: red;
+	font-weight: 800;
+	float: left;
+	margin-top: -50px;
+	font-style:italic;
+}
+
+div.evaluar_t_title{
+	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: 800;
+}
+
+table.evaluar_t1{
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+
+td.evaluar_t1_cab{
+	font-weight: 800;
+	border: 1px solid black;
+	padding: 3px;
+	width: 200px;
+}
+
+td.evaluar_t1_dato{
+	border: 1px solid black;
+	padding: 3px;
+	width: 400px;
+}
+
+table.evaluar_t2{
+	margin-top: 40px;
+	margin-bottom: 80px;
+	border-collapse:collapse;
+}
+
+td.t2_titulo{
+	font-weight:800;
+	padding: 5px 5px 5px 15px;
+	font-size: 14px;
+	border: 1px solid black;
+}
+
+td.t2_pregunta{
+	width: 250px;	
+	border: 1px solid black;
+	padding: 4px 3px;
+}
+
+td.tipo_nota{
+	font-weight: 800;
+	font-size: 11px;
+	border: 1px solid black;
+	padding: 3px 5px 3px 5px;
+	text-align: center;	
+	width: 64px;
+}
+
+td.casilla_radio{
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+	padding: 5px;
+}
+
+td.t2_subcab{
+	font-weight: 800;
+	border: 1px solid black;
+	padding: 1px 2px;
+}
+
+td.casilla_nota{
+	font-weight: 800;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 12px;
+}
+
+td.casilla_nota_sub{
+	font-weight: 800;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 13px;
+	background-color:#CCC;
+}
+
+td.casilla_nota_fac{
+	font-weight: 800;
+	border: 1px solid black;
+	text-align: center;
+	font-size: 14px;
+	background-color:#999;
+}
+
+td.casilla_subfactor{
+	border: 1px solid black;
+	padding: 3px 3px 3px 5px;
+	font-weight: 800;
+}
+
+div.obs_titulo{
+	font-weight: 800;
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+textarea.text_observaciones{
+	width: 680px;
+	height: 100px;
+	padding: 10px;
+	font-family: inherit;
+	font-size: 12px;
+	resize: none;
+	margin-bottom: 20px;
+}
+
+input.enviar_evaluacion{
+	margin-bottom: 10px;	
+	margin-left: 570px;
+	margin-top: 5px;
+}
+
+input.nota_input{
+	border: 0;
+	background-color: transparent;
+	width: 45px;
+	text-align:center;
+	font-weight: 800;
+	font-size: 12px;
+}
+
+div.aclaracion_tit{
+	text-decoration: underline;
+	font-weight: 800;
+	margin-top: 30px;
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+li.aclaracion_item{
+	list-style-type: decimal;	
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+table.tabla_rangos{
+	margin-top: 40px;
+	margin-bottom: 60px;
+	border: 1px solid black;
+	border-collapse:collapse;
+}
+
+td.rangos_cab{
+	font-weight: 800;
+	text-align: center;
+	padding: 5px 0px;
+}
+
+td.rangos_valor{
+	font-weight: 800;
+	text-align: center;
+	border: 1px solid black;
+	padding: 0px 10px;
+}
+
+td.rangos_nombre{
+	font-weight: 800;
+	text-align: center;
+	border: 1px solid black;	
+	padding: 0px 10px;
+}
+
+td.rangos_desc{
+	border: 1px solid black;
+	padding: 10px 15px;
+	width: 600px;
+}
+/******************************/
+
+div.ver_observacion
+{
+    padding: 10px;
+    border: 1px solid #717171;
+    font-family: inherit;
+    color: Black;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    width: 400px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+select.select_jerarquias
+{
+    float: left;
+    font-size: 12px;
+}
+
+input.boton_jerarquia
+{
+    font-size: 10px;
+    margin-left: 15px;
+    float: left;
+}
+
+a.insertar_usuario
+{
+    border: 1px solid #909090;
+    padding: 5px;
+    color: Black;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 13px;
+    background-color: #eaeaea;
+}
+
+div.confirmar_titulo
+{
+    color: Black;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+textarea.confirmar_textarea
+{
+    resize: none;
+    font-family: inherit;
+    color: #1e1e1e;
+    font-size: 12px;
+    width: 400px;
+    height: 100px;
+    margin-bottom: 25px;
+}
+
+input.boton_confirmar
+{
+    font-size: 11px;
+}
+
+img.logo
+{
+    border: 0;
+    float: left;
+    margin-left:10px;
+    margin-top:4px;
+}
+
+div.front_bienv
+{
+    font-size: 16px;
+    color: Black;
+    margin-bottom: 25px;
+    font-weight:600;
+}
+
+div.front_ayuda
+{
+    color: Black;
+}
+
+li.front_lista
+{
+    color: Black;
+}
+

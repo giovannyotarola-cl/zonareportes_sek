@@ -1,0 +1,93 @@
+<!--<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+--><link rel="stylesheet" type="text/css" media="all" href="css/titles.css"/>
+<link href="css/project.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-thickbox.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
+<%
+
+Session.CodePage = 65001
+Session.LCID = 1034
+
+Dim sqlAlumnos, cnIndex, rsAlumnos
+
+Set cnIndex = Server.CreateObject ("ADODB.Connection")
+Set rsAlumnos = Server.CreateObject ("ADODB.Recordset")
+
+'cnIndex.Open "driver={SQL Server};server=192.168.200.228; database=MatriculaUMasEC; uid=sa; pwd=Sa070507"
+cnIndex.Open "driver={SQL Server};server=192.168.200.228; database=NAV_UISEK_ECUADOR; uid=sa; pwd=Sa070507"
+
+'sqlAlumnos = "SELECT dbo.MT_CLIENT.PATERNO, dbo.MT_CLIENT.MATERNO, dbo.MT_CLIENT.NOMBRE, dbo.MT_ALUMNO.RUT, dbo.MT_ALUMNO.CODCARPR, dbo.MT_ALUMNO.CODCLI, dbo.MT_ALUMNO.CODPESTUD, dbo.MT_CARRER.NOMBRE_C FROM dbo.MT_CLIENT INNER JOIN dbo.MT_ALUMNO ON dbo.MT_CLIENT.CODCLI = dbo.MT_ALUMNO.RUT INNER JOIN dbo.MT_CARRER ON dbo.MT_ALUMNO.CODCARPR = dbo.MT_CARRER.CODCARR "
+
+sqlAlumnos = "select TOP 200 al.Nombre, al."&chr(34)&"Apellido 1"&chr(34)&" AS Ap1, al."&chr(34)&"Apellido 2"&chr(34)&" AS Ap2, al."&chr(34)&"VAT Registration No_"&chr(34)&" AS Cedula, al.Nacionalidad, curso.Descripci"&chr(243)&"n as DescCurso, centro.Centro, cu.""C"&chr(243)&"d_ Curso"" AS CodCarr from dbo.Customer al, dbo."&chr(34)&"Curso escolar alumno"&chr(34)&" cu, dbo.Curso curso, dbo.CentrosU centro where al.No_ = cu."&chr(34)&"C"&chr(243)&"d_ Alumno"&chr(34)&" and cu."&chr(34)&"C"&chr(243)&"d_ Curso"&chr(34)&" = curso."&chr(34)&"C"&chr(243)&"d_ Curso"&chr(34)&" and curso.CodCentro = centro.CodCentro"
+
+
+
+If request("cedula") <> "" Then
+	sqlAlumnos = sqlAlumnos & " WHERE al.""VAT Registration No_"" LIKE '%"& request("cedula") &"%'"
+End If
+
+If request("paterno") <> "" Then
+	sqlAlumnos = sqlAlumnos & " AND al.""Apellido 1"" LIKE '%"& request("paterno") &"%'"
+End If
+
+If request("materno") <> "" Then
+	sqlAlumnos = sqlAlumnos & " AND al.""Apellido 2"" LIKE '%"& request("materno") &"%'"
+End If
+
+If request("nombre") <> "" Then
+	sqlAlumnos = sqlAlumnos & " AND al.Nombre LIKE '%"& request("nombre") &"%'"
+End If
+	sqlAlumnos = sqlAlumnos & " ORDER BY Ap1 "
+
+'response.Write sqlAlumnos
+rsAlumnos.Open sqlAlumnos, cnIndex
+
+%>
+<table class="ewContentTable">
+<form name="data" method="post" action="#">
+<tr>
+	<td>Cédula</td>
+	<td>Paterno</td>
+    <td>Materno</td>
+    <td>Nombre</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+	<td><input type="text" name="cedula" id="cedula" value="<%=request("cedula")%>"/></td>
+	<td><input type="text" name="paterno" id="paterno" value="<%=request("paterno")%>"/></td>
+    <td><input type="text" name="materno" id="materno" value="<%=request("materno")%>" /></td>
+    <td><input type="text" name="nombre" id="nombre" value="<%=request("nombre")%>" /></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+	<td colspan="6"><input type="submit" name="filtrar" id="filtrar" value="Buscar"/></td>
+</tr>
+<tr>
+	<td colspan="6"><hr /></td>
+</tr>
+<tr class="buscaAlumno buscaHead">
+	<th>C&eacute;dula</th>
+	<th>Paterno</th>
+    <th>Materno</th>
+    <th>Nombre</th>
+    <th>Carrera</th>
+    <th>Acci&oacute;n</th>
+</tr>
+<% Do While not rsAlumnos.eof %>
+<tr class="buscaAlumno">
+	<td><%=rsAlumnos("Cedula")%></td>
+	<td><%=rsAlumnos("Ap1")%></td>
+    <td><%=rsAlumnos("Ap2")%></td>
+    <td><%=rsAlumnos("Nombre")%></td>
+    <td><%=rsAlumnos("DescCurso")%></td>
+    <td><a onclick="javascript:selAlumno(<%=rsAlumnos("Cedula")%>,'<%=rsAlumnos("CodCarr")%>','<%=rsAlumnos("Cedula")%>')" style="cursor:pointer; color:#03F;">seleccionar</a>
+</tr>
+<%
+rsAlumnos.movenext
+Loop				  
+%>
+</form>
+</table>

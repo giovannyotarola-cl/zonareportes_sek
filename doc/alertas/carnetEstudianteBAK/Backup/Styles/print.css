@@ -1,0 +1,111 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+
+body   
+{
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: #FFFFFF;
+    background-color: White;
+}
+
+div.clear_both
+{
+    clear: both;
+}
+
+/************ CSS CARNET ***********/
+
+div.carnet_div {
+    color: #FFFFFF;
+    font-family: BlairMdITC TT;
+    font-size: 8px;
+    height: 213px;
+    line-height: 9px;
+    position: relative;
+    width: 339px;
+}
+div.div_foto {
+    background-color: transparent;
+    position: absolute;
+    right: 222px;
+    top: 11px;
+}
+div.carnet_campos
+{
+    position: absolute;
+    top: 75px;
+    right: 1px;
+    width: 218px;
+}
+
+span.div_nombre {
+    float: left;
+    width: 133px;
+}
+
+span.et_campo {
+    color: #FFFFFF;
+    float: left;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-bottom:12px;
+}
+
+span.et_cedula {
+    color: #FFFFFF;
+    float: left;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-bottom:5px;
+}
+
+div.cont_campo {
+    color: #FFFFFF;
+    float: left;
+    margin-bottom: 2px;
+}
+
+span.div_cedula {
+    padding-left: 5px;
+    width: 102px;
+}
+
+span.div_centro {
+    color: #FFFFFF;
+    font-size: 8px;
+    width: 130px;
+}
+
+div.cont_centro {
+    float: left;
+    margin-bottom: 5px;
+}
+
+span.div_carrera {
+    color: #FFFFFF;
+    font-size: 7px;
+    width: 137px;
+}
+
+span.div_nivel {
+    color: #FFFFFF;
+    font-size: 8px;
+    width: 167px;
+}
+
+div.cod_barras {
+ background-color: white;
+    color: black;
+    font-family: C39HrP24DhTt;
+    font-size: 34px;
+    height: 26px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 0 5px;
+    position: absolute;
+    right: 97px;
+    top: 190px;
+}

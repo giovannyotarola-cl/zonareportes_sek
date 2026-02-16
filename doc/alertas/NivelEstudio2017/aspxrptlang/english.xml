@@ -1,0 +1,1191 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<ew-language date="2016/1/21" version="4.0.1" id="en" name="English" desc="English" author="e.World Technology Ltd.">
+	<global>
+		<phrase id="allrecords" value="All"/>
+		<phrase id="alwaysask" value="Always ask for my user name and password"/>
+		<phrase id="autologin" value="Auto login until I logout explicitly"/>
+		<phrase id="backtologin" value="Back to Login Page"/>
+		<phrase id="booleanno" value="No"/>
+		<phrase id="booleanyes" value="Yes"/>
+		<phrase id="cancelbtn" value="Cancel" client="1"/>
+		<phrase id="currentfilters" value="CURRENT FILTERS:"/>
+		<phrase id="entersenderemail" value="Please enter sender email" client="1"/>
+		<phrase id="enterpropersenderemail" value="Exceed maximum sender email count or email address incorrect" client="1"/>
+		<phrase id="enterrecipientemail" value="Please enter recipient email" client="1"/>
+		<phrase id="enterproperrecipientemail" value="Exceed maximum recipient email count or email address incorrect" client="1"/>
+		<phrase id="enterproperccemail" value="Exceed maximum cc email count or email address incorrect" client="1"/>
+		<phrase id="enterproperbccemail" value="Exceed maximum bcc email count or email address incorrect" client="1"/>
+		<phrase id="entersubject" value="Please enter subject" client="1"/>
+		<phrase id="emailformsender" value="From"/>
+		<phrase id="emailformrecipient" value="To"/>
+		<phrase id="emailformcc" value="Cc"/>
+		<phrase id="emailformbcc" value="Bcc"/>
+		<phrase id="emailformsubject" value="Subject"/>
+		<phrase id="emailformmessage" value="Message"/>
+		<phrase id="emailformcontenttype" value="Send as"/>
+		<phrase id="emailformcontenttypeurl" value="URL"/>
+		<phrase id="emailformcontenttypehtml" value="HTML"/>
+		<phrase id="emptylabel" value="(Empty)"/>
+		<phrase id="enterpassword" value="Please enter password" client="1"/>
+		<phrase id="enterpwd" value="Please enter password" client="1"/>
+		<phrase id="entersearchcriteria" value="Please enter search criteria"/>
+		<phrase id="enteruid" value="Please enter user ID" client="1"/>
+		<phrase id="exceedmaxemailexport" value="Exceed maximum export email count. Please try again later."/>
+		<phrase id="exporttoemail" value="Email" client="1"/>
+		<phrase id="exporttoexcel" value="Export to Excel"/>
+		<phrase id="exporttoword" value="Export to Word"/>
+		<phrase id="filters" value="Filtros"/>
+		<phrase id="incorrectcreditcard" value="Incorrect credit card number" client="1"/>
+		<phrase id="incorrectdateymd" value="Incorrect date, format = yyyy%smm%sdd"/>
+		<phrase id="incorrectdatemdy" value="Incorrect date, format = mm%sdd%syyyy"/>
+		<phrase id="incorrectdatedmy" value="Incorrect date, format = dd%smm%syyyy"/>
+		<phrase id="incorrectemail" value="Incorrect email" client="1"/>
+		<phrase id="incorrectfield" value="Incorrect field" client="1"/>
+		<phrase id="incorrectfloat" value="Incorrect floating point number" client="1"/>
+		<phrase id="incorrectguid" value="Incorrect GUID" client="1"/>
+		<phrase id="incorrectinteger" value="Incorrect integer" client="1"/>
+		<phrase id="incorrectphone" value="Incorrect phone number" client="1"/>
+		<phrase id="incorrectrange" value="Number must be between %1 and %2" client="1"/>
+		<phrase id="incorrectregexp" value="Regular expression not matched" client="1"/>
+		<phrase id="incorrectssn" value="Incorrect Social Security Number" client="1"/>
+		<phrase id="incorrecttime" value="Incorrect time (hh:mm:ss)" client="1"/>
+		<phrase id="incorrectzip" value="Incorrect ZIP code" client="1"/>
+		<phrase id="invaliduidpwd" value="Incorrect user ID or password"/>
+		<phrase id="language" value="Language"/>
+		<phrase id="login" value="Login"/>
+		<phrase id="loginpage" value="Login Page"/>
+		<phrase id="logout" value="Logout"/>
+		<phrase id="monthjan" value="Jan"/>
+		<phrase id="monthfeb" value="Feb"/>
+		<phrase id="monthmar" value="Mar"/>
+		<phrase id="monthapr" value="Apr"/>
+		<phrase id="monthmay" value="May"/>
+		<phrase id="monthjun" value="Jun"/>
+		<phrase id="monthjul" value="Jul"/>
+		<phrase id="monthaug" value="Aug"/>
+		<phrase id="monthsep" value="Sep"/>
+		<phrase id="monthoct" value="Oct"/>
+		<phrase id="monthnov" value="Nov"/>
+		<phrase id="monthdec" value="Dec"/>
+		<phrase id="next" value="Next"/>
+		<phrase id="nopermission" value="You do not have the right permission to view the page"/>
+		<phrase id="norecord" value="No records found"/>
+		<phrase id="noreportorcharts" value="No report or charts is selected for generation. Please check your report/charts settings."/>
+		<phrase id="nodistinctcolvals" value="No distinct column values for sql: "/>
+		<phrase id="nulllabel" value="(Null)"/>
+		<phrase id="of" value="de"/>
+		<phrase id="page" value="Page"/>
+		<phrase id="pagerfirst" value="First"/>
+		<phrase id="pagerlast" value="Last"/>
+		<phrase id="pagernext" value="Next"/>
+		<phrase id="pagerprevious" value="Previous"/>
+		<phrase id="password" value="Password"/>
+		<phrase id="pleaseselect" value=""/>
+		<phrase id="popupall" value="(All)" client="1"/>
+		<phrase id="popupcancel" value="Cancel" client="1"/>
+		<phrase id="popupfrom" value="From" client="1"/>
+		<phrase id="popupnovalue" value="No value selected!" client="1"/>
+		<phrase id="popupok" value="  OK  " client="1"/>
+		<phrase id="popupselect" value="Please Select" client="1"/>
+		<phrase id="popupto" value="To" client="1"/>
+		<phrase id="prev" value="Prev"/>
+		<phrase id="printerfriendly" value="Printer Friendly"/>
+		<phrase id="group" value="Groups"/>
+		<phrase id="groupsperpage" value="Registros por Página"/>
+		<phrase id="qtr1" value="1st Quarter"/>
+		<phrase id="qtr2" value="2nd Quarter"/>
+		<phrase id="qtr3" value="3rd Quarter"/>
+		<phrase id="qtr4" value="4th Quarter"/>
+		<phrase id="record" value="Registros"/>
+		<phrase id="recordsperpage" value="Records Per Page"/>
+		<phrase id="report" value="Reports"/>
+		<phrase id="reset" value="Reset"/>
+		<phrase id="resetallfilter" value="Reiniciar Filtros"/>
+		<phrase id="resetsearch" value="Reset Search Criteria"/>
+		<phrase id="rptavg" value="AVERAGE"/>
+		<phrase id="rptcnt" value="COUNT"/>
+		<phrase id="rptdtlrec" value="Registros Detallados"/>
+		<phrase id="rptgrandsummary" value="Grand Summary"/>
+		<phrase id="rptgrandtotal" value="Total"/>
+		<phrase id="rptmax" value="MAXIMUM"/>
+		<phrase id="rptmin" value="MINIMUM"/>
+		<phrase id="rptpagesummary" value="Page Summary"/>
+		<phrase id="rptpagetotal" value="Page Total"/>
+		<phrase id="rptsum" value="SUM"/>
+		<phrase id="rptsumhead" value="Summary for"/>
+		<phrase id="saveusername" value="Save my user name"/>
+		<phrase id="search" value="Buscar"/>
+		<phrase id="selectall" value="(All)"/>
+		<phrase id="sendemailbtn" value="Send" client="1"/>
+		<phrase id="sendemailsuccess" value="Email sent successfully" client="1"/>
+		<phrase id="showall" value="Show all"/>
+		<phrase id="summary" value="Summary"/>
+		<phrase id="tasks" value="Tasks"/>
+		<phrase id="to" value="a"/>
+		<phrase id="top" value="Top"/>
+		<phrase id="total" value="Total"/>
+		<phrase id="username" value="User Name"/>
+		<phrase id="week" value="Week"/>
+		<phrase id="year" value="Year"/>
+		<!-- Search Operators -->
+		<phrase id="=" value="="/>
+		<phrase id="&lt;&gt;" value="&lt;&gt;"/>
+		<phrase id="&lt;" value="&lt;"/>
+		<phrase id="&lt;=" value="&lt;="/>
+		<phrase id="&gt;" value="&gt;"/>
+		<phrase id="&gt;=" value="&gt;="/>
+		<phrase id="like" value=""/>
+		<phrase id="not like" value="not contains"/>
+		<phrase id="starts with" value="starts with"/>
+		<phrase id="between" value="between"/>
+		<phrase id="and" value="and"/>
+		<phrase id="or" value="or"/>
+		<!-- Menu Prefix/Suffix -->
+		<phrase id="simplereportmenuitemprefix" value=""/>
+		<phrase id="simplereportmenuitemsuffix" value=""/>
+		<phrase id="detailsummaryreportmenuitemprefix" value=""/>
+		<phrase id="detailsummaryreportmenuitemsuffix" value=""/>
+		<phrase id="crosstabreportmenuitemprefix" value=""/>
+		<phrase id="crosstabreportmenuitemsuffix" value=""/>
+		<phrase id="chartreportmenuitemprefix" value=""/>
+		<phrase id="chartreportmenuitemsuffix" value=""/>
+		<!-- Advanced Filter -->
+		<phrase id="future" value="Future"/>
+		<phrase id="past" value="Past"/>
+		<phrase id="last14days" value="Last 14 days"/>
+		<phrase id="last30days" value="Last 30 days"/>
+		<phrase id="last7days" value="Last 7 days"/>
+		<phrase id="next14days" value="Next 14 days"/>
+		<phrase id="next30days" value="Next 30 days"/>
+		<phrase id="next7days" value="Next 7 days"/>
+		<phrase id="today" value="Today"/>
+		<phrase id="tomorrow" value="Tomorrow"/>
+		<phrase id="yesterday" value="Yesterday"/>
+		<phrase id="lastmonth" value="Last month"/>
+		<phrase id="nextmonth" value="Next month"/>
+		<phrase id="thismonth" value="This month"/>
+		<phrase id="lasttwoweeks" value="Last two weeks"/>
+		<phrase id="lastweek" value="Last week"/>
+		<phrase id="nexttwoweeks" value="Next two weeks"/>
+		<phrase id="nextweek" value="Next week"/>
+		<phrase id="thisweek" value="This week"/>
+		<phrase id="lastyear" value="Last year"/>
+		<phrase id="nextyear" value="Next year"/>
+		<phrase id="thisyear" value="This year"/>
+	</global>
+	<project><phrase id="bodytitle" value="Nivel de Estudio"/>
+<phrase id="footertext" value="&amp;copy;2011 e.World Technology Ltd. All rights reserved."/>
+<menu id="1"><phrase id="menutext" value="SEK V Nivel Estudio Alumnos"/>
+</menu>
+<menu id="2"><phrase id="menutext" value="Nivel de Estudios"/>
+</menu>
+<table id="algoritmo"/>
+<table id="asis_atributosmetodos"/>
+<table id="asis_clases"/>
+<table id="asis_clasesatributos"/>
+<table id="asis_metodos"/>
+<table id="asis_pa_estructuras"/>
+<table id="asis_pavariables"/>
+<table id="asis_procedimientos"/>
+<table id="asis_procedimientostipos"/>
+<table id="ba_banco"/>
+<table id="bitacora"/>
+<table id="bk_ra_nota_eliminados"/>
+<table id="bloqueos"/>
+<table id="ca_avisos"/>
+<table id="ca_doctos"/>
+<table id="ca_doctos_leidos"/>
+<table id="ca_empresas"/>
+<table id="ca_evaluacionesonline"/>
+<table id="ca_menu"/>
+<table id="ca_menures"/>
+<table id="ca_modulos"/>
+<table id="ca_opciones"/>
+<table id="ca_perfiles"/>
+<table id="ca_perfilesopciones"/>
+<table id="ca_procesos"/>
+<table id="ca_sistemas"/>
+<table id="ca_tipoventanas"/>
+<table id="ca_usuarios"/>
+<table id="ca_usuariospasswords"/>
+<table id="ca_usuariosperfiles"/>
+<table id="ca_usuariossistemas"/>
+<table id="cae_559_preseleccionados_2013"/>
+<table id="cae_aranceles"/>
+<table id="cae_correspondencia_mineduc"/>
+<table id="cae_presel_primer_anyo_2013"/>
+<table id="cae_preselecc_curso_superior2013"/>
+<table id="cae_preselecc_restriccion2013"/>
+<table id="cae_preseleccionados"/>
+<table id="cambiacarr"/>
+<table id="cobranza_externa_det"/>
+<table id="cobranza_interna_det"/>
+<table id="codigos_cmi"/>
+<table id="compilado"/>
+<table id="configcaja"/>
+<table id="configcajafi"/>
+<table id="configcajareppos"/>
+<table id="configcajarpp"/>
+<table id="cons_control_actividades"/>
+<table id="contratos_matriculas"/>
+<table id="contratos_programas_estudios"/>
+<table id="convenios"/>
+<table id="ctadep_resp"/>
+<table id="ctapag_resp"/>
+<table id="cuentasfin"/>
+<table id="cuotas"/>
+<table id="customsqlmon"/>
+<table id="dicom_pagare"/>
+<table id="dicom_pagaregarantia"/>
+<table id="e_trans_clave"/>
+<table id="emisioncertificados"/>
+<table id="en_docalumnos_20112820112d129"/>
+<table id="en_docente_010620112820112d129"/>
+<table id="en_docente_0220112820112d229"/>
+<table id="en_jefecarrera"/>
+<table id="en_jefecarrera_20111"/>
+<table id="en_jefecarrera_pablo"/>
+<table id="en_jefecarrera_prueba"/>
+<table id="en_log"/>
+<table id="en_percepcion_alumnos_20111282011129"/>
+<table id="en_satisfaccion_01072011"/>
+<table id="encuesta_titulados"/>
+<table id="envios_notaria"/>
+<table id="evaluacion_encuesta"/>
+<table id="evaluacion_jerarquia"/>
+<table id="evaluacion_log"/>
+<table id="evaluacion_parametros"/>
+<table id="evaluacion_users"/>
+<table id="finales"/>
+<table id="foto_alumno"/>
+<table id="fw_accesos"/>
+<table id="fw_changelog"/>
+<table id="fw_consulta"/>
+<table id="fw_consulta_campos"/>
+<table id="fw_consulta_filtros"/>
+<table id="fw_consulta_orden"/>
+<table id="fw_ddlevents"/>
+<table id="fw_grupo"/>
+<table id="fw_indicadores"/>
+<table id="fw_indicadores_perfil"/>
+<table id="fw_links"/>
+<table id="fw_mensajes"/>
+<table id="fw_mensajes_portal"/>
+<table id="fw_preferencias_usuario"/>
+<table id="fw_vistas"/>
+<table id="fw_vistas_perfil"/>
+<table id="gestion_cobranza"/>
+<table id="gestion_cobranza_det"/>
+<table id="if_accesos_desc"/>
+<table id="if_accesos_tabs"/>
+<table id="if_informe_tabs"/>
+<table id="if_usuario_acceso"/>
+<table id="if_usuario_carrera"/>
+<table id="if_usuario_histo"/>
+<table id="if_usuario_informes"/>
+<table id="if_usuario_log"/>
+<table id="if_usuario_tabs"/>
+<table id="indicadores_cmi"/>
+<table id="ingresos_cheques_exp"/>
+<table id="inventarioequipos"/>
+<table id="kkl"/>
+<table id="librodeventas"/>
+<table id="librodeventasres"/>
+<table id="listadoalumnoseliminados"/>
+<table id="listadocursoborrador"/>
+<table id="liveedu"/>
+<table id="loadctadoc"/>
+<table id="log"/>
+<table id="log_mt_alumno"/>
+<table id="log_servipag"/>
+<table id="logs"/>
+<table id="logs_alumnos"/>
+<table id="logs_docentes"/>
+<table id="mig_jornada"/>
+<table id="mig_perfiles"/>
+<table id="mig_permisos"/>
+<table id="mig_rol"/>
+<table id="mig_rpt"/>
+<table id="mig_usuario"/>
+<table id="migracion"/>
+<table id="mt_accion"/>
+<table id="mt_agrupacion"/>
+<table id="mt_ajuste_periodo"/>
+<table id="mt_alumno"/>
+<table id="mt_antacademicos_log"/>
+<table id="mt_antlaborales_log"/>
+<table id="mt_apoder"/>
+<table id="mt_arancel"/>
+<table id="mt_asignacion_ejecutivo"/>
+<table id="mt_audita"/>
+<table id="mt_audita_net"/>
+<table id="mt_avisos"/>
+<table id="mt_banco"/>
+<table id="mt_ben_puntaje_porc"/>
+<table id="mt_beneficio"/>
+<table id="mt_benexcarrera"/>
+<table id="mt_benpaa"/>
+<table id="mt_benpar"/>
+<table id="mt_benpromo"/>
+<table id="mt_bloqueos"/>
+<table id="mt_caja"/>
+<table id="mt_carga_alumnos"/>
+<table id="mt_carga_alumnos_detalle"/>
+<table id="mt_carrer"/>
+<table id="mt_carrer_ingresa"/>
+<table id="mt_carrer_paa_psu"/>
+<table id="mt_carrerequiv"/>
+<table id="mt_catalumno"/>
+<table id="mt_ccosto"/>
+<table id="mt_ccostoano"/>
+<table id="mt_centra"/>
+<table id="mt_certif"/>
+<table id="mt_certif_fines"/>
+<table id="mt_certif_log"/>
+<table id="mt_certif_portal"/>
+<table id="mt_certifalu"/>
+<table id="mt_certvia"/>
+<table id="mt_cierre"/>
+<table id="mt_ciudad"/>
+<table id="mt_clase_ejecutivo"/>
+<table id="mt_clasificador"/>
+<table id="mt_client"/>
+<table id="mt_cobdesbloqueos"/>
+<table id="mt_cobparametro"/>
+<table id="mt_cobranza"/>
+<table id="mt_codarea"/>
+<table id="mt_coldepe"/>
+<table id="mt_colegio"/>
+<table id="mt_combos"/>
+<table id="mt_comfac"/>
+<table id="mt_comparativo"/>
+<table id="mt_compro"/>
+<table id="mt_compsg"/>
+<table id="mt_compsg_res"/>
+<table id="mt_compsg2"/>
+<table id="mt_comuna"/>
+<table id="mt_comuna_ingresa"/>
+<table id="mt_conimp"/>
+<table id="mt_convenio"/>
+<table id="mt_correlativo"/>
+<table id="mt_ctadep"/>
+<table id="mt_ctadoc"/>
+<table id="mt_ctadocano"/>
+<table id="mt_ctadocanoper"/>
+<table id="mt_ctadocban"/>
+<table id="mt_ctapag"/>
+<table id="mt_ctapag12834196"/>
+<table id="mt_cuentabanco"/>
+<table id="mt_custodia"/>
+<table id="mt_depositocajas"/>
+<table id="mt_desbloqueo"/>
+<table id="mt_descuentofin"/>
+<table id="mt_detalle_entre"/>
+<table id="mt_detesta"/>
+<table id="mt_devengo"/>
+<table id="mt_direcciones"/>
+<table id="mt_direcciones_log"/>
+<table id="mt_dispon"/>
+<table id="mt_docanul"/>
+<table id="mt_docitem"/>
+<table id="mt_docpag"/>
+<table id="mt_docpag_perfil"/>
+<table id="mt_docpagcent"/>
+<table id="mt_docum"/>
+<table id="mt_documcent"/>
+<table id="mt_ejecutivos"/>
+<table id="mt_empresa"/>
+<table id="mt_enc_matricula"/>
+<table id="mt_entrevistas"/>
+<table id="mt_escolaridad"/>
+<table id="mt_estaadmision"/>
+<table id="mt_estado_proceso_cob"/>
+<table id="mt_estadopostul"/>
+<table id="mt_estben"/>
+<table id="mt_estcivil"/>
+<table id="mt_estdoc"/>
+<table id="mt_estmov"/>
+<table id="mt_estudios"/>
+<table id="mt_famili"/>
+<table id="mt_feriados"/>
+<table id="mt_feriados_region"/>
+<table id="mt_flujoest"/>
+<table id="mt_fmtimp"/>
+<table id="mt_fmtimpd"/>
+<table id="mt_folio"/>
+<table id="mt_foliotmp"/>
+<table id="mt_formato_b2b"/>
+<table id="mt_formatosmasivos"/>
+<table id="mt_fotos"/>
+<table id="mt_generavoucher"/>
+<table id="mt_grados_academicos"/>
+<table id="mt_grupo"/>
+<table id="mt_grupobienestar"/>
+<table id="mt_grupodocumento"/>
+<table id="mt_hismat"/>
+<table id="mt_impresion"/>
+<table id="mt_impresora"/>
+<table id="mt_intere"/>
+<table id="mt_item"/>
+<table id="mt_itemcent"/>
+<table id="mt_jornadatrabajo"/>
+<table id="mt_laboral"/>
+<table id="mt_listaitem"/>
+<table id="mt_logcargaexterna"/>
+<table id="mt_lvta"/>
+<table id="mt_medios"/>
+<table id="mt_modalidad"/>
+<table id="mt_moneda"/>
+<table id="mt_morosidad_cuota"/>
+<table id="mt_morosos"/>
+<table id="mt_motivos"/>
+<table id="mt_mvtodoc"/>
+<table id="mt_nacionalidad"/>
+<table id="mt_opcionitem"/>
+<table id="mt_ordenmat"/>
+<table id="mt_paa"/>
+<table id="mt_pago_web"/>
+<table id="mt_pago_web_corr"/>
+<table id="mt_pago_web_cuotas"/>
+<table id="mt_pagodep"/>
+<table id="mt_pagosmasivos"/>
+<table id="mt_pagosmasivos_detalle"/>
+<table id="mt_pais"/>
+<table id="mt_parame"/>
+<table id="mt_parame_det"/>
+<table id="mt_parame_enc"/>
+<table id="mt_parcaja"/>
+<table id="mt_parent"/>
+<table id="mt_parflujo"/>
+<table id="mt_paridad"/>
+<table id="mt_pasocentlv"/>
+<table id="mt_pasoimp"/>
+<table id="mt_pasovoucher"/>
+<table id="mt_periodotipocarr"/>
+<table id="mt_permis"/>
+<table id="mt_plan"/>
+<table id="mt_plancta"/>
+<table id="mt_porc_gastos_cob"/>
+<table id="mt_posben"/>
+<table id="mt_poscar"/>
+<table id="mt_poscar_online"/>
+<table id="mt_postul"/>
+<table id="mt_promocion"/>
+<table id="mt_prorroga"/>
+<table id="mt_provincia"/>
+<table id="mt_puertos"/>
+<table id="mt_recargo"/>
+<table id="mt_rechazo"/>
+<table id="mt_recibirpagos"/>
+<table id="mt_region"/>
+<table id="mt_requisitos"/>
+<table id="mt_secuencias"/>
+<table id="mt_sedeusuario"/>
+<table id="mt_sexo"/>
+<table id="mt_sindevengo"/>
+<table id="mt_sissalud"/>
+<table id="mt_sucurs"/>
+<table id="mt_tasainteres"/>
+<table id="mt_telemarketing"/>
+<table id="mt_tipo_beneficio"/>
+<table id="mt_tipoaccion"/>
+<table id="mt_tipoacciontiporesultado"/>
+<table id="mt_tipoalcance"/>
+<table id="mt_tipobeca"/>
+<table id="mt_tipocarr"/>
+<table id="mt_tipoejecutivo"/>
+<table id="mt_tipoempresa"/>
+<table id="mt_tipomat"/>
+<table id="mt_tipomerito"/>
+<table id="mt_tipopostul"/>
+<table id="mt_tiporesultadoaccion"/>
+<table id="mt_tiposalud"/>
+<table id="mt_tipoubicacion"/>
+<table id="mt_tramos"/>
+<table id="mt_ubicuenta"/>
+<table id="mt_univer"/>
+<table id="mt_usuari_old_tabla"/>
+<table id="mt_vacantes"/>
+<table id="mt_via_estadistica"/>
+<table id="mt_viaconsulta"/>
+<table id="mt_viadmision"/>
+<table id="mt_vta_certif"/>
+<table id="mt_vta_certif_det"/>
+<table id="mt_webmail"/>
+<table id="mt_webpay"/>
+<table id="mt_webpaylogs"/>
+<table id="mvtodoc_resp"/>
+<table id="nomina_supendidos"/>
+<table id="nominaerror"/>
+<table id="pa"/>
+<table id="parciales"/>
+<table id="porta_aviones"/>
+<table id="promocion_carrera"/>
+<table id="prueba"/>
+<table id="puntajes"/>
+<table id="ra_actasem"/>
+<table id="ra_acteval_asig"/>
+<table id="ra_acteval_asig_det"/>
+<table id="ra_acteval_carr"/>
+<table id="ra_acteval_carr_det"/>
+<table id="ra_acteval_inst"/>
+<table id="ra_acteval_inst_det"/>
+<table id="ra_acteval_nota_det"/>
+<table id="ra_acteval_seccion"/>
+<table id="ra_acteval_seccion_det"/>
+<table id="ra_activ_eval"/>
+<table id="ra_actividadprofesional"/>
+<table id="ra_areas"/>
+<table id="ra_areasconocimiento"/>
+<table id="ra_asigapel"/>
+<table id="ra_asigcausal"/>
+<table id="ra_asigrpt"/>
+<table id="ra_audita"/>
+<table id="ra_avisos_leidos"/>
+<table id="ra_bloqueoadm"/>
+<table id="ra_calendario_tr"/>
+<table id="ra_calendario_tr_carrera"/>
+<table id="ra_calendarioreg"/>
+<table id="ra_calendarioregcarr"/>
+<table id="ra_cambiacodigoalum"/>
+<table id="ra_cambio_estado"/>
+<table id="ra_carga"/>
+<table id="ra_carga_log"/>
+<table id="ra_carga_logbaksol"/>
+<table id="ra_carga_rastro"/>
+<table id="ra_cargaactividad"/>
+<table id="ra_cargabak"/>
+<table id="ra_cargabaksol"/>
+<table id="ra_cargapotencial"/>
+<table id="ra_cargasim"/>
+<table id="ra_cargasimpot"/>
+<table id="ra_cargasimpotpro"/>
+<table id="ra_cargasimproy"/>
+<table id="ra_cargo"/>
+<table id="ra_carreraperiodo"/>
+<table id="ra_categoria"/>
+<table id="ra_causal"/>
+<table id="ra_clase"/>
+<table id="ra_clasificanivel"/>
+<table id="ra_comititulo"/>
+<table id="ra_concepto"/>
+<table id="ra_concepto_aprendizaje"/>
+<table id="ra_contenido"/>
+<table id="ra_contenido_cat"/>
+<table id="ra_contenido_clase"/>
+<table id="ra_contenidoprg"/>
+<table id="ra_contexto_obs"/>
+<table id="ra_controlasist"/>
+<table id="ra_correlativos_docweb"/>
+<table id="ra_corrsol"/>
+<table id="ra_credenciales"/>
+<table id="ra_criterio_aprendizaje"/>
+<table id="ra_ctlprf"/>
+<table id="ra_ctlprf_otrashoras"/>
+<table id="ra_cuerpored"/>
+<table id="ra_curric"/>
+<table id="ra_cursossinnotast1"/>
+<table id="ra_cursossinnotast2"/>
+<table id="ra_detres"/>
+<table id="ra_dias"/>
+<table id="ra_doctos_leidos"/>
+<table id="ra_documentos_web"/>
+<table id="ra_edificio"/>
+<table id="ra_empresa"/>
+<table id="ra_encabred"/>
+<table id="ra_encuesta"/>
+<table id="ra_encuesta_detalle"/>
+<table id="ra_encuestados"/>
+<table id="ra_equiv"/>
+<table id="ra_equiv_malla"/>
+<table id="ra_escalanota"/>
+<table id="ra_estacad"/>
+<table id="ra_estadisticahis"/>
+<table id="ra_estado_alumnos"/>
+<table id="ra_estado_log"/>
+<table id="ra_estados_tit"/>
+<table id="ra_estadoscertificados"/>
+<table id="ra_evento"/>
+<table id="ra_experiencia"/>
+<table id="ra_facultad"/>
+<table id="ra_fecha_encuestas"/>
+<table id="ra_fecha_modulo"/>
+<table id="ra_fechaprueba"/>
+<table id="ra_flujositu"/>
+<table id="ra_gestionacad"/>
+<table id="ra_gradodoc"/>
+<table id="ra_grupositu"/>
+<table id="ra_histreprob"/>
+<table id="ra_hojavida"/>
+<table id="ra_horari"/>
+<table id="ra_horarioalumno"/>
+<table id="ra_horascont"/>
+<table id="ra_horprof"/>
+<table id="ra_idioma"/>
+<table id="ra_informeasistencia"/>
+<table id="ra_institucion"/>
+<table id="ra_investigacion"/>
+<table id="ra_jornada"/>
+<table id="ra_jornadadoc"/>
+<table id="ra_liquidacion_doc"/>
+<table id="ra_liquidacion_doc_det"/>
+<table id="ra_mailing"/>
+<table id="ra_mailing_det"/>
+<table id="ra_mantieneactweb"/>
+<table id="ra_mensajebloqueo"/>
+<table id="ra_modalidad"/>
+<table id="ra_modulo"/>
+<table id="ra_modulo_carrera"/>
+<table id="ra_modulomalla"/>
+<table id="ra_movres"/>
+<table id="ra_nivelalumno"/>
+<table id="ra_nomalued"/>
+<table id="ra_nota"/>
+<table id="ra_nota_kardex"/>
+<table id="ra_notaactividad"/>
+<table id="ra_notabak"/>
+<table id="ra_notabaksol"/>
+<table id="ra_observacion"/>
+<table id="ra_observacion_cierre_profes"/>
+<table id="ra_observacion_profes"/>
+<table id="ra_observcert"/>
+<table id="ra_oferta_cursos"/>
+<table id="ra_oferta_minor"/>
+<table id="ra_oferta_trabajo"/>
+<table id="ra_opinternet"/>
+<table id="ra_optivo"/>
+<table id="ra_otramalla"/>
+<table id="ra_otramalla2"/>
+<table id="ra_perfilinternet"/>
+<table id="ra_periodocierre"/>
+<table id="ra_pestud"/>
+<table id="ra_pestud_estado"/>
+<table id="ra_pestud_nivel"/>
+<table id="ra_pievarres"/>
+<table id="ra_planesadic"/>
+<table id="ra_planificacion"/>
+<table id="ra_pondficha"/>
+<table id="ra_porcreprob"/>
+<table id="ra_portaldocente"/>
+<table id="ra_practica"/>
+<table id="ra_preguntas"/>
+<table id="ra_proceso"/>
+<table id="ra_proceso_ins"/>
+<table id="ra_proceso_tit"/>
+<table id="ra_procesoencuesta"/>
+<table id="ra_profes"/>
+<table id="ra_proyeccion"/>
+<table id="ra_publicacion"/>
+<table id="ra_ramo"/>
+<table id="ra_ramo_mg"/>
+<table id="ra_ramobiblio"/>
+<table id="ra_ranking"/>
+<table id="ra_recinto"/>
+<table id="ra_regimen"/>
+<table id="ra_reintento"/>
+<table id="ra_reservasala"/>
+<table id="ra_resolu"/>
+<table id="ra_respuesta"/>
+<table id="ra_resultados"/>
+<table id="ra_rol"/>
+<table id="ra_rpt"/>
+<table id="ra_rubros"/>
+<table id="ra_sala"/>
+<table id="ra_seccio"/>
+<table id="ra_secuen"/>
+<table id="ra_sede"/>
+<table id="ra_seminario"/>
+<table id="ra_sistcvdoc"/>
+<table id="ra_situ"/>
+<table id="ra_situlog"/>
+<table id="ra_solici"/>
+<table id="ra_solicita_mail"/>
+<table id="ra_subcategoria"/>
+<table id="ra_ticket"/>
+<table id="ra_tiphor"/>
+<table id="ra_tipo_encuesta"/>
+<table id="ra_tipo_evaluacion"/>
+<table id="ra_tipo_inscripcion"/>
+<table id="ra_tipo_sala"/>
+<table id="ra_tipoasignatura"/>
+<table id="ra_tipoclase"/>
+<table id="ra_tipopregunta"/>
+<table id="ra_tiporespuesta"/>
+<table id="ra_tipositu"/>
+<table id="ra_tipres"/>
+<table id="ra_titgrad"/>
+<table id="ra_titulo"/>
+<table id="ra_titulodoc"/>
+<table id="ra_tope"/>
+<table id="ra_topes"/>
+<table id="ra_topes_cursos_an"/>
+<table id="ra_tramodistincion"/>
+<table id="ra_tramodistincioncarrer"/>
+<table id="ra_unacad"/>
+<table id="ra_usersedecarr"/>
+<table id="ra_uso_sala"/>
+<table id="ra_valorprofe"/>
+<table id="recuperacion"/>
+<table id="resp_alumno"/>
+<table id="resp_constante_1"/>
+<table id="resp_constantes"/>
+<table id="resp_pos"/>
+<table id="resp_postulante"/>
+<table id="resp_postulante_no_existen"/>
+<table id="resp_situ"/>
+<table id="ri"/>
+<table id="rl_estadosciviles"/>
+<table id="saldos"/>
+<table id="salida"/>
+<table id="sek_alertas"/>
+<table id="sek_alertas_correos"/>
+<table id="sek_ano"/>
+<table id="sek_asig_alumnos"/>
+<table id="sek_asistencia"/>
+<table id="sek_bancos"/>
+<table id="sek_biblio_espa"/>
+<table id="sek_biblio_umas"/>
+<table id="sek_biblioteca"/>
+<table id="sek_cae"/>
+<table id="sek_cae_acceso_desc"/>
+<table id="sek_cae_acceso_files"/>
+<table id="sek_cae_usuario_acceso"/>
+<table id="sek_cae_usuario_informes"/>
+<table id="sek_cae_usuario_log"/>
+<table id="sek_canaldenuncias"/>
+<table id="sek_correos_google"/>
+<table id="sek_correos_google_temp"/>
+<table id="sek_cv_becas"/>
+<table id="sek_cv_experiencia"/>
+<table id="sek_cv_extension"/>
+<table id="sek_cv_gradosacademicos"/>
+<table id="sek_cv_idiomas"/>
+<table id="sek_cv_investigacion"/>
+<table id="sek_cv_membrecias"/>
+<table id="sek_cv_perfeccionamiento"/>
+<table id="sek_cv_programaacademico"/>
+<table id="sek_cv_publicaciones"/>
+<table id="sek_cv_tipopublicacion"/>
+<table id="sek_cv_validacion"/>
+<table id="sek_eaautoevaluacion"/>
+<table id="sek_eadocente"/>
+<table id="sek_eadocente2014"/>
+<table id="sek_eadocente2014_filtrado"/>
+<table id="sek_eadocente2014_respaldo"/>
+<table id="sek_eadocente2014_transicion"/>
+<table id="sek_eapercepcion"/>
+<table id="sek_easondeo"/>
+<table id="sek_encanalisis_usuarios"/>
+<table id="sek_encinstitucional_docente"/>
+<table id="sek_encintitucional"/>
+<table id="sek_epdocente"/>
+<table id="sek_epdocente2014"/>
+<table id="sek_epdocente2014_prueba"/>
+<table id="sek_epdocente2014_respaldo"/>
+<table id="sek_epdocente2014_transicion"/>
+<table id="sek_epsatisfaccion"/>
+<table id="sek_eramos"/>
+<table id="sek_fecha_encuestas_docentes"/>
+<table id="sek_fechaexamenes"/>
+<table id="sek_formulario_admision2014"/>
+<table id="sek_gestion_cobranza"/>
+<table id="sek_honorario_cabecera"/>
+<table id="sek_honorario_linea"/>
+<table id="sek_honorarios"/>
+<table id="sek_horario_asistencia"/>
+<table id="sek_horario_examenes"/>
+<table id="sek_incidencias_cae"/>
+<table id="sek_ingresofamiliar"/>
+<table id="sek_intregistrocobranza"/>
+<table id="sek_log_canaldenuncias"/>
+<table id="sek_mes"/>
+<table id="sek_niveleduca"/>
+<table id="sek_ocupacion"/>
+<table id="sek_opcionescobranza"/>
+<table id="sek_paises"/>
+<table id="sek_postulante"/>
+<table id="sek_profesiones"/>
+<table id="sek_reseteo_password"/>
+<table id="sek_saludalumno"/>
+<table id="sek_silabus_horarios"/>
+<table id="sek_solicitud_certificados"/>
+<table id="sek_solicitud_certificados_log"/>
+<table id="sek_subnivel_cobranza"/>
+<table id="sek_tb_sedes"/>
+<table id="sek_tb_telefonos"/>
+<table id="sek_tit_histor_pablo"/>
+<table id="sek_tituladoshistoricos"/>
+<table id="sek_universidades"/>
+<table id="sek_vivealumno"/>
+<table id="sis_inscripcion_old"/>
+<table id="sis_reg_inscripcion"/>
+<table id="sis_reg_solicitud"/>
+<table id="solic_cae_2012"/>
+<table id="solic_cae_2012_segundacarga"/>
+<table id="solic_cae_ant"/>
+<table id="solic_cae_ant2012_segcarga"/>
+<table id="suspendidos_dia"/>
+<table id="sys_help"/>
+<table id="sys_help_detalle"/>
+<table id="sysdiagrams"/>
+<table id="tabla_temporal"/>
+<table id="tbl_egresadostmp"/>
+<table id="temp_alumnos"/>
+<table id="temp_expediente_ws"/>
+<table id="temp_sies"/>
+<table id="tempindmorosidad"/>
+<table id="tempmoroso"/>
+<table id="temporal"/>
+<table id="temporal_prueba"/>
+<table id="tg_accesosdirectos"/>
+<table id="tg_constantes"/>
+<table id="tg_constantestipos"/>
+<table id="tg_personas"/>
+<table id="tg_personasaccesosdirectos"/>
+<table id="tg_tablas_controlcambios"/>
+<table id="tg_tiposrut_noborrar"/>
+<table id="tmp_carrer_morosos"/>
+<table id="tmp_expediente_websek"/>
+<table id="tmpinfor"/>
+<table id="tmpsolici"/>
+<table id="tmptest"/>
+<table id="traficotelefonico"/>
+<table id="view_estado_financiero1"/>
+<table id="vw_calendarioreg"/>
+<table id="www"/>
+<table id="z_dta_mv_26"/>
+<table id="z_vdatospegagias"/>
+<table id="alumnos_sin_documentacion"/>
+<table id="alumnos_sin_notas"/>
+<table id="alumnosporseccion"/>
+<table id="cae_carga_matricula1"/>
+<table id="cons_alumnosituacion"/>
+<table id="cons_control_actividades_1"/>
+<table id="derechoexamen"/>
+<table id="habilitacion"/>
+<table id="hlp_ra_cargo"/>
+<table id="incident_0001"/>
+<table id="listado"/>
+<table id="matriculados_mp"/>
+<table id="matriculados_repetidos_carreras"/>
+<table id="morosos_suspendidos_mala"/>
+<table id="mt_carreraperiodo"/>
+<table id="mt_carreras_equiv_random"/>
+<table id="mt_ctapag_depositables"/>
+<table id="mt_detubi"/>
+<table id="mt_docdetrec"/>
+<table id="mt_docdetrec_cancel"/>
+<table id="mt_lista_fichaalumnos_excedentes"/>
+<table id="mt_usuari"/>
+<table id="nomina_alumnos_uahc"/>
+<table id="nomina_mt_desbloqueos"/>
+<table id="nomina_mt_item"/>
+<table id="nomina_mt_listaprecios"/>
+<table id="nomina_ramos_planes_areas"/>
+<table id="nominna_mt_arancel"/>
+<table id="notas_grupo__alumnos"/>
+<table id="notaspe"/>
+<table id="olap_alumnos"/>
+<table id="olap_alumnos_vigentes"/>
+<table id="olap_alumnos_vigentes2"/>
+<table id="optativos"/>
+<table id="paso"/>
+<table id="periodo5"/>
+<table id="ra_cursonuevo"/>
+<table id="ra_estavac"/>
+<table id="ra_listacurso"/>
+<table id="ra_listacurso_borrador"/>
+<table id="ra_nomina"/>
+<table id="ra_ordenclase"/>
+<table id="ra0210"/>
+<table id="ra0211"/>
+<table id="ra0402"/>
+<table id="ra0501"/>
+<table id="ra0504"/>
+<table id="ra0505"/>
+<table id="ra0506"/>
+<table id="ra0512"/>
+<table id="ra0513"/>
+<table id="ra0514"/>
+<table id="ra0515b"/>
+<table id="ra0516"/>
+<table id="ra0517b"/>
+<table id="ra0518"/>
+<table id="ra0520"/>
+<table id="ra0521"/>
+<table id="ra0525"/>
+<table id="ramos"/>
+<table id="ramos_planes_areas"/>
+<table id="sedes"/>
+<table id="sek_alumno_matriculado"/>
+<table id="sek_alumnos_clientes"/>
+<table id="sek_alumnos_derechoexamen"/>
+<table id="sek_alumnos_encuesta"/>
+<table id="sek_alumnos_espabiblio"/>
+<table id="sek_alumnos_extranjeros"/>
+<table id="sek_alumnos_libre_conf"/>
+<table id="sek_alumnos_lista_clase"/>
+<table id="sek_alumnos_matriculados_total"/>
+<table id="sek_alumnos_matriculados_total_anexo_contrato"/>
+<table id="sek_alumnos_ramo_carrera"/>
+<table id="sek_alumnos_retirados"/>
+<table id="sek_alumnos_retirados_2013"/>
+<table id="sek_alumosdeudacallcenter"/>
+<table id="sek_asignaturas_plan_profesor"/>
+<table id="sek_asistencia_alumnos"/>
+<table id="sek_bajas_academicas"/>
+<table id="sek_cambios_carrera"/>
+<table id="sek_cuentas_google"/>
+<table id="sek_cv_nums"/>
+<table id="sek_detalle_webpay"/>
+<table id="sek_diavenc"/>
+<table id="sek_dicom_bajar_pagare"/>
+<table id="sek_dicom_bajar_pagaregarantia"/>
+<table id="sek_dicom_subir_pagare"/>
+<table id="sek_dicom_subir_pagaregarantia"/>
+<table id="sek_diferencia_libroventas"/>
+<table id="sek_e_percepcion"/>
+<table id="sek_ea_docente"/>
+<table id="sek_eliminados_2013"/>
+<table id="sek_encuesta_auto_docente"/>
+<table id="sek_encuesta_docente_autoev"/>
+<table id="sek_encuesta_docente_satisfaccion"/>
+<table id="sek_encuesta_zonaencuestas"/>
+<table id="sek_estadisticas_matriculas_detalle"/>
+<table id="sek_estado_academico"/>
+<table id="sek_evaluacion_jefesc"/>
+<table id="sek_ficha_curricular"/>
+<table id="sek_ficha_curricular_alumno"/>
+<table id="sek_ficha_curricular_detalle"/>
+<table id="sek_fichacurricular_alumno"/>
+<table id="sek_gestionesporusuario"/>
+<table id="sek_honorarioscabecera"/>
+<table id="sek_horarios"/>
+<table id="sek_horarios_docentes"/>
+<table id="sek_listado_beneficios"/>
+<table id="sek_listado_gestion"/>
+<table id="sek_listado_informes"/>
+<table id="sek_log_docentes_nuevo"/>
+<table id="sek_matriculados_callcenter"/>
+<table id="sek_matriculados_estados"/>
+<table id="sek_matriculados_info"/>
+<table id="sek_matriculadosok"/>
+<table id="sek_morosidad_estado_academico"/>
+<table id="sek_morosos_2013"/>
+<table id="sek_morosos_futuros"/>
+<table id="sek_nota_concentracion"/>
+<table id="sek_notas_con_aprobacion"/>
+<table id="sek_pagos_vs_llamadas"/>
+<table id="sek_pagostiposdocumentos"/>
+<table id="sek_postergados"/>
+<table id="sek_profesores_encuesta"/>
+<table id="sek_reincorporaciones"/>
+<table id="sek_resoluciones_alumnos"/>
+<table id="sek_situ_alumnos"/>
+<table id="sek_v_alumnos_lco_ele"/>
+<table id="sek_v_analisissatisfaccion_docentes"/>
+<table id="sek_v_asignaturas_plan_profesor"/>
+<table id="sek_v_asistencia"/>
+<table id="sek_v_autoevaluacion_docentes_nuevo"/>
+<table id="sek_v_dae_alumnos"/>
+<table id="sek_v_encuesta_docente_alumnos_nuevo"/>
+<table id="sek_v_encuesta_personal_desempeno"/>
+<table id="sek_v_encuesta_personal_desempeno_sinevaluar"/>
+<table id="sek_v_encuestaautoinstitucional"/>
+<table id="sek_v_estado_ingreso_calificaciones"/>
+<table id="sek_v_evaluacion_funcionario"/>
+<table id="sek_v_listaclases"/>
+<table id="sek_v_listadoalumnos"/>
+<table id="sek_v_mineduc_matriculados"/>
+<table id="sek_v_morosos"/>
+<table id="sek_v_nivelestudioalumnos"><phrase id="tblcaption" value="SEK V Nivel Estudio Alumnos"/>
+<field id="codcli"><phrase id="fldcaption" value="CODCLI"/>
+</field>
+<field id="dig"><phrase id="fldcaption" value="DIG"/>
+</field>
+<field id="nombre"><phrase id="fldcaption" value="NOMBRE"/>
+</field>
+<field id="paterno"><phrase id="fldcaption" value="PATERNO"/>
+</field>
+<field id="materno"><phrase id="fldcaption" value="MATERNO"/>
+</field>
+<field id="nombre_c"><phrase id="fldcaption" value="NOMBRE C"/>
+</field>
+<field id="ano"><phrase id="fldcaption" value="ANO"/>
+</field>
+<field id="estacad"><phrase id="fldcaption" value="ESTACAD"/>
+</field>
+<field id="nivelalumno"><phrase id="fldcaption" value="Nivel Alumno"/>
+</field>
+</table>
+<table id="sek_v_notashistoricas"/>
+<table id="sek_v_pagares"/>
+<table id="sek_v_porcentaje_aprobacion"/>
+<table id="sek_v_porcentaje_aprobacion_periodos"/>
+<table id="sek_v_reporte_cuponera"/>
+<table id="sek_v_resumenbeneficios"/>
+<table id="sek_v_sondeoalumnos"/>
+<table id="sek_v_titulados_sies"/>
+<table id="sek_vista_alumencuestas"/>
+<table id="sek_vista_cv_total"/>
+<table id="sek_vista_postulacion"/>
+<table id="sis_inscripcion"/>
+<table id="tbl_credencialestmp"/>
+<table id="tbl_egresados"/>
+<table id="tbl_solicitamail_tmp"/>
+<table id="tg_tiposruts"/>
+<table id="uno"/>
+<table id="v_auxiliar_pier"/>
+<table id="v_olap_uisekcl"/>
+<table id="v_proyeccion"/>
+<table id="v_rendimientoporasig"/>
+<table id="v_sek_notassinestado"/>
+<table id="v_sek_numfichascurriculares_pregrado"/>
+<table id="view_1"/>
+<table id="view_encuestatitulados"/>
+<table id="view_estado_financiero"/>
+<table id="view_estados"/>
+<table id="view1"/>
+<table id="view2"/>
+<table id="visa_profesores__carera"/>
+<table id="vista_alumarcabajaacad"/>
+<table id="vista_alumnos_cambiados"/>
+<table id="vista_alumnos_con_resoluciones"/>
+<table id="vista_alumnos_estado_matricula"/>
+<table id="vista_alumnos_matriculados"/>
+<table id="vista_alumnos_morosos"/>
+<table id="vista_alumnos_morosos_empresa_cobranza"/>
+<table id="vista_alumnos_pend_nf"/>
+<table id="vista_alumnos_retirados"/>
+<table id="vista_alumnos_sindoc"/>
+<table id="vista_alumnos_sinnf"/>
+<table id="vista_alumnos_totales"/>
+<table id="vista_alumnosreincorporados"/>
+<table id="vista_alumnosreprobados"/>
+<table id="vista_analisispagos"/>
+<table id="vista_analisisrecuperomorosos"/>
+<table id="vista_autoevaglobal"/>
+<table id="vista_autoevatipositu"/>
+<table id="vista_cambios"/>
+<table id="vista_carreras_ramos"/>
+<table id="vista_ctactechema"/>
+<table id="vista_detalle_formapagocae"/>
+<table id="vista_detalleformaspago"/>
+<table id="vista_diasmora"/>
+<table id="vista_documentos"/>
+<table id="vista_estado_alumno"/>
+<table id="vista_matric2010"/>
+<table id="vista_matric2011_antiguos"/>
+<table id="vista_matric2011_pagare"/>
+<table id="vista_matricula"/>
+<table id="vista_matricula_antiguos"/>
+<table id="vista_matricula_nuevos"/>
+<table id="vista_matricula2011"/>
+<table id="vista_matriculahistorica"/>
+<table id="vista_morosos"/>
+<table id="vista_morosos_dicom"/>
+<table id="vista_morosos30dias"/>
+<table id="vista_movimientos_historica"/>
+<table id="vista_mt_alucarga2011"/>
+<table id="vista_mt_alumnosbeneficios"/>
+<table id="vista_mt_detallebeneficios"/>
+<table id="vista_mt_matricaluantnomat"/>
+<table id="vista_mt_proyeccion"/>
+<table id="vista_notas_alumnos"/>
+<table id="vista_notashistoricas"/>
+<table id="vista_notashistoricascarrera"/>
+<table id="vista_notasresumen"/>
+<table id="vista_profes_mail"/>
+<table id="vista_profes_ramos"/>
+<table id="vista_profes_sin_notas"/>
+<table id="vista_protestos"/>
+<table id="vista_prueba_alumnos_seccion"/>
+<table id="vista_ramossinpond"/>
+<table id="vista_raseccio"/>
+<table id="vista_reincorporados2011"/>
+<table id="vista_resdocpago"/>
+<table id="vista_reservasala"/>
+<table id="vista_retiros"/>
+<table id="vista_situacionesacademicas"/>
+<table id="vista_tomaramos"/>
+<table id="vista_tramosresum"/>
+<table id="vista_ventamatyarancel"/>
+<table id="vistaclient"/>
+<table id="vistaencuestapercepcion"/>
+<table id="vsek_alumnos"/>
+<table id="vsr_alumnospagina"/>
+<table id="vt_mt_posben_beneficios"/>
+<table id="vw_calendario_reg_carr"/>
+<table id="vw_calendarioreg2"/>
+<table id="vw_conf_fecha_seccio"/>
+<table id="vw_devengos"/>
+<table id="vw_encuesta_doc"/>
+<table id="vw_modulo"/>
+<table id="vw_mt_alumno_antiguos_matriculados"/>
+<table id="vw_mt_alumno_matriculados_sin_carga"/>
+<table id="vw_mt_alumno_nuevos_matriculados"/>
+<table id="vw_mt_alumno_por_estado"/>
+<table id="vw_mt_alumno_proceso_titulacion"/>
+<table id="vw_mt_alumno_sin_notas"/>
+<table id="vw_mt_alumno_titulados"/>
+<table id="vw_mt_alumno_todos_matriculados"/>
+<table id="vw_mt_alumno_vigentes"/>
+<table id="vw_mt_apoder"/>
+<table id="vw_mt_arancel"/>
+<table id="vw_mt_beneficio"/>
+<table id="vw_mt_carrer"/>
+<table id="vw_mt_client"/>
+<table id="vw_mt_ctadoc"/>
+<table id="vw_mt_ctadoc_pendiente"/>
+<table id="vw_mt_ctadoc_por_vencer"/>
+<table id="vw_mt_ctadoc_protestados"/>
+<table id="vw_mt_ctadoc_vencidos"/>
+<table id="vw_mt_docitem_ventas_periodo"/>
+<table id="vw_mt_docpag"/>
+<table id="vw_mt_parcaja"/>
+<table id="vw_mt_posben"/>
+<table id="vw_mt_poscar"/>
+<table id="vw_mt_poscar_aprobados_no_matriculados"/>
+<table id="vw_mt_post_nuevos"/>
+<table id="vw_mt_provincia"/>
+<table id="vw_opinternet"/>
+<table id="vw_perfiles"/>
+<table id="vw_ra_controlasist"/>
+<table id="vw_ra_ctlprf"/>
+<table id="vw_ra_nota"/>
+<table id="vw_ra_pestud"/>
+<table id="vw_ra_profes"/>
+<table id="vw_ra_ramo"/>
+<table id="vw_ra_ramo_planificacion"/>
+<table id="vw_ra_sala"/>
+<table id="vw_ra_sala_nomina"/>
+<table id="vw_ra_seccio"/>
+<table id="vw_ra_situ"/>
+<table id="vw_revelador_password"/>
+<table id="vw_situaciones_alumno"/>
+<table id="vw_titulados"/>
+<table id="vw_titulados_vw"/>
+<table id="vw_usersedecarr"/>
+<table id="vw_vista_perfiles"/>
+<table id="nivel_de_estudios"><phrase id="tblcaption" value="Nivel de Estudios"/>
+<field id="codcli"><phrase id="fldcaption" value="Rut"/>
+</field>
+<field id="dig"><phrase id="fldcaption" value="DV"/>
+</field>
+<field id="nombre"><phrase id="fldcaption" value="Nombre"/>
+</field>
+<field id="paterno"><phrase id="fldcaption" value="Apellido Paterno"/>
+</field>
+<field id="materno"><phrase id="fldcaption" value="Apellido Materno"/>
+</field>
+<field id="nombre_c"><phrase id="fldcaption" value="Carrera"/>
+</field>
+<field id="ano"><phrase id="fldcaption" value="Año"/>
+</field>
+<field id="estacad"><phrase id="fldcaption" value="Estado Académico"/>
+</field>
+<field id="nivelalumno"><phrase id="fldcaption" value="Nivel Alumno"/>
+</field>
+</table>
+</project>
+</ew-language>

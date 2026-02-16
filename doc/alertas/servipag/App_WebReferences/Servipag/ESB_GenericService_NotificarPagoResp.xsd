@@ -1,0 +1,23 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () --><!-- Esquema que representa el Response de la operacion Notificacion de Pago --><!-- Desarrollado por Federico Arias - federico.arias@globallogic.com - 2014 --><xs:schema targetNamespace="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Resp-v2014.12" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Resp-v2014.12" xmlns:cm="http://www.servipag.cl/ESB/GenericService/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://www.servipag.cl/ESB/GenericService/Common" schemaLocation="GenericService_Diccionario.xsd"/>
+	<xs:element name="notificarPagoResponse" type="notificarPagoResponse_TYPE"/>
+	<xs:complexType name="notificarPagoResponse_TYPE">
+		<xs:sequence>
+			<xs:element name="CodigoError" type="cm:Numerico_largo_5_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de Código de error (valor ≠ 0 es error)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GlosaError" type="cm:Alfanumerico_largo_200_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Descripcion del Error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodAutorizacion" type="cm:Alfanumerico_largo_30_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Codigo de Autorizacion, solo aplica para Recargas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,72 @@
+<%
+
+Dim sqlAlumnos, cnIndex, rsAlumnos
+Dim rut, jornada
+
+rut= request.QueryString("codCli")
+
+Dim fechaVenc, mes
+fechavenc=split(fechaVencimiento,"-")
+mes=split(FormatDateTime(request.QueryString("fechaVenc"),1)," de ")
+
+
+Set cnIndex = Server.CreateObject ("ADODB.Connection")
+Set rsAlumnos = Server.CreateObject ("ADODB.Recordset")
+cnIndex.Open "driver={SQL Server};server=192.168.100.226; database=Matricula; uid=sa;pwd=Sa070507"
+    
+	
+	sqlAlumnos = "SELECT CODCLI, DIG, PATERNO, MATERNO, NOMBRE, DIRPROC, JORNAD, NOMBRE_C, FEC_MAT, NOMBREAVAL, RUTAVAL, DIGAVAL, PATERNOAVAL, MATERNOAVAL FROM dbo.SEK_Alumnos_Matriculados_Total_Anexo_Contrato Where codCli='"& rut&"'"
+
+	'response.Write sqlAlumnos
+	rsAlumnos.Open sqlAlumnos, cnIndex
+    if rsAlumnos("JORNAD")="V" Then
+        jornada="Vespertina"
+        else if rsAlumnos("JORNAD") ="D" then
+        end if
+    END IF
+
+%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/projectContratoAsignatura.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" media="print" />
+<script type="text/javascript">
+	window.print();
+</script>
+<div id="anchoPagina" >
+    <div id="logo"><img src="images/logo.jpg"></div>
+
+    <div class="titulo">
+        <p>
+            <b>
+                <u>
+                    CONTRATO DE PRESTACION DE SERVICIOS EDUCACIONALES<br /> <br />
+                    UNIVERSIDAD INTERNACIONAL SEK
+                </u>
+            </b>
+        </p>
+    </div>
+    <div id="container">
+	    <p>En Santiago, a <%=DAY(Date()) %>  de <%=MonthName(Month(Date())) %>  de <%=Year(Date()) %>, entre La Universidad Internacional SEK, RUT Nº 71.618.600-8, Institución Educativa Superior, en adelante 'La Universidad', representada por su rector Oscar Ricardo Acuña Poblete, ambos domiciliados en c/ Fernando Manterola 0789, comuna de Providencia, Santiago, por una parte; y por la otra don/doña <%=rsAlumnos("NOMBRE")&" "&rsAlumnos("PATERNO")&" "&rsAlumnos("MATERNO") %>, Rut Nº <%=rsAlumnos("CODCLI")&"-"&rsAlumnos("DIG") %>, domiciliado en <%=rsAlumnos("DIRPROC") %>, en adelante 'EL ALUMNO', se ha convenido en la celebración del contrato de prestación de servicios educacionales, del cual dan cuenta las cláusulas que siguen:</p>
+        <p><b>PRIMERA:</b> Para todos los efectos del presente contrato, las expresiones 'Matrícula', 'Alumno regular' y 'Arancel', se definen como a continuación se indica:</p>
+        <p>a) Matrícula: Monto anual que deberá pagar el Alumno a la Universidad para inscribirse en una determinada carrera durante cada año académico.</p>
+        <p>b) Alumno Regular: Alumno matriculado en una determinada carrera, que debe cumplir con los deberes y obligaciones establecidos en los Reglamentos dictados por la Universidad y con los requisitos académicos determinados por cada carrera.</p>
+        <p>c) Arancel: Monto anual que el Alumno debe pagar a la Universidad, como contraprestación por los servicios educacionales otorgados por la Universidad en virtud del presente contrato.</p>
+        <p><b>SEGUNDA:</b> El Alumno ha solicitado a la Universidad ser matriculado e incorporado como alumno regular durante el año 2014, en las siguientes asignaturas <%= %>(indicar si son anuales o semestrales)  en la carrera de______________________________________________________, que se imparte en dicha casa de estudios. La Universidad acepta la mencionada solicitud y por el presente instrumento matrícula al alumno para dicho año académico y lo inscribe como alumno regular, en la referida carrera, en las asignaturas señaladas.</p>
+    </div>
+    <div class="firmas">
+        <div class="firma">
+            <hr />
+            <p>Alumno Regular</p>
+        </div>
+        <div class="firma">
+            <hr />
+            <p>Fiador y/o codeudor solidario</p>
+        </div>
+        <div class="firma_rector">
+            <img alt="" src="images/firma_rec.jpg" width="150" />
+            <hr />
+            <p>Universidad</p>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://zonareportes.uisek.cl/doc/alertas/Webservice/AlumnosWS/alumnos.asmx?wsdl" docRef="http://zonareportes.uisek.cl/doc/alertas/Webservice/AlumnosWS/alumnos.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://zonareportes.uisek.cl/doc/alertas/Webservice/AlumnosWS/alumnos.asmx" xmlns:q1="http://tempuri.org/" binding="q1:AlumnosSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://zonareportes.uisek.cl/doc/alertas/Webservice/AlumnosWS/alumnos.asmx" xmlns:q2="http://tempuri.org/" binding="q2:AlumnosSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

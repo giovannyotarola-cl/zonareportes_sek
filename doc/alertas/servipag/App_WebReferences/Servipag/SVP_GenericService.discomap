@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://iac.cl/servipag/Schemas/ESB_GenericService_NotificarPagoReq.xsd" filename="ESB_GenericService_NotificarPagoReq.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://iac.cl/servipag/Schemas/ESB_GenericService_ConsultarDeudaReq.xsd" filename="ESB_GenericService_ConsultarDeudaReq.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://iac.cl/servipag/Schemas/ESB_GenericService_ConsultarDeudaResp.xsd" filename="ESB_GenericService_ConsultarDeudaResp.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://iac.cl/servipag/Schemas/ESB_GenericService_NotificarPagoResp.xsd" filename="ESB_GenericService_NotificarPagoResp.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://iac.cl/servipag/WSDL/SVP_GenericService.wsdl" filename="SVP_GenericService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://iac.cl/servipag/Schemas/GenericService_Diccionario.xsd" filename="GenericService_Diccionario.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

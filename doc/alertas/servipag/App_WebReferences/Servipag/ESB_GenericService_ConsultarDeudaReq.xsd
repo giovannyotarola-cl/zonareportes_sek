@@ -1,0 +1,53 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () --><!-- Esquema que representa el Request de la operacion ConsultarDeuda --><!-- Desarrollado por Federico Arias - federico.arias@globallogic.com - 2014 --><xs:schema targetNamespace="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Req-v2014.12" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Req-v2014.12" xmlns:cm="http://www.servipag.cl/ESB/GenericService/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://www.servipag.cl/ESB/GenericService/Common" schemaLocation="GenericService_Diccionario.xsd"/>
+	<xs:element name="consultarDeudaRequest" type="consultarDeudaRequest_TYPE"/>
+	<xs:complexType name="consultarDeudaRequest_TYPE">
+		<xs:sequence>
+			<xs:element name="Identificador1" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de identificador1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador2" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador3" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador4" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador5" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdTransaccion" type="cm:Numerico_largo_30_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de IdTransaccion, formato idTrx+canal+aammdd+hhmm</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Canal" type="cm:Numerico_largo_5_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de canal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Sucursal" type="cm:Numerico_largo_10_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de sucursal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoServicio" type="cm:Numerico_largo_7_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de Código que identifica el servicio en SVP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,93 @@
+<%
+
+Dim sqlAlumnos, cnIndex, rsAlumnos
+Dim rut, valorCredito,valorArancel,cantidadCuotas,porcentajeCuota,fechaVencimiento
+
+rut= request.QueryString("codCli")
+valorCredito=request.QueryString("valorCredito")
+valorArancel=request.QueryString("valorArancel")
+cantidadCuotas=request.QueryString("cantidadCuotas")
+fechaVencimiento=FormatDateTime(request.QueryString("fechaVenc"),2)
+
+Dim fechaVenc, mes
+fechavenc=split(fechaVencimiento,"-")
+mes=split(FormatDateTime(request.QueryString("fechaVenc"),1)," de ")
+
+
+Set cnIndex = Server.CreateObject ("ADODB.Connection")
+Set rsAlumnos = Server.CreateObject ("ADODB.Recordset")
+cnIndex.Open "driver={SQL Server};server=192.168.100.226; database=Matricula; uid=sa;pwd=Sa070507"
+    
+	
+	sqlAlumnos = "SELECT CODCLI, DIG, PATERNO, MATERNO, NOMBRE, NOMBRE_C, FEC_MAT, NOMBREAVAL, RUTAVAL, DIGAVAL, PATERNOAVAL, MATERNOAVAL FROM dbo.SEK_Alumnos_Matriculados_Total_Anexo_Contrato Where codCli='"& rut&"'"
+  
+
+  
+	'response.Write sqlAlumnos
+	rsAlumnos.Open sqlAlumnos, cnIndex
+
+%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/project.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="print" />
+<script type="text/javascript">
+	window.print();
+</script>
+<div id="anchoPagina" >
+<div id="logo"><img src="images/logo.jpg"></div>
+
+<div class="titulo"><p><b><u>ANEXO DE CONTRATO<br /> CRÉDITO AVAL DEL ESTADO LEY Nº20.027<br /> UNIVERSIDAD INTERNACIONAL SEK</u></b></p></div>
+<div class="informacion">
+    <table class="informacion">
+        <tr>
+            <td>Nombre del Alumno:</td>
+            <td><%=rsAlumnos("NOMBRE")&" "&rsAlumnos("PATERNO")&" "&rsAlumnos("MATERNO") %></td>
+        </tr>
+        <tr>
+            <td>RUN:</td>
+            <td><%=rsAlumnos("CODCLI")&"-"&rsAlumnos("DIG") %></td>
+        </tr>
+        <tr>
+            <td>Carrera:</td>
+            <td><%=rsAlumnos("NOMBRE_C") %></td>
+        </tr>
+        <tr>
+            <td>Fecha de Matricula:</td>
+            <td><%=FormatDateTime(rsAlumnos("FEC_MAT"),2) %></td>
+        </tr>
+    </table>
+</div>
+<div id="container">
+	<p style="text-indent:50">En Santiago a <%=Day(date()) %> de <%=MonthName(Month(Date()))  %> de <%=Year(Date()) %>, entre la Universidad Internacional SEK, rut 71.618.600-8, y el alumno don <%=rsAlumnos("NOMBRE")&" "&rsAlumnos("PATERNO")&" "&rsAlumnos("MATERNO") %> , rut Nº <%=rsAlumnos("CODCLI")&"-"&rsAlumnos("DIG") %> , se ha convenido el siguiente Anexo al Contrato de Prestación de Servicos Educacionales de fecha <%=Date() %>, suscrito entre las mismas partes: </p>
+    <p style="text-indent:50">En virtud de haber sido beneficiado el alumno con el “Crédito con Aval del Estado”, de acuerdo a lo normado en la Ley Nº20.027, que establece normas para el financiamiento de Estudios de Educación Superior, se hace necesario modificar las condiciones de pagos establecidas en la Cláusula Cuarta del Contrato de Prestación de Servicios Educacionales, celebrado entre la Universidad Internacional SEK y el alumno precedentemente individualizado, de conformidad a las siguientes estipulaciones.</p>
+    <p style="padding-left:50px">Las nuevas condiciones de pago de la colegiatura que reemplazaran a las ya pactadas serán:</p>
+    <p style="padding-left:50px; text-indent:-15">a)  Una cuota por el monto del crédito otorgado correspondiente al 100% del Arancel Referencial de la carrera del alumno, fijado por el Ministerio de Educación para el presente año, o el solicitado personalmente por el alumno en el portal de Renovantes de Ingresa, el cual equivale a $<%=valorCredito %>.</p>
+    <p style="padding-left:50px; text-indent:-15">b)  El diferencial que se produzca entre la cantidad otorgada o solicitada en crédito, de conformidad a la ley Nº20.027 y el arancel contado fijado por la institución, de la carrera ya individualizada, para el presente año equivalente a $<%=valorArancel-valorCredito %>,  deberá ser pagado por el alumno y/o el codeudor solidario del alumno, ya identificado en el Contrato de Prestación de Servicios Educacionales, pago que se efectuará en <%=cantidadCuotas %> cuotas mensuales, iguales y sucesivas, de $<%=Int((valorArancel-valorCredito)/cantidadCuotas) %> cada una, venciendo la primera cuota el día <%=Day(fechaVencimiento)%> del mes de <%=MonthName(Month(fechaVencimiento))%> del año <%=Year(fechaVencimiento) %>.</p>
+    <p style="padding-left:50px; text-indent:-15">c)  En este mismo acto el alumno reconoce conocer y aceptar la Ley Nº 20.027, sus reglamentos y modificaciones que de esta emanen, así como las atribuciones que esta ley le entrega a la Universidad Internacional SEK.</p>
+    <p style="text-indent:50">Suscribe también este Anexo don <%=rsAlumnos("NOMBREAVAL")&" "&rsAlumnos("PATERNOAVAL")&" "&rsAlumnos("MATERNOAVAL") %>, rut Nº <%=rsAlumnos("RUTAVAL")&"-"&rsAlumnos("DIGAVAL") %>, su calidad de fiador y codeudor solidario del alumno, conforme se establece en la cláusula octava del Contrato de Prestación de Servicos Educacionales antes referido.</p>
+</div>
+<div class="firmas">
+    <div class="firma">
+        <hr />
+        <p>Alumno Regular</p>
+    </div>
+    <div class="firma">
+        <hr />
+        <p>Fiador y/o codeudor solidario</p>
+    </div>
+    <div class="firma_rector">
+        <img alt="" src="images/firma_rec.jpg" width="150" />
+        <hr />
+        <p>Universidad</p>
+
+    </div>
+</div>
+<%
+Function SiNull(valor,valorsinulo) 
+If isnull(valor) then 
+	SiNull=valorsinulo
+End if
+	SiNull=valor
+End Function
+%>
+</div>

@@ -1,0 +1,10 @@
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\bin\CarnetEstudiante_Chile.dll
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\bin\CarnetEstudiante_Chile.pdb
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\bin\CarnetEstudiante_Chile.xml
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\CarnetEstudiante_Chile.Resources.resources
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\CarnetEstudiante_Chile.dll
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\CarnetEstudiante_Chile.xml
+D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\obj\Debug\CarnetEstudiante_Chile.pdb

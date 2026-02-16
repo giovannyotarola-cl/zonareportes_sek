@@ -1,0 +1,4 @@
+<%
+Dim cnIndex, rsAcceso, Sql
+
+%>

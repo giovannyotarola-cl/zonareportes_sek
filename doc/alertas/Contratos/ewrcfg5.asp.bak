@@ -1,0 +1,204 @@
+<%
+
+' ASP Report Maker 5 - web site configuration
+Const EWRPT_PROJECT_NAME = "Informes_ASP_1" ' Project Name
+Const EWRPT_PROJECT_VAR = "Informes_ASP_1" ' Project Var
+
+' Language settings
+Const EWRPT_LANGUAGE_FOLDER = "rptlang/"
+Dim EWRPT_LANGUAGE_FILE(0)
+EWRPT_LANGUAGE_FILE(0) = Array("en", "", "english.xml")
+Const EWRPT_LANGUAGE_DEFAULT_ID = "en"
+Dim EWRPT_SESSION_LANGUAGE_ID
+EWRPT_SESSION_LANGUAGE_ID = EWRPT_PROJECT_VAR & "_LanguageId" ' Language ID
+Const EWRPT_CHARSET = "utf-8" ' Project charset
+
+' Database Connection
+Dim EWRPT_DB_CONNECTION_STRING
+EWRPT_DB_CONNECTION_STRING = "Provider=SQLOLEDB;Persist Security Info=False;Data Source=192.168.200.228;Initial Catalog=MatriculaUmasEC;User Id=sa;Password=Sa070507"
+Const EWRPT_DBMSNAME = "Microsoft SQL Server"
+Const EWRPT_IS_MSACCESS = False ' Access
+Const EWRPT_IS_MSSQL = True ' MS SQL
+Const EWRPT_IS_MYSQL = False ' MySQL
+Const EWRPT_IS_POSTGRESQL = False ' PostgreSQL
+Const EWRPT_IS_ORACLE = False ' Oracle
+Const EWRPT_DB_QUOTE_START = "["
+Const EWRPT_DB_QUOTE_END = "]"
+Const EWRPT_CURSOR_LOCATION = 3
+
+' Debug
+Const EWRPT_DEBUG_ENABLED = False ' True to debug
+
+' Remove XSS
+Const EWRPT_REMOVE_XSS = True ' True to Remove XSS / False to skip
+
+' XSS Array
+Dim EWRPT_XSS_ARRAY
+EWRPT_XSS_ARRAY = Array("javascript", "vbscript", "expression", "<applet", "<meta", "<xml", "<blink", "<link", "<style", "<script", "<embed", "<object", "<iframe", "<frame", "<frameset", "<ilayer", "<layer", "<bgsound", "<title", "<base", _
+	"onabort", "onactivate", "onafterprint", "onafterupdate", "onbeforeactivate", "onbeforecopy", "onbeforecut", "onbeforedeactivate", "onbeforeeditfocus", "onbeforepaste", "onbeforeprint", "onbeforeunload", "onbeforeupdate", "onblur", "onbounce", "oncellchange", "onchange", "onclick", "oncontextmenu", "oncontrolselect", "oncopy", "oncut", "ondataavailable", "ondatasetchanged", "ondatasetcomplete", "ondblclick", "ondeactivate", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onerror", "onerrorupdate", "onfilterchange", "onfinish", "onfocus", "onfocusin", "onfocusout", "onhelp", "onkeydown", "onkeypress", "onkeyup", "onlayoutcomplete", "onload", "onlosecapture", "onmousedown", "onmouseenter", "onmouseleave", "onmousemove", "onmouseout", "onmouseover", "onmouseup", "onmousewheel", "onmove", "onmoveend", "onmovestart", "onpaste", "onpropertychange", "onreadystatechange", "onreset", "onresize", "onresizeend", "onresizestart", "onrowenter", "onrowexit", "onrowsdelete", "onrowsinserted", "onscroll", "onselect", "onselectionchange", "onselectstart", "onstart", "onstop", "onsubmit", "onunload")
+
+' General
+Const EWRPT_DATE_SEPARATOR = "/"
+Const EWRPT_DEFAULT_DATE_FORMAT = 7
+Const EWRPT_UNFORMAT_YEAR = 50 ' Unformat year
+Const EWRPT_PROJECT_STYLESHEET_FILENAME = "rptcss/Informes_ASP_1.css" ' Project stylesheet file name
+Const EWRPT_CHART_WIDTH = 550
+Const EWRPT_CHART_HEIGHT = 440
+Const EWRPT_CHART_ALIGN = "middle"
+Const EWRPT_CHART_SHOW_BLANK_SERIES = False ' Show blank series
+
+'
+' Password (MD5 and case-sensitivity)
+' Note: If you enable MD5 password, make sure that the passwords in your
+' user table are stored as MD5 hash (32-character hexadecimal number) of the
+' clear text password. If you also use case-insensitive password, convert the
+' clear text passwords to lower case first before calculating MD5 hash.
+' Otherwise, existing users will not be able to login.
+'
+
+Const EWRPT_ENCRYPTED_PASSWORD = False ' Use encrypted password
+Const EWRPT_CASE_SENSITIVE_PASSWORD = False ' Case-sensitive password
+
+' Filter
+Const EWRPT_FILTER_PANEL_OPTION = 2 ' 1/2/3, 1 = always hide, 2 = always show, 3 = show when filtered
+Const EWRPT_SHOW_CURRENT_FILTER = False ' True to show current filter
+
+' Session names
+Dim EWRPT_SESSION_STATUS: EWRPT_SESSION_STATUS = EWRPT_PROJECT_VAR & "_status" ' Login Status
+Dim EWRPT_SESSION_USER_NAME:  EWRPT_SESSION_USER_NAME = EWRPT_SESSION_STATUS & "_UserName" ' User Name
+Dim EWRPT_SESSION_USER_ID: EWRPT_SESSION_USER_ID = EWRPT_SESSION_STATUS & "_UserID" ' User ID
+Dim EWRPT_SESSION_USER_LEVEL_ID: EWRPT_SESSION_USER_LEVEL_ID = EWRPT_SESSION_STATUS & "_UserLevel" ' User Level ID
+Dim EWRPT_SESSION_USER_LEVEL: EWRPT_SESSION_USER_LEVEL = EWRPT_SESSION_STATUS & "_UserLevelValue" ' User Level
+Dim EWRPT_SESSION_PARENT_USER_ID: EWRPT_SESSION_PARENT_USER_ID = EWRPT_SESSION_STATUS & "_ParentUserID" ' Parent User ID
+Dim EWRPT_SESSION_SYSTEM_ADMIN: EWRPT_SESSION_SYSTEM_ADMIN = EWRPT_PROJECT_VAR & "_SysAdmin" ' System Admin
+Dim EWRPT_SESSION_AR_USER_LEVEL: EWRPT_SESSION_AR_USER_LEVEL = EWRPT_PROJECT_VAR & "_arUserLevel" ' User Level Array
+Dim EWRPT_SESSION_AR_USER_LEVEL_PRIV: EWRPT_SESSION_AR_USER_LEVEL_PRIV = EWRPT_PROJECT_VAR & "_arUserLevelPriv" ' User Level Privilege Array
+Dim EWRPT_SESSION_MESSAGE: EWRPT_SESSION_MESSAGE = EWRPT_PROJECT_VAR & "_Message" ' System Message
+Dim EWRPT_SESSION_ENCRYPTED_USER: EWRPT_SESSION_ENCRYPTED_USER = EWRPT_PROJECT_VAR & "_EncryptUser" ' Encrypted User Name
+Dim EWRPT_SESSION_ENCRYPTED_PASSWORD: EWRPT_SESSION_ENCRYPTED_PASSWORD = EWRPT_PROJECT_VAR & "_EncryptPassword" ' Encrypted Password
+Dim EWRPT_SESSION_FILTER: EWRPT_SESSION_FILTER = EWRPT_PROJECT_VAR & "_Filter" ' Filter
+Dim EWRPT_SESSION_COLUMN_SELECTION: EWRPT_SESSION_COLUMN_SELECTION = EWRPT_PROJECT_VAR & "_ColumnSelection" ' Column Selection
+
+' Hard code admin
+Const EWRPT_ADMIN_USER_NAME = ""
+Const EWRPT_ADMIN_PASSWORD = ""
+Const EWRPT_USE_CUSTOM_LOGIN = True ' Use custom login
+
+' User admin
+Const EWRPT_LOGIN_SELECT_SQL = ""
+
+' User table filters
+' User level constants
+
+Const EWRPT_ALLOW_LIST = 8
+Const EWRPT_ALLOW_REPORT = 8
+Const EWRPT_ALLOW_ADMIN = 16
+
+' User id constants
+Const EWRPT_USER_ID_IS_HIERARCHICAL = True ' Hierarchical user id
+
+' Table Level Constants
+Const EWRPT_TABLE_PREFIX = "||ASPReportMaker||"
+Const EWRPT_TABLE_GROUP_PER_PAGE = "grpperpage"
+Const EWRPT_TABLE_START_GROUP = "start"
+Const EWRPT_TABLE_ORDER_BY = "order"
+Const EWRPT_TABLE_ORDER_BY_TYPE = "ordertype"
+Const EWRPT_TABLE_SORT = "sort"
+
+' Data Type
+Const EWRPT_DATATYPE_NUMBER = 1
+Const EWRPT_DATATYPE_DATE = 2
+Const EWRPT_DATATYPE_STRING = 3
+Const EWRPT_DATATYPE_BOOLEAN = 4
+Const EWRPT_DATATYPE_MEMO = 5
+Const EWRPT_DATATYPE_BLOB = 6
+Const EWRPT_DATATYPE_TIME = 7
+Const EWRPT_DATATYPE_GUID = 8
+Const EWRPT_DATATYPE_OTHER = 9
+
+' Row types
+Const EWRPT_ROWTYPE_DETAIL = 1 ' Row type detail
+Const EWRPT_ROWTYPE_TOTAL = 2 ' Row type group summary
+
+' Row total types
+Const EWRPT_ROWTOTAL_GROUP = 1 ' Page summary
+Const EWRPT_ROWTOTAL_PAGE = 2 ' Page summary
+Const EWRPT_ROWTOTAL_GRAND = 3 ' Grand summary
+
+' Row total sub types
+Const EWRPT_ROWTOTAL_FOOTER = 1 ' Footer
+Const EWRPT_ROWTOTAL_SUM = 2 ' SUM
+Const EWRPT_ROWTOTAL_AVG = 3 ' AVG
+Const EWRPT_ROWTOTAL_MIN = 4 ' MIN
+Const EWRPT_ROWTOTAL_MAX = 5 ' MAX
+
+' Empty/Null/Not Null/Init/All values
+Const EWRPT_EMPTY_VALUE = "##empty##"
+Const EWRPT_NULL_VALUE = "##null##"
+Const EWRPT_NOT_NULL_VALUE = "##notnull##"
+Const EWRPT_INIT_VALUE = "##init##"
+Const EWRPT_ALL_VALUE = "##all##"
+Const EWRPT_BOOLEAN_YES = "1"
+Const EWRPT_BOOLEAN_NO = "0"
+
+' Use token in URL (reserved, not used, do NOT change!)
+Const EWRPT_USE_TOKEN_IN_URL = FALSE
+
+' Email
+Const EWRPT_SMTP_SERVER = "localhost" ' SMTP server
+Const EWRPT_SMTP_SERVER_PORT = 25 ' SMTP server port
+Const EWRPT_SMTP_SERVER_USERNAME = "" ' SMTP server user name
+Const EWRPT_SMTP_SERVER_PASSWORD = "" ' SMTP server password
+Const EWRPT_MAX_EMAIL_RECIPIENT = 3
+Const EWRPT_MAX_EMAIL_SENT_COUNT = 3
+Const EWRPT_MAX_EMAIL_SENT_PERIOD = 20
+Dim EWRPT_EXPORT_EMAIL_COUNTER: EWRPT_EXPORT_EMAIL_COUNTER = EWRPT_SESSION_STATUS & "_EmailCounter"
+Const EWRPT_EXPORT_EMAIL_USE_HTML5_CHART = True
+Const EWRPT_EMAIL_CHARSET = "utf-8" ' Email charset
+Const EWRPT_EMAIL_WRITE_LOG = True ' Write to log file
+Const EWRPT_EMAIL_LOG_SIZE_LIMIT = 20 ' Email log field size limit
+Const EWRPT_EMAIL_WRITE_LOG_TO_DATABASE = False ' Write email log to database
+Const EWRPT_EMAIL_LOG_TABLE_NAME = "" ' Email log table name
+Const EWRPT_EMAIL_LOG_FIELD_NAME_DATETIME = "" ' Email log DateTime field name
+Const EWRPT_EMAIL_LOG_FIELD_NAME_IP = "" ' Email log IP field name
+Const EWRPT_EMAIL_LOG_FIELD_NAME_SENDER = "" ' Email log Sender field name
+Const EWRPT_EMAIL_LOG_FIELD_NAME_RECIPIENT = "" ' Email log Recipient field name
+Const EWRPT_EMAIL_LOG_FIELD_NAME_SUBJECT = "" ' Email log Subject field name
+Const EWRPT_EMAIL_LOG_FIELD_NAME_MESSAGE = "" ' Email log Message field name
+
+' Image resize
+Const EWRPT_UPLOAD_DEST_PATH = "files/" ' Upload destination path (relative to app root)
+Const EWRPT_THUMBNAIL_DEFAULT_WIDTH = 0 ' Thumbnail default width
+Const EWRPT_THUMBNAIL_DEFAULT_HEIGHT = 0 ' Thumbnail default height
+Const EWRPT_THUMBNAIL_DEFAULT_INTERPOLATION = 1 ' Thumbnail default interpolation
+
+' Validate option
+Const EWRPT_CLIENT_VALIDATE = False
+Const EWRPT_SERVER_VALIDATE = False
+
+' Checkbox and radio button groups
+Const EWRPT_ITEM_TEMPLATE_CLASSNAME = "ewTemplate"
+Const EWRPT_ITEM_TABLE_CLASSNAME = "ewItemTable"
+
+' Use DOM XML
+Const EWRPT_USE_DOM_XML = False
+
+' Cookie expiry time
+Const EWRPT_COOKIE_EXPIRY_TIME = 365
+
+' Global variables
+Dim conn, rs, rsgrp
+Dim Security
+Dim ReportLanguage
+Dim gsLanguage
+Dim gsTimer, gsExport, gsExportFile, gsFormError, gsDebugMsg
+Dim arwrk, arwrk2
+Dim Page, EWRPT_PAGE_ID, EWRPT_TABLE_NAME
+Dim StartTimer ' Start timer
+Dim Table
+%>
+<%
+Const EWRPT_FUSIONCHARTS_FREE = True ' FusionCharts Free
+Const EWRPT_FUSIONCHARTS_FREE_JSCLASS_FILE = "FusionChartsFree/JSClass/FusionCharts.js" ' FusionCharts Free
+Const EWRPT_FUSIONCHARTS_FREE_CHART_PATH = "FusionChartsFree/Charts/" ' FusionCharts Free
+%>

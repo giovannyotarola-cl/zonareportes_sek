@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns:com="http://www.servipag.cl/ESB/GenericService/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://www.servipag.cl/ESB/GenericService/Common" targetNamespace="http://www.servipag.cl/ESB/GenericService/Common" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--Tipos de Datos-->
+	<xs:simpleType name="Alfanumerico_largo_7_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_10_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_13_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_20_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_30_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_50_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_150_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_200_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Alfanumerico_largo_250_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_3_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="3"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_4_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="4"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_5_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="5"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_7_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="7"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_10_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="10"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_15_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="15"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_20_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="10"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numerico_largo_30_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="30"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="20"/>
+			<xs:pattern value="([0-9])+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fecha_YYYY-MM-DD_TYPE">
+		<xs:annotation>
+			<xs:documentation>fecha con formato yyyy-mm-dd </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date">
+			<xs:pattern value="[^:Z]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Documento_TYPE">
+		<xs:sequence>
+			<xs:element name="Identificador" type="types:Numerico_largo_30_TYPE" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identificador del documento de pago</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Monto" type="types:Monto_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Monto del documento a recaudar, formato numero con dos decimales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fecha" type="types:fecha_YYYY-MM-DD_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Fecha vencimiento del documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato1" type="types:Alfanumerico_largo_150_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato2" type="types:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato3" type="types:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato4" type="types:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato5" type="types:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Conceptos"  minOccurs="0"  maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Concepto" type="types:Concepto_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+
+	</xs:complexType>
+	<xs:complexType name="Concepto_TYPE">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Identificador" type="types:Numerico_largo_30_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identificador del documento de pago</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Monto" type="types:Monto_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Monto del documento a recaudar, formato numero con dos decimales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fecha" type="types:fecha_YYYY-MM-DD_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Fecha vencimiento del documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato1" type="types:Alfanumerico_largo_150_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato2" type="types:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato3" type="types:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="tipoTransaccion_TYPE">
+		<xs:annotation>
+			<xs:documentation>D: Directa, R:Reversa</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="D"/>
+			<xs:enumeration value="R"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="formaPago_TYPE">
+		<xs:annotation>
+			<xs:documentation>Formas de pago: EF: Efectivo, CH: Cheque</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EF"/>
+			<xs:enumeration value="CH"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--
+Documento  Identificador	Identificador del documento de pago	Numérico	30	NO
+Documento 
+Monto	Monto del documento a recaudar	Numérico	20	NO
+Documento 
+Fecha	Fecha vencimiento del documento	Fecha	10	NO
+Documento 
+Dato1	Información adicional que envíe el biller asociado al documento	Alfanumérico	150	NO
+Documento 
+Dato2	Información adicional que envíe el biller asociado al documento	Alfanumérico	50	NO
+Documento 
+Dato3	Información adicional que envíe el biller asociado al documento	Alfanumérico	50	NO
+Documento 
+Dato4	Información adicional que envíe el biller asociado al documento	Alfanumérico	50	NO
+Documento 
+Dato5	Información adicional que envíe el biller asociado al documento	Alfanumérico	50	NO
+-->
+	<!--V-->
+	<xs:simpleType name="nullval">
+		<xs:union memberTypes="types:IntegerType types:empty"/>
+	</xs:simpleType>
+	<xs:simpleType name="empty">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IntegerType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<!--V-->
+	<xs:simpleType name="Monto_2_decimales_">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]*.[0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_4_decimales">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]*.[0-9][0-9][0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_2_decimales_neg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((-)?\d*\.[0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto_4_decimales_neg">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((-)?\d*\.[0-9][0-9][0-9][0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero_1_digito">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero_2_digitos">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9][0-9]|[0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="entero_3_digitos">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9][0-9][0-9]|[0-9][0-9]|[0-9]){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mail">
+		<xs:annotation>
+			<xs:documentation>Dirección de correo electrónico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([_a-zA-Z0-9\-]+(\.[_a-zA-Z0-9\-]+)*@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3}))){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fechaHora">
+		<xs:annotation>
+			<xs:documentation>Fecha y hora completa, con formato YYYY-MM-DD HH:MM:SS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((19|20)\d\d\-(0[1-9]|10|11|12)\-(0[1-9]|1\d|2\d|30|31) (0\d|1\d|2[0-3]):([0-5]\d):([0-5]\d)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fecha">
+		<xs:annotation>
+			<xs:documentation>Fecha, con formato YYYY-MM-DD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((19|20)\d\d-(0[1-9]|10|11|12)\-(0[1-9]|1\d|2\d|30|31)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fecha_mesAnio">
+		<xs:annotation>
+			<xs:documentation>Fecha, con formato YYYY-MM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((19|20)\d\d-(0[1-9]|10|11|12)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="hora">
+		<xs:annotation>
+			<xs:documentation>Hora, con formato HH:MM:SS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0\d|1\d|2[0-3]):([0-5]\d):([0-5]\d)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Mes_1_12">
+		<xs:annotation>
+			<xs:documentation>Mes con formato numerico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|10|11|12){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Mes_1_12_Negativo">
+		<xs:annotation>
+			<xs:documentation>Mes con formato numerico, aceptando negativos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0[1-9]|10|11|12)|-(0[1-9]|10|11|12)){0,1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="idSecuencial" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>sequence. Datos operacionales </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="fecha_DDMMYYYY">
+		<xs:annotation>
+			<xs:documentation>Fecha, con formato DD/MM/YYYY</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0[1-9]|1\d|2\d|30|31)/(0[1-9]|10|11|12)/(19|20)\d\d)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ************************************************************-->
+	<!-- ****************Datos para el mensaje de Log*************** -->
+	<!-- ************************************************************-->
+	<xs:element name="consumerCode" type="xs:string"/>
+	<xs:element name="serviceCode" type="xs:string"/>
+	<xs:element name="messageID" type="xs:string"/>
+	<xs:element name="conversationID" type="xs:string"/>
+	<xs:element name="serviceProviderCode" type="xs:string"/>
+	<xs:element name="userID" type="xs:string"/>
+	<xs:element name="Message" type="xs:string"/>
+	<xs:element name="umbral">
+		<xs:annotation>
+			<xs:documentation>Niveles de umbral de log posibles.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Debug"/>
+				<xs:enumeration value="Info"/>
+				<xs:enumeration value="Warning"/>
+				<xs:enumeration value="Error"/>
+				<xs:enumeration value="Fatal"/>
+				<xs:enumeration value="NoLog"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="level">
+		<xs:annotation>
+			<xs:documentation>Niveles de log posibles.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Debug"/>
+				<xs:enumeration value="Info"/>
+				<xs:enumeration value="Warning"/>
+				<xs:enumeration value="Error"/>
+				<xs:enumeration value="Fatal"/>
+				<xs:enumeration value="NoLog"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="description" type="xs:string"/>
+	<xs:element name="location" type="xs:string"/>
+	<xs:element name="actionID">
+		<xs:annotation>
+			<xs:documentation>Acciones posibles.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="output"/>
+				<xs:enumeration value="input"/>
+				<xs:enumeration value="retry"/>
+				<xs:enumeration value="trace"/>
+				<!-- a defirnir el resto... -->
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="timestamp" type="xs:string"/>
+	<xs:element name="expiration" type="xs:string"/>
+	<xs:element name="action" type="xs:string"/>
+	<xs:element name="anyElement" type="xs:string"/>
+	<xs:element name="anyXMLElement" type="xs:anyType"/>
+</xs:schema>

@@ -1,0 +1,215 @@
+html, body {
+	height:auto !important;
+}
+body {
+	background: url(../images/bg_body.gif) repeat-x scroll 0 0 #FFFFFF;
+	font-family:"Lucida Sans","Lucida Grande","Trebuchet MS",Arial,Helvetica,Verdana,Tahoma,sans-serif;
+}
+#content-general{
+	margin-top: 39px;
+	width: auto; 
+	height: 1257px;	
+	margin-left: 50px; 
+	margin-right: 50px;
+}
+#logo{
+	float:left;
+	width:250px;
+	height:125px;
+	background: url(../images/logos.png) no-repeat left top;
+}
+#content-head{
+	height: 126px;
+	width:auto;
+}
+#content-user{
+	margin-top: 11px;
+	height:auto !important;
+	
+}
+#titulo-head{
+    width: 750px;	
+}
+#titulo-head h2, h3{
+	color: #012F6B;
+	font: bold 26px "Calibri", Arial;
+	text-align:center;
+}
+
+#titulo h2{
+	height: 44px; 
+	margin-top: 16px;
+	padding:0;
+	color: #ebebeb;
+	font: bold 25px "Calibri", Arial;	
+}
+#titulo h4{
+	padding:0;
+	margin:0;
+	color: #ebebeb;
+	font: bold 15px "Calibri", Arial;	
+}
+.titulo-link{
+	color:#fff;	
+	
+}
+
+.separador{
+	height: 15px;	
+}
+
+#menu-box {
+	float:left;
+	width: 190px;
+	padding: 15px 10px 0 10px;
+	color: #ebebeb;
+	font: 13px Arial, Helvetica, sans-serif;
+	margin-top: 1px;
+	/*background: url(../images/menu-box-back.png) no-repeat left top;*/
+	/*border-right: 1px dashed #CCCCCC*/
+}
+#menu-box div.menu-usuario{
+	padding-bottom: 25px;
+	color: #fff;
+}
+
+#menu-box h2 {
+	padding:0;
+	margin:0;
+	color: #000;
+	font: bold 25px "Calibri", Arial;
+}
+#menu-box h4{
+	 background: url(../images/bg_products_li_a.gif) no-repeat scroll 0 0 transparent;	
+	 height: 31px; 
+	 padding-top: 9px; 
+	 padding-left: 12px;
+}
+
+#menu-box-link{
+	padding-top: 14px;	
+	
+}
+
+#menu-box a {
+	background: none repeat scroll 0 0 transparent;
+	
+	display:inline;
+	width:100px;
+	text-align: left;
+	text-decoration:none;
+	color:#0D91AA;
+}
+
+#menu-box ul{
+	padding-left: 5px;	
+}
+
+#menu-box li{
+	background: url(../images/bg_products_li_li.gif) no-repeat scroll center bottom transparent;
+	text-decoration:none;
+	list-style: none outside none;
+	padding-left: 10px;
+	font: bold 14px arial;
+	height:32px;
+}
+#menu-box li:hover{
+	background: url(../images/bg_products_li_li_a_hover.gif) no-repeat scroll center bottom transparent;	
+}
+#content-central{
+	margin-left: 210px;
+	margin-right: 50px;
+	padding-left: 15px;
+	height: 950px;
+}
+#caja-informe p{
+	text-align:justify;
+	padding:0;
+	margin:0;
+	color: #ebebeb;
+	font: bold 17px "Calibri", Arial;
+}
+#content-footer .footer{
+	background:url(../images/bg_body.gif) repeat-x scroll 0 0 #FFFFFF;
+	text-align:center;
+	color: #012F6B;
+	padding-top: 20px;
+	font: 15px "Calibri", Arial;
+}
+#form-usuario{
+	float: left;
+	width:100% !important;
+}
+#form-usuario .titulo-form{
+	margin-bottom: 25px;
+	padding:0;
+	color: #ebebeb;
+	font: bold 19px "Calibri", Arial;
+}
+#form-usuario #campo{
+	margin-top: 10px; 
+	margin-bottom: 10px;	
+}
+#form-usuario .campo-usuario{
+	float: left;
+	width: 150px;	
+	color: #ebebeb;
+	font: 15px "Calibri", Arial;
+}
+#form-usuario .campo-informe{
+	width: 500px;	
+	color: #ebebeb;
+	font: 15px "Calibri", Arial;
+}
+#form-usuario .descripcion{
+	color: #ebebeb;
+	font: 15px "Calibri", Arial;
+}
+
+#form-usuario .link-informe{
+	background: none repeat scroll 0 0 #012F6B;
+	color: #fff;
+	font: 15px "Calibri", Arial;
+	text-align: center;
+    width: 100px;
+}
+#form-usuario .campo-error{
+	border: 1px solid #9B2108;
+	background:#F5E6E6;
+}
+#form-usuario .campo-correcto{
+	border: 1px solid #000000;
+	background:#FFFFFF;
+}
+#getcontent{
+	border: 1px solid #012f6b;
+	display:none;
+	color: #000000;
+	font: 15px "Calibri", Arial;
+	background:#d9ffe7;
+}
+
+#contactos .texto-contacto{
+	background:#4372B0;
+	color:#fff;
+}
+
+.texto-contacto{
+	padding: 20px;	
+}
+
+.texto-contacto h2{
+	color: #EBEBEB;
+    font: bold 25px "Calibri",Arial;
+    height: 44px;
+    margin-top: 16px;
+    padding: 0;
+}
+.cuerpo-contacto{
+	font: bold 18px "Calibri", Arial;
+}
+.home_image{
+	background:url(../images/zona_reportes.jpg) no-repeat scroll 0 0 #FFFFFF;
+	text-align:center;
+	height:300px;
+}

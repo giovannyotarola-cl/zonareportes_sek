@@ -1,0 +1,18 @@
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\bin\SistemaEvaluacion.dll
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\bin\SistemaEvaluacion.pdb
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\bin\SistemaEvaluacion.xml
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\ResolveAssemblyReference.cache
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\SistemaEvaluacion.Resources.resources
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\GenerateResource.read.1.tlog
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\GenerateResource.write.1.tlog
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\SistemaEvaluacion.dll
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\SistemaEvaluacion.xml
+D:\Visual Studio 2010\Projects\SistemaEvaluacion\SistemaEvaluacion\obj\Debug\SistemaEvaluacion.pdb
+C:\Users\PCUISEK\Desktop\EvaluacionDes\bin\SistemaEvaluacion.dll
+C:\Users\PCUISEK\Desktop\EvaluacionDes\bin\SistemaEvaluacion.pdb
+C:\Users\PCUISEK\Desktop\EvaluacionDes\bin\SistemaEvaluacion.xml
+C:\Users\PCUISEK\Desktop\EvaluacionDes\obj\Debug\SistemaEvaluacion.Resources.resources
+C:\Users\PCUISEK\Desktop\EvaluacionDes\obj\Debug\SistemaEvaluacion.vbproj.GenerateResource.Cache
+C:\Users\PCUISEK\Desktop\EvaluacionDes\obj\Debug\SistemaEvaluacion.dll
+C:\Users\PCUISEK\Desktop\EvaluacionDes\obj\Debug\SistemaEvaluacion.xml
+C:\Users\PCUISEK\Desktop\EvaluacionDes\obj\Debug\SistemaEvaluacion.pdb

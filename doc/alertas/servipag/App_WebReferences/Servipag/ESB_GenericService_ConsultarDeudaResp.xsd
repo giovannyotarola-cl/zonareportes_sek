@@ -1,0 +1,90 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () --><!-- Esquema que representa el Response de la operacion ConsultarDeuda --><!-- Desarrollado por Federico Arias - federico.arias@globallogic.com - 2014 --><xs:schema targetNamespace="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Resp-v2014.12" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.servipag.cl/ESB/schema/GenericService/Deuda/Consultar/Resp-v2014.12" xmlns:cm="http://www.servipag.cl/ESB/GenericService/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://www.servipag.cl/ESB/GenericService/Common" schemaLocation="GenericService_Diccionario.xsd"/>
+	<xs:element name="consultarDeudaResponse" type="consultarDeudaResponse_TYPE"/>
+	<xs:complexType name="consultarDeudaResponse_TYPE">
+		<xs:sequence>
+			<xs:element name="Identificador1" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de identificador1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador2" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador3" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador4" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador5" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatoGeneral1" type="cm:Alfanumerico_largo_150_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Dato General</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatoGeneral2" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Dato General2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatoGeneral3" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Dato General3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdTransaccion" type="cm:Numerico_largo_30_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de IdTransaccion, formato idTrx+canal+aammdd+hhmm</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Canal" type="cm:Numerico_largo_5_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de canal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Sucursal" type="cm:Numerico_largo_7_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de sucursal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Biller" type="cm:Numerico_largo_10_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de Código que identifica al comercio</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoServicio" type="cm:Numerico_largo_7_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de Código que identifica el servicio en SVP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoError" type="cm:Numerico_largo_5_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de Código de error (valor ≠ 0 es error)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GlosaError" type="cm:Alfanumerico_largo_200_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Descripcion del Error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Documentos">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Documento" type="cm:Documento_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

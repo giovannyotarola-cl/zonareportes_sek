@@ -1,0 +1,80 @@
+﻿Public Class SeleccionarAlumno
+    Inherits System.Web.UI.Page
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+    End Sub
+
+    Protected Sub mostrar_detalles(ByVal sender As Object, ByVal e As EventArgs) Handles listado_alumnos.SelectedIndexChanged
+        'System.Diagnostics.Debug.WriteLine("Valor es:" + listado_alumnos.SelectedRow.Cells(5).Text)
+        Response.Write("<script>window.open('mostrarDetalles.aspx?alumno=" + listado_alumnos.SelectedRow.Cells(9).Text + "', '_blank');</script>")
+    End Sub
+
+    Protected Sub boton_busca_alumno_Click(ByVal sender As Object, ByVal e As EventArgs) Handles boton_busca_alumno.Click
+        Dim filtro As String = ""
+        Dim cadena As String = origen_listado_alumnos.SelectCommand
+        Dim flag As Boolean = False
+
+        cadena = cadena.Replace(" ORDER BY dbo.MT_CLIENT.PATERNO, dbo.MT_CLIENT.MATERNO", "")
+        'System.Diagnostics.Debug.WriteLine("Tras la resta: " + cadena)
+
+        If busca_nombre.Text <> "" Then
+            If flag = False Then
+                cadena += " WHERE "
+                flag = True
+            Else
+                cadena += " AND "
+            End If
+            cadena += " nombre like '%" + busca_nombre.Text + "%'"
+        End If
+
+        If busca_paterno.Text <> "" Then
+            If flag = False Then
+                cadena += " WHERE "
+                flag = True
+            Else
+                cadena += " AND "
+            End If
+            cadena += " paterno like '%" + busca_paterno.Text + "%'"
+        End If
+
+        If busca_materno.Text <> "" Then
+            If flag = False Then
+                cadena += " WHERE "
+                flag = True
+            Else
+                cadena += " AND "
+            End If
+            cadena += " materno like '%" + busca_materno.Text + "%'"
+        End If
+
+        If busca_cedula.Text <> "" Then
+            If flag = False Then
+                cadena += " WHERE "
+                flag = True
+            Else
+                cadena += " AND "
+            End If
+            cadena += " dbo.MT_CLIENT.CODCLI like '%" + busca_cedula.Text + "%'"
+        End If
+
+        cadena += " ORDER BY PATERNO, MATERNO"
+        origen_listado_alumnos.SelectCommand = cadena
+        'System.Diagnostics.Debug.WriteLine("Final: " + cadena)
+
+        listado_alumnos.DataBind()
+
+    End Sub
+
+    'Borra los campos del formulario de búsqueda y muestra todos los resultados
+    Protected Sub reset_busqueda_Click(ByVal sender As Object, ByVal e As EventArgs) Handles reset_busqueda.Click
+
+        busca_nombre.Text = ""
+        busca_paterno.Text = ""
+        busca_materno.Text = ""
+        busca_cedula.Text = ""
+
+        origen_listado_alumnos.SelectCommand = "SELECT dbo.MT_CLIENT.PATERNO, dbo.MT_CLIENT.MATERNO, dbo.MT_CLIENT.NOMBRE, dbo.MT_CLIENT.CODCLI + '-' + dbo.MT_CLIENT.DIG AS RUT_alumno, dbo.MT_ALUMNO.CODCLI AS CodCliente, dbo.MT_CARRER.NOMBRE_C, dbo.MT_CARRER.CODCARR, CAST(dbo.MT_ALUMNO.ANO AS nvarchar(6)) + '-' + CAST(dbo.MT_ALUMNO.PERIODO AS nvarchar(2)) AS ingreso, CAST(dbo.MT_ALUMNO.ANO_MAT AS nvarchar(6)) + '-' + CAST(dbo.MT_ALUMNO.PERIODO_MAT AS nvarchar(2)) AS ultima_matricula FROM dbo.MT_CLIENT INNER JOIN dbo.MT_ALUMNO ON dbo.MT_CLIENT.CODCLI = dbo.MT_ALUMNO.RUT INNER JOIN dbo.MT_CARRER ON dbo.MT_ALUMNO.CODCARPR = dbo.MT_CARRER.CODCARR ORDER BY dbo.MT_CLIENT.PATERNO, dbo.MT_CLIENT.MATERNO"
+        listado_alumnos.DataBind()
+    End Sub
+End Class

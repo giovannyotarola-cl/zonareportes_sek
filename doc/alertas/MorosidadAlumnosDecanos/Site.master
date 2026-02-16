@@ -1,0 +1,76 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />     
+    <title><%: Page.Title %> - Alumnos Morosos Decanos</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/dt/dt-1.10.12/datatables.min.css"/>
+    <link href="Content/autoFill.dataTables.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.11.3.min.js"></script>    
+    <script src="Scripts/dataTable.js"></script>
+    <script src="Scripts/menu.js"></script>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form runat="server">
+    <header>
+        <div class="content-wrapper">            
+            <div class="float-left">
+                <p class="site-title">
+                    <a id="A1" runat="server" href="~/"><img id="Img1" runat="server" src="~/Images/logo.png" /></a></p>
+            </div>
+            <%If Session("usuario") <> "" Then%>
+            <div id="infoRight" class="float-right">
+                <div class="welcome">
+                    <span>Bienvenido <%=Session("nombre")%></span>
+                </div>
+                <div id='cssmenu'>
+                    <ul>
+                        <li><a href='Default.aspx'>Inicio</a></li>
+                        <li class='has-sub'><a href='#'>Informe</a>
+                            <ul>
+                                <li><a href='InformeMorosidadAlumnos.aspx'>Informe Morosidad Alumno</a></li>
+                            </ul>
+                        </li>
+                        <%If (Session("usuario") = "admin") Then%>
+                        <li class="has-sub"><a href='Administrador'>Administrador</a>
+                            <ul>
+                                <li><a href='AdminUsuariosCrear.aspx'>Agregar Usuario</a></li>
+                                <li><a href='Administrador.aspx'>Administrador Usuarios</a></li>
+                            </ul>
+                        </li>
+                        <%End If %>
+                        <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/Account/Login.aspx" /></li>
+                    </ul>
+                </div>
+            </div>
+            <%End If%>
+            <div class="clear-fix"></div>
+        </div>
+    </header>
+    <div id="body">
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    &copy; <%: DateTime.Now.Year %> - Informe Alumnos Morosos para Decanos USEK
+                </p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>

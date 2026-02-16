@@ -1,0 +1,6 @@
+#underline h1{
+  background: url("../images/h1-underline.png") no-repeat scroll left bottom transparent;
+  font-family: georgia, "times new roman", times, serif;
+  font-weight: lighter;
+}
+

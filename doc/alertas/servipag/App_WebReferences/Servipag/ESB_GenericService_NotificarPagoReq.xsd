@@ -1,0 +1,168 @@
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () --><!-- Esquema que representa el Request de la operacion NotificarPago --><!-- Desarrollado por Federico Arias - federico.arias@globallogic.com - 2014 --><xs:schema targetNamespace="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Req-v2014.12" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.servipag.cl/ESB/schema/GenericService/Pago/Notificar/Req-v2014.12" xmlns:cm="http://www.servipag.cl/ESB/GenericService/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://www.servipag.cl/ESB/GenericService/Common" schemaLocation="GenericService_Diccionario.xsd"/>
+	<xs:element name="notificarPagoRequest" type="notificarPagoRequest_TYPE"/>
+	<xs:complexType name="notificarPagoRequest_TYPE">
+		<xs:sequence>
+			<xs:element name="Identificador1" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador2" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador3" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador4" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Identificador5" type="cm:Alfanumerico_largo_250_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de identificador5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatoGeneral1" type="cm:Alfanumerico_largo_150_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Dato General</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatoGeneral2" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Dato General2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatoGeneral3" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Dato General3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdTransaccion" type="cm:Numerico_largo_30_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de IdTransaccion, formato idTrx+canal+aammdd+hhmm</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoTransaccion" type="cm:tipoTransaccion_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de IdTransaccion, formato idTrx+canal+aammdd+hhmm</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Canal" type="cm:Numerico_largo_5_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identificador del canal de consulta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoServicio" type="cm:Numerico_largo_7_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>valor de Código que identifica el servicio en SVP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IDPagoServipag" type="cm:Numerico_largo_15_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>valor de Código que identifica el servicio en SVP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentificadorDocumento" type="cm:Numerico_largo_30_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identificador del documento de pago</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaDocumento" type="cm:fecha_YYYY-MM-DD_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Fecha vencimiento del documento recaudado (FORMATO DD/MM/YYYY)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato1Documento" type="cm:Alfanumerico_largo_150_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato2Documento" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato3Documento" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato4Documento" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato5Documento" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al documento recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentificadorConcepto" type="cm:Numerico_largo_30_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identificador del concepto recaudado o pagado.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Monto" type="cm:Monto_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Monto recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaConcepto" type="cm:fecha_YYYY-MM-DD_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fecha asociado al concepto recaudado (FORMATO YYYY-MM-DD)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato1Concepto" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al concepto recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato2Concepto" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al concepto recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dato3Concepto" type="cm:Alfanumerico_largo_50_TYPE" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Información adicional que envíe el biller asociado al concepto recaudado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaPago" type="cm:fecha_YYYY-MM-DD_TYPE" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Fecha de cuando se realizó el pago</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaContable" type="cm:fecha_YYYY-MM-DD_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Fecha contable del pago</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FormaPago" type="cm:formaPago_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EF: Efectico, CH: Cheque</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChequeSerie" type="cm:Alfanumerico_largo_13_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Serie del cheque (sólo canal Cajas)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChequePlaza" type="cm:Numerico_largo_4_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Plaza del cheque (sólo canal Cajas)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChequeBanco" type="cm:Numerico_largo_3_TYPE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Banco del cheque (sólo canal Cajas)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

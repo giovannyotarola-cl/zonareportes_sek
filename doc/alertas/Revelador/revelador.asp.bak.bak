@@ -1,0 +1,147 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
+<!--#INCLUDE virtual="include/config.asp" -->
+<!--#INCLUDE virtual="include/funciones.asp" -->
+<%
+Dim PassProfe, PassAlumno, sqlProfesor, rsProfesor, sqlAlumno, rsAlumno, dvA, dvP, errorP, errorA
+If(Request("passwordP") <> "") Then
+	Set cnIndex = Server.CreateObject ("ADODB.Connection")
+    Set rsProfesor = Server.CreateObject ("ADODB.Recordset")
+	cnIndex.Open Conect
+	
+	sqlProfesor = "SELECT * FROM matricula.RA_PROFES WHERE RUT = '"&Request("passwordP")&"'"
+	rsProfesor.Open sqlProfesor, cnIndex
+	If(rsProfesor.eof = False) Then
+		If(isNull(rsProfesor("PASSCHANGED")))Then
+			PassProfe = rsProfesor("RUT")
+			dvP = rsProfesor("DV")
+			errorP = "No ha cambiado Password"
+			Profe = rsProfesor("AP_PATER")&" "&rsProfesor("AP_MATER")&", "&rsProfesor("NOMBRES")
+		Else
+			PassProfe =	Desencripta(rsProfesor("PASSWEB"))
+			dvP = rsProfesor("DV")
+			Profe = rsProfesor("AP_PATER")&" "&rsProfesor("AP_MATER")&", "&rsProfesor("NOMBRES")
+		End If
+	Else
+		errorP = "El rut ingresado no existe"
+	End If
+End If
+
+If(Request("passwordA") <> "") Then
+	Set cnIndex = Server.CreateObject ("ADODB.Connection")
+    Set rsAlumno = Server.CreateObject ("ADODB.Recordset")
+	cnIndex.Open Conect
+	
+	sqlAlumno = "SELECT w.RUT, w.PASSWEB, w.PASSCHANGED, c.CODCLI, c.DIG, c.PATERNO, c.MATERNO, c.NOMBRE FROM matricula.MT_WEBMAIL w, matricula.MT_CLIENT c WHERE (RUT = '"&Request("passwordA")&"') AND (w.RUT = c.CODCLI) AND (c.CODCLI = '"&Request("passwordA")&"')"
+	rsAlumno.Open sqlAlumno, cnIndex
+	If(rsAlumno.eof = False)Then
+		If(isNull(rsAlumno("PASSCHANGED"))) Then
+			PassAlumno = Request("passwordA")
+			dvA = rsAlumno("DIG")
+			errorA = "No ha cambiado Password"
+			Alumno = rsAlumno("PATERNO")&" "&rsAlumno("MATERNO")&", "&rsAlumno("NOMBRE")
+		Else
+			PassAlumno = Desencripta(rsAlumno("PASSWEB"))
+			dvA = rsAlumno("DIG")
+			Alumno = rsAlumno("PATERNO")&" "&rsAlumno("MATERNO")&", "&rsAlumno("NOMBRE")
+		End If
+	Else
+		errorA = "El rut ingresado no existe"
+	End If
+End If
+
+Function Encripta(sPasswd)
+    Dim fc_b1, fc_b2, fc_b3, fc_b4, fc_b5, fc_password
+    Dim fn_b1, fn_b2, fn_b3, fn_b4, fn_b5
+
+    If Len(sPasswd) < 5 Then
+      sPasswd = Space(5 - Len(sPasswd)) + sPasswd
+    End If
+    fc_b1 = Mid(sPasswd, 1, 1)
+    fc_b2 = Mid(sPasswd, 2, 1)
+    fc_b3 = Mid(sPasswd, 3, 1)
+    fc_b4 = Mid(sPasswd, 4, 1)
+    fc_b5 = Mid(sPasswd, 5, 1)
+    fn_b1 = Asc(fc_b1)
+    fn_b2 = Asc(fc_b2)
+    fn_b3 = Asc(fc_b3)
+    fn_b4 = Asc(fc_b4)
+    fn_b5 = Asc(fc_b5)
+    fn_b1 = fn_b1 + 3
+    fn_b2 = fn_b2 + 5
+    fn_b3 = fn_b3 + 2
+    fn_b4 = fn_b4 + 4
+    fn_b5 = fn_b5 + 1
+    fc_b1 = Chr(fn_b1)
+    fc_b2 = Chr(fn_b2)
+    fc_b3 = Chr(fn_b3)
+    fc_b4 = Chr(fn_b4)
+    fc_b5 = Chr(fn_b5)
+    Encripta = fc_b1 & fc_b4 & fc_b5 & fc_b3 & fc_b2
+End Function
+
+Function Desencripta(sPasswd)
+    Dim fc_b1, fc_b2, fc_b3, fc_b4, fc_b5, fc_password
+    Dim fn_b1, fn_b2, fn_b3, fn_b4, fn_b5
+
+    fc_b1 = Mid(sPasswd, 1, 1)
+    fc_b4 = Mid(sPasswd, 2, 1)
+    fc_b5 = Mid(sPasswd, 3, 1)
+    fc_b3 = Mid(sPasswd, 4, 1)
+    fc_b2 = Mid(sPasswd, 5, 1)
+    fn_b1 = Asc(fc_b1)
+    fn_b2 = Asc(fc_b2)
+    fn_b3 = Asc(fc_b3)
+    fn_b4 = Asc(fc_b4)
+    fn_b5 = Asc(fc_b5)
+    fn_b1 = fn_b1 - 3
+    fn_b2 = fn_b2 - 5
+    fn_b3 = fn_b3 - 2
+    fn_b4 = fn_b4 - 4
+    fn_b5 = fn_b5 - 1
+    fc_b1 = Chr(fn_b1)
+    fc_b2 = Chr(fn_b2)
+    fc_b3 = Chr(fn_b3)
+    fc_b4 = Chr(fn_b4)
+    fc_b5 = Chr(fn_b5)
+    Desencripta = fc_b1 & fc_b2 & fc_b3 & fc_b4 & fc_b5
+End Function
+%>
+<style>
+#contenedor input, legend, p{font-family:Tahoma, Geneva, sans-serif; font-size:12px;}
+#contenedor .box{float: left; padding-right: 20px; padding-left: 20px;}
+#contenedor .box-content{padding: 5px; border:1px solid #ccc; -webkit-box-shadow: 2px 2px 5px #999; -moz-box-shadow: 2px 2px 5px #999;}
+.error{color: #BE290A; font-family: Tahoma; font-size: 12px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="contenedor">
+    <div class="box">
+    	<div class="box-content">
+            <form name="passA" id="passA" action="#" method="post">
+                <legend>Alumno</legend>
+                <p>
+                    <input type="text" name="passwordA" id="passwordA" size="10" value="<%=Request("passwordA")%>" /> - 
+                    <input type="text" name="dvA" id="dvA" size="1" value="<%=dvA%>" />
+                    <input type="submit" name="submit" id="submit" value="Ver pass" />
+                </p>
+                <p><%=Alumno%></p>
+                <p><input type="text" name="resultadoA" id="resultadoA" value="<%=Trim(PassAlumno)%>" /></p>
+                <p class="error"><%=errorA%></p>
+            </form>
+        </div>
+    </div>
+    <div class="box">
+    	<div class="box-content">
+            <form name="passP" id="passP" action="#" method="post">
+            	<legend>Profesor</legend>
+                <p>
+                    <input type="text" name="passwordP" id="passwordP" size="10" value="<%=Request("passwordP")%>" /> - 
+                    <input type="text" name="dvP" id="dvP" size="1" value="<%=dvP%>" />
+                    <input type="submit" name="submit" id="submit" value="Ver pass" />
+                </p>
+                <p><%=Profe%></p>
+                <p><input type="text" name="resultadoP" id="resultadoP" value="<%=Trim(PassProfe)%>" /></p>
+                <p class="error"><%=errorP%></p>
+            </form>
+        </div>
+    </div>
+</div>

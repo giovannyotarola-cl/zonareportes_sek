@@ -1,0 +1,512 @@
+﻿
+body {
+    background: none repeat scroll 0 0 #D3FFFC;
+    color: #696969;
+    font-family: "Helvetica Neue","Lucida Grande","Segoe UI",Arial,Helvetica,Verdana,sans-serif;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+}
+a:link, a:visited {
+    color: #034AF3;
+}
+a:hover {
+    color: #1D60FF;
+    text-decoration: none;
+}
+a:active {
+    color: #034AF3;
+}
+p {
+    line-height: 1.6em;
+    margin-bottom: 10px;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: Black;
+    font-size: 1.5em;
+    font-variant: small-caps;
+    font-weight: 200;
+    margin-bottom: 0;
+    text-transform: none;
+}
+h1 {
+    font-size: 1.6em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+h3 {
+    font-size: 1.2em;
+}
+h4 {
+    font-size: 1.1em;
+}
+h5, h6 {
+    font-size: 1em;
+}
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
+    margin-top: 0;
+}
+.page {
+    background-color: #FFFFFF;
+    border: 1px solid #888;
+    border-radius: 6px;
+    margin: 20px auto 0;
+    width: 1160px;
+    -webkit-box-shadow: 3px 2px 15px rgba(0, 0, 0, 1);
+    -moz-box-shadow:    3px 2px 15px rgba(0, 0, 0, 1);
+    box-shadow:         3px 2px 15px rgba(0, 0, 0, 1);
+}
+.header {
+    background: #828282; /* Old browsers */
+    background: -moz-linear-gradient(top,  #828282 0%, #c3daf4 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#828282), color-stop(100%,#c3daf4)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #828282 0%,#c3daf4 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #828282 0%,#c3daf4 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #828282 0%,#c3daf4 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #828282 0%,#c3daf4 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', endColorstr='#c3daf4',GradientType=0 ); /* IE6-9 */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    border-radius: 6px;
+}
+.header h1 {
+    border: medium none;
+    color: Black;
+    font-size: 2em;
+    font-weight: 700;
+    line-height: 2em;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+.main {
+    margin: 12px 8px 8px;
+    min-height: 420px;
+    padding: 20px 25px;
+}
+.leftCol {
+    margin: 12px 8px 8px;
+    min-height: 200px;
+    padding: 6px 0;
+    width: 200px;
+}
+.footer {
+    color: #4E5766;
+    line-height: normal;
+    margin: 0 auto;
+    padding: 8px 0 0;
+    text-align: center;
+}
+div.hideSkiplink {
+    background-color: #3A4F63;
+    width: 100%;
+}
+div.menu {
+    padding: 4px 0 4px 8px;
+}
+div.menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+div.menu ul li a, div.menu ul li a:visited {
+    background-color: #465C71;
+    border: 1px solid #4E667D;
+    color: #DDE4EC;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+div.menu ul li a:hover {
+    background-color: #BFCBD6;
+    color: #465C71;
+    text-decoration: none;
+}
+div.menu ul li a:active {
+    background-color: #465C71;
+    color: #CFDBE6;
+    text-decoration: none;
+}
+fieldset {
+    border: 1px solid #CCCCCC;
+    margin: 1em 0;
+    padding: 1em;
+}
+fieldset p {
+    margin: 2px 12px 10px 10px;
+}
+fieldset.login label, fieldset.register label, fieldset.changePassword label {
+    display: block;
+}
+fieldset label.inline {
+    display: inline;
+}
+legend {
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px;
+}
+input.textEntry {
+    border: 1px solid #CCCCCC;
+    width: 320px;
+}
+input.passwordEntry {
+    border: 1px solid #CCCCCC;
+    width: 320px;
+}
+div.accountInfo {
+    width: 42%;
+}
+.clear {
+    clear: both;
+}
+.title {
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+.loginDisplay {
+    color: White;
+    display: block;
+    font-size: 1.1em;
+    padding: 10px;
+    text-align: right;
+}
+.loginDisplay a:link {
+    color: white;
+}
+.loginDisplay a:visited {
+    color: white;
+}
+.loginDisplay a:hover {
+    color: white;
+}
+.failureNotification {
+    color: Red;
+    font-size: 1.2em;
+}
+.bold {
+    font-weight: bold;
+}
+.submitButton {
+    padding-right: 10px;
+    text-align: right;
+}
+.rut_escondido {
+    display: none;
+}
+div.busca_div {
+    margin-bottom: 25px;
+}
+th.notas_cab {
+    color: #333;
+    font-size: 13px;
+    padding: 5px;
+    background: #828282; /* Old browsers */
+    background: -moz-linear-gradient(top,  #828282 0%, #c3daf4 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#828282), color-stop(100%,#c3daf4)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #828282 0%,#c3daf4 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #828282 0%,#c3daf4 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #828282 0%,#c3daf4 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #828282 0%,#c3daf4 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#828282', endColorstr='#c3daf4',GradientType=0 ); /* IE6-9 */
+    border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    border-left: 0;
+    border-right: 0;
+}
+
+td.notas_cel {
+    color: Black;
+    font-size: 11px;
+    padding: 5px 10px;
+   border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    border-left: 0;
+    border-right: 0;
+}
+td.foto_control_cel
+{
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 10px;
+    color: Black;
+    border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    border-left: 0;
+    border-right: 0;
+}
+td.notas_cent {
+    color: Black;
+    font-size: 11px;
+    padding: 5px;
+    text-align: center;
+}
+div.tit_uni {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+div.tit_ficha_c {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+td.desc_cab {
+    font-size: 12px;
+    padding: 3px;
+}
+td.desc_cont {
+    font-size: 11px;
+    padding: 3px;
+}
+div.cuadro_estado {
+    font-size: 10px;
+    margin: 20px 0 5px 325px;
+}
+div.boton_imprimir {
+    float: right;
+}
+input.bot_impr {
+    border: 1px solid #999999;
+    border-radius: 2px 2px 2px 2px;
+    cursor: pointer;
+    font-size: 10px;
+}
+input.boton_foto
+{
+    border: 1px solid #999999;
+    border-radius: 2px 2px 2px 2px;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px;
+}
+
+input.boton_reverso
+{
+    border: 1px solid #999999;
+    border-radius: 2px 2px 2px 2px;
+    cursor: pointer;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px;
+    float: right;
+    margin-right: 512px;
+}
+td.celda_link_foto
+{
+    font-size: 11px;
+    padding: 5px 10px;
+    width: 80px;
+    text-align: center;
+       border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    border-left: 0;
+    border-right: 0;
+}
+
+td.escondido, th.escondido {
+    display: none;
+}
+div.clear_both {
+    clear: both;
+}
+
+table.grid_alumnos
+{
+    border-radius: 3px;
+-webkit-box-shadow: 2px 4px 6px rgba(0, 0, 0, 1);
+-moz-box-shadow:    2px 4px 6px rgba(0, 0, 0, 1);
+box-shadow:         2px 4px 6px rgba(0, 0, 0, 1);
+}
+
+th.first_cell
+{
+    border-radius: 6px 0px 0px 0px
+}
+
+th.last_cell
+{
+    border-radius: 0px 6px 0px 0px;
+}
+
+/************ CSS CARNET ***********/
+
+div.carnet_div {
+    color: #FFFFFF;
+    font-family: BlairMdITC TT;
+    font-size: 8px;
+    height: 100%;
+    line-height: 9px;
+    position: relative;
+    width: 100%;
+    margin-left: -1px;
+    margin-top: -1px;
+}
+div.div_foto {
+    background-color: transparent;
+    position: absolute;
+    right: 209px;
+    top: 11px;
+}
+div.carnet_campos
+{
+    font-size: 9px;
+    position: absolute;
+    top: 75px;
+    right: 8px;
+    width: 192px;
+}
+
+span.div_nombre {
+    float: left;
+    width: 133px;
+}
+
+div.cont_campo {
+    color: #FFFFFF;
+    float: left;
+    margin-bottom: 10px;
+}
+
+span.div_cedula {
+    
+    width: 102px;
+}
+
+span.div_centro {
+    color: #FFFFFF;
+    font-size: 8px;
+    width: 130px;
+}
+
+div.cont_centro {
+    float: left;
+    margin-bottom: 5px;
+}
+
+span.div_carrera {
+    color: #FFFFFF;
+    font-size: 7px;
+    width: 137px;
+}
+
+span.div_nivel {
+    color: #FFFFFF;
+    font-size: 8px;
+    width: 167px;
+}
+
+div.cod_barras {
+ background-color: white;
+    color: black;
+    font-family: C39HrP24DhTt;
+    font-size: 40px;
+    height: 23px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 0 5px;
+    position: absolute;
+    right: 55px;
+    top: 151px;
+}
+
+div.front_logo
+{
+   position: absolute;
+   top: 7px;
+   left: 143px;        
+}
+
+div.front_texto
+{
+   color: White;
+   font-size: 10px;
+   font-family: BlairMdITC TT;
+   position: absolute;
+   top: 193px;
+   left: 36px; 
+}
+
+div.foto_title
+{
+    color: Black;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+div.texto_ayuda
+{
+    font-style: italic;
+    font-size: 12px;
+    width: 280px;
+    margin-bottom: 25px;
+}
+
+div.enlace_carnet
+{
+    margin-top: 15px;
+    font-size: 11px;
+    color: #222;
+    width: 280px;
+}
+
+/** CSS REVERSO **/
+
+div.div_reverso
+{
+    position:relative; 
+    width: 340px;  
+}
+
+div.texto_sede
+{
+    position: absolute;
+    top: 18px;
+    right: 145px;
+    color: White;
+    font-size: 10px;
+    width: 183px;
+}
+
+div.logo_div
+{
+    position: absolute;
+    top: 15px;
+    right: 20px;   
+    border: 0;
+}
+
+div.texto_aviso
+{
+    position: absolute;
+    width: 290px;
+    top: 180px;
+    right: 28px;
+    color: White;
+    font-size: 10px;
+    text-align: center;
+}
+
+div.text_univ
+{
+    position: absolute;
+    top: 120px;
+    left: -7px;
+    color: White;
+    font-family: BlairMdITC TT;
+    font-size: 15px;
+    width: 356px;
+    text-align: center;
+}

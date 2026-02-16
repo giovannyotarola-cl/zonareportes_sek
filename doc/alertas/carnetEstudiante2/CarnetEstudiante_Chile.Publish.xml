@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="D:\Visual Studio 2010\Projects\CarnetEstudiante_Chile\CarnetEstudiante_Chile\WebDeploy" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Perfil1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="01/14/2013 17:56:43" />
+    <file relUrl="WebcamResources/save_picture.swf" publishTime="12/01/2012 01:04:56" />
+    <file relUrl="Site.Master" publishTime="01/08/2013 10:52:31" />
+    <file relUrl="img/logotexto.jpg" publishTime="10/25/2010 09:41:30" />
+    <file relUrl="image_handler.aspx" publishTime="01/08/2013 12:56:41" />
+    <file relUrl="img/anverso.png" publishTime="01/14/2013 12:50:17" />
+    <file relUrl="mostrarCarnet.aspx" publishTime="01/14/2013 12:59:24" />
+    <file relUrl="Carnet.Master" publishTime="01/08/2013 12:33:02" />
+    <file relUrl="ImageConversions.aspx" publishTime="01/08/2013 13:02:36" />
+    <file relUrl="Styles/print.css" publishTime="01/14/2013 13:01:35" />
+    <file relUrl="Styles/Site.css" publishTime="01/14/2013 13:01:42" />
+    <file relUrl="bin/CarnetEstudiante_Chile.dll" publishTime="01/14/2013 17:58:37" />
+    <file relUrl="img/reverso.png" publishTime="01/14/2013 11:29:16" />
+    <file relUrl="WebcamResources/aud_kbqitkdrihpg4g49.mp3" publishTime="11/30/2012 21:43:51" />
+    <file relUrl="Global.asax" publishTime="01/08/2013 10:07:19" />
+    <file relUrl="img/anverso_logo.png" publishTime="01/08/2013 10:32:18" />
+    <file relUrl="bin/CarnetEstudiante_Chile.xml" publishTime="01/14/2013 17:58:37" />
+    <file relUrl="camFrame.aspx" publishTime="01/08/2013 13:17:31" />
+    <file relUrl="Default.aspx" publishTime="01/08/2013 17:28:54" />
+    <file relUrl="img/logo.jpg" publishTime="01/14/2013 11:13:18" />
+    <file relUrl="reverso.aspx" publishTime="01/14/2013 12:30:16" />
+    <file relUrl="bin/CarnetEstudiante_Chile.pdb" publishTime="01/14/2013 17:58:37" />
+  </publishProfile>
+</publishData>

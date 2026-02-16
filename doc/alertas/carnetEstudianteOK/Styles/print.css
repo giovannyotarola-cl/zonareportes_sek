@@ -1,0 +1,269 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+
+body   
+{
+    font-size: .80em;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: #0a1a3b;
+    background-color: #FFFFFF;
+}
+
+div.clear_both
+{
+    clear: both;
+}
+
+/************ CSS CARNET ***********/
+
+div.carnet_div {
+    color: #0a1a3b !important;
+    font-family: BlairMdITC TT;
+    font-size: 8px;
+    height: 100%;
+    line-height: 9px;
+    position: relative;
+    width: 100%;
+    margin-left: -1px;
+    margin-top: -1px;
+}
+div.div_foto {
+    background-color: transparent;
+    position: absolute;
+    right: 210px;
+    top: 20px;
+}
+div.carnet_campos
+{
+    font-size: 7px;
+position: absolute;
+top: 69px;
+right: 40px;
+width: 152px;
+font-weight: bold;
+}
+
+span.div_nombre {
+    color:#0a1a3b;
+    float: left;
+    width: 133px;
+}
+
+div.cont_campo {
+    color: #0a1a3b;
+    float: left;
+    margin-bottom: 4px;
+}
+
+span.div_cedula {
+    
+    width: 102px;
+}
+
+span.div_centro {
+    color: #0a1a3b;
+    font-size: 8px;
+    width: 130px;
+}
+
+div.cont_centro {
+    float: left;
+    margin-bottom: 5px;
+}
+
+span.div_carrera {
+    color: #0a1a3b;
+    font-size: 7px;
+    width: 137px;
+}
+
+span.div_nivel {
+    color: #0a1a3b;
+    font-size: 8px;
+    width: 167px;
+}
+
+div.cod_barras {
+ background-color: white;
+    color: black;
+    font-family: C39HrP24DhTt;
+    font-size: 40px;
+    height: 20px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 0 5px;
+    position: absolute;
+    right: 30px;
+    top: 152px;
+}
+
+div.front_logo
+{
+   position: absolute;
+   top: 7px;
+   left: 143px;        
+}
+
+div.front_texto
+{
+   color: White;
+   font-size: 10px;
+   font-family: BlairMdITC TT;
+   position: absolute;
+   top: 193px;
+   left: 36px; 
+}
+
+div.foto_title
+{
+    color: Black;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+div.texto_ayuda
+{
+    font-style: italic;
+    font-size: 12px;
+    width: 280px;
+    margin-bottom: 25px;
+}
+
+div.enlace_carnet
+{
+    margin-top: 15px;
+    font-size: 11px;
+    color: #222;
+    width: 280px;
+}
+
+/** CSS REVERSO **/
+
+div.div_reverso
+{
+    position:relative; 
+}
+
+div.texto_sede
+{
+    position: absolute;
+    top: 18px;
+    right: 145px;
+    color: White;
+    font-size: 10px;
+    width: 183px;
+}
+
+div.logo_div
+{
+    position: absolute;
+    top: 15px;
+    right: 20px;   
+    border: 0;
+}
+
+div.texto_aviso
+{
+    position: absolute;
+    width: 290px;
+    top: 180px;
+    right: 28px;
+    color: White;
+    font-size: 10px;
+    text-align: center;
+}
+
+div.text_univ
+{
+    position: absolute;
+    top: 120px;
+    left: -7px;
+    color: White;
+    font-family: BlairMdITC TT;
+    font-size: 15px;
+    width: 356px;
+    text-align: center;
+}
+div.union {
+  color: White;
+   font-size: 8px;
+   font-family: BlairMdITC TT;
+   position: absolute;
+   top: 151px;
+   left: 39px; 
+}
+
+/** CSS REVERSO **/
+
+div.div_reverso
+{
+    position:relative; 
+}
+
+div.texto_sede
+{
+    position: absolute;
+    top: 18px;
+    right: 145px;
+    color: White;
+    font-size: 10px;
+    width: 183px;
+}
+
+div.logo_div
+{
+    position: absolute;
+    top: 15px;
+    right: 20px;   
+    border: 0;
+}
+
+div.texto_aviso
+{
+    position: absolute;
+    width: 290px;
+    top: 180px;
+    right: 28px;
+    color: White;
+    font-size: 10px;
+    text-align: center;
+}
+
+div.text_univ
+{
+    position: absolute;
+    top: 120px;
+    left: -7px;
+    color: White;
+    font-family: BlairMdITC TT;
+    font-size: 15px;
+    width: 356px;
+    text-align: center;
+}
+
+div.union {
+  color: White;
+   font-size: 8px;
+   font-family: BlairMdITC TT;
+   position: absolute;
+   top: 151px;
+   left: 39px; 
+}
+/*Salvavidas*/
+div.carnet_campos_salvavidas {
+    font-size: 8.5px;
+    position: absolute;
+    top: 75px;
+    right: 120px;
+    width: 152px;
+    font-weight: bold;
+}
+div.carnet_campos_salvavidas div.cont_campo{
+	color:#fff !important;	
+}
+div.carnet_campos_salvavidas div.cont_campo .div_nombre{
+	color:#fff !important;
+}
